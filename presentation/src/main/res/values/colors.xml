@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/mvvmtemplate_light_green</color>
+    <color name="colorPrimaryDark">#@color/mvvmtemplate_dark_green</color>
+    <color name="colorAccent">@color/white</color>
+
+    <color name="mvvmtemplate_dark_green">#9FA500</color>
+    <color name="mvvmtemplate_light_green">#BCC826</color>
+    <color name="white">#ffffff</color>
+    <color name="dark_gray">#757575</color>
+    <color name="red">#FF0000</color>
+</resources>

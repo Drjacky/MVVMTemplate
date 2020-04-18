@@ -1,0 +1,54 @@
+ext {
+    //versioning
+    generateVersionName = { BigDecimal versionCode ->
+        int patch = versionCode.remainder(1000)
+        int minor = (versionCode / 1000).remainder(1000)
+        int major = (versionCode / 1000000).remainder(1000)
+        "$major.$minor.$patch"
+    }
+    appVersionCode = 1_000_000
+    appVersionName = generateVersionName(appVersionCode)
+    //android
+    minSdkVersion = 21
+    targetSdkVersion = 29
+    versionCode = appVersionCode
+    versionName = appVersionName
+    androidCompileSdkVersion = 29
+    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    //libraries
+    //rx
+    rxKotlinVersion = '2.4.0'
+    rxAndroidVersion = '2.1.1'
+    rxJavaVersion = '2.2.19'
+    rxBinding = '3.1.0'
+    //network
+    retrofit2Version = '2.8.1'
+    okhttpLoggingVersion = '4.5.0'
+    chuckVersion = '1.1.0'
+    //parser
+    gsonVersion = '2.8.1'
+    //android
+    lifecycleVersion = '2.2.0'
+    constraintLayoutVersion = '2.0.0-beta4'
+    supportVersion = '1.1.0'
+    materialVersion = '1.1.0'
+    designSupportVersion = '28.0.0'
+    coreKtxVersion = '1.2.0'
+    navigationVersion = '1.0.0'
+    //dependency injection
+    daggerVersion = '2.27'
+    javaxInjectVersion = '1'
+    //other
+    timberVersion = '4.7.1'
+    lottieVersion = '3.4.0'
+    glideVersion = '4.11.0'
+    //test
+    mockitoKotlinVersion = '2.2.0'
+    mockitoCoreVersion = '3.3.3'
+    mockitoInlineVersion = '3.3.3'
+    espressoVersion = '3.2.0'
+    junitVersion = '4.13'
+    supportTestVersion = '1.2.0'
+    testCoreVersion = '1.2.0'
+    testExtJunitVersion = '1.1.1'
+}

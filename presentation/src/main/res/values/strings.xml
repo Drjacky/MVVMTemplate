@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="something_went_wrong">Something went wrong</string>
+    <string name="description">Description:\n\n %1$s</string>
+    <string name="allergies">Allergies: %1$s</string>
+</resources>
