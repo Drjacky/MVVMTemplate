@@ -2,26 +2,24 @@ package app.web.drjackycv.presentation.products.productlist
 
 import android.os.Bundle
 import android.view.View
-import androidx.transition.Fade
-import app.web.drjackycv.domain.base.usecase.Failure
+import androidx.core.os.bundleOf
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
+import androidx.paging.PagedList
+import app.web.drjackycv.domain.base.Failure
+import app.web.drjackycv.domain.base.RecyclerItem
+import app.web.drjackycv.domain.products.entity.Beer
 import app.web.drjackycv.presentation.R
-import app.web.drjackycv.presentation.base.adapter.RecyclerItem
 import app.web.drjackycv.presentation.base.fragment.BaseFragment
 import app.web.drjackycv.presentation.extension.gone
 import app.web.drjackycv.presentation.extension.observe
 import app.web.drjackycv.presentation.extension.viewModel
 import app.web.drjackycv.presentation.extension.visible
-import app.web.drjackycv.presentation.products.entity.ItemUI
-import app.web.drjackycv.presentation.products.productdetail.ProductDetailFragment
 import kotlinx.android.synthetic.main.fragment_product_list.*
 import kotlinx.android.synthetic.main.item_error.*
 import kotlinx.android.synthetic.main.progress_bar_circular.*
 
 class ProductsListFragment : BaseFragment() {
-
-    companion object {
-        fun getFragment(): ProductsListFragment = ProductsListFragment()
-    }
 
     override var fragmentLayout: Int = R.layout.fragment_product_list
 
@@ -45,7 +43,9 @@ class ProductsListFragment : BaseFragment() {
     private fun setupViewModel() {
         productsListViewModel = viewModel(viewModelFactory.get()) {
 
-            observe(ldItemsList, ::addProducts)
+            getProductsList()
+
+            observe(ldBeersList, ::addProducts)
 
             observe(ldLoading, ::loadingUI)
 
@@ -54,10 +54,11 @@ class ProductsListFragment : BaseFragment() {
         }
     }
 
-    private fun addProducts(productsList: List<RecyclerItem>) {
+    @Suppress("UNCHECKED_CAST")
+    private fun addProducts(productsList: PagedList<Beer>) {
         itemErrorContainer.gone()
         productListRecyclerView.visible()
-        productsListAdapter.submitList(productsList)
+        productsListAdapter.submitList(productsList as PagedList<RecyclerItem>)
     }
 
     private fun loadingUI(isLoading: Boolean) {
@@ -81,10 +82,16 @@ class ProductsListFragment : BaseFragment() {
     }
 
     private fun navigateToProductDetail(item: RecyclerItem) {
-        val productDetailFragment = ProductDetailFragment.getFragment((item as ItemUI).id)
-        productDetailFragment.enterTransition = Fade()
-        productDetailFragment.exitTransition = Fade()
-        pushStack(productDetailFragment)
+        val bundle = bundleOf("productDetailBeerUI" to BeerMapper().mapToUI(item as Beer))
+        val options = navOptions {
+            anim {
+                enter = R.anim.enter
+                exit = R.anim.exit
+                popEnter = R.anim.enter
+                popExit = R.anim.exit
+            }
+        }
+        findNavController().navigate(R.id.productDetailFragment, bundle, options)
     }
 
 }

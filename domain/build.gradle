@@ -43,6 +43,10 @@ configurations {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+    //android
+    implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
+    implementation "androidx.paging:paging-rxjava2:$pagingVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata:$lifecycleVersion"
     //reactive
     implementation "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
     implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"

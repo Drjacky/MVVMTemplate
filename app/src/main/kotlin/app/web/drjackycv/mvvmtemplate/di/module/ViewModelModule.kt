@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModelProvider
 import app.web.drjackycv.mvvmtemplate.di.viewmodel.ViewModelFactory
 import app.web.drjackycv.mvvmtemplate.di.viewmodel.ViewModelKey
 import app.web.drjackycv.presentation.base.viewmodel.BaseViewModel
-import app.web.drjackycv.presentation.products.productdetail.ProductDetailViewModel
 import app.web.drjackycv.presentation.products.productlist.ProductsListViewModel
 import dagger.Binds
 import dagger.Module
@@ -20,10 +19,5 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ProductsListViewModel::class)
     abstract fun productsList(vm: ProductsListViewModel): BaseViewModel
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(ProductDetailViewModel::class)
-    abstract fun productDetail(vm: ProductDetailViewModel): BaseViewModel
 
 }

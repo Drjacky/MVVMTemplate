@@ -4,7 +4,7 @@ import android.content.res.Resources
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import app.web.drjackycv.domain.base.usecase.Failure
+import app.web.drjackycv.domain.base.Failure
 import app.web.drjackycv.presentation.R
 import dagger.Lazy
 import io.reactivex.disposables.CompositeDisposable

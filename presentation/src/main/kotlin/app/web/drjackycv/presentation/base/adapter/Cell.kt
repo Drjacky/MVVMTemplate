@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
+import app.web.drjackycv.domain.base.RecyclerItem
 
 abstract class Cell<T> {
 

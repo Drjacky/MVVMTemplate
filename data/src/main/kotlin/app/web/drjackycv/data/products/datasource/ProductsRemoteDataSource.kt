@@ -1,21 +1,26 @@
 package app.web.drjackycv.data.products.datasource
 
+import app.web.drjackycv.data.network.BaseRemoteDataSource
 import app.web.drjackycv.data.products.remote.ProductsApi
-import app.web.drjackycv.domain.products.entity.Clusters
-import app.web.drjackycv.domain.products.entity.Product
-import io.reactivex.Single
+import app.web.drjackycv.domain.products.entity.Beer
 import javax.inject.Inject
 
 class ProductsRemoteDataSource @Inject constructor(
     private val productsApi: ProductsApi
-) {
+) : BaseRemoteDataSource() {
 
-    fun getClusters(): Single<Clusters> =
-        productsApi.getClusters()
-            .map { it.toDomain() }
-
-    fun getProductDetail(productId: Int): Single<Product> =
-        productsApi.getProductDetail(productId = productId)
-            .map { it.toDomain() }
+    fun getBeersById(
+        ids: String,
+        page: Int = 1,
+        perPage: Int,
+        onSuccess: (List<Beer>?) -> Unit
+    ) {
+        val request = productsApi.getBeers(
+            /*ids = ids,*/
+            page = page,
+            perPage = perPage
+        )
+        syncRequest(request, onSuccess)
+    }
 
 }

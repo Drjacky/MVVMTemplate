@@ -1,13 +1,14 @@
 package app.web.drjackycv.presentation.base.adapter
 
 import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
+import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import app.web.drjackycv.domain.base.RecyclerItem
 
-abstract class BaseListAdapter(
+abstract class BasePagedListAdapter(
     vararg types: Cell<RecyclerItem>,
     private val onItemClick: (RecyclerItem) -> Unit
-) : ListAdapter<RecyclerItem, RecyclerView.ViewHolder>(BASE_DIFF_CALLBACK) {
+) : PagedListAdapter<RecyclerItem, RecyclerView.ViewHolder>(BASE_DIFF_CALLBACK) {
 
     private val cellTypes: CellTypes<RecyclerItem> = CellTypes(*types)
 

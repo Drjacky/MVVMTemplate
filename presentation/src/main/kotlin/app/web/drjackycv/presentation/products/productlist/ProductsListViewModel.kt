@@ -2,48 +2,32 @@ package app.web.drjackycv.presentation.products.productlist
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import app.web.drjackycv.domain.products.usecase.GetClusterListUseCase
-import app.web.drjackycv.presentation.base.adapter.RecyclerItem
+import androidx.lifecycle.Transformations.map
+import androidx.lifecycle.Transformations.switchMap
+import androidx.paging.PagedList
+import app.web.drjackycv.domain.base.Listing
+import app.web.drjackycv.domain.products.entity.Beer
+import app.web.drjackycv.domain.products.usecase.GetBeersListParams
+import app.web.drjackycv.domain.products.usecase.GetBeersListUseCase
 import app.web.drjackycv.presentation.base.viewmodel.BaseViewModel
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.rxkotlin.addTo
-import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class ProductsListViewModel @Inject constructor(
-    private val getClusterListUseCase: GetClusterListUseCase
+    private val getBeersListUseCase: GetBeersListUseCase
 ) : BaseViewModel() {
 
-    private val _ldItemsList = MutableLiveData<List<RecyclerItem>>()
-    val ldItemsList: LiveData<List<RecyclerItem>> = _ldItemsList
-
-    init {
-        getProductsList()
+    private val _idsQuery = MutableLiveData<String>()
+    private val _ldBeersList: LiveData<Listing<Beer>> = map(_idsQuery) {
+        getBeersListUseCase(GetBeersListParams(ids = it))
+    }
+    val ldBeersList: LiveData<PagedList<Beer>> = switchMap(_ldBeersList) {
+        loading(false)
+        it.pagedList
     }
 
-    private fun getProductsList() {
-        val finalList = mutableListOf<RecyclerItem>()
-        getClusterListUseCase(Unit)
-            .map { clusters ->
-                ClustersMapper().mapToUI(clusters).clusters
-            }
-            .map {
-                it.forEach { clusterUI ->
-                    finalList.add(clusterUI)
-                    finalList.addAll(clusterUI.items)
-                }
-
-                finalList.toList()
-            }
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe { loading(true) }
-            .doAfterTerminate { loading(false) }
-            .subscribe({ productsUIList ->
-                _ldItemsList.value = productsUIList
-            }, { throwable ->
-                handleFailure(throwable) { getProductsList() }
-            }).addTo(compositeDisposable)
+    fun getProductsList() {
+        loading(true)
+        _idsQuery.value = ""
     }
 
 }

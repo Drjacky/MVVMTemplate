@@ -17,7 +17,7 @@
         android:padding="4dp">
 
         <ImageView
-            android:id="@+id/itemProductProductImv"
+            android:id="@+id/itemProductImv"
             android:layout_width="72dp"
             android:layout_height="72dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -26,29 +26,42 @@
             tools:src="@drawable/ic_cloud_download" />
 
         <TextView
-            android:id="@+id/itemProductSize"
+            android:id="@+id/itemProductTypeTxv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:maxLines="1"
-            app:layout_constraintStart_toStartOf="@+id/itemProductProductImv"
-            app:layout_constraintTop_toBottomOf="@+id/itemProductProductImv"
-            tools:text="6 per pack" />
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@+id/itemProductImv"
+            app:layout_constraintTop_toBottomOf="@+id/itemProductImv"
+            tools:text="Classic"
+            tools:visibility="visible" />
 
         <TextView
-            android:id="@+id/itemProductTitleTxv"
+            android:id="@+id/itemProductNameTxv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:ellipsize="end"
             android:maxLines="2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/itemProductProductImv"
+            app:layout_constraintEnd_toStartOf="@+id/itemProductIdTxv"
+            app:layout_constraintStart_toEndOf="@id/itemProductImv"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="MVVMTemplate Organic Fairtrade Bananas" />
+            tools:text="Buzz" />
 
         <TextView
-            android:id="@+id/itemProductPrice"
+            android:id="@+id/itemProductIdTxv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="1" />
+
+        <TextView
+            android:id="@+id/itemProductAbvTxv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -56,8 +69,8 @@
             android:textColor="@color/red"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/itemProductProductImv"
-            tools:text="1.45" />
+            app:layout_constraintTop_toBottomOf="@+id/itemProductImv"
+            tools:text="4.5" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

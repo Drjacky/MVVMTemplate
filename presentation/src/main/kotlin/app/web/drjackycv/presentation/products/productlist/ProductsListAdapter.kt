@@ -1,11 +1,10 @@
 package app.web.drjackycv.presentation.products.productlist
 
-import app.web.drjackycv.presentation.base.adapter.BaseListAdapter
-import app.web.drjackycv.presentation.base.adapter.RecyclerItem
-import app.web.drjackycv.presentation.products.entity.ClusterCell
-import app.web.drjackycv.presentation.products.entity.ItemCell
+import app.web.drjackycv.domain.base.RecyclerItem
+import app.web.drjackycv.presentation.base.adapter.BasePagedListAdapter
+import app.web.drjackycv.presentation.products.entity.BeerCell
 
-class ProductsListAdapter(onItemClick: (RecyclerItem) -> Unit) : BaseListAdapter(
-    ItemCell, ClusterCell,
+class ProductsListAdapter(onItemClick: (RecyclerItem) -> Unit) : BasePagedListAdapter(
+    BeerCell,
     onItemClick = onItemClick
 )

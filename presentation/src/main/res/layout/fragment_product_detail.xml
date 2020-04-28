@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/productDetailContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -12,7 +11,7 @@
     <ImageView
         android:id="@+id/productDetailImv"
         android:layout_width="0dp"
-        android:layout_height="150dp"
+        android:layout_height="300dp"
         android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,10 +20,26 @@
         tools:src="@drawable/ic_cloud_download" />
 
     <TextView
-        android:id="@+id/productDetailTitleTxv"
+        android:id="@+id/productDetailNameTxv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/productDetailIdTxv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productDetailImv"
+        tools:text="Buzz" />
+
+    <TextView
+        android:id="@+id/productDetailIdTxv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:ellipsize="end"
@@ -32,26 +47,25 @@
         android:textSize="17sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/productDetailImv"
-        tools:text="MVVMTemplate Organic Fairtrade Bananas" />
+        tools:text="1" />
 
     <TextView
-        android:id="@+id/productDetailDescription"
+        android:id="@+id/productDetailDescriptionTxv"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/productDetailAllergyTxv"
+        app:layout_constraintBottom_toTopOf="@+id/productDetailAbvTxv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productDetailTitleTxv"
-        tools:text="Description:\n\nOrganic. Suitable for vegetarians" />
+        app:layout_constraintTop_toBottomOf="@+id/productDetailNameTxv"
+        tools:text="Description: \n \n A light, crisp and bitter IPA brewed with English and American hops. A small batch brewed only once." />
 
     <TextView
-        android:id="@+id/productDetailAllergyTxv"
+        android:id="@+id/productDetailAbvTxv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -61,14 +75,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="Allergies: May contain traces of Sesame Seeds" />
-
-    <include
-        layout="@layout/item_error"
-        tools:visibility="gone" />
-
-    <include
-        layout="@layout/progress_bar_circular"
-        tools:visibility="gone" />
+        tools:text="ABV: 4.5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

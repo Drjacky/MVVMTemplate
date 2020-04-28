@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'androidx.navigation.safeargs.kotlin'
 
 android {
     androidExtensions { experimental = true }
@@ -54,6 +55,9 @@ dependencies {
     implementation "com.google.android.material:material:$materialVersion"
     implementation "android.arch.navigation:navigation-fragment-ktx:$navigationVersion"
     implementation "android.arch.navigation:navigation-ui-ktx:$navigationVersion"
+    implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
+    implementation "androidx.paging:paging-rxjava2:$pagingVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
     //reactive
     implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
     implementation "com.jakewharton.rxbinding3:rxbinding:$rxBinding"

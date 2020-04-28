@@ -1,4 +1,4 @@
-package app.web.drjackycv.domain.base.usecase
+package app.web.drjackycv.domain.base
 
 sealed class Failure(var retryAction: () -> Unit) : Throwable() {
 

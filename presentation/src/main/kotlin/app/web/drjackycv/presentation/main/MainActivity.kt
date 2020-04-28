@@ -1,11 +1,16 @@
 package app.web.drjackycv.presentation.main
 
+import android.os.Bundle
+import app.web.drjackycv.presentation.R
 import app.web.drjackycv.presentation.base.activity.BaseActivity
-import app.web.drjackycv.presentation.base.fragment.BaseFragment
-import app.web.drjackycv.presentation.products.productlist.ProductsListFragment
 
 class MainActivity : BaseActivity() {
 
-    override var childFragment: BaseFragment? = ProductsListFragment.getFragment()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+    }
+
+    override fun getNavControllerId(): Int = R.id.activityMainProductsListHostFragment
 
 }

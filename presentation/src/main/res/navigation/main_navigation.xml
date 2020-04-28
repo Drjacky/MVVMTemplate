@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home"
+    app:startDestination="@id/productsListFragment">
+
+    <fragment
+        android:id="@+id/productsListFragment"
+        android:name="app.web.drjackycv.presentation.products.productlist.ProductsListFragment"
+        tools:layout="@layout/fragment_product_list">
+
+        <action
+            android:id="@+id/navigateToAlbumDetailFragment"
+            app:destination="@id/productDetailFragment"
+            app:enterAnim="@anim/enter"
+            app:exitAnim="@anim/exit"
+            app:popEnterAnim="@anim/pop_enter"
+            app:popExitAnim="@anim/pop_exit" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/productDetailFragment"
+        android:name="app.web.drjackycv.presentation.products.productdetail.ProductDetailFragment"
+        tools:layout="@layout/fragment_product_detail">
+
+        <argument
+            android:name="productDetailBeerUI"
+            app:argType="app.web.drjackycv.presentation.products.entity.BeerUI" />
+
+    </fragment>
+
+</navigation>
