@@ -1,9 +1,9 @@
 package app.web.drjackycv.domain.products.usecase
 
-import app.web.drjackycv.domain.extension.*
+import app.web.drjackycv.domain.extension.getSingleError
+import app.web.drjackycv.domain.extension.getSingleSuccess
 import app.web.drjackycv.domain.products.entity.ProductsFactory.Companion.providesProductDetail
 import app.web.drjackycv.domain.products.repository.ProductsRepository
-import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.whenever
 import org.junit.Before
 import org.junit.Test

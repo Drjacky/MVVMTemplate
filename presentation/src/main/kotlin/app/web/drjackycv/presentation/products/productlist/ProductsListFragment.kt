@@ -54,11 +54,10 @@ class ProductsListFragment : BaseFragment() {
         }
     }
 
-    @Suppress("UNCHECKED_CAST")
-    private fun addProducts(productsList: PagedList<Beer>) {
+    private fun addProducts(productsList: PagedList<RecyclerItem>) {
         itemErrorContainer.gone()
         productListRecyclerView.visible()
-        productsListAdapter.submitList(productsList as PagedList<RecyclerItem>)
+        productsListAdapter.submitList(productsList)
     }
 
     private fun loadingUI(isLoading: Boolean) {

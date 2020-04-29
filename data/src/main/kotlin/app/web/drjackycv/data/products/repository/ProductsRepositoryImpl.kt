@@ -6,7 +6,7 @@ import androidx.paging.PagedList
 import app.web.drjackycv.data.products.datasource.ProductsRemoteDataSource
 import app.web.drjackycv.data.products.datasource.ProductsRemoteDataSourceFactory
 import app.web.drjackycv.domain.base.Listing
-import app.web.drjackycv.domain.products.entity.Beer
+import app.web.drjackycv.domain.base.RecyclerItem
 import app.web.drjackycv.domain.products.repository.ProductsRepository
 import java.util.concurrent.Executor
 import javax.inject.Inject
@@ -16,10 +16,10 @@ class ProductsRepositoryImpl @Inject constructor(
     private val networkExecutor: Executor
 ) : ProductsRepository {
 
-    override fun getBeersById(ids: String): Listing<Beer> {
+    override fun getBeersById(ids: String): Listing<RecyclerItem> {
         val factory = productRemoteDataSourceFactory(ids)
         val config = pagedListConfig()
-        val livePagedList: LiveData<PagedList<Beer>> = LivePagedListBuilder(factory, config)
+        val livePagedList: LiveData<PagedList<RecyclerItem>> = LivePagedListBuilder(factory, config)
             .setFetchExecutor(networkExecutor)
             .build()
 

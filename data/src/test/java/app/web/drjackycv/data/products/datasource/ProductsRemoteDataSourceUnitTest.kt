@@ -1,11 +1,9 @@
 package app.web.drjackycv.data.products.datasource
 
-import app.web.drjackycv.data.extension.assertGeneralsSuccess
 import app.web.drjackycv.data.extension.getSingleResultSuccess
 import app.web.drjackycv.data.products.entity.ProductsResponseFactory.Companion.providesClustersResponse
 import app.web.drjackycv.data.products.entity.ProductsResponseFactory.Companion.providesProductDetailResponse
 import app.web.drjackycv.data.products.remote.ProductsApi
-import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.whenever
 import org.junit.Before
 import org.junit.Test

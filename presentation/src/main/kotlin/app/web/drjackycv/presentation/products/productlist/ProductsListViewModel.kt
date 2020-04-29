@@ -6,7 +6,7 @@ import androidx.lifecycle.Transformations.map
 import androidx.lifecycle.Transformations.switchMap
 import androidx.paging.PagedList
 import app.web.drjackycv.domain.base.Listing
-import app.web.drjackycv.domain.products.entity.Beer
+import app.web.drjackycv.domain.base.RecyclerItem
 import app.web.drjackycv.domain.products.usecase.GetBeersListParams
 import app.web.drjackycv.domain.products.usecase.GetBeersListUseCase
 import app.web.drjackycv.presentation.base.viewmodel.BaseViewModel
@@ -17,10 +17,10 @@ class ProductsListViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     private val _idsQuery = MutableLiveData<String>()
-    private val _ldBeersList: LiveData<Listing<Beer>> = map(_idsQuery) {
+    private val _ldBeersList: LiveData<Listing<RecyclerItem>> = map(_idsQuery) {
         getBeersListUseCase(GetBeersListParams(ids = it))
     }
-    val ldBeersList: LiveData<PagedList<Beer>> = switchMap(_ldBeersList) {
+    val ldBeersList: LiveData<PagedList<RecyclerItem>> = switchMap(_ldBeersList) {
         loading(false)
         it.pagedList
     }

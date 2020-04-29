@@ -2,7 +2,7 @@ package app.web.drjackycv.data.products.datasource
 
 import app.web.drjackycv.data.network.BaseRemoteDataSource
 import app.web.drjackycv.data.products.remote.ProductsApi
-import app.web.drjackycv.domain.products.entity.Beer
+import app.web.drjackycv.domain.base.RecyclerItem
 import javax.inject.Inject
 
 class ProductsRemoteDataSource @Inject constructor(
@@ -13,7 +13,7 @@ class ProductsRemoteDataSource @Inject constructor(
         ids: String,
         page: Int = 1,
         perPage: Int,
-        onSuccess: (List<Beer>?) -> Unit
+        onSuccess: (List<RecyclerItem>?) -> Unit
     ) {
         val request = productsApi.getBeers(
             /*ids = ids,*/
