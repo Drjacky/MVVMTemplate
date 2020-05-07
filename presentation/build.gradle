@@ -10,6 +10,7 @@ android {
     compileSdkVersion rootProject.ext.androidCompileSdkVersion
 
     defaultConfig {
+        multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
@@ -58,6 +59,7 @@ dependencies {
     implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
     implementation "androidx.paging:paging-rxjava2:$pagingVersion"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
+    implementation "androidx.multidex:multidex:$multidexVersion"
     //reactive
     implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
     implementation "com.jakewharton.rxbinding3:rxbinding:$rxBinding"

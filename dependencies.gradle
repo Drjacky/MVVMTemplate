@@ -36,6 +36,7 @@ ext {
     coreKtxVersion = '1.2.0'
     navigationVersion = '1.0.0'
     pagingVersion = '2.1.2'
+    multidexVersion = '2.0.1'
     //dependency injection
     daggerVersion = '2.27'
     javaxInjectVersion = '1'

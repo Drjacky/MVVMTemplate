@@ -10,6 +10,7 @@ android {
         enabled = true
     }
     defaultConfig {
+        multiDexEnabled true
         applicationId "app.web.drjackycv.mvvmtemplate"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
@@ -63,6 +64,7 @@ afterEvaluate {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
     implementation "androidx.core:core-ktx:$coreKtxVersion"
+    implementation "androidx.multidex:multidex:$multidexVersion"
     //dependency injection
     implementation "com.google.dagger:dagger:$daggerVersion"
     implementation "com.google.dagger:dagger-android-support:$daggerVersion"
