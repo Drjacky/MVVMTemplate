@@ -9,10 +9,10 @@ class ProductsRemoteDataSourceFactory(
     private val productsRemoteDataSource: ProductsRemoteDataSource
 ) : DataSource.Factory<Int, RecyclerItem>() {
 
-    val source = MutableLiveData<PhotoRemotePagedDataSource>()
+    val source = MutableLiveData<ProductsRemotePagedDataSource>()
 
     override fun create(): DataSource<Int, RecyclerItem> {
-        val source = PhotoRemotePagedDataSource(ids, productsRemoteDataSource)
+        val source = ProductsRemotePagedDataSource(ids, productsRemoteDataSource)
         this.source.postValue(source)
         return source
     }

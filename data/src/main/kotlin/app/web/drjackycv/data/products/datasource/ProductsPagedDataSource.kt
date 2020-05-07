@@ -6,7 +6,7 @@ import app.web.drjackycv.domain.base.RecyclerItem
 import javax.inject.Inject
 
 @SuppressLint("CheckResult")
-class PhotoRemotePagedDataSource @Inject constructor(
+class ProductsRemotePagedDataSource @Inject constructor(
     private val ids: String,
     private val productsRemoteDataSource: ProductsRemoteDataSource
 ) : PageKeyedDataSource<Int, RecyclerItem>() {
