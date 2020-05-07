@@ -34,7 +34,7 @@ android {
         }
         release {
             minifyEnabled true
-            buildConfigField "String", "BASE_URL", "\"" + environments.debug.baseURL + "\""
+            buildConfigField "String", "BASE_URL", "\"" + environments.release.baseURL + "\""
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
