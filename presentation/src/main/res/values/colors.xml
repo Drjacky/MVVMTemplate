@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">@color/light_red</color>
-    <color name="colorPrimaryDark">#@color/dark_red</color>
+    <color name="colorPrimaryDark">@color/dark_red</color>
     <color name="colorAccent">@color/white</color>
 
     <color name="dark_red">#B31A34</color>
