@@ -55,14 +55,13 @@ class ProductsListFragment : BaseFragment() {
     }
 
     private fun addProducts(productsList: PagedList<RecyclerItem>) {
-        itemErrorContainer.gone()
         productListRecyclerView.visible()
         productsListAdapter.submitList(productsList)
     }
 
     private fun loadingUI(isLoading: Boolean) {
+        itemErrorContainer.gone()
         if (isLoading) {
-            itemErrorContainer.gone()
             progressBar.visible()
         } else {
             progressBar.gone()

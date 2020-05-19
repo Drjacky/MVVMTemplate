@@ -19,6 +19,10 @@ fun View.visible() {
     visibility = View.VISIBLE
 }
 
+fun View.invisible() {
+    visibility = View.INVISIBLE
+}
+
 fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false): View =
     LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
 

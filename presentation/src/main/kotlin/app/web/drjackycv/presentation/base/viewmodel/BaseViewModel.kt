@@ -6,17 +6,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import app.web.drjackycv.domain.base.Failure
 import app.web.drjackycv.presentation.R
-import dagger.Lazy
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
 abstract class BaseViewModel : ViewModel() {
 
     @Inject
-    lateinit var resources: Lazy<Resources>
+    lateinit var resources: Resources
 
-    private var mutableFailure: MutableLiveData<Failure> = MutableLiveData()
-    val ldFailure: LiveData<Failure> = mutableFailure
     private var mutableLoading: MutableLiveData<Boolean> = MutableLiveData()
     val ldLoading: LiveData<Boolean> = mutableLoading
 
@@ -27,17 +24,12 @@ abstract class BaseViewModel : ViewModel() {
         super.onCleared()
     }
 
-    private fun getFailure(throwable: Throwable, retryAction: () -> Unit): Failure {
-        val failure = throwable as? Failure ?: Failure.FailureWithMessage(
-            resources.get().getString(R.string.something_went_wrong)
-        )
+    protected fun handleFailure(throwable: Throwable, retryAction: () -> Unit): Failure {
+        val failure = throwable as? Failure
+            ?: Failure.FailureWithMessage(resources.getString(R.string.something_went_wrong))
+
         failure.retryAction = retryAction
         return failure
-    }
-
-    protected fun handleFailure(throwable: Throwable, retryAction: () -> Unit) {
-        val failure = getFailure(throwable, retryAction)
-        mutableFailure.value = failure
     }
 
     protected fun loading(visible: Boolean) {

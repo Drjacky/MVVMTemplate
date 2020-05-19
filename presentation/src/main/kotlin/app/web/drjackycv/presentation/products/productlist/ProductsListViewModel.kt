@@ -17,12 +17,21 @@ class ProductsListViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     private val _idsQuery = MutableLiveData<String>()
-    private val _ldBeersList: LiveData<Listing<RecyclerItem>> = map(_idsQuery) {
+    private val result: LiveData<Listing<RecyclerItem>> = map(_idsQuery) {
         getBeersListUseCase(GetBeersListParams(ids = it))
     }
-    val ldBeersList: LiveData<PagedList<RecyclerItem>> = switchMap(_ldBeersList) {
+    val ldBeersList: LiveData<PagedList<RecyclerItem>> = switchMap(result) {
         loading(false)
-        it.pagedList
+        it.data
+    }
+    private val errorResult: LiveData<Throwable> = switchMap(result) {
+        loading(false)
+        it.error
+    }
+    val ldFailure = map(errorResult) {
+        handleFailure(it) {
+            getProductsList()
+        }
     }
 
     fun getProductsList() {

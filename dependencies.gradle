@@ -29,7 +29,7 @@ ext {
     gsonVersion = '2.8.1'
     //android
     lifecycleVersion = '2.2.0'
-    constraintLayoutVersion = '2.0.0-beta4'
+    constraintLayoutVersion = '2.0.0-beta6'
     supportVersion = '1.1.0'
     materialVersion = '1.1.0'
     designSupportVersion = '28.0.0'

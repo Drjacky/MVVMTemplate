@@ -1,6 +1,7 @@
 package app.web.drjackycv.data.products.repository
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations.switchMap
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import app.web.drjackycv.data.products.datasource.ProductsRemoteDataSource
@@ -23,7 +24,7 @@ class ProductsRepositoryImpl @Inject constructor(
             .setFetchExecutor(networkExecutor)
             .build()
 
-        return Listing(livePagedList)
+        return Listing(livePagedList, switchMap(factory.source) { it.ldError })
     }
 
 
