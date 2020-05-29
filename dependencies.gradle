@@ -22,18 +22,18 @@ ext {
     rxJavaVersion = '2.2.19'
     rxBinding = '3.1.0'
     //network
-    retrofit2Version = '2.8.1'
-    okhttpLoggingVersion = '4.5.0'
+    retrofit2Version = '2.9.0'
+    okhttpLoggingVersion = '4.7.2'
     chuckVersion = '1.1.0'
     //parser
-    gsonVersion = '2.8.1'
+    gsonVersion = '2.9.0'
     //android
     lifecycleVersion = '2.2.0'
     constraintLayoutVersion = '2.0.0-beta6'
     supportVersion = '1.1.0'
     materialVersion = '1.1.0'
     designSupportVersion = '28.0.0'
-    coreKtxVersion = '1.2.0'
+    coreKtxVersion = '1.3.0'
     navigationVersion = '1.0.0'
     pagingVersion = '2.1.2'
     multidexVersion = '2.0.1'
