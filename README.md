@@ -8,10 +8,12 @@ Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20t
 
 ## Features 🕹
 
-- **100% Kotlin-only template**.
+- 100% Kotlin-only template.
 - Following Clean Architecture approach.
 - Following MVVM Architectural Design Pattern.
 - Pull Request Template.
+- Using Pagination.
+- Simplest Adapter Ever.
 
 ## Under Development 🚧
 
