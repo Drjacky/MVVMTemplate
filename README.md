@@ -25,4 +25,4 @@ Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20t
 Feel free to open a issue or submit a pull request for any bugs/improvements.
 
 ## Result 📺
-![Screenshot](https://raw.githubusercontent.com/Drjacky/MVVMTemplate/master/list.jpg)
+![Screenshot](https://raw.githubusercontent.com/Drjacky/MVVMTemplate/master/list.png)
