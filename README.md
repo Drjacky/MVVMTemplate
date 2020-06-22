@@ -13,7 +13,7 @@ Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20t
 - Following MVVM Architectural Design Pattern.
 - Pull Request Template.
 - Using Pagination.
-- Simplest Adapter Ever.
+- Simplest Adapter Ever (based on this [workaround](https://proandroiddev.com/the-best-android-recycler-adapter-youve-ever-seen-probably-177e25279a28)).
 
 ## Under Development 🚧
 
