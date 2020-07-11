@@ -20,7 +20,7 @@ Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20t
 
 ## Under Development 🚧
 
-~~- Add CI~~
+- ~~Add CI~~
 - Use Kotlin DSL
 - Add Espresso, Instrumentation & Unit tests
 - Use Animations
