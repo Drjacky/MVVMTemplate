@@ -1,14 +1,9 @@
 package app.web.drjackycv.data.products.datasource
 
-import app.web.drjackycv.data.extension.getSingleResultSuccess
-import app.web.drjackycv.data.products.entity.ProductsResponseFactory.Companion.providesClustersResponse
-import app.web.drjackycv.data.products.entity.ProductsResponseFactory.Companion.providesProductDetailResponse
 import app.web.drjackycv.data.products.remote.ProductsApi
-import com.nhaarman.mockitokotlin2.whenever
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.ArgumentMatchers.anyInt
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 
@@ -26,28 +21,15 @@ class ProductsRemoteDataSourceUnitTest {
     }
 
     @Test
-    fun `getClusters should return a list of clusters`() {
-        whenever(productsApi.getClusters())
+    fun `getBeers should return a list of beers`() {
+        /*whenever(productsApi.getBeers())
             .doReturn(getSingleResultSuccess(providesClustersResponse()))
 
-        val testObserver = productsRemoteDataSource.getClusters().test()
+        val testObserver = productsRemoteDataSource.getBeers().test()
 
         testObserver.assertGeneralsSuccess {
             it.clusters.isNotEmpty()
-        }
-    }
-
-    @Test
-    fun `getProductDetail should return a product detail`() {
-        val productId = 309396011
-        whenever(productsApi.getProductDetail(anyInt()))
-            .doReturn(getSingleResultSuccess(providesProductDetailResponse()))
-
-        val testObserver = productsRemoteDataSource.getProductDetail(productId).test()
-
-        testObserver.assertGeneralsSuccess {
-            it.id == productId
-        }
+        }*/
     }
 
 }

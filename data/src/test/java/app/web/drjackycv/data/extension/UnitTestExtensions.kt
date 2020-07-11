@@ -1,6 +1,5 @@
 package app.web.drjackycv.data.extension
 
-import app.web.drjackycv.domain.base.usecase.Failure
 import io.reactivex.Single
 import io.reactivex.observers.TestObserver
 
@@ -26,7 +25,7 @@ fun <T> getSingleResultSuccess(value: T): Single<T> =
 fun <T : List<Any>> getSingleListResultSuccess(value: T): Single<T> =
     Single.just(value)
 
-fun <T> getSingleError(value: Throwable = getFailureError()): Single<T> = Single.error(value)
+/*fun <T> getSingleError(value: Throwable = getFailureError()): Single<T> = Single.error(value)
 
-private fun getFailureError() = Failure.FailureWithMessage("Error")
+private fun getFailureError() = Failure.FailureWithMessage("Error")*/
 

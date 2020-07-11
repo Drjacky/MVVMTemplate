@@ -1,6 +1,6 @@
 package app.web.drjackycv.domain.extension
 
-import app.web.drjackycv.domain.base.usecase.Failure
+import app.web.drjackycv.domain.base.Failure
 import io.reactivex.Single
 import io.reactivex.observers.TestObserver
 
@@ -26,11 +26,11 @@ fun <T> getSingleSuccess(value: T): Single<T> =
 fun <T : List<Any>> getSingleListSuccess(value: T): Single<T> =
     Single.just(value)
 
-fun <T> getSingleError(value: Throwable = getFailureError()): Single<T> = Single.error(value)
-
 fun <T : Any> Single<T>.testAwait(): TestObserver<T> = this.test().apply {
     this.awaitTerminalEvent()
 }
+
+fun <T> getSingleError(value: Throwable = getFailureError()): Single<T> = Single.error(value)
 
 private fun getFailureError() = Failure.FailureWithMessage("Error")
 

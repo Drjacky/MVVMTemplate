@@ -3,7 +3,7 @@ package app.web.drjackycv.domain.products.entity
 class ProductsFactory {
 
     companion object {
-        fun providesClusters(): Clusters = Clusters(
+        /*fun providesClusters(): Clusters = Clusters(
             listOf(providesCluster(), providesCluster(tag = "Sugar & Home Baking"))
         )
 
@@ -43,7 +43,7 @@ class ProductsFactory {
             title = title,
             size = size,
             imageUrl = imageUrl
-        )
+        )*/
     }
 
 }

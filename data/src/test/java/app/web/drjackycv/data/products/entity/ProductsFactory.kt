@@ -1,14 +1,9 @@
 package app.web.drjackycv.data.products.entity
 
-import app.web.drjackycv.domain.products.entity.Cluster
-import app.web.drjackycv.domain.products.entity.Clusters
-import app.web.drjackycv.domain.products.entity.Item
-import app.web.drjackycv.domain.products.entity.Product
-
 class ProductsFactory {
 
     companion object {
-        fun providesClusters(): Clusters = Clusters(
+        /*fun providesClusters(): Clusters = Clusters(
             listOf(providesCluster(), providesCluster(tag = "Sugar & Home Baking"))
         )
 
@@ -48,7 +43,7 @@ class ProductsFactory {
             title = title,
             size = size,
             imageUrl = imageUrl
-        )
+        )*/
     }
 
 }
