@@ -29,6 +29,6 @@ jobs:
           path: ~/.gradle/wrapper/
           key: cache-gradle-wrapper
       - name: Run Gradle tasks
-        run: ./gradlew build check publishToMavenLocal --continue
+        run: ./gradlew build --continue
       - name: Stop Gradle
         run: ./gradlew --stop
