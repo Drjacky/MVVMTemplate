@@ -10,18 +10,18 @@ Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20t
 
 ## Features 🕹
 
-- 100% Kotlin-only template.
-- Following Clean Architecture approach.
-- Following MVVM Architectural Design Pattern.
-- Pull Request Template.
-- Using Pagination.
-- Simplest Adapter Ever (based on this [workaround](https://proandroiddev.com/the-best-android-recycler-adapter-youve-ever-seen-probably-177e25279a28)).
+- 100% Kotlin-only template
+- Following Clean Architecture approach
+- Following MVVM Architectural Design Pattern
+- Pull Request Template
+- Using Pagination
+- Simplest Adapter Ever (based on this [workaround](https://proandroiddev.com/the-best-android-recycler-adapter-youve-ever-seen-probably-177e25279a28))
 
 ## Under Development 🚧
 
 - Add CI
 - Use Kotlin DSL
-- Add Espresso, Instrumentation & Unit tests.
+- Add Espresso, Instrumentation & Unit tests
 - Use Animations
 
 ## Contributing 🤝
