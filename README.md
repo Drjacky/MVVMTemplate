@@ -1,6 +1,6 @@
 # MVVMTemplate 🧞‍
 
-![License](https://img.shields.io/github/license/Drjacky/MVVMTemplate?logo=MIT)
+![Language](https://img.shields.io/github/languages/top/Drjacky/MVVMTemplate?color=blue&logo=kotlin) ![License](https://img.shields.io/github/license/Drjacky/MVVMTemplate?logo=MIT)
 
 A simple Android template that lets you create an **Android** project quickly. 
 
