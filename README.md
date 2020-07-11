@@ -25,7 +25,7 @@ Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20t
 - Add Espresso, Instrumentation & Unit tests
 - Use Animations
 
-## CI ⚙️
+## CI 🏭
 
 This template is using [**GitHub Actions**](https://github.com/Drjacky/MVVMTemplate/actions) as CI.
 
