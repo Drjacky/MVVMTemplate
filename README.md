@@ -1,5 +1,7 @@
 # MVVMTemplate 🧞‍
 
+~[License](https://img.shields.io/github/license/Drjacky/MVVMTemplate?logo=MIT)
+
 A simple Android template that lets you create an **Android** project quickly. 
 
 ## How to use 👣
