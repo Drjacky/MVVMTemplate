@@ -5,7 +5,9 @@ import app.web.drjackycv.domain.base.RecyclerItem
 import app.web.drjackycv.domain.base.usecase.GeneralUseCase
 import app.web.drjackycv.domain.products.repository.ProductsRepository
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class GetBeersListUseCase @Inject constructor(
     private val productsRepository: ProductsRepository
 ) : GeneralUseCase<Listing<RecyclerItem>, GetBeersListParams> {

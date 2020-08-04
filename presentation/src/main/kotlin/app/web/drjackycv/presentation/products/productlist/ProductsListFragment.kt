@@ -3,6 +3,8 @@ package app.web.drjackycv.presentation.products.productlist
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import androidx.paging.PagedList
@@ -10,20 +12,18 @@ import app.web.drjackycv.domain.base.Failure
 import app.web.drjackycv.domain.base.RecyclerItem
 import app.web.drjackycv.domain.products.entity.Beer
 import app.web.drjackycv.presentation.R
-import app.web.drjackycv.presentation.base.fragment.BaseFragment
 import app.web.drjackycv.presentation.extension.gone
 import app.web.drjackycv.presentation.extension.observe
-import app.web.drjackycv.presentation.extension.viewModel
 import app.web.drjackycv.presentation.extension.visible
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_product_list.*
 import kotlinx.android.synthetic.main.item_error.*
 import kotlinx.android.synthetic.main.progress_bar_circular.*
 
-class ProductsListFragment : BaseFragment() {
+@AndroidEntryPoint
+class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
 
-    override var fragmentLayout: Int = R.layout.fragment_product_list
-
-    private lateinit var productsListViewModel: ProductsListViewModel
+    private val productsListViewModel: ProductsListViewModel by viewModels()
 
     private val productsListAdapter: ProductsListAdapter by lazy {
         ProductsListAdapter(::navigateToProductDetail)
@@ -41,7 +41,7 @@ class ProductsListFragment : BaseFragment() {
     }
 
     private fun setupViewModel() {
-        productsListViewModel = viewModel(viewModelFactory.get()) {
+        productsListViewModel.run {
 
             getProductsList()
 

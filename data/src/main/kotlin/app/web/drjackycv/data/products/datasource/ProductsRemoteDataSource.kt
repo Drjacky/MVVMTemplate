@@ -5,7 +5,9 @@ import app.web.drjackycv.data.products.remote.ProductsApi
 import app.web.drjackycv.domain.base.RecyclerItem
 import app.web.drjackycv.domain.base.ResultState
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class ProductsRemoteDataSource @Inject constructor(
     private val productsApi: ProductsApi
 ) : BaseRemoteDataSource() {

@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'androidx.navigation.safeargs.kotlin'
 
@@ -23,6 +24,9 @@ android {
         targetCompatibility 1.8
         sourceCompatibility 1.8
     }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
         test.java.srcDirs += 'src/test/kotlin'
@@ -41,13 +45,14 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
     implementation "androidx.core:core-ktx:$coreKtxVersion"
+    implementation "androidx.fragment:fragment-ktx:$fragmentExtVersion"
     //dependency injection
-    implementation "com.google.dagger:dagger:$daggerVersion"
-    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
-    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
-    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
-    api "com.google.dagger:dagger-android:$daggerVersion"
-    api "com.google.dagger:dagger-android-support:$daggerVersion"
+    implementation "com.google.dagger:hilt-android:$hiltVersion"
+    kapt "com.google.dagger:hilt-android-compiler:$hiltVersion"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hiltExtVersion"
+    kapt "androidx.hilt:hilt-compiler:$hiltExtVersion"
+    kapt "com.google.dagger:hilt-android-compiler:$hiltVersion"
+    implementation "javax.inject:javax.inject:$javaxInjectVersion"
     //other
     implementation "com.jakewharton.timber:timber:4.7.1"
     //android support libs

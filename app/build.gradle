@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: 'kotlin-kapt'
 
 android {
@@ -17,7 +18,7 @@ android {
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
         testInstrumentationRunner rootProject.ext.testInstrumentationRunner
-        javaCompileOptions.annotationProcessorOptions.arguments =
+        javaCompileOptions.annotationProcessorOptions.arguments +=
                 ["room.schemaLocation": "$projectDir/schemas".toString()]
     }
     sourceSets {
@@ -45,6 +46,9 @@ android {
         targetCompatibility 1.8
         sourceCompatibility 1.8
     }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
     lintOptions.abortOnError = false
     testOptions.unitTests.returnDefaultValues = true
     packagingOptions {
@@ -65,15 +69,15 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
     implementation "androidx.core:core-ktx:$coreKtxVersion"
     implementation "androidx.multidex:multidex:$multidexVersion"
+    implementation "androidx.fragment:fragment-ktx:$fragmentExtVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
     //dependency injection
-    implementation "com.google.dagger:dagger:$daggerVersion"
-    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
-    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
-    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
-    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
-    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
-    api "com.google.dagger:dagger-android:$daggerVersion"
-    api "com.google.dagger:dagger-android-support:$daggerVersion"
+    implementation "com.google.dagger:hilt-android:$hiltVersion"
+    kapt "com.google.dagger:hilt-android-compiler:$hiltVersion"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hiltExtVersion"
+    kapt "androidx.hilt:hilt-compiler:$hiltExtVersion"
+    kapt "com.google.dagger:hilt-android-compiler:$hiltVersion"
+    implementation "javax.inject:javax.inject:$javaxInjectVersion"
     //network
     implementation "com.squareup.retrofit2:retrofit:$retrofit2Version"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit2Version"

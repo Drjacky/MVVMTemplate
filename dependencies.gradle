@@ -33,12 +33,14 @@ ext {
     supportVersion = '1.1.0'
     materialVersion = '1.1.0'
     designSupportVersion = '28.0.0'
-    coreKtxVersion = '1.3.0'
+    coreKtxVersion = '1.3.1'
     navigationVersion = '1.0.0'
     pagingVersion = '2.1.2'
     multidexVersion = '2.0.1'
+    fragmentExtVersion = '1.2.5'
     //dependency injection
-    daggerVersion = '2.27'
+    hiltVersion = '2.28.3-alpha'
+    hiltExtVersion = '1.0.0-alpha02'
     javaxInjectVersion = '1'
     //other
     timberVersion = '4.7.1'

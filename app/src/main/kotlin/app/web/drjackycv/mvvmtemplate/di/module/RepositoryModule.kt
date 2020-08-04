@@ -5,8 +5,11 @@ import app.web.drjackycv.data.products.repository.ProductsRepositoryImpl
 import app.web.drjackycv.domain.products.repository.ProductsRepository
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 import java.util.concurrent.Executors
 
+@InstallIn(ApplicationComponent::class)
 @Module
 class RepositoryModule {
 

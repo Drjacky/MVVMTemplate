@@ -1,5 +1,6 @@
 package app.web.drjackycv.presentation.products.productlist
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations.map
@@ -10,9 +11,8 @@ import app.web.drjackycv.domain.base.RecyclerItem
 import app.web.drjackycv.domain.products.usecase.GetBeersListParams
 import app.web.drjackycv.domain.products.usecase.GetBeersListUseCase
 import app.web.drjackycv.presentation.base.viewmodel.BaseViewModel
-import javax.inject.Inject
 
-class ProductsListViewModel @Inject constructor(
+class ProductsListViewModel @ViewModelInject constructor(
     private val getBeersListUseCase: GetBeersListUseCase
 ) : BaseViewModel() {
 

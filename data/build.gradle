@@ -23,6 +23,9 @@ android {
         targetCompatibility 1.8
         sourceCompatibility 1.8
     }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
         test.java.srcDirs += 'src/test/kotlin'
@@ -48,10 +51,7 @@ dependencies {
     implementation "androidx.paging:paging-rxjava2:$pagingVersion"
     implementation "androidx.multidex:multidex:$multidexVersion"
     //dependency injection
-    implementation "com.google.dagger:dagger:$daggerVersion"
-    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
-    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
-    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+    implementation "javax.inject:javax.inject:$javaxInjectVersion"
     //parser
     api "com.squareup.retrofit2:converter-gson:$gsonVersion"
     //network

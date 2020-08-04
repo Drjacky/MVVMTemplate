@@ -11,7 +11,9 @@ import app.web.drjackycv.domain.base.RecyclerItem
 import app.web.drjackycv.domain.products.repository.ProductsRepository
 import java.util.concurrent.Executor
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class ProductsRepositoryImpl @Inject constructor(
     private val productsRemoteDataSource: ProductsRemoteDataSource,
     private val networkExecutor: Executor

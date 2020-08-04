@@ -1,6 +1,7 @@
 package app.web.drjackycv.presentation.base.viewmodel
 
 import android.content.res.Resources
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,7 +10,7 @@ import app.web.drjackycv.presentation.R
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
-abstract class BaseViewModel : ViewModel() {
+open class BaseViewModel @ViewModelInject constructor() : ViewModel() {
 
     @Inject
     lateinit var resources: Resources

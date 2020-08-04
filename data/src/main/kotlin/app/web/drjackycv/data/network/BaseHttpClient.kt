@@ -5,9 +5,11 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
+import javax.inject.Singleton
 
 private const val TIMEOUT = 5L
 
+@Singleton
 class BaseHttpClient @Inject constructor() {
 
     val okHttpClient = OkHttpClient()
