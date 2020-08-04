@@ -18,6 +18,7 @@ Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20t
 - Using Pagination
 - Simplest Adapter Ever (based on this [workaround](https://proandroiddev.com/the-best-android-recycler-adapter-youve-ever-seen-probably-177e25279a28))
 - Github Actions - CI
+- Hilt as Dependency Injection framework
 
 ## Under Development 🚧
 
@@ -25,6 +26,7 @@ Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20t
 - Use Kotlin DSL
 - Add Espresso, Instrumentation & Unit tests
 - Use Animations
+- ~~Use [Hilt](https://dagger.dev/hilt/).~~
 
 ## CI 🏭
 
@@ -36,7 +38,7 @@ Available workflows listed as follows:
 
 ## Contributing 🤝
 
-Feel free to open a issue or submit a pull request for any bugs/improvements.
+Feel free to open an issue or submit a pull request for any bugs/improvements.
 
 ## Result 📺
 ![Screenshot](https://raw.githubusercontent.com/Drjacky/MVVMTemplate/master/list.png)
