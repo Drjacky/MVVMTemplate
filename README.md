@@ -26,7 +26,7 @@ Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20t
 - Use Kotlin DSL
 - Add Espresso, Instrumentation & Unit tests
 - Use Animations
-- ~~Use [Hilt](https://dagger.dev/hilt/).~~
+- ~~Use [Hilt](https://dagger.dev/hilt/).To see changes, click [here](https://github.com/Drjacky/MVVMTemplate/commit/b8af89bb74e5d615e9704c9f3ce35befd11811ea).~~
 
 ## CI 🏭
 
