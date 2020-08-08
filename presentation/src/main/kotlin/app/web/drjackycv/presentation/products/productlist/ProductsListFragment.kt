@@ -2,11 +2,11 @@ package app.web.drjackycv.presentation.products.productlist
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.os.bundleOf
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.navOptions
 import androidx.paging.PagedList
 import app.web.drjackycv.domain.base.Failure
 import app.web.drjackycv.domain.base.RecyclerItem
@@ -38,6 +38,12 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
     private fun setupRecycler() {
         itemErrorContainer.gone()
         productListRecyclerView.adapter = productsListAdapter
+        //productListRecyclerView.itemAnimator = null
+        postponeEnterTransition()
+        productListRecyclerView.viewTreeObserver.addOnPreDrawListener {
+            startPostponedEnterTransition()
+            true
+        }
     }
 
     private fun setupViewModel() {
@@ -79,17 +85,14 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
         }
     }
 
-    private fun navigateToProductDetail(item: RecyclerItem) {
-        val bundle = bundleOf("productDetailBeerUI" to BeerMapper().mapToUI(item as Beer))
-        val options = navOptions {
-            anim {
-                enter = R.anim.enter
-                exit = R.anim.exit
-                popEnter = R.anim.enter
-                popExit = R.anim.exit
-            }
-        }
-        findNavController().navigate(R.id.productDetailFragment, bundle, options)
+    private fun navigateToProductDetail(item: RecyclerItem, imageView: ImageView) {
+        val itemUI = BeerMapper().mapToUI(item as Beer)
+        val action =
+            ProductsListFragmentDirections.navigateToProductDetailFragment(itemUI)
+        val extras = FragmentNavigatorExtras(
+            imageView to itemUI.id.toString()
+        )
+        findNavController().navigate(action, extras)
     }
 
 }

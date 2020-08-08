@@ -11,12 +11,8 @@
         tools:layout="@layout/fragment_product_list">
 
         <action
-            android:id="@+id/navigateToAlbumDetailFragment"
-            app:destination="@id/productDetailFragment"
-            app:enterAnim="@anim/enter"
-            app:exitAnim="@anim/exit"
-            app:popEnterAnim="@anim/pop_enter"
-            app:popExitAnim="@anim/pop_exit" />
+            android:id="@+id/navigateToProductDetailFragment"
+            app:destination="@id/productDetailFragment" />
 
     </fragment>
 

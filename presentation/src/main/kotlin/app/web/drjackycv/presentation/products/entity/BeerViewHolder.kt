@@ -1,15 +1,13 @@
 package app.web.drjackycv.presentation.products.entity
 
 import android.view.View
-import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
 import app.web.drjackycv.presentation.extension.load
 import kotlinx.android.synthetic.main.item_product.view.*
 
 class BeerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
     fun bind(beer: BeerUI) = with(itemView) {
-        ViewCompat.setTransitionName(itemProductImv, beer.id.toString())
+        itemProductImv.transitionName = beer.id.toString()
         itemProductIdTxv.text = beer.id.toString()
         itemProductImv.load(beer.imageUrl)
         itemProductNameTxv.text = beer.name
