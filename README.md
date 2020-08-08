@@ -18,15 +18,16 @@ Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20t
 - Using Pagination
 - Simplest Adapter Ever (based on this [workaround](https://proandroiddev.com/the-best-android-recycler-adapter-youve-ever-seen-probably-177e25279a28))
 - Github Actions - CI
-- Hilt as Dependency Injection framework
+- [Hilt](https://dagger.dev/hilt/) as Dependency Injection framework
+- Use [Transition](https://developer.android.com/guide/navigation/navigation-animate-transitions) animation
 
 ## Under Development 🚧
 
 - ~~Add CI~~
 - Use Kotlin DSL
 - Add Espresso, Instrumentation & Unit tests
-- Use Animations
-- ~~Use [Hilt](https://dagger.dev/hilt/).To see changes, click [here](https://github.com/Drjacky/MVVMTemplate/commit/b8af89bb74e5d615e9704c9f3ce35befd11811ea).~~
+~~- Use Animations. To see changes, click [here](https://github.com/Drjacky/MVVMTemplate/commit/2fc51ef6ff82c4d43168e3ae0124a30c4ec3bfff).~~
+- ~~Use Hilt. To see changes, click [here](https://github.com/Drjacky/MVVMTemplate/commit/b8af89bb74e5d615e9704c9f3ce35befd11811ea).~~
 
 ## CI 🏭
 
