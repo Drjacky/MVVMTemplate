@@ -12,7 +12,7 @@ Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20t
 ## Features 🕹
 
 - 100% Kotlin-only template
-- Following Clean Architecture approach
+- Following [Clean Architecture approach](https://proandroiddev.com/mvvm-with-clean-architecture-c2c021e05c89)
 - Following MVVM Architectural Design Pattern
 - Pull Request Template
 - Using Pagination
