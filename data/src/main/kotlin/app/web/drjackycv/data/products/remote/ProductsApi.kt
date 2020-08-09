@@ -10,8 +10,8 @@ interface ProductsApi {
     @GET("beers")
     fun getBeers(
         /*@Query("ids") ids: String,*/
-        @Query("page") page: Int = 2,
-        @Query("per_page") perPage: Int = 25
+        @Query("page") page: Int = 1,
+        @Query("per_page") perPage: Int = 40
     ): Call<List<BeerResponse>>
 
 }

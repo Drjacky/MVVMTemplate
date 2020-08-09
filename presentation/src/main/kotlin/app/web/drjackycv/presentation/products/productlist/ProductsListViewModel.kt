@@ -17,6 +17,11 @@ class ProductsListViewModel @ViewModelInject constructor(
 ) : BaseViewModel() {
 
     private val _idsQuery = MutableLiveData<String>()
+
+    init {
+        getProductsList()
+    }
+
     private val result: LiveData<Listing<RecyclerItem>> = map(_idsQuery) {
         getBeersListUseCase(GetBeersListParams(ids = it))
     }

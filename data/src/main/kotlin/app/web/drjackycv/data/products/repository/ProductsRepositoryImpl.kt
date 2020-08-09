@@ -30,10 +30,10 @@ class ProductsRepositoryImpl @Inject constructor(
     }
 
 
-    private fun pagedListConfig(pageSize: Int = 15): PagedList.Config {
+    private fun pagedListConfig(pageSize: Int = 40): PagedList.Config {
         return PagedList.Config.Builder()
             .setEnablePlaceholders(false)
-            .setInitialLoadSizeHint(pageSize * 2)
+            .setInitialLoadSizeHint(pageSize)
             .setPageSize(pageSize)
             .build()
     }

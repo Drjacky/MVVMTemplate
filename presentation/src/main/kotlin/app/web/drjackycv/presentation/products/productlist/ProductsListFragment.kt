@@ -49,8 +49,6 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
     private fun setupViewModel() {
         productsListViewModel.run {
 
-            getProductsList()
-
             observe(ldBeersList, ::addProducts)
 
             observe(ldLoading, ::loadingUI)
