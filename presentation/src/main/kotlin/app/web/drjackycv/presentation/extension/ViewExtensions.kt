@@ -34,7 +34,7 @@ fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false):
     LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
 
 fun ImageView.load(
-    url: String,
+    url: String?,
     @DrawableRes placeholderRes: Int = R.drawable.ic_cloud_download,
     activity: Activity? = null
 ) {
