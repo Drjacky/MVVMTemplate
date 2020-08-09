@@ -44,8 +44,7 @@ android {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
-    implementation "androidx.core:core-ktx:$coreKtxVersion"
-    implementation "androidx.fragment:fragment-ktx:$fragmentExtVersion"
+
     //dependency injection
     implementation "com.google.dagger:hilt-android:$hiltVersion"
     kapt "com.google.dagger:hilt-android-compiler:$hiltVersion"
@@ -55,7 +54,7 @@ dependencies {
     implementation "javax.inject:javax.inject:$javaxInjectVersion"
     //other
     implementation "com.jakewharton.timber:timber:4.7.1"
-    //android support libs
+    //android
     implementation "androidx.appcompat:appcompat:$supportVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
     implementation "com.google.android.material:material:$materialVersion"
@@ -65,6 +64,8 @@ dependencies {
     implementation "androidx.paging:paging-rxjava2:$pagingVersion"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
     implementation "androidx.multidex:multidex:$multidexVersion"
+    implementation "androidx.core:core-ktx:$coreKtxVersion"
+    implementation "androidx.fragment:fragment-ktx:$fragmentExtVersion"
     //reactive
     implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
     implementation "com.jakewharton.rxbinding3:rxbinding:$rxBinding"

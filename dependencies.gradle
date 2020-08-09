@@ -23,13 +23,13 @@ ext {
     rxBinding = '3.1.0'
     //network
     retrofit2Version = '2.9.0'
-    okhttpLoggingVersion = '4.7.2'
+    okhttpLoggingVersion = '4.8.1'
     chuckVersion = '1.1.0'
     //parser
     gsonVersion = '2.9.0'
     //android
     lifecycleVersion = '2.2.0'
-    constraintLayoutVersion = '2.0.0-beta6'
+    constraintLayoutVersion = '2.0.0-rc1'
     supportVersion = '1.1.0'
     materialVersion = '1.1.0'
     designSupportVersion = '28.0.0'
@@ -44,12 +44,12 @@ ext {
     javaxInjectVersion = '1'
     //other
     timberVersion = '4.7.1'
-    lottieVersion = '3.4.0'
+    lottieVersion = '3.4.1'
     glideVersion = '4.11.0'
     //test
     mockitoKotlinVersion = '2.2.0'
-    mockitoCoreVersion = '3.3.3'
-    mockitoInlineVersion = '3.3.3'
+    mockitoCoreVersion = '3.4.6'
+    mockitoInlineVersion = '3.4.6'
     espressoVersion = '3.2.0'
     junitVersion = '4.13'
     supportTestVersion = '1.2.0'
