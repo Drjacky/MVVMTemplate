@@ -16,7 +16,7 @@ class CellTypes<T>(vararg types: Cell<T>) {
         for (cellType in cellTypes) {
             if (cellType.belongsTo(item)) return cellType
         }
-        throw NoSuchRecyclerItemTypeException()
+        throw NoSuchRecyclerItemTypeException("1111:" + item.toString())
     }
 
     fun of(viewType: Int): Cell<T> {

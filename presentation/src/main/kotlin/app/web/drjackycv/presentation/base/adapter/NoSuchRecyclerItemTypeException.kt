@@ -1,3 +1,3 @@
 package app.web.drjackycv.presentation.base.adapter
 
-class NoSuchRecyclerItemTypeException : RuntimeException()
+class NoSuchRecyclerItemTypeException(msg: String) : RuntimeException(msg)

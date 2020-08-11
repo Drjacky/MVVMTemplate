@@ -18,8 +18,8 @@ android {
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
         testInstrumentationRunner rootProject.ext.testInstrumentationRunner
-        javaCompileOptions.annotationProcessorOptions.arguments +=
-                ["room.schemaLocation": "$projectDir/schemas".toString()]
+        /*javaCompileOptions.annotationProcessorOptions.arguments +=
+                ["room.schemaLocation": "$projectDir/schemas".toString()]*/
     }
     sourceSets {
         androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
@@ -71,6 +71,8 @@ dependencies {
     implementation "androidx.multidex:multidex:$multidexVersion"
     implementation "androidx.fragment:fragment-ktx:$fragmentExtVersion"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
+    implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
+    implementation "androidx.paging:paging-rxjava2:$pagingVersion"
     //dependency injection
     implementation "com.google.dagger:hilt-android:$hiltVersion"
     kapt "com.google.dagger:hilt-android-compiler:$hiltVersion"
