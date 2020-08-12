@@ -14,8 +14,9 @@ abstract class BasePagedListAdapter(
     private val cellTypes: CellTypes<RecyclerItem> = CellTypes(*types)
 
     override fun getItemViewType(position: Int): Int {
-        val item = getItem(position)
-        return cellTypes.of(item).type()
+        getItem(position).let {
+            return cellTypes.of(it).type()
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -23,8 +24,9 @@ abstract class BasePagedListAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val item = getItem(position)
-        cellTypes.of(item).bind(holder, item, onItemClick)
+        getItem(position).let {
+            cellTypes.of(it).bind(holder, it, onItemClick)
+        }
     }
 
 }
