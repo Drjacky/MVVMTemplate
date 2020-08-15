@@ -40,7 +40,9 @@ class ProductsPagingSource @Inject constructor(
         return LoadResult.Page(
             data = response,
             prevKey = if (position == STARTING_PAGE_INDEX) null else position - 1,
-            nextKey = if (response.isEmpty()) null else position + 1
+            nextKey = if (response.isEmpty()) null else position + 1,
+            itemsBefore = LoadResult.Page.COUNT_UNDEFINED,
+            itemsAfter = LoadResult.Page.COUNT_UNDEFINED
         )
     }
 
