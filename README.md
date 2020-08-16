@@ -29,7 +29,7 @@ Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20t
 - Add Espresso, Instrumentation & Unit tests
 - ~~Use Animations. To see changes, click [here](https://github.com/Drjacky/MVVMTemplate/commit/2fc51ef6ff82c4d43168e3ae0124a30c4ec3bfff).~~
 - ~~Use Hilt. To see changes, click [here](https://github.com/Drjacky/MVVMTemplate/commit/b8af89bb74e5d615e9704c9f3ce35befd11811ea).~~
-- ~~Use Paging V3. To see changes, click [here](https://github.com/Drjacky/MVVMTemplate/compare/feature/paging-v3).~~
+- ~~Use Paging V3. To see changes, click [here](https://github.com/Drjacky/MVVMTemplate/pull/4/files).~~
 
 ## CI 🏭
 
