@@ -6,6 +6,6 @@ import io.reactivex.Flowable
 
 interface ProductsListRepository {
 
-    fun getBeers(ids: String): Flowable<PagingData<RecyclerItem>>
+    fun getBeersList(ids: String): Flowable<PagingData<RecyclerItem>>
 
 }

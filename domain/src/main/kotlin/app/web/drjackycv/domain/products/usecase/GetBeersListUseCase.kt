@@ -9,13 +9,13 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class GetBeersUseCase @Inject constructor(
+class GetBeersListUseCase @Inject constructor(
     private val productsListRepository: ProductsListRepository
-) : GeneralUseCase<Flowable<PagingData<RecyclerItem>>, GetBeersParams> {
+) : GeneralUseCase<Flowable<PagingData<RecyclerItem>>, GetBeersListParams> {
 
-    override fun invoke(params: GetBeersParams): Flowable<PagingData<RecyclerItem>> =
-        productsListRepository.getBeers(params.ids)
+    override fun invoke(params: GetBeersListParams): Flowable<PagingData<RecyclerItem>> =
+        productsListRepository.getBeersList(params.ids)
 
 }
 
-inline class GetBeersParams(val ids: String)
+inline class GetBeersListParams(val ids: String)

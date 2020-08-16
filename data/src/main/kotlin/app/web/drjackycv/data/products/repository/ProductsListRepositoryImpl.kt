@@ -16,7 +16,7 @@ class ProductsListRepositoryImpl @Inject constructor(
     private val pagingSource: ProductsPagingSource
 ) : ProductsListRepository {
 
-    override fun getBeers(ids: String): Flowable<PagingData<RecyclerItem>> = Pager(
+    override fun getBeersList(ids: String): Flowable<PagingData<RecyclerItem>> = Pager(
         config = PagingConfig(
             pageSize = 10,
             enablePlaceholders = false,

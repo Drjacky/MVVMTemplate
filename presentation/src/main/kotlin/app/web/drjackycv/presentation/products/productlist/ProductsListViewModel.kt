@@ -7,14 +7,14 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.rxjava2.cachedIn
 import app.web.drjackycv.domain.base.RecyclerItem
-import app.web.drjackycv.domain.products.usecase.GetBeersParams
-import app.web.drjackycv.domain.products.usecase.GetBeersUseCase
+import app.web.drjackycv.domain.products.usecase.GetBeersListParams
+import app.web.drjackycv.domain.products.usecase.GetBeersListUseCase
 import app.web.drjackycv.presentation.base.viewmodel.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.addTo
 
 class ProductsListViewModel @ViewModelInject constructor(
-    private val getBeersUseCase: GetBeersUseCase
+    private val getBeersUseCase: GetBeersListUseCase
 ) : BaseViewModel() {
 
     private val _ldProductsList: MutableLiveData<PagingData<RecyclerItem>> = MutableLiveData()
@@ -27,7 +27,7 @@ class ProductsListViewModel @ViewModelInject constructor(
 
     private fun getProducts(ids: String) {
         loading(false)
-        getBeersUseCase(GetBeersParams(ids = ids))
+        getBeersUseCase(GetBeersListParams(ids = ids))
             .cachedIn(viewModelScope)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {

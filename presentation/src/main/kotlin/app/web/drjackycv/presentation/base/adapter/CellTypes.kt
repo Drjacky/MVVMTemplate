@@ -16,7 +16,6 @@ class CellTypes<T>(vararg types: Cell<T>) {
         for (cellType in cellTypes) {
             if (cellType.belongsTo(item)) return cellType
         }
-        //return cellTypes[0]
         throw NoSuchRecyclerItemTypeException()
     }
 
@@ -24,7 +23,6 @@ class CellTypes<T>(vararg types: Cell<T>) {
         for (cellType in cellTypes) {
             if (cellType.type() == viewType) return cellType
         }
-        //return cellTypes[0]
         throw NoSuchRecyclerViewTypeException()
     }
 
