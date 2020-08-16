@@ -19,7 +19,7 @@ class ProductsListRepositoryImpl @Inject constructor(
     override fun getBeers(ids: String): Flowable<PagingData<RecyclerItem>> = Pager(
         config = PagingConfig(
             pageSize = 10,
-            enablePlaceholders = true,
+            enablePlaceholders = false,
             maxSize = 30,
             prefetchDistance = 5,
             initialLoadSize = 40

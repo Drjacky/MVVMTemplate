@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.item_product.view.*
 object BeerCell : Cell<RecyclerItem>() {
 
     override fun belongsTo(item: RecyclerItem?): Boolean {
-        return item is Beer || item == null
+        return item is Beer
     }
 
     override fun type(): Int {
