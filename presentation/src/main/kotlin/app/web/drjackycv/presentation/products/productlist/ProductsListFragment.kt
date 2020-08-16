@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
-import androidx.paging.PagedList
+import androidx.paging.PagingData
 import app.web.drjackycv.domain.base.Failure
 import app.web.drjackycv.domain.base.RecyclerItem
 import app.web.drjackycv.domain.products.entity.Beer
@@ -49,18 +49,19 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
     private fun setupViewModel() {
         productsListViewModel.run {
 
-            observe(ldBeersList, ::addProducts)
+            observe(ldProductsList, ::addProductsList)
 
             observe(ldLoading, ::loadingUI)
 
-            observe(ldFailure, ::handleFailure)
+            //observe(ldFailure, ::handleFailure)
 
         }
     }
 
-    private fun addProducts(productsList: PagedList<RecyclerItem>) {
+    private fun addProductsList(productsList: PagingData<RecyclerItem>) {
+        loadingUI(false)
         productListRecyclerView.visible()
-        productsListAdapter.submitList(productsList)
+        productsListAdapter.submitData(lifecycle, productsList)
     }
 
     private fun loadingUI(isLoading: Boolean) {

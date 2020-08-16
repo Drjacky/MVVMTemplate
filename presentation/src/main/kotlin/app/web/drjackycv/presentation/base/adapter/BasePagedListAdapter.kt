@@ -2,20 +2,21 @@ package app.web.drjackycv.presentation.base.adapter
 
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.paging.PagedListAdapter
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
 import app.web.drjackycv.domain.base.RecyclerItem
 
 abstract class BasePagedListAdapter(
     vararg types: Cell<RecyclerItem>,
     private val onItemClick: (RecyclerItem, ImageView) -> Unit
-) : PagedListAdapter<RecyclerItem, RecyclerView.ViewHolder>(BASE_DIFF_CALLBACK) {
+) : PagingDataAdapter<RecyclerItem, RecyclerView.ViewHolder>(BASE_DIFF_CALLBACK) {
 
     private val cellTypes: CellTypes<RecyclerItem> = CellTypes(*types)
 
     override fun getItemViewType(position: Int): Int {
-        val item = getItem(position)
-        return cellTypes.of(item).type()
+        getItem(position).let {
+            return cellTypes.of(it).type()
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -23,8 +24,9 @@ abstract class BasePagedListAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val item = getItem(position)
-        cellTypes.of(item).bind(holder, item, onItemClick)
+        getItem(position).let {
+            cellTypes.of(it).bind(holder, it, onItemClick)
+        }
     }
 
 }

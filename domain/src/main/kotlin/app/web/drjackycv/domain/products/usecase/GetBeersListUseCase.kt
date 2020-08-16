@@ -1,19 +1,20 @@
 package app.web.drjackycv.domain.products.usecase
 
-import app.web.drjackycv.domain.base.Listing
+import androidx.paging.PagingData
 import app.web.drjackycv.domain.base.RecyclerItem
 import app.web.drjackycv.domain.base.usecase.GeneralUseCase
-import app.web.drjackycv.domain.products.repository.ProductsRepository
+import app.web.drjackycv.domain.products.repository.ProductsListRepository
+import io.reactivex.Flowable
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class GetBeersListUseCase @Inject constructor(
-    private val productsRepository: ProductsRepository
-) : GeneralUseCase<Listing<RecyclerItem>, GetBeersListParams> {
+    private val productsListRepository: ProductsListRepository
+) : GeneralUseCase<Flowable<PagingData<RecyclerItem>>, GetBeersListParams> {
 
-    override fun invoke(params: GetBeersListParams): Listing<RecyclerItem> =
-        productsRepository.getBeersById(params.ids)
+    override fun invoke(params: GetBeersListParams): Flowable<PagingData<RecyclerItem>> =
+        productsListRepository.getBeersList(params.ids)
 
 }
 

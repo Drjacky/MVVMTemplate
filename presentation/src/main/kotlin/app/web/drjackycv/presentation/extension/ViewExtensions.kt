@@ -2,12 +2,9 @@ package app.web.drjackycv.presentation.extension
 
 import android.app.Activity
 import android.graphics.drawable.Drawable
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
-import androidx.annotation.LayoutRes
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.app.ActivityCompat.startPostponedEnterTransition
 import app.web.drjackycv.presentation.R
@@ -29,9 +26,6 @@ fun View.visible() {
 fun View.invisible() {
     visibility = View.INVISIBLE
 }
-
-fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false): View =
-    LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
 
 fun ImageView.load(
     url: String?,
