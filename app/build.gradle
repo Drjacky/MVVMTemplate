@@ -18,8 +18,8 @@ android {
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
         testInstrumentationRunner rootProject.ext.testInstrumentationRunner
-        /*javaCompileOptions.annotationProcessorOptions.arguments +=
-                ["room.schemaLocation": "$projectDir/schemas".toString()]*/
+        javaCompileOptions.annotationProcessorOptions.arguments +=
+                ["room.schemaLocation": "$projectDir/schemas".toString()]
     }
     sourceSets {
         androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
