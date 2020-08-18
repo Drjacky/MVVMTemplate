@@ -18,7 +18,7 @@ Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20t
 - Using Pagination
 - Simplest Adapter Ever (based on this [workaround](https://proandroiddev.com/the-best-android-recycler-adapter-youve-ever-seen-probably-177e25279a28))
 - Github Actions - CI
-- [Hilt](https://dagger.dev/hilt/) as Dependency Injection framework
+- Use [Hilt](https://dagger.dev/hilt/) as Dependency Injection framework
 - Use [Transition](https://developer.android.com/guide/navigation/navigation-animate-transitions) animation
 - Use [Paging V3](https://developer.android.com/topic/libraries/architecture/paging/v3-overview)
 
