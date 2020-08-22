@@ -83,12 +83,12 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
         }
     }
 
-    private fun navigateToProductDetail(item: RecyclerItem, imageView: View) {
+    private fun navigateToProductDetail(item: RecyclerItem, view: View) {
         val itemUI = BeerMapper().mapToUI(item as Beer)
         val action =
             ProductsListFragmentDirections.navigateToProductDetailFragment(itemUI)
         val extras = FragmentNavigatorExtras(
-            imageView to itemUI.id.toString()
+            view to itemUI.id.toString()
         )
         findNavController().navigate(action, extras)
     }
