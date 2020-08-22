@@ -35,10 +35,7 @@ object BeerCell : Cell<RecyclerItem>() {
             holder.bind(itemUI)
             holder.itemView.setOnClickListener {
                 onItemClick?.run {
-                    this(
-                        item,
-                        holder.itemView.itemProductContainer
-                    )
+                    this(item, holder.itemView.itemProductContainer)
                 }
             }
         }

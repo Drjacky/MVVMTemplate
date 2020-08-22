@@ -2,6 +2,7 @@ package app.web.drjackycv.presentation.products.productlist
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.FragmentNavigatorExtras
@@ -14,6 +15,8 @@ import app.web.drjackycv.presentation.R
 import app.web.drjackycv.presentation.extension.gone
 import app.web.drjackycv.presentation.extension.observe
 import app.web.drjackycv.presentation.extension.visible
+import com.google.android.material.transition.Hold
+import com.google.android.material.transition.MaterialElevationScale
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_product_list.*
 import kotlinx.android.synthetic.main.item_error.*
@@ -39,10 +42,7 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
         productListRecyclerView.adapter = productsListAdapter
         //productListRecyclerView.itemAnimator = null
         postponeEnterTransition()
-        productListRecyclerView.viewTreeObserver.addOnPreDrawListener {
-            startPostponedEnterTransition()
-            true
-        }
+        view?.doOnPreDraw { startPostponedEnterTransition() }
     }
 
     private fun setupViewModel() {
@@ -90,6 +90,12 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
         val extras = FragmentNavigatorExtras(
             view to itemUI.id.toString()
         )
+        exitTransition = Hold().apply {
+            duration = resources.getInteger(R.integer.motion_duration_large).toLong()
+        }
+        reenterTransition = MaterialElevationScale(true).apply {
+            duration = resources.getInteger(R.integer.motion_duration_small).toLong()
+        }
         findNavController().navigate(action, extras)
     }
 
