@@ -14,6 +14,7 @@ import app.web.drjackycv.domain.base.Failure
 import app.web.drjackycv.domain.base.RecyclerItem
 import app.web.drjackycv.domain.products.entity.Beer
 import app.web.drjackycv.presentation.R
+import app.web.drjackycv.presentation.base.adapter.LoadingStateAdapter
 import app.web.drjackycv.presentation.extension.gone
 import app.web.drjackycv.presentation.extension.invisible
 import app.web.drjackycv.presentation.extension.observe
@@ -42,7 +43,8 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
 
     private fun setupRecycler() {
         itemErrorContainer.gone()
-        productListRecyclerView.adapter = productsListAdapter
+        productListRecyclerView.adapter =
+            productsListAdapter.withLoadStateFooter(LoadingStateAdapter())
         productsListAdapter.addLoadStateListener { adapterLoadingErrorHandling(it) }
 
         //productListRecyclerView.itemAnimator = null

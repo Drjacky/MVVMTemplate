@@ -2,9 +2,12 @@ package app.web.drjackycv.presentation.extension
 
 import android.app.Activity
 import android.graphics.drawable.Drawable
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
+import androidx.annotation.LayoutRes
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.app.ActivityCompat.startPostponedEnterTransition
 import app.web.drjackycv.presentation.R
@@ -15,8 +18,10 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 
-fun View.gone() {
-    visibility = View.GONE
+fun View?.gone() {
+    this?.let {
+        visibility = View.GONE
+    }
 }
 
 fun View.visible() {
@@ -71,3 +76,6 @@ fun ImageView.load(
 
     glideRequest.into(this)
 }
+
+fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false): View =
+    LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
