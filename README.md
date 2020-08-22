@@ -15,7 +15,6 @@ Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20t
 - Following [Clean Architecture approach](https://proandroiddev.com/mvvm-with-clean-architecture-c2c021e05c89)
 - Following MVVM Architectural Design Pattern
 - Pull Request Template
-- Using Pagination
 - Simplest Adapter Ever (based on this [workaround](https://proandroiddev.com/the-best-android-recycler-adapter-youve-ever-seen-probably-177e25279a28))
 - Github Actions - CI
 - Use [Hilt](https://dagger.dev/hilt/) as Dependency Injection framework
