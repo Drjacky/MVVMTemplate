@@ -43,4 +43,4 @@ Available workflows listed as follows:
 Feel free to open an issue or submit a pull request for any bugs/improvements.
 
 ## Result 📺
-![Screenshot](https://raw.githubusercontent.com/Drjacky/MVVMTemplate/master/list.png)
+![Screenshot](https://raw.githubusercontent.com/Drjacky/MVVMTemplate/master/list.gif)
