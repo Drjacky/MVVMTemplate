@@ -15,8 +15,8 @@ open class BaseViewModel @ViewModelInject constructor() : ViewModel() {
     @Inject
     lateinit var resources: Resources
 
-    private var mutableLoading: MutableLiveData<Boolean> = MutableLiveData()
-    val ldLoading: LiveData<Boolean> = mutableLoading
+    private var mutableFailure: MutableLiveData<Failure> = MutableLiveData()
+    val ldFailure: LiveData<Failure> = mutableFailure
 
     protected val compositeDisposable = CompositeDisposable()
 
@@ -25,16 +25,12 @@ open class BaseViewModel @ViewModelInject constructor() : ViewModel() {
         super.onCleared()
     }
 
-    protected fun handleFailure(throwable: Throwable, retryAction: () -> Unit): Failure {
+    fun handleFailure(throwable: Throwable, retryAction: () -> Unit) {
         val failure = throwable as? Failure
             ?: Failure.FailureWithMessage(resources.getString(R.string.something_went_wrong))
 
         failure.retryAction = retryAction
-        return failure
-    }
-
-    protected fun loading(visible: Boolean) {
-        mutableLoading.value = visible
+        mutableFailure.value = failure
     }
 
 }

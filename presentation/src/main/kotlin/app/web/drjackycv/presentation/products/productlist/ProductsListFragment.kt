@@ -7,12 +7,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
+import androidx.paging.CombinedLoadStates
+import androidx.paging.LoadState
 import androidx.paging.PagingData
 import app.web.drjackycv.domain.base.Failure
 import app.web.drjackycv.domain.base.RecyclerItem
 import app.web.drjackycv.domain.products.entity.Beer
 import app.web.drjackycv.presentation.R
 import app.web.drjackycv.presentation.extension.gone
+import app.web.drjackycv.presentation.extension.invisible
 import app.web.drjackycv.presentation.extension.observe
 import app.web.drjackycv.presentation.extension.visible
 import com.google.android.material.transition.Hold
@@ -40,6 +43,8 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
     private fun setupRecycler() {
         itemErrorContainer.gone()
         productListRecyclerView.adapter = productsListAdapter
+        productsListAdapter.addLoadStateListener { adapterLoadingErrorHandling(it) }
+
         //productListRecyclerView.itemAnimator = null
         postponeEnterTransition()
         view?.doOnPreDraw { startPostponedEnterTransition() }
@@ -50,15 +55,12 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
 
             observe(ldProductsList, ::addProductsList)
 
-            observe(ldLoading, ::loadingUI)
-
-            //observe(ldFailure, ::handleFailure)
+            observe(ldFailure, ::handleFailure)
 
         }
     }
 
     private fun addProductsList(productsList: PagingData<RecyclerItem>) {
-        loadingUI(false)
         productListRecyclerView.visible()
         productsListAdapter.submitData(lifecycle, productsList)
     }
@@ -80,6 +82,12 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
                 itemErrorMessage.text = failure.msg
                 itemErrorRetryBtn.setOnClickListener { failure.retryAction() }
             }
+            else -> {
+                productListRecyclerView.gone()
+                itemErrorContainer.visible()
+                itemErrorMessage.text = failure.message
+                itemErrorRetryBtn.invisible()
+            }
         }
     }
 
@@ -97,6 +105,29 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
             duration = resources.getInteger(R.integer.motion_duration_small).toLong()
         }
         findNavController().navigate(action, extras)
+    }
+
+    private fun adapterLoadingErrorHandling(combinedLoadStates: CombinedLoadStates) {
+        if (combinedLoadStates.refresh is LoadState.Loading) {
+            loadingUI(true)
+        } else {
+            loadingUI(false)
+            val error = when {
+                combinedLoadStates.prepend is LoadState.Error -> combinedLoadStates.prepend as LoadState.Error
+                combinedLoadStates.source.prepend is LoadState.Error -> combinedLoadStates.prepend as LoadState.Error
+                combinedLoadStates.append is LoadState.Error -> combinedLoadStates.append as LoadState.Error
+                combinedLoadStates.source.append is LoadState.Error -> combinedLoadStates.append as LoadState.Error
+                combinedLoadStates.refresh is LoadState.Error -> combinedLoadStates.refresh as LoadState.Error
+                else -> null
+            }
+            error?.run {
+                productsListViewModel.handleFailure(this.error) { retryFetchData() }
+            }
+        }
+    }
+
+    private fun retryFetchData() {
+        productsListViewModel.getProducts("")
     }
 
 }

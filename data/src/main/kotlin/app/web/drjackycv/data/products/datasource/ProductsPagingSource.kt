@@ -2,6 +2,7 @@ package app.web.drjackycv.data.products.datasource
 
 import androidx.paging.rxjava2.RxPagingSource
 import app.web.drjackycv.data.products.remote.ProductsApi
+import app.web.drjackycv.domain.base.Failure
 import app.web.drjackycv.domain.base.RecyclerItem
 import io.reactivex.Single
 import io.reactivex.annotations.NonNull
@@ -30,7 +31,11 @@ class ProductsPagingSource @Inject constructor(
                 }
             }
             .map { toLoadResult(it, position) }
-            .onErrorReturn { LoadResult.Error(it) }
+            .onErrorReturn {
+                LoadResult.Error(
+                    Failure.FailureWithMessage(it.message)
+                )
+            }
     }
 
     private fun toLoadResult(

@@ -21,12 +21,10 @@ class ProductsListViewModel @ViewModelInject constructor(
     val ldProductsList: LiveData<PagingData<RecyclerItem>> = _ldProductsList
 
     init {
-        loading(true)
         getProducts("")
     }
 
-    private fun getProducts(ids: String) {
-        loading(false)
+    fun getProducts(ids: String) {
         getBeersUseCase(GetBeersListParams(ids = ids))
             .cachedIn(viewModelScope)
             .observeOn(AndroidSchedulers.mainThread())
