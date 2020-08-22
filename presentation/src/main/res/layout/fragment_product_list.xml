@@ -24,7 +24,7 @@
         tools:visibility="gone" />
 
     <include
-        layout="@layout/progress_bar_circular"
+        layout="@layout/item_loading"
         tools:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

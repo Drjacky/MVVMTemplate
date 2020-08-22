@@ -23,7 +23,7 @@ import com.google.android.material.transition.MaterialElevationScale
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_product_list.*
 import kotlinx.android.synthetic.main.item_error.*
-import kotlinx.android.synthetic.main.progress_bar_circular.*
+import kotlinx.android.synthetic.main.item_loading.*
 
 @AndroidEntryPoint
 class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
