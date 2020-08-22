@@ -1,7 +1,7 @@
 package app.web.drjackycv.presentation.products.entity
 
+import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import app.web.drjackycv.domain.base.RecyclerItem
 import app.web.drjackycv.domain.products.entity.Beer
@@ -27,14 +27,19 @@ object BeerCell : Cell<RecyclerItem>() {
     override fun bind(
         holder: RecyclerView.ViewHolder,
         item: RecyclerItem?,
-        onItemClick: ((RecyclerItem, ImageView) -> Unit)?
+        onItemClick: ((RecyclerItem, View) -> Unit)?
     ) {
         if (holder is BeerViewHolder && item is Beer) {
             val itemUI = BeerMapper().mapToUI(item)
 
             holder.bind(itemUI)
             holder.itemView.setOnClickListener {
-                onItemClick?.run { this(item, holder.itemView.itemProductImv) }
+                onItemClick?.run {
+                    this(
+                        item,
+                        holder.itemView.itemProductContainer
+                    )
+                }
             }
         }
     }

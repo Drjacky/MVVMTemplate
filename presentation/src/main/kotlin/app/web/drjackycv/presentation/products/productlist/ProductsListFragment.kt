@@ -2,7 +2,6 @@ package app.web.drjackycv.presentation.products.productlist
 
 import android.os.Bundle
 import android.view.View
-import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.FragmentNavigatorExtras
@@ -84,7 +83,7 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
         }
     }
 
-    private fun navigateToProductDetail(item: RecyclerItem, imageView: ImageView) {
+    private fun navigateToProductDetail(item: RecyclerItem, imageView: View) {
         val itemUI = BeerMapper().mapToUI(item as Beer)
         val action =
             ProductsListFragmentDirections.navigateToProductDetailFragment(itemUI)
