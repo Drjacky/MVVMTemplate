@@ -17,9 +17,14 @@ Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20t
 - Pull Request Template
 - Simplest Adapter Ever (based on this [workaround](https://proandroiddev.com/the-best-android-recycler-adapter-youve-ever-seen-probably-177e25279a28))
 - Github Actions - CI
-- Use [Hilt](https://dagger.dev/hilt/) as Dependency Injection framework
-- Use [Transition](https://developer.android.com/guide/navigation/navigation-animate-transitions) animation
-- Use [Paging V3](https://developer.android.com/topic/libraries/architecture/paging/v3-overview)
+- [Hilt](https://dagger.dev/hilt/) - Dependency Injection framework
+- [Transition](https://developer.android.com/guide/navigation/navigation-animate-transitions) - Animation
+- [Paging V3](https://developer.android.com/topic/libraries/architecture/paging/v3-overview) - Pagination
+- [OkHttp3](https://github.com/square/okhttp) - Network interceptor
+- [Glide](https://github.com/bumptech/glide) - Loading images
+- [Timber](https://github.com/JakeWharton/timber) - Log
+- [Gson](https://github.com/google/gson) - JSON library
+- [Material Components](https://github.com/material-components/material-components-android) - Material Design
 
 ## Under Development 🚧
 
