@@ -42,6 +42,7 @@ This template is using [**GitHub Actions**](https://github.com/Drjacky/MVVMTempl
 Available workflows listed as follows:
 - [Validate Gradle Wrapper](.github/workflows/gradlew-validation.yml) - Checks the gradle wrapper has a valid checksum.
 - [Pre Merge Checks](.github/workflows/pre-merge.yml) - Runs `build` task. 
+- [Android](.github/workflows/android.yml) - Runs `assembleDebug` task. 
 
 ## Contributing 🤝
 
