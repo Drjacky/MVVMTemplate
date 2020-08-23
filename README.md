@@ -21,6 +21,7 @@ Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20t
 - [Transition](https://developer.android.com/guide/navigation/navigation-animate-transitions) - Animation
 - [Paging V3](https://developer.android.com/topic/libraries/architecture/paging/v3-overview) - Pagination
 - [OkHttp3](https://github.com/square/okhttp) - Network interceptor
+- [Retrofit](https://github.com/square/retrofit) - HTTP client
 - [Glide](https://github.com/bumptech/glide) - Loading images
 - [Timber](https://github.com/JakeWharton/timber) - Log
 - [Gson](https://github.com/google/gson) - JSON library
