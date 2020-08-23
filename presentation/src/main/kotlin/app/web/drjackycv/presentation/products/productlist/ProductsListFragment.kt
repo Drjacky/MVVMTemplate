@@ -19,8 +19,8 @@ import app.web.drjackycv.presentation.extension.gone
 import app.web.drjackycv.presentation.extension.invisible
 import app.web.drjackycv.presentation.extension.observe
 import app.web.drjackycv.presentation.extension.visible
-import com.google.android.material.transition.Hold
-import com.google.android.material.transition.MaterialElevationScale
+import com.google.android.material.transition.platform.Hold
+import com.google.android.material.transition.platform.MaterialElevationScale
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_product_list.*
 import kotlinx.android.synthetic.main.item_error.*
