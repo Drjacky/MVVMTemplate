@@ -25,6 +25,7 @@ Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20t
 - [Timber](https://github.com/JakeWharton/timber) - Log
 - [Gson](https://github.com/google/gson) - JSON library
 - [Material Components](https://github.com/material-components/material-components-android) - Material Design
+- [Lottie](https://airbnb.design/lottie/) - Vector animation library
 
 ## Under Development 🚧
 
