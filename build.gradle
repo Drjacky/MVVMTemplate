@@ -2,7 +2,7 @@ apply from: 'dependencies.gradle'
 
 buildscript {
     ext {
-        kotlinVersion = '1.4.0'
+        kotlinVersion = '1.4.10'
         navigationVersion = '2.3.0-alpha05'
         hiltVersion = '2.28.3-alpha'
         sonarqubeVersion = '3.0'
