@@ -20,10 +20,12 @@
         tools:listitem="@layout/item_product" />
 
     <include
+        android:id="@+id/inclItemError"
         layout="@layout/item_error"
         tools:visibility="gone" />
 
     <include
+        android:id="@+id/inclItemLoading"
         layout="@layout/item_loading"
         tools:visibility="gone" />
 

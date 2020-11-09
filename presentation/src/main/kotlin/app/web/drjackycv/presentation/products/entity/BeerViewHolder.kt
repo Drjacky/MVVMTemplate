@@ -1,18 +1,18 @@
 package app.web.drjackycv.presentation.products.entity
 
-import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import app.web.drjackycv.presentation.databinding.ItemProductBinding
 import app.web.drjackycv.presentation.extension.load
-import kotlinx.android.synthetic.main.item_product.view.*
 
-class BeerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+class BeerViewHolder(val itemBinding: ItemProductBinding) :
+    RecyclerView.ViewHolder(itemBinding.root) {
     fun bind(beer: BeerUI) = with(itemView) {
-        itemProductContainer.transitionName = beer.id.toString()
-        itemProductIdTxv.text = beer.id.toString()
-        itemProductImv.load(beer.imageUrl)
-        itemProductNameTxv.text = beer.name
-        itemProductAbvTxv.text = beer.abv.toString()
-        //itemProductTypeTxv.text = beer.type
+        itemBinding.itemProductContainer.transitionName = beer.id.toString()
+        itemBinding.itemProductIdTxv.text = beer.id.toString()
+        itemBinding.itemProductImv.load(beer.imageUrl)
+        itemBinding.itemProductNameTxv.text = beer.name
+        itemBinding.itemProductAbvTxv.text = beer.abv.toString()
+        //itemBinding.itemProductTypeTxv.text = beer.type
     }
 
 }

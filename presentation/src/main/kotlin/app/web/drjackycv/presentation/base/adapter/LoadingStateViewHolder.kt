@@ -1,15 +1,15 @@
 package app.web.drjackycv.presentation.base.adapter
 
-import android.view.View
 import androidx.core.view.isVisible
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_loading_row.view.*
+import app.web.drjackycv.presentation.databinding.ItemLoadingRowBinding
 
-class LoadingStateViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
+class LoadingStateViewHolder(private val itemBinding: ItemLoadingRowBinding) :
+    RecyclerView.ViewHolder(itemBinding.root) {
 
     fun bind(loadState: LoadState) {
-        view.itemLoadingRowContainer.isVisible = loadState is LoadState.Loading
+        itemBinding.itemLoadingRowContainer.isVisible = loadState is LoadState.Loading
     }
 
 }

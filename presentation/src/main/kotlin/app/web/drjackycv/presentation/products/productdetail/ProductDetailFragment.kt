@@ -6,14 +6,17 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import app.web.drjackycv.presentation.R
+import app.web.drjackycv.presentation.databinding.FragmentProductDetailBinding
 import app.web.drjackycv.presentation.extension.load
+import app.web.drjackycv.presentation.extension.viewBinding
 import com.google.android.material.transition.platform.MaterialArcMotion
 import com.google.android.material.transition.platform.MaterialContainerTransform
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_product_detail.*
 
 @AndroidEntryPoint
 class ProductDetailFragment : Fragment(R.layout.fragment_product_detail) {
+
+    private val binding by viewBinding(FragmentProductDetailBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -27,12 +30,12 @@ class ProductDetailFragment : Fragment(R.layout.fragment_product_detail) {
         setSharedElementTransitionOnEnter()
 
         with(product) {
-            productDetailIdTxv.text = id.toString()
-            productDetailContainer.transitionName = id.toString()
-            productDetailImv.load(url = imageUrl, activity = activity)
-            productDetailNameTxv.text = name
-            productDetailDescriptionTxv.text = getString(R.string.description, description)
-            productDetailAbvTxv.text = getString(R.string.abv, abv.toString())
+            binding.productDetailIdTxv.text = id.toString()
+            binding.productDetailContainer.transitionName = id.toString()
+            binding.productDetailImv.load(url = imageUrl, activity = activity)
+            binding.productDetailNameTxv.text = name
+            binding.productDetailDescriptionTxv.text = getString(R.string.description, description)
+            binding.productDetailAbvTxv.text = getString(R.string.abv, abv.toString())
         }
     }
 

@@ -4,14 +4,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewbinding.ViewBinding
 import app.web.drjackycv.domain.base.RecyclerItem
 
 abstract class BasePagedListAdapter(
-    vararg types: Cell<RecyclerItem>,
+    vararg types: Cell<RecyclerItem, ViewBinding>,
     private val onItemClick: (RecyclerItem, View) -> Unit
 ) : PagingDataAdapter<RecyclerItem, RecyclerView.ViewHolder>(BASE_DIFF_CALLBACK) {
 
-    private val cellTypes: CellTypes<RecyclerItem> = CellTypes(*types)
+    private val cellTypes: CellTypes<RecyclerItem, ViewBinding> = CellTypes(*types)
 
     override fun getItemViewType(position: Int): Int {
         getItem(position).let {

@@ -1,10 +1,10 @@
 package app.web.drjackycv.presentation.base.adapter
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
-import app.web.drjackycv.presentation.R
-import app.web.drjackycv.presentation.extension.inflate
+import app.web.drjackycv.presentation.databinding.ItemLoadingRowBinding
 
 class LoadingStateAdapter : LoadStateAdapter<LoadingStateViewHolder>() {
 
@@ -15,7 +15,10 @@ class LoadingStateAdapter : LoadStateAdapter<LoadingStateViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         loadState: LoadState
-    ): LoadingStateViewHolder =
-        LoadingStateViewHolder(parent.inflate(R.layout.item_loading_row))
+    ): LoadingStateViewHolder {
+        val itemBinding =
+            ItemLoadingRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return LoadingStateViewHolder(itemBinding)
+    }
 
 }

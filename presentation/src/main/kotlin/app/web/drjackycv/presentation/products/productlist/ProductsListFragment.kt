@@ -15,20 +15,16 @@ import app.web.drjackycv.domain.base.RecyclerItem
 import app.web.drjackycv.domain.products.entity.Beer
 import app.web.drjackycv.presentation.R
 import app.web.drjackycv.presentation.base.adapter.LoadingStateAdapter
-import app.web.drjackycv.presentation.extension.gone
-import app.web.drjackycv.presentation.extension.invisible
-import app.web.drjackycv.presentation.extension.observe
-import app.web.drjackycv.presentation.extension.visible
+import app.web.drjackycv.presentation.databinding.FragmentProductListBinding
+import app.web.drjackycv.presentation.extension.*
 import com.google.android.material.transition.platform.Hold
 import com.google.android.material.transition.platform.MaterialElevationScale
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_product_list.*
-import kotlinx.android.synthetic.main.item_error.*
-import kotlinx.android.synthetic.main.item_loading.*
 
 @AndroidEntryPoint
 class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
 
+    private val binding by viewBinding(FragmentProductListBinding::bind)
     private val productsListViewModel: ProductsListViewModel by viewModels()
 
     private val productsListAdapter: ProductsListAdapter by lazy {
@@ -42,8 +38,8 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
     }
 
     private fun setupRecycler() {
-        itemErrorContainer.gone()
-        productListRecyclerView.adapter =
+        binding.inclItemError.itemErrorContainer.gone()
+        binding.productListRecyclerView.adapter =
             productsListAdapter.withLoadStateFooter(LoadingStateAdapter())
         productsListAdapter.addLoadStateListener { adapterLoadingErrorHandling(it) }
 
@@ -63,32 +59,32 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
     }
 
     private fun addProductsList(productsList: PagingData<RecyclerItem>) {
-        productListRecyclerView.visible()
+        binding.productListRecyclerView.visible()
         productsListAdapter.submitData(lifecycle, productsList)
     }
 
     private fun loadingUI(isLoading: Boolean) {
-        itemErrorContainer.gone()
+        binding.inclItemError.itemErrorContainer.gone()
         if (isLoading) {
-            progressBar.visible()
+            binding.inclItemLoading.itemLoadingContainer.visible()
         } else {
-            progressBar.gone()
+            binding.inclItemLoading.itemLoadingContainer.gone()
         }
     }
 
     private fun handleFailure(failure: Failure) {
         when (failure) {
             is Failure.FailureWithMessage -> {
-                productListRecyclerView.gone()
-                itemErrorContainer.visible()
-                itemErrorMessage.text = failure.msg
-                itemErrorRetryBtn.setOnClickListener { failure.retryAction() }
+                binding.productListRecyclerView.gone()
+                binding.inclItemError.itemErrorContainer.visible()
+                binding.inclItemError.itemErrorMessage.text = failure.msg
+                binding.inclItemError.itemErrorRetryBtn.setOnClickListener { failure.retryAction() }
             }
             else -> {
-                productListRecyclerView.gone()
-                itemErrorContainer.visible()
-                itemErrorMessage.text = failure.message
-                itemErrorRetryBtn.invisible()
+                binding.productListRecyclerView.gone()
+                binding.inclItemError.itemErrorContainer.visible()
+                binding.inclItemError.itemErrorMessage.text = failure.message
+                binding.inclItemError.itemErrorRetryBtn.invisible()
             }
         }
     }
