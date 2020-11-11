@@ -19,6 +19,7 @@ Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20t
 - [Hilt](https://dagger.dev/hilt/) - Dependency Injection framework
 - [Transition](https://developer.android.com/guide/navigation/navigation-animate-transitions) - Animation
 - [Paging V3](https://developer.android.com/topic/libraries/architecture/paging/v3-overview) - Pagination
+- [View Binding](https://developer.android.com/topic/libraries/view-binding) - View Binding
 - [OkHttp3](https://github.com/square/okhttp) - Network interceptor
 - [Retrofit](https://github.com/square/retrofit) - HTTP client
 - [Glide](https://github.com/bumptech/glide) - Loading images
