@@ -44,7 +44,7 @@ ext {
     javaxInjectVersion = '1'
     //other
     timberVersion = '4.7.1'
-    lottieVersion = '3.4.4'
+    lottieVersion = '3.5.0'
     glideVersion = '4.11.0'
     //test
     mockitoKotlinVersion = '2.2.0'
