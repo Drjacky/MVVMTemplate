@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.paging.PagingData
+import androidx.recyclerview.widget.RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
 import app.web.drjackycv.domain.base.Failure
 import app.web.drjackycv.domain.base.RecyclerItem
 import app.web.drjackycv.domain.products.entity.Beer
@@ -42,6 +43,7 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
         binding.productListRecyclerView.adapter =
             productsListAdapter.withLoadStateFooter(LoadingStateAdapter())
         productsListAdapter.addLoadStateListener { adapterLoadingErrorHandling(it) }
+        productsListAdapter.stateRestorationPolicy = PREVENT_WHEN_EMPTY
 
         //productListRecyclerView.itemAnimator = null
         postponeEnterTransition()

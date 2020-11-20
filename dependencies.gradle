@@ -38,6 +38,7 @@ ext {
     pagingVersion = '3.0.0-alpha08'//'2.1.2'
     multidexVersion = '2.0.1'
     fragmentExtVersion = '1.2.5'
+    recyclerviewVersion = '1.2.0-alpha06'
     //dependency injection
     hiltVersion = '2.29.1-alpha'
     hiltExtVersion = '1.0.0-alpha02'

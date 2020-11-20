@@ -73,6 +73,7 @@ dependencies {
     implementation "androidx.multidex:multidex:$multidexVersion"
     implementation "androidx.core:core-ktx:$coreKtxVersion"
     implementation "androidx.fragment:fragment-ktx:$fragmentExtVersion"
+    implementation "androidx.recyclerview:recyclerview:$recyclerviewVersion"
     //reactive
     implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
     implementation "com.jakewharton.rxbinding3:rxbinding:$rxBinding"
