@@ -35,12 +35,12 @@ ext {
     designSupportVersion = '28.0.0'
     coreKtxVersion = '1.3.2'
     navigationVersion = '1.0.0'
-    pagingVersion = '3.0.0-alpha08'//'2.1.2'
+    pagingVersion = '3.0.0-alpha09'//'2.1.2'
     multidexVersion = '2.0.1'
     fragmentExtVersion = '1.2.5'
     recyclerviewVersion = '1.2.0-alpha06'
     //dependency injection
-    hiltVersion = '2.29.1-alpha'
+    hiltVersion = '2.30-alpha'
     hiltExtVersion = '1.0.0-alpha02'
     javaxInjectVersion = '1'
     //other
