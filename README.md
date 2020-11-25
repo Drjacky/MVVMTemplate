@@ -27,11 +27,12 @@ Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20t
 - [Gson](https://github.com/google/gson) - JSON library
 - [Material Components](https://github.com/material-components/material-components-android) - Material Design
 - [Lottie](https://airbnb.design/lottie/) - Vector animation library
+- Kotlin DSL
 
 ## Under Development 🚧
 
 - ~~Add CI~~
-- Use Kotlin DSL
+- ~~Use Kotlin DSL~~
 - Add Espresso, Instrumentation & Unit tests
 - ~~Use Animations. To see changes, click [here](https://github.com/Drjacky/MVVMTemplate/commit/2fc51ef6ff82c4d43168e3ae0124a30c4ec3bfff).~~
 - ~~Use Hilt. To see changes, click [here](https://github.com/Drjacky/MVVMTemplate/commit/b8af89bb74e5d615e9704c9f3ce35befd11811ea).~~
