@@ -27,6 +27,7 @@ object Depends {
         const val coreKtxVersion = "1.6.0-beta01"
         const val navigationVersion = "2.3.5"
         const val pagingVersion = "3.0.0"
+        const val composeNavigationVersion = "1.0.0-alpha02"
         const val multidexVersion = "2.0.1"
         const val fragmentExtVersion = "1.3.3"
         const val recyclerviewVersion = "1.2.0"
@@ -154,6 +155,8 @@ object Depends {
         const val compose_material = "androidx.compose.material:material:${Versions.composeVersion}"
         const val compose_runtime_saved_instance_state =
             "androidx.compose.runtime:runtime-saved-instance-state:${Versions.composeVersion}"
+        const val compose_navigation =
+            "androidx.navigation:navigation-compose:${Versions.composeNavigationVersion}"
         const val ui_test = "androidx.ui:ui-test:${Versions.composeVersion}"
         const val ui_tooling = "androidx.ui:ui-tooling:${Versions.composeVersion}"
     }

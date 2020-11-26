@@ -88,6 +88,7 @@ dependencies {
     implementation(app.web.drjackycv.buildsrc.Depends.Libraries.compose_foundation_layout)
     implementation(app.web.drjackycv.buildsrc.Depends.Libraries.compose_material)
     implementation(app.web.drjackycv.buildsrc.Depends.Libraries.compose_runtime_saved_instance_state)
+    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.compose_navigation)
     //reactive
     implementation(Depends.Libraries.rx_java_android)
     implementation(Depends.Libraries.rx_binding3)
