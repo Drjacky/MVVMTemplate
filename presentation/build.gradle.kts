@@ -83,6 +83,11 @@ dependencies {
     implementation(Depends.Libraries.fragment_ktx)
     implementation(Depends.Libraries.recyclerview)
     implementation(Depends.Libraries.dataStore_preferences)
+    //compose
+    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.compose_foundation)
+    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.compose_foundation_layout)
+    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.compose_material)
+    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.compose_runtime_saved_instance_state)
     //reactive
     implementation(Depends.Libraries.rx_java_android)
     implementation(Depends.Libraries.rx_binding3)
