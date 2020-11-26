@@ -115,9 +115,9 @@ object Depends {
         const val constraintlayout =
             "androidx.constraintlayout:constraintlayout:${Versions.constraintLayoutVersion}"
         const val navigation_fragment_ktx =
-            "android.arch.navigation:navigation-fragment-ktx:${Versions.navigationVersion}"
+            "androidx.navigation:navigation-fragment-ktx:${Versions.navigationVersion}"
         const val navigation_ui_ktx =
-            "android.arch.navigation:navigation-ui-ktx:${Versions.navigationVersion}"
+            "androidx.navigation:navigation-ui-ktx:${Versions.navigationVersion}"
         const val lifecycle_livedata_ktx =
             "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycleVersion}"
         const val lifecycle_runtime_ktx =
