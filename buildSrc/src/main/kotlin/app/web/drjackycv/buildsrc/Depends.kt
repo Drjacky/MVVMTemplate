@@ -161,7 +161,8 @@ object Depends {
         const val compose_navigation =
             "androidx.navigation:navigation-compose:${Versions.composeNavigationVersion}"
         const val ui_test = "androidx.ui:ui-test:${Versions.composeVersion}"
-        const val ui_tooling = "androidx.ui:ui-tooling:${Versions.uiToolingVersion}"
+        const val ui_tooling = "androidx.ui:ui-tooling:${Versions.composeVersion}"
+        const val ui = "androidx.compose.ui:ui:${Versions.composeVersion}"
         const val ui_framework = "androidx.ui:ui-framework:${Versions.uiFrameworkVersion}"
         const val ui_foundation = "androidx.ui:ui-foundation:${Versions.uiVersion}"
         const val ui_layout = "androidx.ui:ui-layout:${Versions.uiVersion}"

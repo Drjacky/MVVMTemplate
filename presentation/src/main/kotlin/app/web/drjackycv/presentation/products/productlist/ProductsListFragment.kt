@@ -2,8 +2,11 @@ package app.web.drjackycv.presentation.products.productlist
 
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
+import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.ComposeView
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -42,19 +45,19 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
         ProductsListAdapter(::navigateToProductDetail)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            BaseTheme {
-                Greeting("Android")
-            }
-        }
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupPath()
+        val composeView = ComposeView(requireContext()).apply {
+            layoutParams = ViewGroup.LayoutParams(MATCH_PARENT, MATCH_PARENT)
+            setContent {
+                BaseTheme {
+                    Greeting("Android")
+                }
+            }
+        }
         setupRecycler()
+        binding.parentContainer.addView(composeView)
+        setupPath()
     }
 
     private fun cleanUp(binding: FragmentProductListBinding?) {

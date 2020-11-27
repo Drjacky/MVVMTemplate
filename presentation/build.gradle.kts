@@ -12,8 +12,13 @@ plugins {
 }
 
 android {
+    buildFeatures {
+        compose = true
+        dataBinding = false
+        viewBinding = true
+    }
 
-    compileSdkVersion(Depends.Versions.androidCompileSdkVersion)
+    compileSdkVersion(app.web.drjackycv.buildsrc.Depends.Versions.androidCompileSdkVersion)
 
     defaultConfig {
         multiDexEnabled = true
@@ -30,14 +35,6 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
         sourceCompatibility = JavaVersion.VERSION_1_8
     }
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
-    }
-
-    buildFeatures {
-        viewBinding = true
-    }
-
     sourceSets {
         map { it.java.srcDir("src/${it.name}/kotlin") }
     }
@@ -53,18 +50,6 @@ android {
             )
         }
     }
-
-    packagingOptions {
-        exclude("META-INF/rxjava.properties")
-        exclude("META-INF/proguard/androidx-annotations.pro")
-        exclude("error_prone/Annotations.gwt.xml")
-        exclude("third_party/java_src/error_prone/project/annotations/Annotations.gwt.xml")
-        exclude("third_party/java_src/error_prone/project/annotations/Google_internal.gwt.xml")
-        exclude("jsr305_annotations/Jsr305_annotations.gwt.xml")
-        exclude("META-INF/AL2.0")
-        exclude("META-INF/LGPL2.1")
-    }
-
 }
 
 tasks.withType<KotlinCompile> {
@@ -75,6 +60,7 @@ tasks.withType<KotlinCompile> {
             "-Xallow-jvm-ir-dependencies",
             "-Xskip-prerelease-check"
         )
+        useIR = true
     }
 }
 
@@ -115,7 +101,7 @@ dependencies {
     implementation(Depends.Libraries.compose_navigation)
     implementation(Depends.Libraries.ui_test)
     implementation(Depends.Libraries.ui_tooling)
-    implementation(Depends.Libraries.ui_framework)
+//    implementation(Depends.Libraries.ui_framework)
     implementation(Depends.Libraries.ui_foundation)
     implementation(Depends.Libraries.ui_layout)
     implementation(Depends.Libraries.ui_material)

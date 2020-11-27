@@ -10,13 +10,6 @@ plugins {
 }
 
 android {
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerVersion = app.web.drjackycv.buildsrc.Depends.Versions.kotlinVersion
-        kotlinCompilerExtensionVersion = app.web.drjackycv.buildsrc.Depends.Versions.composeVersion
-    }
     compileSdkVersion(app.web.drjackycv.buildsrc.Depends.Versions.androidCompileSdkVersion)
 
     buildFeatures {
@@ -63,9 +56,6 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
         sourceCompatibility = JavaVersion.VERSION_1_8
     }
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
-    }
     lintOptions {
         isAbortOnError = false
     }
@@ -79,6 +69,26 @@ android {
         exclude("jsr305_annotations/Jsr305_annotations.gwt.xml")
         exclude("META-INF/AL2.0")
         exclude("META-INF/LGPL2.1")
+        exclude("**/*.dot")
+        exclude("**/*.kotlin_metadata")
+        exclude("**/*.properties")
+        exclude("*.properties")
+        exclude("kotlin/**")
+        exclude("LICENSE.txt")
+        exclude("LICENSE_OFL")
+        exclude("LICENSE_UNICODE")
+        exclude("META-INF/*.kotlin_module")
+        exclude("META-INF/*.version")
+        exclude("META-INF/androidx.*")
+        exclude("META-INF/CHANGES")
+        exclude("META-INF/com.uber.crumb/**")
+        exclude("META-INF/LICENSE")
+        exclude("META-INF/LICENSE.txt")
+        exclude("META-INF/NOTICE")
+        exclude("META-INF/NOTICE.txt")
+        exclude("META-INF/README.md")
+        exclude("META-INF/rxjava.properties")
+        exclude("META-INF/services/javax.annotation.processing.Processor")
     }
 }
 
@@ -90,6 +100,7 @@ tasks.withType<KotlinCompile> {
             "-Xallow-jvm-ir-dependencies",
             "-Xskip-prerelease-check"
         )
+        useIR = true
     }
 }
 
@@ -109,8 +120,7 @@ dependencies {
     implementation(app.web.drjackycv.buildsrc.Depends.Libraries.compose_navigation)
     implementation(app.web.drjackycv.buildsrc.Depends.Libraries.ui_test)
     implementation(app.web.drjackycv.buildsrc.Depends.Libraries.ui_tooling)
-    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.ui_framework)
-    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.ui_foundation)
+//    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.ui_foundation)
     implementation(app.web.drjackycv.buildsrc.Depends.Libraries.ui_layout)
     implementation(app.web.drjackycv.buildsrc.Depends.Libraries.ui_material)
     //dependency injection
