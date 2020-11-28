@@ -1,14 +1,11 @@
 plugins {
     id("com.android.library")
     kotlin("android")
-    kotlin("android.extensions")
+    id("kotlin-parcelize")
     kotlin("kapt")
 }
 
 android {
-    androidExtensions {
-        isExperimental = true
-    }
 
     compileSdkVersion(app.web.drjackycv.buildsrc.Depends.Versions.androidCompileSdkVersion)
 

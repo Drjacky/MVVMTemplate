@@ -2,7 +2,7 @@ package app.web.drjackycv.presentation.products.entity
 
 import android.os.Parcelable
 import app.web.drjackycv.domain.base.RecyclerItem
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class BeerUI(

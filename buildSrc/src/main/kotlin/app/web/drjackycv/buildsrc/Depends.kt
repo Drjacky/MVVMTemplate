@@ -52,8 +52,6 @@ object Depends {
 
     object ClassPaths {
         const val gradle = "com.android.tools.build:gradle:${Versions.gradleVersion}"
-        const val kotlin_android_extensions =
-            "org.jetbrains.kotlin:kotlin-android-extensions:${Versions.kotlinVersion}"
         const val kotlin_gradle_plugin = "gradle-plugin"
         const val navigation_safe_args_gradle_plugin =
             "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigationVersion}"

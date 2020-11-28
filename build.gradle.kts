@@ -10,7 +10,6 @@ buildscript {
     }
     dependencies {
         classpath(app.web.drjackycv.buildsrc.Depends.ClassPaths.gradle)
-        classpath(app.web.drjackycv.buildsrc.Depends.ClassPaths.kotlin_android_extensions)
         classpath(
             kotlin(
                 app.web.drjackycv.buildsrc.Depends.ClassPaths.kotlin_gradle_plugin,
