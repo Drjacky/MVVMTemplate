@@ -39,7 +39,7 @@ Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20t
 - ~~Use Hilt. To see changes, click [here](https://github.com/Drjacky/MVVMTemplate/commit/b8af89bb74e5d615e9704c9f3ce35befd11811ea).~~
 - ~~Use Paging V3. To see changes, click [here](https://github.com/Drjacky/MVVMTemplate/pull/4/files).~~
 - ~~Use ViewBinding. To see changes, click [here](https://github.com/Drjacky/MVVMTemplate/commit/cfc907532fa991cd8de3b295644bfdff88d67ceb).~~
-- ~~Migrate to [JetPack Compose](https://developer.android.com/jetpack/compose).~~
+- Migrate to [JetPack Compose](https://developer.android.com/jetpack/compose)
 
 ## CI 🏭
 
