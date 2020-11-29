@@ -37,6 +37,7 @@ object Depends {
         const val timberVersion = "4.7.1"
         const val lottieVersion = "3.5.0"
         const val glideVersion = "4.11.0"
+        const val autoDispose = "1.4.0"
 
         const val mockitoKotlinVersion = "2.2.0"
         const val mockitoCoreVersion = "3.6.0"
@@ -131,6 +132,11 @@ object Depends {
         const val glide = "com.github.bumptech.glide:glide:${Versions.glideVersion}"
         const val glide_compiler = "com.github.bumptech.glide:compiler:${Versions.glideVersion}"
         const val lottie = "com.airbnb.android:lottie:${Versions.lottieVersion}"
+        const val autodispose = "com.uber.autodispose:autodispose:${Versions.autoDispose}"
+        const val autodispose_android =
+            "com.uber.autodispose:autodispose-android:${Versions.autoDispose}"
+        const val autodispose_android_arch =
+            "com.uber.autodispose:autodispose-android-archcomponents:${Versions.autoDispose}"
     }
 
     object Environments {

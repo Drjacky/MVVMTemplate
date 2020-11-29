@@ -11,7 +11,6 @@ import app.web.drjackycv.domain.products.usecase.GetBeersListParams
 import app.web.drjackycv.domain.products.usecase.GetBeersListUseCase
 import app.web.drjackycv.presentation.base.viewmodel.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.rxkotlin.addTo
 
 class ProductsListViewModel @ViewModelInject constructor(
     private val getBeersUseCase: GetBeersListUseCase
@@ -28,9 +27,10 @@ class ProductsListViewModel @ViewModelInject constructor(
         getBeersUseCase(GetBeersListParams(ids = ids))
             .cachedIn(viewModelScope)
             .observeOn(AndroidSchedulers.mainThread())
+            .autoDisposable()
             .subscribe {
                 _ldProductsList.value = it
-            }.addTo(compositeDisposable)
+            }
     }
 
 }

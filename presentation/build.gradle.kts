@@ -85,6 +85,9 @@ dependencies {
     implementation(app.web.drjackycv.buildsrc.Depends.Libraries.rx_java_android)
     implementation(app.web.drjackycv.buildsrc.Depends.Libraries.rx_binding3)
     implementation(app.web.drjackycv.buildsrc.Depends.Libraries.rx_kotlin)
+    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.autodispose)
+    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.autodispose_android)
+    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.autodispose_android_arch)
     //ui
     implementation(app.web.drjackycv.buildsrc.Depends.Libraries.glide)
     kapt(app.web.drjackycv.buildsrc.Depends.Libraries.glide_compiler)
