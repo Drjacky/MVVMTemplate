@@ -56,5 +56,5 @@ Feel free to open an issue or submit a pull request for any bugs/improvements.
 ## Result 📺
 ![Screenshot](https://raw.githubusercontent.com/Drjacky/MVVMTemplate/master/list.gif)
 
-## License
+## License ⚖️
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FDrjacky%2FMVVMTemplate.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FDrjacky%2FMVVMTemplate?ref=badge_large)
