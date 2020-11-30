@@ -37,9 +37,12 @@ subprojects {
         baseline = baselineFile
 
         reports {
-            xml.enabled = true
             html.enabled = true
+            html.destination = file("$projectDir/build/detekt/report.html")
+            xml.enabled = true
+            xml.destination = file("$projectDir/build/detekt/report.xml")
             txt.enabled = true
+            txt.destination = file("$projectDir/build/detekt/report.txt")
         }
     }
 }
@@ -47,7 +50,7 @@ subprojects {
 allprojects {
 
     dependencies {
-        detekt(project(":detekt-cli"))
+        //detekt(project(":detekt-cli"))
         detektPlugins(project(":custom-checks"))
         detektPlugins(project(":detekt-formatting"))
     }
