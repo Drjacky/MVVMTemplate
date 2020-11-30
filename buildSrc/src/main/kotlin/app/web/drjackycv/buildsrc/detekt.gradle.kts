@@ -50,7 +50,7 @@ subprojects {
 allprojects {
 
     dependencies {
-        //detekt(project(":detekt-cli"))
+        detekt(project(":detekt-cli"))
         detektPlugins(project(":custom-checks"))
         detektPlugins(project(":detekt-formatting"))
     }

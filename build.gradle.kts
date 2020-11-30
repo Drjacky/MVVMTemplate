@@ -1,7 +1,8 @@
 plugins {
 //    detekt
     id("org.sonarqube") version app.web.drjackycv.buildsrc.Depends.Versions.sonarqubeVersion
-//    id("io.gitlab.arturbosch.detekt")
+//    id("io.gitlab.arturbosch.detekt") version app.web.drjackycv.buildsrc.Depends.Versions.detektVersion
+    id("io.gitlab.arturbosch.detekt")
 }
 
 buildscript {
@@ -21,6 +22,7 @@ buildscript {
         classpath(app.web.drjackycv.buildsrc.Depends.ClassPaths.navigation_safe_args_gradle_plugin)
         classpath(app.web.drjackycv.buildsrc.Depends.ClassPaths.hilt_android_gradle_plugin)
         classpath(app.web.drjackycv.buildsrc.Depends.ClassPaths.sonarqube_gradle_plugin)
+//        classpath(app.web.drjackycv.buildsrc.Depends.ClassPaths.detekt_gradle_plugin)
     }
 }
 
@@ -36,6 +38,7 @@ allprojects {
 }
 
 //plugins.apply(app.web.drjackycv.buildsrc.Plugins.DETEKT)
+//apply(from= "$rootDir/buildSrc/src/main/kotlin/app/web/drjackycv/buildsrc/detekt.gradle.kts")
 
 /*detekt {
     failFast = true // fail build on any finding
