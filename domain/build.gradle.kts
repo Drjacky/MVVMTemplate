@@ -1,3 +1,5 @@
+import app.web.drjackycv.buildsrc.Depends
+
 plugins {
     id("com.android.library")
     kotlin("android")
@@ -7,16 +9,16 @@ plugins {
 
 android {
 
-    compileSdkVersion(app.web.drjackycv.buildsrc.Depends.Versions.androidCompileSdkVersion)
+    compileSdkVersion(Depends.Versions.androidCompileSdkVersion)
 
     defaultConfig {
         multiDexEnabled = true
-        minSdkVersion(app.web.drjackycv.buildsrc.Depends.Versions.minSdkVersion)
-        targetSdkVersion(app.web.drjackycv.buildsrc.Depends.Versions.targetSdkVersion)
-        versionCode = app.web.drjackycv.buildsrc.Depends.Versions.appVersionCode
-        versionName = app.web.drjackycv.buildsrc.Depends.generateVersionName()
+        minSdkVersion(Depends.Versions.minSdkVersion)
+        targetSdkVersion(Depends.Versions.targetSdkVersion)
+        versionCode = Depends.Versions.appVersionCode
+        versionName = Depends.generateVersionName()
         testInstrumentationRunner =
-            app.web.drjackycv.buildsrc.Depends.Versions.testInstrumentationRunner
+            Depends.Versions.testInstrumentationRunner
         consumerProguardFiles("consumer-rules.pro")
     }
     compileOptions {
@@ -50,20 +52,20 @@ configurations["compileOnly"].extendsFrom(unitTestImplementation)
 configurations["testImplementation"].extendsFrom(unitTestImplementation)
 
 dependencies {
-    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.kotlin)
+    implementation(Depends.Libraries.kotlin)
     //android
-    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.paging_runtime_ktx)
-    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.paging_rx_ktx)
-    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.lifecycle_livedata)
-    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.multidex)
+    implementation(Depends.Libraries.paging_runtime_ktx)
+    implementation(Depends.Libraries.paging_rx_ktx)
+    implementation(Depends.Libraries.lifecycle_livedata)
+    implementation(Depends.Libraries.multidex)
     //reactive
-    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.rx_kotlin)
-    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.rx_java)
+    implementation(Depends.Libraries.rx_kotlin)
+    implementation(Depends.Libraries.rx_java)
     //dependency injection
-    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.java_inject)
+    implementation(Depends.Libraries.java_inject)
     //test
-    testImplementation(app.web.drjackycv.buildsrc.Depends.Libraries.junit)
-    testImplementation(app.web.drjackycv.buildsrc.Depends.Libraries.mockito_core)
-    testImplementation(app.web.drjackycv.buildsrc.Depends.Libraries.mockito_inline)
-    testImplementation(app.web.drjackycv.buildsrc.Depends.Libraries.mockito_kotlin)
+    testImplementation(Depends.Libraries.junit)
+    testImplementation(Depends.Libraries.mockito_core)
+    testImplementation(Depends.Libraries.mockito_inline)
+    testImplementation(Depends.Libraries.mockito_kotlin)
 }

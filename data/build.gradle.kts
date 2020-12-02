@@ -1,3 +1,5 @@
+import app.web.drjackycv.buildsrc.Depends
+
 plugins {
     id("com.android.library")
     kotlin("android")
@@ -7,16 +9,16 @@ plugins {
 
 android {
 
-    compileSdkVersion(app.web.drjackycv.buildsrc.Depends.Versions.androidCompileSdkVersion)
+    compileSdkVersion(Depends.Versions.androidCompileSdkVersion)
 
     defaultConfig {
         multiDexEnabled = true
-        minSdkVersion(app.web.drjackycv.buildsrc.Depends.Versions.minSdkVersion)
-        targetSdkVersion(app.web.drjackycv.buildsrc.Depends.Versions.targetSdkVersion)
-        versionCode = app.web.drjackycv.buildsrc.Depends.Versions.appVersionCode
-        versionName = app.web.drjackycv.buildsrc.Depends.generateVersionName()
+        minSdkVersion(Depends.Versions.minSdkVersion)
+        targetSdkVersion(Depends.Versions.targetSdkVersion)
+        versionCode = Depends.Versions.appVersionCode
+        versionName = Depends.generateVersionName()
         testInstrumentationRunner =
-            app.web.drjackycv.buildsrc.Depends.Versions.testInstrumentationRunner
+            Depends.Versions.testInstrumentationRunner
         consumerProguardFiles("consumer-rules.pro")
     }
     compileOptions {
@@ -34,7 +36,7 @@ android {
             buildConfigField(
                 "String",
                 "BASE_URL",
-                "\"" + app.web.drjackycv.buildsrc.Depends.Environments.debugBaseUrl + "\""
+                "\"" + Depends.Environments.debugBaseUrl + "\""
             )
         }
         named("release") {
@@ -42,7 +44,7 @@ android {
             buildConfigField(
                 "String",
                 "BASE_URL",
-                "\"" + app.web.drjackycv.buildsrc.Depends.Environments.releaseBaseUrl + "\""
+                "\"" + Depends.Environments.releaseBaseUrl + "\""
             )
             setProguardFiles(
                 listOf(
@@ -56,27 +58,27 @@ android {
 }
 
 dependencies {
-    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.kotlin)
-    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.android_core_ktx)
-    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.paging_runtime_ktx)
-    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.paging_rx_ktx)
-    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.multidex)
+    implementation(Depends.Libraries.kotlin)
+    implementation(Depends.Libraries.android_core_ktx)
+    implementation(Depends.Libraries.paging_runtime_ktx)
+    implementation(Depends.Libraries.paging_rx_ktx)
+    implementation(Depends.Libraries.multidex)
     //dependency injection
-    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.java_inject)
+    implementation(Depends.Libraries.java_inject)
     //parser
-    api(app.web.drjackycv.buildsrc.Depends.Libraries.converter_gson)
+    api(Depends.Libraries.converter_gson)
     //network
-    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.retrofit)
-    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.retrofit_adapter_rx)
-    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.logging_interceptor)
+    implementation(Depends.Libraries.retrofit)
+    implementation(Depends.Libraries.retrofit_adapter_rx)
+    implementation(Depends.Libraries.logging_interceptor)
     //other
-    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.timber)
-    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.material)
+    implementation(Depends.Libraries.timber)
+    implementation(Depends.Libraries.material)
     //test
-    testImplementation(app.web.drjackycv.buildsrc.Depends.Libraries.junit)
-    testImplementation(app.web.drjackycv.buildsrc.Depends.Libraries.mockito_core)
-    testImplementation(app.web.drjackycv.buildsrc.Depends.Libraries.mockito_inline)
-    testImplementation(app.web.drjackycv.buildsrc.Depends.Libraries.mockito_kotlin)
+    testImplementation(Depends.Libraries.junit)
+    testImplementation(Depends.Libraries.mockito_core)
+    testImplementation(Depends.Libraries.mockito_inline)
+    testImplementation(Depends.Libraries.mockito_kotlin)
 
     testImplementation(project(path = ":domain", configuration = "unitTestImplementation"))
     implementation(project(":domain"))

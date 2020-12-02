@@ -1,3 +1,4 @@
+import app.web.drjackycv.buildsrc.Depends
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -9,7 +10,7 @@ plugins {
 }
 
 android {
-    compileSdkVersion(app.web.drjackycv.buildsrc.Depends.Versions.androidCompileSdkVersion)
+    compileSdkVersion(Depends.Versions.androidCompileSdkVersion)
 
     dataBinding {
         isEnabled = true
@@ -18,12 +19,12 @@ android {
     defaultConfig {
         multiDexEnabled = true
         applicationId = "app.web.drjackycv.mvvmtemplate"
-        minSdkVersion(app.web.drjackycv.buildsrc.Depends.Versions.minSdkVersion)
-        targetSdkVersion(app.web.drjackycv.buildsrc.Depends.Versions.targetSdkVersion)
-        versionCode = app.web.drjackycv.buildsrc.Depends.Versions.appVersionCode
-        versionName = app.web.drjackycv.buildsrc.Depends.generateVersionName()
+        minSdkVersion(Depends.Versions.minSdkVersion)
+        targetSdkVersion(Depends.Versions.targetSdkVersion)
+        versionCode = Depends.Versions.appVersionCode
+        versionName = Depends.generateVersionName()
         testInstrumentationRunner =
-            app.web.drjackycv.buildsrc.Depends.Versions.testInstrumentationRunner
+            Depends.Versions.testInstrumentationRunner
         javaCompileOptions.annotationProcessorOptions.arguments += mapOf(
             "room.schemaLocation" to "$projectDir/schemas"
         )
@@ -76,30 +77,30 @@ tasks.withType<KotlinCompile> {
 }
 
 dependencies {
-    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.kotlin)
-    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.android_core_ktx)
-    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.multidex)
-    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.fragment_ktx)
-    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.android_lifecycle_extensions)
-    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.paging_runtime_ktx)
-    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.paging_rx_ktx)
+    implementation(Depends.Libraries.kotlin)
+    implementation(Depends.Libraries.android_core_ktx)
+    implementation(Depends.Libraries.multidex)
+    implementation(Depends.Libraries.fragment_ktx)
+    implementation(Depends.Libraries.android_lifecycle_extensions)
+    implementation(Depends.Libraries.paging_runtime_ktx)
+    implementation(Depends.Libraries.paging_rx_ktx)
     //dependency injection
-    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.hilt_android)
-    kapt(app.web.drjackycv.buildsrc.Depends.Libraries.hilt_android_compiler)
-    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.hilt_lifecycle_viewmodel)
-    kapt(app.web.drjackycv.buildsrc.Depends.Libraries.hilt_compiler)
-    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.java_inject)
+    implementation(Depends.Libraries.hilt_android)
+    kapt(Depends.Libraries.hilt_android_compiler)
+    implementation(Depends.Libraries.hilt_lifecycle_viewmodel)
+    kapt(Depends.Libraries.hilt_compiler)
+    implementation(Depends.Libraries.java_inject)
     //network
-    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.retrofit)
-    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.retrofit_adapter_rx)
-    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.logging_interceptor)
+    implementation(Depends.Libraries.retrofit)
+    implementation(Depends.Libraries.retrofit_adapter_rx)
+    implementation(Depends.Libraries.logging_interceptor)
     //other
-    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.timber)
-    implementation(app.web.drjackycv.buildsrc.Depends.Libraries.material)
+    implementation(Depends.Libraries.timber)
+    implementation(Depends.Libraries.material)
     //test
-    testImplementation(app.web.drjackycv.buildsrc.Depends.Libraries.junit)
-    androidTestImplementation(app.web.drjackycv.buildsrc.Depends.Libraries.test_runner)
-    androidTestImplementation(app.web.drjackycv.buildsrc.Depends.Libraries.espresso_core)
+    testImplementation(Depends.Libraries.junit)
+    androidTestImplementation(Depends.Libraries.test_runner)
+    androidTestImplementation(Depends.Libraries.espresso_core)
 
     implementation(project(":presentation"))
     implementation(project(":data"))
