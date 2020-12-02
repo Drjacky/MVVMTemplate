@@ -12,6 +12,7 @@ abstract class BasePagedListAdapter(
     private val onItemClick: (RecyclerItem, View) -> Unit
 ) : PagingDataAdapter<RecyclerItem, RecyclerView.ViewHolder>(BASE_DIFF_CALLBACK) {
 
+    @Suppress("SpreadOperator")
     private val cellTypes: CellTypes<RecyclerItem, ViewBinding> = CellTypes(*types)
 
     override fun getItemViewType(position: Int): Int {
