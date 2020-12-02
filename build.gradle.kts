@@ -1,8 +1,10 @@
 plugins {
 //    detekt
+    kotlin("jvm") version app.web.drjackycv.buildsrc.Depends.Versions.kotlinVersion
     id("org.sonarqube") version app.web.drjackycv.buildsrc.Depends.Versions.sonarqubeVersion
 //    id("io.gitlab.arturbosch.detekt") version app.web.drjackycv.buildsrc.Depends.Versions.detektVersion
-    id("io.gitlab.arturbosch.detekt")
+//    id("io.gitlab.arturbosch.detekt")
+    detekt
 }
 
 buildscript {
@@ -62,6 +64,7 @@ tasks {
     }
 }*/
 
+/*
 tasks.register<Delete>("clean") {
     delete(rootProject.buildDir)
-}
+}*/
