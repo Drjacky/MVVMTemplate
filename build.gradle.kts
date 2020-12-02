@@ -1,5 +1,7 @@
 plugins {
-    id("org.sonarqube") version "3.0"
+    kotlin("jvm") version app.web.drjackycv.buildsrc.Depends.Versions.kotlinVersion
+    id("org.sonarqube") version app.web.drjackycv.buildsrc.Depends.Versions.sonarqubeVersion
+    detekt
 }
 
 buildscript {
@@ -31,8 +33,4 @@ allprojects {
         maven("https://jitpack.io")
         maven("https://plugins.gradle.org/m2/")
     }
-}
-
-tasks.register<Delete>("clean") {
-    delete(rootProject.buildDir)
 }

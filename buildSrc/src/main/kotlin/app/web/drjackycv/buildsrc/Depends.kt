@@ -48,7 +48,7 @@ object Depends {
         const val testCoreVersion = "1.2.0"
         const val testExtJunitVersion = "1.1.1"
         const val sonarqubeVersion = "3.0"
-
+        const val detektVersion = "1.15.0-RC1"
     }
 
     object ClassPaths {
@@ -61,6 +61,8 @@ object Depends {
             "com.google.dagger:hilt-android-gradle-plugin:${Versions.hiltVersion}"
         const val sonarqube_gradle_plugin =
             "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:${Versions.sonarqubeVersion}"
+        const val detekt_gradle_plugin =
+            "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${Versions.detektVersion}"
     }
 
     object Libraries {
