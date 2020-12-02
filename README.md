@@ -29,6 +29,7 @@ Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20t
 - [Material Components](https://github.com/material-components/material-components-android) - Material Design
 - [Lottie](https://airbnb.design/lottie/) - Vector animation library
 - Kotlin DSL
+- [Detekt](https://github.com/detekt/detekt) - Static code analysis for Kotlin
 
 ## Under Development 🚧
 
@@ -40,6 +41,7 @@ Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20t
 - ~~Use Paging V3. To see changes, click [here](https://github.com/Drjacky/MVVMTemplate/pull/4/files).~~
 - ~~Use ViewBinding. To see changes, click [here](https://github.com/Drjacky/MVVMTemplate/commit/cfc907532fa991cd8de3b295644bfdff88d67ceb).~~
 - Migrate to [JetPack Compose](https://developer.android.com/jetpack/compose)
+- ~~Use detekt. To see changes, click [here](https://github.com/Drjacky/MVVMTemplate/pull/6/files).~~
 
 ## CI 🏭
 
