@@ -12,7 +12,7 @@ import app.web.drjackycv.presentation.base.adapter.Cell
 import app.web.drjackycv.presentation.databinding.ItemProductBinding
 import app.web.drjackycv.presentation.products.productlist.BeerMapper
 
-object BeerCell : Cell<RecyclerItem, ViewBinding>() {
+object BeerCell : Cell<RecyclerItem, ViewBinding> {
 
     override fun belongsTo(item: RecyclerItem?): Boolean {
         return item is Beer
