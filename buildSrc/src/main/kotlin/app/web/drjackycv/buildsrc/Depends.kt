@@ -6,7 +6,7 @@ object Depends {
 
     object Versions {
         const val appVersionCode = 1_000_000
-        const val gradleVersion = "7.0.0-alpha01"
+        const val gradleVersion = "7.0.0-alpha02"
         const val androidCompileSdkVersion = 30
         const val targetSdkVersion = 30
         const val minSdkVersion = 21
@@ -157,6 +157,9 @@ object Depends {
         const val compose_foundation_layout =
             "androidx.compose.foundation:foundation-layout:${Versions.composeVersion}"
         const val compose_material = "androidx.compose.material:material:${Versions.composeVersion}"
+        const val compose_runtime = "androidx.compose.runtime:runtime:${Versions.composeVersion}"
+        const val compose_runtime_dispatch =
+            "androidx.compose.runtime:runtime-dispatch:${Versions.composeVersion}"
         const val compose_runtime_saved_instance_state =
             "androidx.compose.runtime:runtime-saved-instance-state:${Versions.composeVersion}"
         const val compose_navigation =

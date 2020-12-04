@@ -16,13 +16,11 @@ android {
         compose = true
         dataBinding = false
         viewBinding = true
+        composeOptions.kotlinCompilerExtensionVersion = Depends.Versions.composeVersion
+        composeOptions.kotlinCompilerVersion = Depends.Versions.kotlinVersion
     }
-    /*composeOptions {
-        kotlinCompilerExtensionVersion(app.web.drjackycv.buildsrc.Depends.Versions.composeVersion)
-        kotlinCompilerVersion(app.web.drjackycv.buildsrc.Depends.Versions.kotlinVersion)
-    }*/
 
-    compileSdkVersion(app.web.drjackycv.buildsrc.Depends.Versions.androidCompileSdkVersion)
+    compileSdkVersion(Depends.Versions.androidCompileSdkVersion)
 
     defaultConfig {
         multiDexEnabled = true
@@ -102,6 +100,8 @@ dependencies {
 //    implementation(Depends.Libraries.compose_foundation_layout)
     implementation(Depends.Libraries.compose_ui)
     implementation(Depends.Libraries.compose_material)
+//    implementation(Depends.Libraries.compose_runtime)
+//    implementation(Depends.Libraries.compose_runtime_dispatch)
 //    implementation(Depends.Libraries.compose_runtime_saved_instance_state)
 //    implementation(Depends.Libraries.compose_navigation)
 //    implementation(Depends.Libraries.ui_test)
