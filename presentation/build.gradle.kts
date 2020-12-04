@@ -17,6 +17,10 @@ android {
         dataBinding = false
         viewBinding = true
     }
+    /*composeOptions {
+        kotlinCompilerExtensionVersion(app.web.drjackycv.buildsrc.Depends.Versions.composeVersion)
+        kotlinCompilerVersion(app.web.drjackycv.buildsrc.Depends.Versions.kotlinVersion)
+    }*/
 
     compileSdkVersion(app.web.drjackycv.buildsrc.Depends.Versions.androidCompileSdkVersion)
 
@@ -94,17 +98,18 @@ dependencies {
     implementation(Depends.Libraries.recyclerview)
     implementation(Depends.Libraries.dataStore_preferences)
     //compose
-    implementation(Depends.Libraries.compose_foundation)
-    implementation(Depends.Libraries.compose_foundation_layout)
+//    implementation(Depends.Libraries.compose_foundation)
+//    implementation(Depends.Libraries.compose_foundation_layout)
+    implementation(Depends.Libraries.compose_ui)
     implementation(Depends.Libraries.compose_material)
-    implementation(Depends.Libraries.compose_runtime_saved_instance_state)
-    implementation(Depends.Libraries.compose_navigation)
-    implementation(Depends.Libraries.ui_test)
+//    implementation(Depends.Libraries.compose_runtime_saved_instance_state)
+//    implementation(Depends.Libraries.compose_navigation)
+//    implementation(Depends.Libraries.ui_test)
     implementation(Depends.Libraries.ui_tooling)
 //    implementation(Depends.Libraries.ui_framework)
-    implementation(Depends.Libraries.ui_foundation)
-    implementation(Depends.Libraries.ui_layout)
-    implementation(Depends.Libraries.ui_material)
+//    implementation(Depends.Libraries.ui_foundation)
+//    implementation(Depends.Libraries.ui_layout)
+//    implementation(Depends.Libraries.ui_material)
     //reactive
     implementation(Depends.Libraries.rx_java_android)
     implementation(Depends.Libraries.rx_binding3)
