@@ -3,10 +3,14 @@ package app.web.drjackycv.presentation.products.productlist
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewGroup.LayoutParams.MATCH_PARENT
+import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.unit.dp
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -23,6 +27,7 @@ import app.web.drjackycv.presentation.R
 import app.web.drjackycv.presentation.base.adapter.LoadingStateAdapter
 import app.web.drjackycv.presentation.base.adapter.RecyclerItem
 import app.web.drjackycv.presentation.base.compose.BaseTheme
+import app.web.drjackycv.presentation.base.compose.purple500
 import app.web.drjackycv.presentation.databinding.FragmentProductListBinding
 import app.web.drjackycv.presentation.extension.*
 import app.web.drjackycv.presentation.products.choose.ChoosePathType
@@ -48,9 +53,9 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val composeView = ComposeView(requireContext()).apply {
-            layoutParams = ViewGroup.LayoutParams(MATCH_PARENT, MATCH_PARENT)
+            layoutParams = ViewGroup.LayoutParams(WRAP_CONTENT, WRAP_CONTENT)
             setContent {
-                BaseTheme {
+                MyApp {
                     Greeting("Android")
                 }
             }
@@ -197,14 +202,23 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
 }
 
 @Composable
+fun MyApp(content: @Composable () -> Unit) {
+    BaseTheme {
+        Surface(color = purple500) {
+            content()
+        }
+    }
+}
+
+@Composable
 fun Greeting(name: String) {
-    Text(text = "Hello $name!")
+    Text(text = "Hello $name!", modifier = Modifier.padding(4.dp))
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
-    BaseTheme {
+    MyApp {
         Greeting("Android")
     }
 }
