@@ -50,6 +50,7 @@ object Depends {
         const val sonarqubeVersion = "3.0"
         const val detektVersion = "1.15.0-RC1"
         const val checkDependencyVersionsVersion = "0.36.0"
+        const val gradleDoctorVersion = "0.7.0"
     }
 
     object ClassPaths {
