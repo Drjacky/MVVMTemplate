@@ -100,9 +100,7 @@ tasks.withType<KotlinCompile> {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
         freeCompilerArgs = listOf(
-            "-XXLanguage:+InlineClasses",
-            "-Xallow-jvm-ir-dependencies",
-            "-Xskip-prerelease-check"
+            "-XXLanguage:+InlineClasses"
         )
         useIR = true
     }
