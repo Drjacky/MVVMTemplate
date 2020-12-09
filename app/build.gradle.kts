@@ -11,11 +11,8 @@ plugins {
 
 android {
     buildFeatures {
-        compose = true
         dataBinding = false
         viewBinding = true
-        composeOptions.kotlinCompilerExtensionVersion = Depends.Versions.composeVersion
-        composeOptions.kotlinCompilerVersion = Depends.Versions.kotlinVersion
     }
     compileSdkVersion(Depends.Versions.androidCompileSdkVersion)
 
