@@ -5,9 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Button
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.tooling.preview.Preview
@@ -56,7 +59,7 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
             layoutParams = ViewGroup.LayoutParams(WRAP_CONTENT, WRAP_CONTENT)
             setContent {
                 MyApp {
-                    Greeting("Android")
+                    MyScreenContent()
                 }
             }
         }
@@ -211,14 +214,28 @@ fun MyApp(content: @Composable () -> Unit) {
 }
 
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!", modifier = Modifier.padding(4.dp))
+fun MyScreenContent() {
+    val counterState = remember { mutableStateOf(0) }
+    Greeting(
+        name = "Android",
+        count = counterState.value,
+        updateCount = { newCount ->
+            counterState.value = newCount
+        }
+    )
+}
+
+@Composable
+fun Greeting(name: String, count: Int, updateCount: (Int) -> Unit) {
+    Button(onClick = { updateCount(count + 1) }) {
+        Text(text = "Hello $name $count!", modifier = Modifier.padding(4.dp))
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     MyApp {
-        Greeting("Android")
+        MyScreenContent()
     }
 }
