@@ -28,8 +28,9 @@ Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20t
 - [Gson](https://github.com/google/gson) - JSON library
 - [Material Components](https://github.com/material-components/material-components-android) - Material Design
 - [Lottie](https://airbnb.design/lottie/) - Vector animation library
-- Kotlin DSL
+- [Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html) - Alternative syntax to the Groovy DSL
 - [Detekt](https://github.com/detekt/detekt) - Static code analysis for Kotlin
+- [Gradle Doctor](https://github.com/runningcode/gradle-doctor) - Gradle build scan plugin
 
 ## Under Development 🚧
 
