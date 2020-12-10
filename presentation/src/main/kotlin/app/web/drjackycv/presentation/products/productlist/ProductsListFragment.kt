@@ -4,8 +4,12 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
+import androidx.compose.material.ButtonConstants
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -29,8 +33,7 @@ import app.web.drjackycv.domain.base.Failure
 import app.web.drjackycv.presentation.R
 import app.web.drjackycv.presentation.base.adapter.LoadingStateAdapter
 import app.web.drjackycv.presentation.base.adapter.RecyclerItem
-import app.web.drjackycv.presentation.base.compose.BaseTheme
-import app.web.drjackycv.presentation.base.compose.purple500
+import app.web.drjackycv.presentation.base.compose.*
 import app.web.drjackycv.presentation.databinding.FragmentProductListBinding
 import app.web.drjackycv.presentation.extension.*
 import app.web.drjackycv.presentation.products.choose.ChoosePathType
@@ -207,7 +210,7 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
 @Composable
 fun MyApp(content: @Composable () -> Unit) {
     BaseTheme {
-        Surface(color = purple500) {
+        Surface(color = transparent) {
             content()
         }
     }
@@ -215,19 +218,30 @@ fun MyApp(content: @Composable () -> Unit) {
 
 @Composable
 fun MyScreenContent() {
-    val counterState = remember { mutableStateOf(0) }
-    Greeting(
-        name = "Android",
-        count = counterState.value,
-        updateCount = { newCount ->
-            counterState.value = newCount
-        }
-    )
+    val counterState = remember { mutableStateOf(1) }
+
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.Center
+    ) {
+        Greeting(
+            name = "Android",
+            count = counterState.value,
+            updateCount = { newCount ->
+                counterState.value = newCount
+            }
+        )
+    }
 }
 
 @Composable
 fun Greeting(name: String, count: Int, updateCount: (Int) -> Unit) {
-    Button(onClick = { updateCount(count + 1) }) {
+    Button(
+        onClick = { updateCount(count + 1) },
+        colors = ButtonConstants.defaultTextButtonColors(
+            backgroundColor = if (count > 7) teal200 else purple200
+        )
+    ) {
         Text(text = "Hello $name $count!", modifier = Modifier.padding(4.dp))
     }
 }
