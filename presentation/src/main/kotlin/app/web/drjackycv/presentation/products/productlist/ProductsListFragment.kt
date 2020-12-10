@@ -8,16 +8,15 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonConstants
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
@@ -242,7 +241,11 @@ fun Greeting(name: String, count: Int, updateCount: (Int) -> Unit) {
             backgroundColor = if (count > 7) teal200 else purple200
         )
     ) {
-        Text(text = "Hello $name $count!", modifier = Modifier.padding(4.dp))
+        Text(
+            text = "Hello $name $count!",
+            modifier = Modifier.padding(4.dp),
+            style = TextStyle(fontSize = TextUnit.Sp(11))
+        )
     }
 }
 
