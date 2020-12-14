@@ -60,7 +60,7 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
         val composeView = ComposeView(requireContext()).apply {
             layoutParams = ViewGroup.LayoutParams(WRAP_CONTENT, WRAP_CONTENT)
             setContent {
-                MyApp {
+                ProductsListComposable {
                     MyScreenContent()
                 }
             }
@@ -207,7 +207,7 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
 }
 
 @Composable
-fun MyApp(content: @Composable () -> Unit) {
+fun ProductsListComposable(content: @Composable () -> Unit) {
     BaseTheme {
         Surface(color = transparent) {
             content()
@@ -252,7 +252,7 @@ fun Greeting(name: String, count: Int, updateCount: (Int) -> Unit) {
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
-    MyApp {
+    ProductsListComposable {
         MyScreenContent()
     }
 }

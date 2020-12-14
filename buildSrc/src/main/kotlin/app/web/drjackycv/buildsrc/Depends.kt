@@ -173,6 +173,8 @@ object Depends {
         const val ui_foundation = "androidx.ui:ui-foundation:${Versions.uiVersion}"
         const val ui_layout = "androidx.ui:ui-layout:${Versions.uiVersion}"
         const val ui_material = "androidx.ui:ui-material:${Versions.uiVersion}"
+        const val material_compose_theme_adapter =
+            "com.google.android.material:compose-theme-adapter:${Versions.composeVersion}"
     }
 
     object Environments {

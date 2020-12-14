@@ -4,11 +4,29 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.compose.material.*
+import android.view.ViewGroup
+import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.dp
 import androidx.navigation.fragment.navArgs
 import app.web.drjackycv.presentation.R
 import app.web.drjackycv.presentation.databinding.FragmentProductDetailBinding
 import app.web.drjackycv.presentation.extension.load
 import app.web.drjackycv.presentation.extension.viewBinding
+import app.web.drjackycv.presentation.base.compose.*
 import com.google.android.material.transition.platform.MaterialArcMotion
 import com.google.android.material.transition.platform.MaterialContainerTransform
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,7 +38,16 @@ class ProductDetailFragment : Fragment(R.layout.fragment_product_detail) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val composeView = ComposeView(requireContext()).apply {
+            layoutParams = ViewGroup.LayoutParams(WRAP_CONTENT, WRAP_CONTENT)
+            setContent {
+                ProductDetailComposable {
+                    MyScreenContent("Buzz")
+                }
+            }
+        }
         setupUI()
+        binding.productDetailContainer.addView(composeView)
     }
 
     private fun setupUI() {

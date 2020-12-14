@@ -96,11 +96,11 @@ dependencies {
     implementation(Depends.Libraries.recyclerview)
     implementation(Depends.Libraries.dataStore_preferences)
     //compose
-//    implementation(Depends.Libraries.compose_foundation)
-//    implementation(Depends.Libraries.compose_foundation_layout)
+    implementation(Depends.Libraries.compose_foundation)
+    implementation(Depends.Libraries.compose_foundation_layout)
     implementation(Depends.Libraries.compose_ui)
     implementation(Depends.Libraries.compose_material)
-//    implementation(Depends.Libraries.compose_runtime)
+    implementation(Depends.Libraries.compose_runtime)
 //    implementation(Depends.Libraries.compose_runtime_dispatch)
 //    implementation(Depends.Libraries.compose_runtime_saved_instance_state)
 //    implementation(Depends.Libraries.compose_navigation)
@@ -112,6 +112,7 @@ dependencies {
 //    implementation(Depends.Libraries.ui_foundation)
 //    implementation(Depends.Libraries.ui_layout)
 //    implementation(Depends.Libraries.ui_material)
+    implementation(Depends.Libraries.material_compose_theme_adapter)
     //reactive
     implementation(Depends.Libraries.rx_java_android)
     implementation(Depends.Libraries.rx_binding3)
