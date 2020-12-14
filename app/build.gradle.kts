@@ -98,6 +98,8 @@ dependencies {
     implementation(Depends.Libraries.timber)
     implementation(Depends.Libraries.material)
     debugImplementation(Depends.Libraries.leak_canary)
+    debugImplementation(Depends.Libraries.chucker)
+    releaseImplementation(Depends.Libraries.chucker_no_op)
     //test
     testImplementation(Depends.Libraries.junit)
     androidTestImplementation(Depends.Libraries.test_runner)

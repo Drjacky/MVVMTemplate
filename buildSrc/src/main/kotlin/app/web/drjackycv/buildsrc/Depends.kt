@@ -18,7 +18,7 @@ object Depends {
         const val rxBinding = "3.1.0"
         const val retrofit2Version = "2.9.0"
         const val okhttpLoggingVersion = "4.9.0"
-        const val chuckVersion = "1.1.0"
+        const val chuckerVersion = "3.4.0"
         const val gsonVersion = "2.9.0"
         const val lifecycleVersion = "2.2.0"
         const val constraintLayoutVersion = "2.0.4"
@@ -27,7 +27,7 @@ object Depends {
         const val designSupportVersion = "28.0.0"
         const val coreKtxVersion = "1.3.2"
         const val navigationVersion = "2.3.1"
-        const val pagingVersion = "3.0.0-alpha09"//"2.1.2"
+        const val pagingVersion = "3.0.0-alpha10"//"2.1.2"
         const val multidexVersion = "2.0.1"
         const val fragmentExtVersion = "1.2.5"
         const val recyclerviewVersion = "1.2.0-alpha06"
@@ -48,7 +48,7 @@ object Depends {
         const val testCoreVersion = "1.2.0"
         const val testExtJunitVersion = "1.1.1"
         const val sonarqubeVersion = "3.0"
-        const val detektVersion = "1.15.0-RC1"
+        const val detektVersion = "1.15.0-RC2"
         const val checkDependencyVersionsVersion = "0.36.0"
         const val gradleDoctorVersion = "0.7.0"
         const val leakCanaryVersion = "2.5"
@@ -144,6 +144,9 @@ object Depends {
             "com.uber.autodispose:autodispose-android-archcomponents:${Versions.autoDispose}"
         const val leak_canary =
             "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanaryVersion}"
+        const val chucker = "com.github.chuckerteam.chucker:library:${Versions.chuckerVersion}"
+        const val chucker_no_op =
+            "com.github.chuckerteam.chucker:library-no-op:${Versions.chuckerVersion}"
     }
 
     object Environments {

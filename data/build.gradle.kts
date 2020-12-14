@@ -64,6 +64,9 @@ dependencies {
     implementation(Depends.Libraries.paging_rx_ktx)
     implementation(Depends.Libraries.multidex)
     //dependency injection
+    implementation(Depends.Libraries.hilt_android)
+    kapt(Depends.Libraries.hilt_android_compiler)
+    kapt(Depends.Libraries.hilt_compiler)
     implementation(Depends.Libraries.java_inject)
     //parser
     api(Depends.Libraries.converter_gson)
@@ -71,6 +74,8 @@ dependencies {
     implementation(Depends.Libraries.retrofit)
     implementation(Depends.Libraries.retrofit_adapter_rx)
     implementation(Depends.Libraries.logging_interceptor)
+    debugImplementation(Depends.Libraries.chucker)
+    releaseImplementation(Depends.Libraries.chucker_no_op)
     //other
     implementation(Depends.Libraries.timber)
     implementation(Depends.Libraries.material)
