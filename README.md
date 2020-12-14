@@ -31,6 +31,7 @@ Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20t
 - [Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html) - Alternative syntax to the Groovy DSL
 - [Detekt](https://github.com/detekt/detekt) - Static code analysis for Kotlin
 - [Gradle Doctor](https://github.com/runningcode/gradle-doctor) - Gradle build scan plugin
+- [Navigation](https://developer.android.com/guide/navigation) - Navigate through the app
 
 ## Under Development 🚧
 
