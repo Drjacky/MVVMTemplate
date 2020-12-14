@@ -32,6 +32,7 @@ Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20t
 - [Detekt](https://github.com/detekt/detekt) - Static code analysis for Kotlin
 - [Gradle Doctor](https://github.com/runningcode/gradle-doctor) - Gradle build scan plugin
 - [Navigation](https://developer.android.com/guide/navigation) - Navigate through the app
+- [LeakCanary](https://square.github.io/leakcanary/) - Memory leak detection
 
 ## Under Development 🚧
 

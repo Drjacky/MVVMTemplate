@@ -97,6 +97,7 @@ dependencies {
     //other
     implementation(Depends.Libraries.timber)
     implementation(Depends.Libraries.material)
+    debugImplementation(Depends.Libraries.leak_canary)
     //test
     testImplementation(Depends.Libraries.junit)
     androidTestImplementation(Depends.Libraries.test_runner)

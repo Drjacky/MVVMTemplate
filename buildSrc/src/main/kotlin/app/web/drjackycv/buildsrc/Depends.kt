@@ -11,7 +11,7 @@ object Depends {
         const val targetSdkVersion = 29
         const val minSdkVersion = 21
         const val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        const val kotlinVersion = "1.4.20"
+        const val kotlinVersion = "1.4.21"
         const val rxKotlinVersion = "2.4.0"
         const val rxAndroidVersion = "2.1.1"
         const val rxJavaVersion = "2.2.20"
@@ -51,6 +51,7 @@ object Depends {
         const val detektVersion = "1.15.0-RC1"
         const val checkDependencyVersionsVersion = "0.36.0"
         const val gradleDoctorVersion = "0.7.0"
+        const val leakCanaryVersion = "2.5"
     }
 
     object ClassPaths {
@@ -141,6 +142,8 @@ object Depends {
             "com.uber.autodispose:autodispose-android:${Versions.autoDispose}"
         const val autodispose_android_arch =
             "com.uber.autodispose:autodispose-android-archcomponents:${Versions.autoDispose}"
+        const val leak_canary =
+            "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanaryVersion}"
     }
 
     object Environments {
