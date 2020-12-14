@@ -34,6 +34,7 @@ Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20t
 - [Navigation](https://developer.android.com/guide/navigation) - Navigate through the app
 - [LeakCanary](https://square.github.io/leakcanary/) - Memory leak detection
 - [Chucker](https://github.com/ChuckerTeam/chucker) - An HTTP inspector for Android & OkHTTP
+- [StrictMode](https://developer.android.com/reference/android/os/StrictMode) - A developer tool which detects things you might be doing by accident
 
 ## Under Development 🚧
 
