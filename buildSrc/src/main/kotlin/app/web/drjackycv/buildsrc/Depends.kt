@@ -26,7 +26,7 @@ object Depends {
         const val materialVersion = "1.3.0-alpha03"
         const val designSupportVersion = "28.0.0"
         const val coreKtxVersion = "1.3.2"
-        const val navigationVersion = "2.3.1"
+        const val navigationVersion = "2.3.2"
         const val pagingVersion = "3.0.0-alpha10"//"2.1.2"
         const val multidexVersion = "2.0.1"
         const val fragmentExtVersion = "1.2.5"
