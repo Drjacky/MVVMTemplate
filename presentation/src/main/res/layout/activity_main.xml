@@ -19,4 +19,17 @@
         tools:context="app.web.drjackycv.presentation.main.MainActivity"
         tools:layout="@layout/fragment_product_list" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/activityMainSwitchThemeFab"
+        style="@style/Widget.MaterialComponents.FloatingActionButton"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_margin="16dp"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_mode_night_default_black"
+        app:fabCustomSize="56dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="?android:attr/textColorPrimaryInverse" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

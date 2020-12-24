@@ -84,6 +84,7 @@ dependencies {
     implementation(Depends.Libraries.android_lifecycle_extensions)
     implementation(Depends.Libraries.paging_runtime_ktx)
     implementation(Depends.Libraries.paging_rx_ktx)
+    implementation(Depends.Libraries.preference_ktx)
     //dependency injection
     implementation(Depends.Libraries.hilt_android)
     kapt(Depends.Libraries.hilt_android_compiler)

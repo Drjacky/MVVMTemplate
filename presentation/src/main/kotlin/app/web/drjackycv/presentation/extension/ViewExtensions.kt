@@ -2,21 +2,23 @@ package app.web.drjackycv.presentation.extension
 
 import android.app.Activity
 import android.graphics.drawable.Drawable
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
-import androidx.annotation.LayoutRes
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.app.ActivityCompat.startPostponedEnterTransition
 import app.web.drjackycv.presentation.R
 import app.web.drjackycv.presentation.base.util.GlideApp
+import app.web.drjackycv.presentation.exception.ReactiveClickException
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
+import com.jakewharton.rxbinding3.view.clicks
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import java.util.concurrent.TimeUnit
 
 fun View?.gone() {
     this?.let {
@@ -77,5 +79,16 @@ fun ImageView.load(
     glideRequest.into(this)
 }
 
-fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false): View =
-    LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
+fun View.setOnReactiveClickListener(windowDuration: Long = 500, action: (() -> Unit)?): Disposable =
+    this.clicks()
+        .throttleFirst(windowDuration, TimeUnit.MILLISECONDS)
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe({
+            action?.invoke()
+        }, { throwable ->
+            throw ReactiveClickException(
+                msg = throwable.message ?: "Unknown Reactive Click Exception!",
+                cause = throwable.cause,
+                stack = throwable.stackTrace
+            )
+        })

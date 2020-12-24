@@ -38,6 +38,7 @@ object Depends {
         const val lottieVersion = "3.5.0"
         const val glideVersion = "4.11.0"
         const val autoDispose = "1.4.0"
+        const val preferenceVersion = "1.1.1"
 
         const val mockitoKotlinVersion = "2.2.0"
         const val mockitoCoreVersion = "3.6.28"
@@ -147,6 +148,8 @@ object Depends {
         const val chucker = "com.github.chuckerteam.chucker:library:${Versions.chuckerVersion}"
         const val chucker_no_op =
             "com.github.chuckerteam.chucker:library-no-op:${Versions.chuckerVersion}"
+        const val preference_ktx =
+            "androidx.preference:preference-ktx:${Versions.preferenceVersion}"
     }
 
     object Environments {
