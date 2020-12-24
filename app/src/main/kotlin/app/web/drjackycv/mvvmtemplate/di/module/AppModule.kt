@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.res.Resources
 import app.web.drjackycv.data.network.BaseHttpClient
 import app.web.drjackycv.data.network.BaseRetrofit
+import app.web.drjackycv.domain.extension.allowWrites
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.RetentionManager
 import com.google.gson.Gson
@@ -41,10 +42,12 @@ class AppModule {
     @Provides
     @Singleton
     fun chuckerCollector(@ApplicationContext appContext: Context): ChuckerCollector =
-        ChuckerCollector(
-            context = appContext,
-            showNotification = true,
-            retentionPeriod = RetentionManager.Period.ONE_HOUR
-        )
+        allowWrites {
+            ChuckerCollector(
+                context = appContext,
+                showNotification = true,
+                retentionPeriod = RetentionManager.Period.ONE_HOUR
+            )
+        }
 
 }

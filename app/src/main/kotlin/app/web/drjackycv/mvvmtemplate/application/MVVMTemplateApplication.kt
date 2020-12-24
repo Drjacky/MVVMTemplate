@@ -6,6 +6,7 @@ import android.os.StrictMode.VmPolicy
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.multidex.MultiDexApplication
 import androidx.preference.PreferenceManager
+import app.web.drjackycv.domain.extension.allowReads
 import app.web.drjackycv.mvvmtemplate.BuildConfig
 import app.web.drjackycv.presentation.base.preference.Settings
 import dagger.hilt.android.HiltAndroidApp
@@ -30,7 +31,7 @@ class MVVMTemplateApplication : MultiDexApplication() {
                     .detectLeakedSqlLiteObjects()
                     .detectLeakedClosableObjects()
                     .penaltyLog()
-                    .penaltyDeath()
+                    //.penaltyDeath() //TODO
                     .build()
             )
         }
@@ -40,9 +41,11 @@ class MVVMTemplateApplication : MultiDexApplication() {
     }
 
     private fun setNightMode() {
-        val prefs = PreferenceManager.getDefaultSharedPreferences(this)
-        val mode = prefs.getInt(Settings.NIGHT_MODE, Settings.MODE_NIGHT_DEFAULT)
-        AppCompatDelegate.setDefaultNightMode(mode)
+        allowReads {
+            val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+            val mode = prefs.getInt(Settings.NIGHT_MODE, Settings.MODE_NIGHT_DEFAULT)
+            AppCompatDelegate.setDefaultNightMode(mode)
+        }
     }
 
 }

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.preference.PreferenceManager
+import app.web.drjackycv.domain.extension.allowReads
 import app.web.drjackycv.presentation.R
 import app.web.drjackycv.presentation.base.preference.Settings
 import app.web.drjackycv.presentation.databinding.ActivityMainBinding
@@ -36,8 +37,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setNightMode(mode: Int) {
-        val prefs = PreferenceManager.getDefaultSharedPreferences(this)
-        prefs.edit().putInt(Settings.NIGHT_MODE, mode).apply()
+        allowReads {
+            val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+            prefs.edit().putInt(Settings.NIGHT_MODE, mode).apply()
+        }
         AppCompatDelegate.setDefaultNightMode(mode)
         when (mode) {
             AppCompatDelegate.MODE_NIGHT_NO -> {
