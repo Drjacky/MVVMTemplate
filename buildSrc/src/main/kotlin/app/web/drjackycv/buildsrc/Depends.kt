@@ -52,7 +52,7 @@ object Depends {
         const val detektVersion = "1.15.0-RC2"
         const val checkDependencyVersionsVersion = "0.36.0"
         const val gradleDoctorVersion = "0.7.0"
-        const val leakCanaryVersion = "2.5"
+        const val leakCanaryVersion = "2.6"
     }
 
     object ClassPaths {
