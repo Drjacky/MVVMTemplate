@@ -39,7 +39,7 @@ object Depends {
         const val glideVersion = "4.12.0"
         const val autoDispose = "2.0.0"
         const val dataStorePreferenceVersion = "1.0.0-beta01"
-        const val composeVersion = "1.0.0-alpha08"
+        const val composeVersion = "1.0.0-alpha09"
         const val uiTestVersion = "1.0.0-alpha07"
         const val uiToolingVersion = "1.0.0-alpha07"
         const val uiFrameworkVersion = "0.1.0-dev10"
