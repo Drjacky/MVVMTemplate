@@ -35,7 +35,7 @@ object Depends {
         const val hiltExtVersion = "1.0.0-alpha02"
         const val javaxInjectVersion = "1"
         const val timberVersion = "4.7.1"
-        const val lottieVersion = "3.5.0"
+        const val lottieVersion = "3.6.0"
         const val glideVersion = "4.11.0"
         const val autoDispose = "1.4.0"
         const val preferenceVersion = "1.1.1"
