@@ -49,7 +49,7 @@ object Depends {
         const val testCoreVersion = "1.2.0"
         const val testExtJunitVersion = "1.1.1"
         const val sonarqubeVersion = "3.0"
-        const val detektVersion = "1.15.0-RC2"
+        const val detektVersion = "1.15.0"
         const val checkDependencyVersionsVersion = "0.36.0"
         const val gradleDoctorVersion = "0.7.0"
         const val leakCanaryVersion = "2.6"
