@@ -1,7 +1,6 @@
 package app.web.drjackycv.presentation.base.viewmodel
 
 import android.content.res.Resources
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,13 +11,15 @@ import com.uber.autodispose.FlowableSubscribeProxy
 import com.uber.autodispose.lifecycle.CorrespondingEventsFunction
 import com.uber.autodispose.lifecycle.LifecycleEndedException
 import com.uber.autodispose.lifecycle.LifecycleScopeProvider
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.annotations.CheckReturnValue
 import io.reactivex.subjects.BehaviorSubject
 import javax.inject.Inject
 
-open class BaseViewModel @ViewModelInject constructor() : ViewModel(),
+@HiltViewModel
+open class BaseViewModel @Inject constructor() : ViewModel(),
     LifecycleScopeProvider<BaseViewModel.ViewModelEvent> {
 
     private val lifecycleEventsDelegate =
