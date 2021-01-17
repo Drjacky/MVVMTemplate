@@ -3,4 +3,6 @@
     <string name="something_went_wrong">Something went wrong</string>
     <string name="description">Description:\n\n %1$s</string>
     <string name="abv">ABV: %1$s</string>
+    <string name="rxjava">RxJava</string>
+    <string name="coroutine">Coroutine</string>
 </resources>

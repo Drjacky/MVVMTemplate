@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
     private val binding by viewBinding(ActivityMainBinding::inflate)
     private val navController: NavController by lazy {
-        findNavController(R.id.activityMainProductsListHostFragment)
+        findNavController(R.id.activityMainChooseHostFragment)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
