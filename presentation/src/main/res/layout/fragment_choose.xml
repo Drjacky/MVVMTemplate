@@ -19,20 +19,26 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/fragmentChooseCoroutineBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
+        android:maxWidth="200dp"
         android:text="@string/coroutine"
+        app:layout_constraintEnd_toStartOf="@+id/fragmentChooseRxBtn"
         app:layout_constraintStart_toStartOf="@+id/fragmentChooseIcon"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentChooseIcon" />
+        app:layout_constraintTop_toBottomOf="@+id/fragmentChooseIcon"
+        app:layout_constraintWidth_max="200dp" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/fragmentChooseRxBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
+        android:maxWidth="200dp"
         android:text="@string/rxjava"
         app:layout_constraintEnd_toEndOf="@+id/fragmentChooseIcon"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentChooseIcon" />
+        app:layout_constraintStart_toEndOf="@+id/fragmentChooseCoroutineBtn"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentChooseIcon"
+        app:layout_constraintWidth_max="200dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
