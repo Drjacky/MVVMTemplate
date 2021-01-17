@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.paging.PagingData
@@ -18,15 +19,18 @@ import app.web.drjackycv.presentation.R
 import app.web.drjackycv.presentation.base.adapter.LoadingStateAdapter
 import app.web.drjackycv.presentation.databinding.FragmentProductListBinding
 import app.web.drjackycv.presentation.extension.*
+import app.web.drjackycv.presentation.products.choose.ChoosePathType
 import com.google.android.material.transition.platform.Hold
 import com.google.android.material.transition.platform.MaterialElevationScale
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
 
     private val binding by viewBinding(FragmentProductListBinding::bind)
     private val productsListViewModel: ProductsListViewModel by viewModels()
+    private var path = ChoosePathType.RX
 
     private val productsListAdapter: ProductsListAdapter by lazy {
         ProductsListAdapter(::navigateToProductDetail)
@@ -34,8 +38,15 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupPath()
         setupRecycler()
         setupViewModel()
+    }
+
+    private fun setupPath() {
+        val safeArgs: ProductsListFragmentArgs by navArgs()
+        path = safeArgs.choosePathType
+        Timber.d("Which path: $path")
     }
 
     private fun setupRecycler() {
@@ -127,7 +138,7 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
     }
 
     private fun retryFetchData() {
-        productsListViewModel.getProducts("")
+        productsListViewModel.getProductsBaseOnPath("", path)
     }
 
 }
