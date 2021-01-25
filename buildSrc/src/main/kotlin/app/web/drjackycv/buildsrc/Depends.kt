@@ -6,7 +6,7 @@ object Depends {
 
     object Versions {
         const val appVersionCode = 1_000_000
-        const val gradleVersion = "4.1.1"
+        const val gradleVersion = "4.1.2"
         const val androidCompileSdkVersion = 29
         const val targetSdkVersion = 29
         const val minSdkVersion = 21
@@ -27,11 +27,11 @@ object Depends {
         const val designSupportVersion = "28.0.0"
         const val coreKtxVersion = "1.3.2"
         const val navigationVersion = "2.3.2"
-        const val pagingVersion = "3.0.0-alpha10"//"2.1.2"
+        const val pagingVersion = "3.0.0-alpha12"
         const val multidexVersion = "2.0.1"
         const val fragmentExtVersion = "1.2.5"
         const val recyclerviewVersion = "1.2.0-alpha06"
-        const val hiltVersion = "2.31-alpha"
+        const val hiltVersion = "2.31.2-alpha"
         const val hiltExtVersion = "1.0.0-alpha02"
         const val javaxInjectVersion = "1"
         const val timberVersion = "4.7.1"
@@ -48,7 +48,7 @@ object Depends {
         const val supportTestVersion = "1.2.0"
         const val testCoreVersion = "1.2.0"
         const val testExtJunitVersion = "1.1.1"
-        const val sonarqubeVersion = "3.0"
+        const val sonarqubeVersion = "3.1.1"
         const val detektVersion = "1.15.0"
         const val checkDependencyVersionsVersion = "0.36.0"
         const val gradleDoctorVersion = "0.7.0"
