@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/fragmentChooseIcon"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/choose"
+        app:lottie_scale="2" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/fragmentChooseCoroutineBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:maxWidth="200dp"
+        android:text="@string/coroutine"
+        app:layout_constraintEnd_toStartOf="@+id/fragmentChooseRxBtn"
+        app:layout_constraintStart_toStartOf="@+id/fragmentChooseIcon"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentChooseIcon"
+        app:layout_constraintWidth_max="200dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/fragmentChooseRxBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:maxWidth="200dp"
+        android:text="@string/rxjava"
+        app:layout_constraintEnd_toEndOf="@+id/fragmentChooseIcon"
+        app:layout_constraintStart_toEndOf="@+id/fragmentChooseCoroutineBtn"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentChooseIcon"
+        app:layout_constraintWidth_max="200dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
