@@ -94,7 +94,7 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
     private fun setupViewByCoroutine() {
         uiStateJob = lifecycleScope.launchWhenStarted {
             productsListViewModel.productsListByCoroutine.collect {
-                addProductsListByCoroutine(it)
+                addProductsList(it)
             }
         }
 
@@ -104,11 +104,6 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
     }
 
     private fun addProductsList(productsList: PagingData<RecyclerItem>) {
-        binding.productListRecyclerView.visible()
-        productsListAdapter.submitData(lifecycle, productsList)
-    }
-
-    private fun addProductsListByCoroutine(productsList: PagingData<RecyclerItem>) {
         binding.productListRecyclerView.visible()
         productsListAdapter.submitData(lifecycle, productsList)
     }
