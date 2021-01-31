@@ -5,6 +5,7 @@ import android.view.View
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -23,6 +24,8 @@ import app.web.drjackycv.presentation.products.choose.ChoosePathType
 import com.google.android.material.transition.platform.Hold
 import com.google.android.material.transition.platform.MaterialElevationScale
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.collect
 import timber.log.Timber
 
 @AndroidEntryPoint
@@ -31,6 +34,7 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
     private val binding by viewBinding(FragmentProductListBinding::bind)
     private val productsListViewModel: ProductsListViewModel by viewModels()
     private var path = ChoosePathType.RX
+    private var uiStateJob: Job? = null
 
     private val productsListAdapter: ProductsListAdapter by lazy {
         ProductsListAdapter(::navigateToProductDetail)
@@ -40,13 +44,18 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
         super.onViewCreated(view, savedInstanceState)
         setupPath()
         setupRecycler()
-        setupViewModel()
+    }
+
+    override fun onStop() {
+        uiStateJob?.cancel()
+        super.onStop()
     }
 
     private fun setupPath() {
         val safeArgs: ProductsListFragmentArgs by navArgs()
         path = safeArgs.choosePathType
         Timber.d("Which path: $path")
+        setupViewBaseOnPath()
     }
 
     private fun setupRecycler() {
@@ -61,6 +70,17 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
         view?.doOnPreDraw { startPostponedEnterTransition() }
     }
 
+    private fun setupViewBaseOnPath() {
+        when (path) {
+            ChoosePathType.RX -> {
+                setupViewModel()
+            }
+            ChoosePathType.COROUTINE -> {
+                setupViewByCoroutine()
+            }
+        }
+    }
+
     private fun setupViewModel() {
         productsListViewModel.run {
 
@@ -71,7 +91,24 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
         }
     }
 
+    private fun setupViewByCoroutine() {
+        uiStateJob = lifecycleScope.launchWhenStarted {
+            productsListViewModel.productsListByCoroutine.collect {
+                addProductsListByCoroutine(it)
+            }
+        }
+
+        productsListViewModel.run {
+            observe(ldFailure, ::handleFailure)
+        }
+    }
+
     private fun addProductsList(productsList: PagingData<RecyclerItem>) {
+        binding.productListRecyclerView.visible()
+        productsListAdapter.submitData(lifecycle, productsList)
+    }
+
+    private fun addProductsListByCoroutine(productsList: PagingData<RecyclerItem>) {
         binding.productListRecyclerView.visible()
         productsListAdapter.submitData(lifecycle, productsList)
     }

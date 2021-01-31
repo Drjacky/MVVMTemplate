@@ -127,6 +127,8 @@ object Depends {
             "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycleVersion}"
         const val lifecycle_runtime_ktx =
             "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleVersion}"
+        const val lifecycle_viewmodel_runtime_ktx =
+            "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleVersion}"
         const val lifecycle_common_java8 =
             "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycleVersion}"
         const val lifecycle_viewmodel_ktx =
