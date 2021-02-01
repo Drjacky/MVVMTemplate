@@ -73,7 +73,7 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
     private fun setupViewBaseOnPath() {
         when (path) {
             ChoosePathType.RX -> {
-                setupViewModel()
+                setupView()
             }
             ChoosePathType.COROUTINE -> {
                 setupViewByCoroutine()
@@ -81,7 +81,7 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
         }
     }
 
-    private fun setupViewModel() {
+    private fun setupView() {
         productsListViewModel.run {
 
             observe(ldProductsList, ::addProductsList)
