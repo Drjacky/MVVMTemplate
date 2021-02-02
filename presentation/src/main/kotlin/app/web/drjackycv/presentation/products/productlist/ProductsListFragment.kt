@@ -86,7 +86,11 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
 
             observe(ldProductsList, ::addProductsList)
 
-            observe(ldFailure, ::handleFailure)
+            uiStateJob = lifecycleScope.launchWhenStarted {
+                failure.collect {
+                    handleFailure(it)
+                }
+            }
 
         }
     }
@@ -96,10 +100,9 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
             productsListViewModel.productsListByCoroutine.collect {
                 addProductsList(it)
             }
-        }
-
-        productsListViewModel.run {
-            observe(ldFailure, ::handleFailure)
+            productsListViewModel.failure.collect {
+                handleFailure(it)
+            }
         }
     }
 

@@ -1,9 +1,8 @@
 package app.web.drjackycv.presentation.base.viewmodel
 
 import android.content.res.Resources
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import app.web.drjackycv.domain.base.Failure
 import app.web.drjackycv.presentation.R
 import com.uber.autodispose.AutoDispose
@@ -16,6 +15,10 @@ import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.annotations.CheckReturnValue
 import io.reactivex.subjects.BehaviorSubject
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -30,8 +33,8 @@ open class BaseViewModel @Inject constructor() : ViewModel(),
     @Inject
     lateinit var resources: Resources
 
-    private var mutableFailure: MutableLiveData<Failure> = MutableLiveData()
-    val ldFailure: LiveData<Failure> = mutableFailure
+    private val _failure: Channel<Failure> = Channel(Channel.BUFFERED)
+    val failure: Flow<Failure> = _failure.receiveAsFlow()
 
     override fun lifecycle(): Observable<ViewModelEvent> {
         return lifecycleEvents.hide()
@@ -57,7 +60,9 @@ open class BaseViewModel @Inject constructor() : ViewModel(),
             ?: Failure.FailureWithMessage(resources.getString(R.string.something_went_wrong))
 
         failure.retryAction = retryAction
-        mutableFailure.value = failure
+        viewModelScope.launch {
+            _failure.send(failure)
+        }
     }
 
     @CheckReturnValue
