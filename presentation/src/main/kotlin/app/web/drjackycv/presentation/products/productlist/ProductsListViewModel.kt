@@ -58,7 +58,7 @@ class ProductsListViewModel @Inject constructor(
         getBeersListByCoroutineUseCase(GetBeersListByCoroutineParams(ids = ids))
             .cachedIn(viewModelScope)
 
-    fun getProductsBaseOnPath(ids: String, path: ChoosePathType?) {
+    private fun getProductsBaseOnPath(ids: String, path: ChoosePathType?) {
         when (path) {
             ChoosePathType.RX -> {
                 getProductsByRxPath(ids)

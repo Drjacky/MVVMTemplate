@@ -96,12 +96,17 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
     }
 
     private fun setupViewByCoroutine() {
-        uiStateJob = lifecycleScope.launchWhenStarted {
-            productsListViewModel.productsListByCoroutine.collect {
-                addProductsList(it)
+        productsListViewModel.run {
+
+            uiStateJob = lifecycleScope.launchWhenStarted {
+                productsListByCoroutine.collect {
+                    addProductsList(it)
+                }
             }
-            productsListViewModel.failure.collect {
-                handleFailure(it)
+            lifecycleScope.launchWhenStarted {
+                failure.collect {
+                    handleFailure(it)
+                }
             }
         }
     }
@@ -173,7 +178,8 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
     }
 
     private fun retryFetchData() {
-        productsListViewModel.getProductsBaseOnPath("", path)
+        binding.productListRecyclerView.visible()
+        productsListAdapter.retry()
     }
 
 }
