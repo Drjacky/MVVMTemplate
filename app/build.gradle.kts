@@ -81,7 +81,7 @@ dependencies {
     implementation(Depends.Libraries.android_core_ktx)
     implementation(Depends.Libraries.multidex)
     implementation(Depends.Libraries.fragment_ktx)
-    implementation(Depends.Libraries.android_lifecycle_extensions)
+    //implementation(Depends.Libraries.android_lifecycle_extensions)
     implementation(Depends.Libraries.paging_runtime_ktx)
     implementation(Depends.Libraries.paging_rx_ktx)
     implementation(Depends.Libraries.preference_ktx)

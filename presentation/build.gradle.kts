@@ -74,7 +74,7 @@ dependencies {
     implementation(Depends.Libraries.navigation_ui_ktx)
     implementation(Depends.Libraries.paging_runtime_ktx)
     implementation(Depends.Libraries.paging_rx_ktx)
-    implementation(Depends.Libraries.android_lifecycle_extensions)
+    //implementation(Depends.Libraries.android_lifecycle_extensions)
     implementation(Depends.Libraries.lifecycle_livedata_ktx)
     implementation(Depends.Libraries.lifecycle_runtime_ktx)
     implementation(Depends.Libraries.lifecycle_viewmodel_runtime_ktx)
@@ -96,8 +96,6 @@ dependencies {
     implementation(Depends.Libraries.glide)
     kapt(Depends.Libraries.glide_compiler)
     implementation(Depends.Libraries.lottie)
-    //android architecture component
-    implementation(Depends.Libraries.android_lifecycle_extensions)
     //test
     androidTestImplementation(Depends.Libraries.test_runner)
     androidTestImplementation(Depends.Libraries.test_rules)
