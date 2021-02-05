@@ -9,7 +9,6 @@ plugins {
 buildscript {
     repositories {
         google()
-        jcenter()
         mavenCentral()
     }
     dependencies {
@@ -29,7 +28,6 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter()
         mavenCentral()
         maven("https://maven.google.com/")
         maven("https://jitpack.io")
