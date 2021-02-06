@@ -28,7 +28,8 @@ class ProductsListRepositoryImpl @Inject constructor(
                     enablePlaceholders = false,
                     maxSize = 30,
                     prefetchDistance = 5,
-                    initialLoadSize = 10
+                    initialLoadSize = 10,
+                    jumpThreshold = 60
                 ),
                 pagingSourceFactory = { pagingSource }
             ).flowable
@@ -42,7 +43,8 @@ class ProductsListRepositoryImpl @Inject constructor(
                     enablePlaceholders = false,
                     maxSize = 30,
                     prefetchDistance = 5,
-                    initialLoadSize = 10
+                    initialLoadSize = 10,
+                    jumpThreshold = 60
                 ),
                 pagingSourceFactory = { pagingSourceByCoroutine }
             ).flow

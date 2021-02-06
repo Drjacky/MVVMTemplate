@@ -1,6 +1,7 @@
 package app.web.drjackycv.data.products.datasource
 
 import androidx.paging.PagingSource
+import androidx.paging.PagingState
 import app.web.drjackycv.data.products.remote.ProductsApi
 import app.web.drjackycv.domain.base.Failure
 import app.web.drjackycv.domain.base.RecyclerItem
@@ -35,6 +36,10 @@ class ProductsPagingSourceByCoroutine @Inject constructor(
             )
         }
     }
+
+    override val jumpingSupported = true
+
+    override fun getRefreshKey(state: PagingState<Int, RecyclerItem>): Int? = state.anchorPosition
 
     private fun toLoadResult(
         @NonNull response: List<RecyclerItem>,

@@ -74,7 +74,6 @@ dependencies {
     implementation(Depends.Libraries.navigation_ui_ktx)
     implementation(Depends.Libraries.paging_runtime_ktx)
     implementation(Depends.Libraries.paging_rx_ktx)
-    //implementation(Depends.Libraries.android_lifecycle_extensions)
     implementation(Depends.Libraries.lifecycle_livedata_ktx)
     implementation(Depends.Libraries.lifecycle_runtime_ktx)
     implementation(Depends.Libraries.lifecycle_viewmodel_runtime_ktx)
