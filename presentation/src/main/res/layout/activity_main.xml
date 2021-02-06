@@ -11,10 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:defaultNavHost="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/main_navigation"
         tools:context="app.web.drjackycv.presentation.main.MainActivity"
         tools:layout="@layout/fragment_choose" />
@@ -29,8 +25,6 @@
         android:contentDescription="@null"
         android:src="@drawable/ic_mode_night_default_black"
         app:fabCustomSize="56dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:tint="?android:attr/textColorPrimaryInverse" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
