@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/itemErrorContainer"
@@ -7,15 +7,14 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:visibility="visible">
+    android:visibility="visible"
+    android:weightSum="5">
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/itemErrorLottie"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/loading_beer"
@@ -23,7 +22,7 @@
 
     <TextView
         android:id="@+id/itemErrorMessage"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginEnd="4dp"
@@ -31,9 +30,6 @@
         android:gravity="center"
         android:textColor="@color/light_red"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/itemErrorRetryBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         tools:text="Something went wrong!" />
 
     <ImageButton
@@ -42,10 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:background="?attr/selectableItemBackgroundBorderless"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/itemErrorMessage"
-        app:layout_constraintStart_toStartOf="@+id/itemErrorMessage"
         app:srcCompat="@drawable/ic_retry"
         tools:ignore="ContentDescription" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

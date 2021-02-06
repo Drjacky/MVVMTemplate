@@ -21,7 +21,7 @@ object Depends {
         const val chuckerVersion = "3.4.0"
         const val gsonVersion = "2.9.0"
         const val lifecycleVersion = "2.3.0-rc01"
-        const val constraintLayoutVersion = "2.0.4"
+        const val constraintLayoutVersion = "2.1.0-alpha2"
         const val supportVersion = "1.3.0-beta01"
         const val materialVersion = "1.3.0"
         const val coreKtxVersion = "1.5.0-beta01"
