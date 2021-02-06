@@ -17,7 +17,8 @@ fun <T> LifecycleOwner.observe(liveData: LiveData<T>, action: (t: T) -> Unit) {
     object : ReadOnlyProperty<Fragment, T>, DefaultLifecycleObserver {*/
 class FragmentViewBindingDelegate<T : ViewBinding>(
     val fragment: Fragment,
-    val viewBindingFactory: (View) -> T
+    val viewBindingFactory: (View) -> T,
+    val cleanUp: ((T?) -> Unit)?
 ) : ReadOnlyProperty<Fragment, T> {
 
     // A backing property to hold our value
@@ -31,6 +32,7 @@ class FragmentViewBindingDelegate<T : ViewBinding>(
 
                     viewLifecycleOwner.lifecycle.addObserver(object : DefaultLifecycleObserver {
                         override fun onDestroy(owner: LifecycleOwner) {
+                            cleanUp?.invoke(binding)
                             binding = null
                         }
                     })
@@ -66,8 +68,11 @@ class FragmentViewBindingDelegate<T : ViewBinding>(
     }
 }
 
-fun <T : ViewBinding> Fragment.viewBinding(viewBindingFactory: (View) -> T) =
-    FragmentViewBindingDelegate(this, viewBindingFactory)
+fun <T : ViewBinding> Fragment.viewBinding(
+    viewBindingFactory: (View) -> T,
+    destroyTask: ((T?) -> Unit)? = null
+) =
+    FragmentViewBindingDelegate(this, viewBindingFactory, destroyTask)
 
 inline fun <T : ViewBinding> AppCompatActivity.viewBinding(
     crossinline bindingInflater: (LayoutInflater) -> T

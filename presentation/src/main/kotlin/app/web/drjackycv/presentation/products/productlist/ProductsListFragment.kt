@@ -31,7 +31,9 @@ import timber.log.Timber
 @AndroidEntryPoint
 class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
 
-    private val binding by viewBinding(FragmentProductListBinding::bind)
+    private val binding by viewBinding(FragmentProductListBinding::bind) {
+        cleanUp(it)
+    }
     private val productsListViewModel: ProductsListViewModel by viewModels()
     private var path = ChoosePathType.RX
     private var uiStateJob: Job? = null
@@ -49,6 +51,10 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
     override fun onStop() {
         uiStateJob?.cancel()
         super.onStop()
+    }
+
+    private fun cleanUp(binding: FragmentProductListBinding?) {
+        binding?.productListRecyclerView?.adapter = null
     }
 
     private fun setupPath() {
