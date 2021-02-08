@@ -39,6 +39,7 @@ Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20t
 - [Chucker](https://github.com/ChuckerTeam/chucker) - An HTTP inspector for Android & OkHTTP
 - [StrictMode](https://developer.android.com/reference/android/os/StrictMode) - A developer tool which detects things you might be doing by accident
 - [Dark/Light Theme](https://developer.android.com/guide/topics/ui/look-and-feel/darktheme) - Support dark/light themes
+- [DataStore](https://developer.android.com/topic/libraries/architecture/datastore) - Data storage solution that allows you to store key-value pairs or typed objects
 
 ## Under Development 🚧
 
@@ -53,6 +54,7 @@ Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20t
 - Migrate to [JetPack Compose](https://developer.android.com/jetpack/compose)
 - ~~Use detekt. To see changes, click [here](https://github.com/Drjacky/MVVMTemplate/pull/6/files).~~
 - ~~Add coroutines and flow. To see changes, click [here](https://github.com/Drjacky/MVVMTemplate/pull/7/files).~~
+- ~~Replace Preferences by DataStore. To see changes, click [here](https://github.com/Drjacky/MVVMTemplate/commit/285892ce098e2a069324910a213b78cac2e643e8).~~
 
 ## CI 🏭
 
