@@ -6,6 +6,7 @@ import android.content.res.Resources
 import app.web.drjackycv.data.network.BaseHttpClient
 import app.web.drjackycv.data.network.BaseRetrofit
 import app.web.drjackycv.domain.extension.allowWrites
+import app.web.drjackycv.presentation.datastore.DataStoreManager
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.RetentionManager
 import com.google.gson.Gson
@@ -49,5 +50,10 @@ class AppModule {
                 retentionPeriod = RetentionManager.Period.ONE_HOUR
             )
         }
+
+    @Provides
+    @Singleton
+    fun dataStoreManager(@ApplicationContext appContext: Context): DataStoreManager =
+        DataStoreManager(appContext)
 
 }
