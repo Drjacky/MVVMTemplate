@@ -90,7 +90,7 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
     private fun setupView() {
         productsListViewModel.run {
 
-            observe(ldProductsList, ::addProductsList)
+            viewLifecycleOwner.observe(ldProductsList, ::addProductsList)
 
             uiStateJob = lifecycleScope.launchWhenStarted {
                 failure.collect {
