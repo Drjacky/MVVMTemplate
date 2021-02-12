@@ -59,7 +59,6 @@ tasks.withType<KotlinCompile> {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
         freeCompilerArgs = listOf(
             "-XXLanguage:+InlineClasses",
-            "-Xallow-jvm-ir-dependencies",
             "-Xskip-prerelease-check"
         )
         useIR = true
@@ -113,6 +112,7 @@ dependencies {
 //    implementation(Depends.Libraries.ui_layout)
 //    implementation(Depends.Libraries.ui_material)
     implementation(Depends.Libraries.material_compose_theme_adapter)
+    implementation(Depends.Libraries.activity_compose)
     //reactive
     implementation(Depends.Libraries.rx_java_android)
     implementation(Depends.Libraries.rx_binding3)

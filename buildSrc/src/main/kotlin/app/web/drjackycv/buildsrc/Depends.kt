@@ -6,7 +6,7 @@ object Depends {
 
     object Versions {
         const val appVersionCode = 1_000_000
-        const val gradleVersion = "7.0.0-alpha03"
+        const val gradleVersion = "7.0.0-alpha06"
         const val androidCompileSdkVersion = 30
         const val targetSdkVersion = 30
         const val minSdkVersion = 21
@@ -39,11 +39,13 @@ object Depends {
         const val glideVersion = "4.12.0"
         const val autoDispose = "2.0.0"
         const val dataStorePreferenceVersion = "1.0.0-beta01"
-        const val composeVersion = "1.0.0-alpha09"
+        const val composeVersion = "1.0.0-alpha12"
         const val uiTestVersion = "1.0.0-alpha07"
         const val uiToolingVersion = "1.0.0-alpha07"
         const val uiFrameworkVersion = "0.1.0-dev10"
         const val uiVersion = "0.1.0-dev14"
+        const val activityComposeVersion = "1.3.0-alpha02"
+
         const val mockitoKotlinVersion = "2.2.0"
         const val mockitoCoreVersion = "3.10.0"
         const val mockitoInlineVersion = "3.10.0"
@@ -175,6 +177,8 @@ object Depends {
         const val ui_material = "androidx.ui:ui-material:${Versions.uiVersion}"
         const val material_compose_theme_adapter =
             "com.google.android.material:compose-theme-adapter:${Versions.composeVersion}"
+        const val activity_compose =
+            "androidx.activity:activity-compose:${Versions.activityComposeVersion}"
     }
 
     object Environments {

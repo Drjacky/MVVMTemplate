@@ -8,7 +8,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.*
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -16,8 +19,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -33,6 +36,10 @@ import app.web.drjackycv.presentation.R
 import app.web.drjackycv.presentation.base.adapter.LoadingStateAdapter
 import app.web.drjackycv.presentation.base.adapter.RecyclerItem
 import app.web.drjackycv.presentation.base.compose.*
+import app.web.drjackycv.presentation.base.compose.BaseTheme
+import app.web.drjackycv.presentation.base.compose.purple200
+import app.web.drjackycv.presentation.base.compose.teal200
+import app.web.drjackycv.presentation.base.compose.transparent
 import app.web.drjackycv.presentation.databinding.FragmentProductListBinding
 import app.web.drjackycv.presentation.extension.*
 import app.web.drjackycv.presentation.products.choose.ChoosePathType
@@ -237,14 +244,14 @@ fun MyScreenContent() {
 fun Greeting(name: String, count: Int, updateCount: (Int) -> Unit) {
     Button(
         onClick = { updateCount(count + 1) },
-        colors = ButtonConstants.defaultTextButtonColors(
+        colors = ButtonDefaults.textButtonColors(
             backgroundColor = if (count > 7) teal200 else purple200
         )
     ) {
         Text(
             text = "Hello $name $count!",
             modifier = Modifier.padding(4.dp),
-            style = TextStyle(fontSize = TextUnit.Sp(11))
+            style = TextStyle(fontSize = 11.sp)
         )
     }
 }
