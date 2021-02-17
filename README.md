@@ -63,7 +63,12 @@ This template is using [**GitHub Actions**](https://github.com/Drjacky/MVVMTempl
 Available workflows listed as follows:
 - [Validate Gradle Wrapper](.github/workflows/gradlew-validation.yml) - Checks the gradle wrapper has a valid checksum.
 - [Pre Merge Checks](.github/workflows/pre-merge.yml) - Runs `build` task. 
-- [Android](.github/workflows/android.yml) - Runs `assembleDebug` task. 
+- [Android](.github/workflows/android.yml) - Runs `assembleDebug` task.
+
+## References 🧷
+
+- [Right or Left animation by Marco Martina on LottieFiles](https://lottiefiles.com/21141-right-or-left)
+- [Loading Beer animation by Hashim Irfan on LottieFiles](https://lottiefiles.com/30697-loading-beer-animation)
 
 ## Contributing 🤝
 
