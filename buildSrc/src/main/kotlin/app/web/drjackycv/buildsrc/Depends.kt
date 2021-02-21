@@ -53,6 +53,9 @@ object Depends {
         const val checkDependencyVersionsVersion = "0.41.0"
         const val gradleDoctorVersion = "0.7.3"
         const val leakCanaryVersion = "2.8.1"
+        const val coroutinesTestVersion = "1.4.2"
+        const val mockkVersion = "1.10.5"
+        const val archCoreTestingVersion = "2.1.0"
     }
 
     object ClassPaths {
@@ -109,6 +112,11 @@ object Depends {
         const val mockito_inline = "org.mockito:mockito-inline:${Versions.mockitoInlineVersion}"
         const val mockito_kotlin =
             "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoKotlinVersion}"
+        const val coroutines_test =
+            "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutinesTestVersion}"
+        const val mockk = "io.mockk:mockk:${Versions.mockkVersion}"
+        const val arch_core_testing =
+            "androidx.arch.core:core-testing:${Versions.archCoreTestingVersion}"
         const val rx_kotlin = "io.reactivex.rxjava3:rxkotlin:${Versions.rxKotlinVersion}"
         const val rx_java = "io.reactivex.rxjava3:rxjava:${Versions.rxJavaVersion}"
         const val lifecycle_livedata =
