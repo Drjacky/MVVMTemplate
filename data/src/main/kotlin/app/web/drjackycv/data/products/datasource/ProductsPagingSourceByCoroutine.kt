@@ -2,9 +2,10 @@ package app.web.drjackycv.data.products.datasource
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import app.web.drjackycv.data.products.entity.BeerMapper
 import app.web.drjackycv.data.products.remote.ProductsApi
 import app.web.drjackycv.domain.base.Failure
-import app.web.drjackycv.domain.base.RecyclerItem
+import app.web.drjackycv.domain.products.entity.Beer
 import io.reactivex.annotations.NonNull
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -14,22 +15,21 @@ private const val STARTING_PAGE_INDEX = 1
 
 @Singleton
 class ProductsPagingSourceByCoroutine @Inject constructor(
-    private val productsApi: ProductsApi
+    private val productsApi: ProductsApi,
     //private val query: String
-) : PagingSource<Int, RecyclerItem>() {
+) : PagingSource<Int, Beer>() {
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, RecyclerItem> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Beer> {
         val position = params.key ?: STARTING_PAGE_INDEX
         //val apiQuery = query
 
         return try {
             val response = productsApi.getBeersListByCoroutine(position)
                 .map {
-                    it.toDomain()
+                    BeerMapper().mapLeftToRight(it)
                 }
 
             toLoadResult(response, position)
-
         } catch (e: Exception) {
             LoadResult.Error(
                 Failure.FailureWithMessage(e.message)
@@ -39,12 +39,12 @@ class ProductsPagingSourceByCoroutine @Inject constructor(
 
     override val jumpingSupported = true
 
-    override fun getRefreshKey(state: PagingState<Int, RecyclerItem>): Int? = state.anchorPosition
+    override fun getRefreshKey(state: PagingState<Int, Beer>): Int? = state.anchorPosition
 
     private fun toLoadResult(
-        @NonNull response: List<RecyclerItem>,
-        position: Int
-    ): LoadResult<Int, RecyclerItem> {
+        @NonNull response: List<Beer>,
+        position: Int,
+    ): LoadResult<Int, Beer> {
         return LoadResult.Page(
             data = response,
             prevKey = if (position == STARTING_PAGE_INDEX) null else position - 1,

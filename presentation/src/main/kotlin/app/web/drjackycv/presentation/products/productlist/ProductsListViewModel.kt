@@ -6,14 +6,16 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import androidx.paging.map
 import androidx.paging.rxjava2.cachedIn
-import app.web.drjackycv.domain.base.RecyclerItem
 import app.web.drjackycv.domain.products.usecase.GetBeersListByCoroutineParams
 import app.web.drjackycv.domain.products.usecase.GetBeersListByCoroutineUseCase
 import app.web.drjackycv.domain.products.usecase.GetBeersListParams
 import app.web.drjackycv.domain.products.usecase.GetBeersListUseCase
+import app.web.drjackycv.presentation.base.adapter.RecyclerItem
 import app.web.drjackycv.presentation.base.viewmodel.BaseViewModel
 import app.web.drjackycv.presentation.products.choose.ChoosePathType
+import app.web.drjackycv.presentation.products.entity.BeerMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.coroutines.flow.Flow
@@ -27,7 +29,7 @@ import javax.inject.Inject
 class ProductsListViewModel @Inject constructor(
     private val getBeersUseCase: GetBeersListUseCase,
     private val getBeersListByCoroutineUseCase: GetBeersListByCoroutineUseCase,
-    private val savedStateHandle: SavedStateHandle
+    private val savedStateHandle: SavedStateHandle,
 ) : BaseViewModel() {
 
     private val _ldProductsList: MutableLiveData<PagingData<RecyclerItem>> = MutableLiveData()
@@ -49,8 +51,11 @@ class ProductsListViewModel @Inject constructor(
             .cachedIn(viewModelScope)
             .observeOn(AndroidSchedulers.mainThread())
             .autoDisposable()
-            .subscribe {
-                _ldProductsList.value = it
+            .subscribe { pagingDataBeer ->
+                _ldProductsList.value = pagingDataBeer
+                    .map { beer ->
+                        BeerMapper().mapLeftToRight(beer)
+                    }
             }
     }
 
@@ -66,6 +71,9 @@ class ProductsListViewModel @Inject constructor(
             ChoosePathType.COROUTINE -> {
                 viewModelScope.launch {
                     _productsListByCoroutine.value = getProductsByCoroutinePath(ids).first()
+                        .map { beer ->
+                            BeerMapper().mapLeftToRight(beer)
+                        }
                 }
             }
             else -> getProductsByRxPath(ids)

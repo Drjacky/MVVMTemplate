@@ -14,13 +14,13 @@ import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
 import app.web.drjackycv.domain.base.Failure
-import app.web.drjackycv.domain.base.RecyclerItem
-import app.web.drjackycv.domain.products.entity.Beer
 import app.web.drjackycv.presentation.R
 import app.web.drjackycv.presentation.base.adapter.LoadingStateAdapter
+import app.web.drjackycv.presentation.base.adapter.RecyclerItem
 import app.web.drjackycv.presentation.databinding.FragmentProductListBinding
 import app.web.drjackycv.presentation.extension.*
 import app.web.drjackycv.presentation.products.choose.ChoosePathType
+import app.web.drjackycv.presentation.products.entity.BeerUI
 import com.google.android.material.transition.platform.Hold
 import com.google.android.material.transition.platform.MaterialElevationScale
 import dagger.hilt.android.AndroidEntryPoint
@@ -149,7 +149,7 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
     }
 
     private fun navigateToProductDetail(item: RecyclerItem, view: View) {
-        val itemUI = BeerMapper().mapToUI(item as Beer)
+        val itemUI = item as BeerUI
         val action =
             ProductsListFragmentDirections.navigateToProductDetailFragment(itemUI)
         val extras = FragmentNavigatorExtras(

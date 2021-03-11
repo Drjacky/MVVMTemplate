@@ -6,8 +6,8 @@ import androidx.paging.PagingData
 import androidx.paging.rxjava2.flowable
 import app.web.drjackycv.data.products.datasource.ProductsPagingSource
 import app.web.drjackycv.data.products.datasource.ProductsPagingSourceByCoroutine
-import app.web.drjackycv.domain.base.RecyclerItem
 import app.web.drjackycv.domain.extension.allowReads
+import app.web.drjackycv.domain.products.entity.Beer
 import app.web.drjackycv.domain.products.repository.ProductsListRepository
 import io.reactivex.Flowable
 import kotlinx.coroutines.flow.Flow
@@ -20,7 +20,7 @@ class ProductsListRepositoryImpl @Inject constructor(
     private val pagingSourceByCoroutine: ProductsPagingSourceByCoroutine
 ) : ProductsListRepository {
 
-    override fun getBeersList(ids: String): Flowable<PagingData<RecyclerItem>> =
+    override fun getBeersList(ids: String): Flowable<PagingData<Beer>> =
         allowReads {
             Pager(
                 config = PagingConfig(
@@ -35,7 +35,7 @@ class ProductsListRepositoryImpl @Inject constructor(
             ).flowable
         }
 
-    override fun getBeersListByCoroutine(ids: String): Flow<PagingData<RecyclerItem>> =
+    override fun getBeersListByCoroutine(ids: String): Flow<PagingData<Beer>> =
         allowReads {
             Pager(
                 config = PagingConfig(

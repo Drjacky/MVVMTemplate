@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
-import app.web.drjackycv.domain.base.RecyclerItem
 
 abstract class BasePagedListAdapter(
     vararg types: Cell<RecyclerItem, ViewBinding>,

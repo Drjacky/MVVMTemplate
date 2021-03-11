@@ -3,7 +3,6 @@ package app.web.drjackycv.presentation.base.adapter
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import app.web.drjackycv.domain.base.RecyclerItem
 
 interface Cell<T, R> {
 

@@ -1,7 +1,7 @@
 package app.web.drjackycv.presentation.products.entity
 
 import android.os.Parcelable
-import app.web.drjackycv.domain.base.RecyclerItem
+import app.web.drjackycv.presentation.base.adapter.RecyclerItem
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

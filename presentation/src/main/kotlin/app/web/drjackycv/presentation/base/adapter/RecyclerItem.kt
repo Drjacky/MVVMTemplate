@@ -1,4 +1,4 @@
-package app.web.drjackycv.domain.base
+package app.web.drjackycv.presentation.base.adapter
 
 interface RecyclerItem {
     val id: Int?
