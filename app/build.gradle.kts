@@ -12,8 +12,8 @@ plugins {
 android {
     compileSdkVersion(Depends.Versions.androidCompileSdkVersion)
 
-    dataBinding {
-        isEnabled = true
+    buildFeatures {
+        dataBinding = true
     }
 
     defaultConfig {
