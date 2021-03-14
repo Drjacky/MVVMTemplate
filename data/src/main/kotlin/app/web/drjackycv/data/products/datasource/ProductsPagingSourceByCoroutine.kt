@@ -7,6 +7,9 @@ import app.web.drjackycv.data.products.remote.ProductsApi
 import app.web.drjackycv.domain.base.Failure
 import app.web.drjackycv.domain.products.entity.Beer
 import io.reactivex.annotations.NonNull
+import java.net.SocketTimeoutException
+import java.net.UnknownHostException
+import java.util.concurrent.TimeoutException
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -31,9 +34,23 @@ class ProductsPagingSourceByCoroutine @Inject constructor(
 
             toLoadResult(response, position)
         } catch (e: Exception) {
-            LoadResult.Error(
-                Failure.FailureWithMessage(e.message)
-            )
+            when (e) {
+                is UnknownHostException, is SocketTimeoutException -> {
+                    LoadResult.Error(
+                        Failure.NoInternet(e.message)
+                    )
+                }
+                is TimeoutException -> {
+                    LoadResult.Error(
+                        Failure.Timeout(e.message)
+                    )
+                }
+                else -> {
+                    LoadResult.Error(
+                        Failure.Unknown(e.message)
+                    )
+                }
+            }
         }
     }
 

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="something_went_wrong">Something went wrong</string>
+    <string name="error_no_internet">No Internet Connection</string>
+    <string name="error_timeout">Oops! Slow Connection</string>
+    <string name="error_unknown">Unknown Error! That’s all we know</string>
     <string name="description">Description:\n\n %1$s</string>
     <string name="abv">ABV: %1$s</string>
     <string name="rxjava">RxJava</string>

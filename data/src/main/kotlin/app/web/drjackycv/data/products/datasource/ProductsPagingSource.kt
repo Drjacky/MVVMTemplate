@@ -9,6 +9,9 @@ import app.web.drjackycv.domain.products.entity.Beer
 import io.reactivex.Single
 import io.reactivex.annotations.NonNull
 import io.reactivex.schedulers.Schedulers
+import java.net.SocketTimeoutException
+import java.net.UnknownHostException
+import java.util.concurrent.TimeoutException
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -33,10 +36,24 @@ class ProductsPagingSource @Inject constructor(
                 }
             }
             .map { toLoadResult(it, position) }
-            .onErrorReturn {
-                LoadResult.Error(
-                    Failure.FailureWithMessage(it.message)
-                )
+            .onErrorReturn { throwable ->
+                when (throwable) {
+                    is UnknownHostException, is SocketTimeoutException -> {
+                        LoadResult.Error(
+                            Failure.NoInternet(throwable.message)
+                        )
+                    }
+                    is TimeoutException -> {
+                        LoadResult.Error(
+                            Failure.Timeout(throwable.message)
+                        )
+                    }
+                    else -> {
+                        LoadResult.Error(
+                            Failure.Unknown(throwable.message)
+                        )
+                    }
+                }
             }
     }
 

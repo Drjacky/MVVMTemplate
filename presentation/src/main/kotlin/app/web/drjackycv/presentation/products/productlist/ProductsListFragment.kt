@@ -132,16 +132,18 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
     }
 
     private fun handleFailure(failure: Failure) {
+        binding.productListRecyclerView.gone()
+        binding.inclItemError.itemErrorContainer.visible()
         when (failure) {
-            is Failure.FailureWithMessage -> {
-                binding.productListRecyclerView.gone()
-                binding.inclItemError.itemErrorContainer.visible()
+            is Failure.NoInternet, is Failure.Timeout -> {
+                binding.inclItemError.itemErrorMessage.text = failure.msg
+                binding.inclItemError.itemErrorRetryBtn.setOnClickListener { failure.retryAction() }
+            }
+            is Failure.Unknown -> {
                 binding.inclItemError.itemErrorMessage.text = failure.msg
                 binding.inclItemError.itemErrorRetryBtn.setOnClickListener { failure.retryAction() }
             }
             else -> {
-                binding.productListRecyclerView.gone()
-                binding.inclItemError.itemErrorContainer.visible()
                 binding.inclItemError.itemErrorMessage.text = failure.message
                 binding.inclItemError.itemErrorRetryBtn.invisible()
             }

@@ -56,8 +56,20 @@ open class BaseViewModel @Inject constructor() : ViewModel(),
     }
 
     fun handleFailure(throwable: Throwable, retryAction: () -> Unit) {
-        val failure = throwable as? Failure
-            ?: Failure.FailureWithMessage(resources.getString(R.string.something_went_wrong))
+        val failure = when (throwable) {
+            is Failure.NoInternet -> {
+                Failure.NoInternet(resources.getString(R.string.error_no_internet))
+            }
+            is Failure.Timeout -> {
+                Failure.Timeout(resources.getString(R.string.error_timeout))
+            }
+            is Failure.Unknown -> {
+                Failure.Unknown(resources.getString(R.string.error_unknown))
+            }
+            else -> {
+                Failure.Unknown(resources.getString(R.string.error_unknown))
+            }
+        }
 
         failure.retryAction = retryAction
         viewModelScope.launch {
