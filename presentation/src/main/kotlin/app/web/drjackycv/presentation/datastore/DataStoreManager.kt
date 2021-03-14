@@ -3,14 +3,16 @@ package app.web.drjackycv.presentation.datastore
 import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.createDataStore
+import androidx.datastore.preferences.preferencesDataStore
 import app.web.drjackycv.presentation.base.preference.Settings
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
+private val Context.dataStore by preferencesDataStore("settings")
+
 class DataStoreManager(appContext: Context) {
 
-    private val settingsDataStore = appContext.createDataStore("settings")
+    private val settingsDataStore = appContext.dataStore
 
     suspend fun setThemeMode(mode: Int) {
         settingsDataStore.edit { settings ->

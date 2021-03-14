@@ -37,7 +37,7 @@ object Depends {
         const val lottieVersion = "3.6.1"
         const val glideVersion = "4.12.0"
         const val autoDispose = "1.4.0"
-        const val dataStorePreferenceVersion = "1.0.0-alpha06"
+        const val dataStorePreferenceVersion = "1.0.0-alpha07"
 
         const val mockitoKotlinVersion = "2.2.0"
         const val mockitoCoreVersion = "3.6.28"
