@@ -40,6 +40,7 @@ Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20t
 - [StrictMode](https://developer.android.com/reference/android/os/StrictMode) - A developer tool which detects things you might be doing by accident
 - [Dark/Light Theme](https://developer.android.com/guide/topics/ui/look-and-feel/darktheme) - Support dark/light themes
 - [DataStore](https://developer.android.com/topic/libraries/architecture/datastore) - Data storage solution that allows you to store key-value pairs or typed objects
+- [AutoDispose](https://uber.github.io/AutoDispose/) - Automatically binding the execution of RxJava streams to a provided scope
 
 ## Under Development 🚧
 
