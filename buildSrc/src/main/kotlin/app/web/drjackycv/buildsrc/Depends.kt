@@ -6,12 +6,12 @@ object Depends {
 
     object Versions {
         const val appVersionCode = 1_000_000
-        const val gradleVersion = "4.1.2"
+        const val gradleVersion = "4.1.3"
         const val androidCompileSdkVersion = 29
         const val targetSdkVersion = 29
         const val minSdkVersion = 21
         const val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        const val kotlinVersion = "1.4.31"
+        const val kotlinVersion = "1.4.32"
         const val rxKotlinVersion = "2.4.0"
         const val rxAndroidVersion = "2.1.1"
         const val rxJavaVersion = "2.2.21"
