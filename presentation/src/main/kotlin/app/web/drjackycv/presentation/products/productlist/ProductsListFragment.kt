@@ -5,7 +5,6 @@ import android.view.View
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -24,8 +23,6 @@ import app.web.drjackycv.presentation.products.entity.BeerUI
 import com.google.android.material.transition.platform.Hold
 import com.google.android.material.transition.platform.MaterialElevationScale
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.collect
 import timber.log.Timber
 
 @AndroidEntryPoint
@@ -36,7 +33,6 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
     }
     private val productsListViewModel: ProductsListViewModel by viewModels()
     private var path = ChoosePathType.RX
-    private var uiStateJob: Job? = null
 
     private val productsListAdapter: ProductsListAdapter by lazy {
         ProductsListAdapter(::navigateToProductDetail)
@@ -46,11 +42,6 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
         super.onViewCreated(view, savedInstanceState)
         setupPath()
         setupRecycler()
-    }
-
-    override fun onStop() {
-        uiStateJob?.cancel()
-        super.onStop()
     }
 
     private fun cleanUp(binding: FragmentProductListBinding?) {
@@ -92,10 +83,8 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
 
             viewLifecycleOwner.observe(ldProductsList, ::addProductsList)
 
-            uiStateJob = lifecycleScope.launchWhenStarted {
-                failure.collect {
-                    handleFailure(it)
-                }
+            failure.collectIn(viewLifecycleOwner) {
+                handleFailure(it)
             }
 
         }
@@ -103,16 +92,12 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
 
     private fun setupViewByCoroutine() {
         productsListViewModel.run {
-
-            uiStateJob = lifecycleScope.launchWhenStarted {
-                productsListByCoroutine.collect {
-                    addProductsList(it)
-                }
+            productsListByCoroutine.collectIn(viewLifecycleOwner) {
+                addProductsList(it)
             }
-            lifecycleScope.launchWhenStarted {
-                failure.collect {
-                    handleFailure(it)
-                }
+
+            failure.collectIn(viewLifecycleOwner) {
+                handleFailure(it)
             }
         }
     }
