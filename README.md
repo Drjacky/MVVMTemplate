@@ -66,6 +66,11 @@ Available workflows listed as follows:
 - [Pre Merge Checks](.github/workflows/pre-merge.yml) - Runs `build` task. 
 - [Android](.github/workflows/android.yml) - Runs `assembleDebug` task.
 
+## Tasks 🔧
+
+- Gradle Doctor: `dependencyUpdates` -  Displays the dependency updates for the project.
+- Detekt: `detektAll` - Run the static Kotlin code analysis for the whole project at once.
+
 ## References 🧷
 
 - [The Punk API](https://punkapi.com/)
