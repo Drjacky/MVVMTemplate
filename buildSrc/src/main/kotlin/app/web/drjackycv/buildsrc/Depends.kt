@@ -21,9 +21,9 @@ object Depends {
         const val chuckerVersion = "3.4.0"
         const val gsonVersion = "2.9.0"
         const val lifecycleVersion = "2.4.0-alpha01"
-        const val constraintLayoutVersion = "2.1.0-alpha2"
-        const val supportVersion = "1.3.0-beta01"
-        const val materialVersion = "1.4.0-alpha01"
+        const val constraintLayoutVersion = "2.1.0-beta01"
+        const val supportVersion = "1.3.0-rc01"
+        const val materialVersion = "1.4.0-alpha02"
         const val coreKtxVersion = "1.6.0-alpha01"
         const val navigationVersion = "2.3.4"
         const val pagingVersion = "3.0.0-beta03"
@@ -32,6 +32,7 @@ object Depends {
         const val recyclerviewVersion = "1.2.0-rc01"
         const val hiltVersion = "2.33-beta"
         const val hiltExtVersion = "1.0.0-alpha03"
+        const val hiltCompilerVersion = "1.0.0-beta01"
         const val javaxInjectVersion = "1"
         const val timberVersion = "4.7.1"
         const val lottieVersion = "3.7.0"
@@ -81,7 +82,7 @@ object Depends {
         const val hilt_lifecycle_viewmodel =
             "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.hiltExtVersion}"
         const val hilt_compiler =
-            "androidx.hilt:hilt-compiler:${Versions.hiltExtVersion}"
+            "androidx.hilt:hilt-compiler:${Versions.hiltCompilerVersion}"
         const val fragment_ktx =
             "androidx.fragment:fragment-ktx:${Versions.fragmentExtVersion}"
         const val android_core_ktx =
