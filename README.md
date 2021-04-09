@@ -15,7 +15,7 @@ Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20t
 - Following [Clean Architecture approach](https://proandroiddev.com/mvvm-with-clean-architecture-c2c021e05c89)
 - Following MVVM Architectural Design Pattern
 - Template Project
-- [RxJava 2](https://github.com/ReactiveX/RxJava) - Reactive Extensions for the JVM
+- [RxJava 3](https://github.com/ReactiveX/RxJava) - Reactive Extensions for the JVM
 - [Coroutines](https://developer.android.com/kotlin/coroutines) - A concurrency design pattern library
 - [Flow](https://developer.android.com/kotlin/flow) - Built on top of coroutines and is stream of data that can be computed asynchronously
 - Simplest Adapter Ever (based on this [workaround](https://proandroiddev.com/the-best-android-recycler-adapter-youve-ever-seen-probably-177e25279a28))
