@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
-import androidx.paging.rxjava2.cachedIn
+import androidx.paging.rxjava3.cachedIn
 import app.web.drjackycv.domain.products.usecase.GetBeersListByCoroutineParams
 import app.web.drjackycv.domain.products.usecase.GetBeersListByCoroutineUseCase
 import app.web.drjackycv.domain.products.usecase.GetBeersListParams
@@ -16,8 +16,9 @@ import app.web.drjackycv.presentation.base.adapter.RecyclerItem
 import app.web.drjackycv.presentation.base.viewmodel.BaseViewModel
 import app.web.drjackycv.presentation.products.choose.ChoosePathType
 import app.web.drjackycv.presentation.products.entity.BeerMapper
+import autodispose2.autoDispose
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
@@ -50,7 +51,7 @@ class ProductsListViewModel @Inject constructor(
         getBeersUseCase(GetBeersListParams(ids = ids))
             .cachedIn(viewModelScope)
             .observeOn(AndroidSchedulers.mainThread())
-            .autoDisposable()
+            .autoDispose(this)
             .subscribe { pagingDataBeer ->
                 _ldProductsList.value = pagingDataBeer
                     .map { beer ->

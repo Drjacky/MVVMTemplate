@@ -5,16 +5,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.web.drjackycv.domain.base.Failure
 import app.web.drjackycv.presentation.R
-import com.uber.autodispose.AutoDispose
-import com.uber.autodispose.FlowableSubscribeProxy
-import com.uber.autodispose.lifecycle.CorrespondingEventsFunction
-import com.uber.autodispose.lifecycle.LifecycleEndedException
-import com.uber.autodispose.lifecycle.LifecycleScopeProvider
+import autodispose2.lifecycle.CorrespondingEventsFunction
+import autodispose2.lifecycle.LifecycleEndedException
+import autodispose2.lifecycle.LifecycleScopeProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.reactivex.Flowable
-import io.reactivex.Observable
-import io.reactivex.annotations.CheckReturnValue
-import io.reactivex.subjects.BehaviorSubject
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.subjects.BehaviorSubject
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -76,11 +72,6 @@ open class BaseViewModel @Inject constructor() : ViewModel(),
             _failure.send(failure)
         }
     }
-
-    @CheckReturnValue
-    fun <T> Flowable<T>.autoDisposable(): FlowableSubscribeProxy<T> =
-        this.`as`(AutoDispose.autoDisposable(this@BaseViewModel))
-
 
     enum class ViewModelEvent {
         CREATED, CLEARED
