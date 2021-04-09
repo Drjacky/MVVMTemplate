@@ -15,9 +15,9 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
-import com.jakewharton.rxbinding3.view.clicks
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
+import com.jakewharton.rxbinding4.view.clicks
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.disposables.Disposable
 import java.util.concurrent.TimeUnit
 
 fun View?.gone() {
@@ -37,7 +37,7 @@ fun View.invisible() {
 fun ImageView.load(
     url: String?,
     @DrawableRes placeholderRes: Int = R.drawable.ic_cloud_download,
-    activity: Activity? = null
+    activity: Activity? = null,
 ) {
     val safePlaceholderDrawable = AppCompatResources.getDrawable(context, placeholderRes)
     val requestOptions = RequestOptions().apply {
@@ -57,7 +57,7 @@ fun ImageView.load(
                     e: GlideException?,
                     model: Any?,
                     target: Target<Drawable>?,
-                    isFirstResource: Boolean
+                    isFirstResource: Boolean,
                 ): Boolean {
                     startPostponedEnterTransition(it)
                     return false
@@ -68,7 +68,7 @@ fun ImageView.load(
                     model: Any,
                     target: Target<Drawable>,
                     dataSource: DataSource,
-                    isFirstResource: Boolean
+                    isFirstResource: Boolean,
                 ): Boolean {
                     startPostponedEnterTransition(it)
                     return false

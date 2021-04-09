@@ -82,7 +82,7 @@ dependencies {
     implementation(Depends.Libraries.multidex)
     implementation(Depends.Libraries.fragment_ktx)
     implementation(Depends.Libraries.paging_runtime_ktx)
-    implementation(Depends.Libraries.paging_rx_ktx)
+    implementation(Depends.Libraries.paging_rx)
     implementation(Depends.Libraries.dataStore_preferences)
     //dependency injection
     implementation(Depends.Libraries.hilt_android)

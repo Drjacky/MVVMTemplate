@@ -1,7 +1,7 @@
 package app.web.drjackycv.data.products.remote
 
 import app.web.drjackycv.data.products.entity.BeerResponse
-import io.reactivex.Single
+import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
 

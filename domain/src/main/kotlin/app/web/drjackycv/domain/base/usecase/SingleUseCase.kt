@@ -1,6 +1,6 @@
 package app.web.drjackycv.domain.base.usecase
 
-import io.reactivex.Single
+import io.reactivex.rxjava3.core.Single
 
 interface SingleUseCase<Type, in Params> {
 

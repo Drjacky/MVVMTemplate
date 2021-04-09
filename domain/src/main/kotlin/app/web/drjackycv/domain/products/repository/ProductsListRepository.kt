@@ -2,7 +2,7 @@ package app.web.drjackycv.domain.products.repository
 
 import androidx.paging.PagingData
 import app.web.drjackycv.domain.products.entity.Beer
-import io.reactivex.Flowable
+import io.reactivex.rxjava3.core.Flowable
 import kotlinx.coroutines.flow.Flow
 
 interface ProductsListRepository {

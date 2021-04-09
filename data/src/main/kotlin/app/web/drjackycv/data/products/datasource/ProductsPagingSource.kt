@@ -1,14 +1,14 @@
 package app.web.drjackycv.data.products.datasource
 
 import androidx.paging.PagingState
-import androidx.paging.rxjava2.RxPagingSource
+import androidx.paging.rxjava3.RxPagingSource
 import app.web.drjackycv.data.products.entity.BeerMapper
 import app.web.drjackycv.data.products.remote.ProductsApi
 import app.web.drjackycv.domain.base.Failure
 import app.web.drjackycv.domain.products.entity.Beer
-import io.reactivex.Single
-import io.reactivex.annotations.NonNull
-import io.reactivex.schedulers.Schedulers
+import io.reactivex.rxjava3.annotations.NonNull
+import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.schedulers.Schedulers
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 import java.util.concurrent.TimeoutException

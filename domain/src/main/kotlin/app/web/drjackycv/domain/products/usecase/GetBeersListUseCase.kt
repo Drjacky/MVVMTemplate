@@ -4,7 +4,7 @@ import androidx.paging.PagingData
 import app.web.drjackycv.domain.base.usecase.GeneralUseCase
 import app.web.drjackycv.domain.products.entity.Beer
 import app.web.drjackycv.domain.products.repository.ProductsListRepository
-import io.reactivex.Flowable
+import io.reactivex.rxjava3.core.Flowable
 import javax.inject.Inject
 
 class GetBeersListUseCase @Inject constructor(
