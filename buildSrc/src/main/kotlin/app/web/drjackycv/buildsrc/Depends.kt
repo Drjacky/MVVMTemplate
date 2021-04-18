@@ -31,7 +31,6 @@ object Depends {
         const val fragmentExtVersion = "1.3.2"
         const val recyclerviewVersion = "1.2.0"
         const val hiltVersion = "2.34.1-beta"
-        const val hiltExtVersion = "1.0.0-alpha03"
         const val hiltCompilerVersion = "1.0.0-beta01"
         const val javaxInjectVersion = "1"
         const val timberVersion = "4.7.1"
@@ -79,8 +78,6 @@ object Depends {
             "com.google.dagger:hilt-android:${Versions.hiltVersion}"
         const val hilt_android_compiler =
             "com.google.dagger:hilt-android-compiler:${Versions.hiltVersion}"
-        const val hilt_lifecycle_viewmodel =
-            "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.hiltExtVersion}"
         const val hilt_compiler =
             "androidx.hilt:hilt-compiler:${Versions.hiltCompilerVersion}"
         const val fragment_ktx =

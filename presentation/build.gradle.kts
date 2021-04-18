@@ -61,7 +61,6 @@ dependencies {
     //dependency injection
     implementation(Depends.Libraries.hilt_android)
     kapt(Depends.Libraries.hilt_android_compiler)
-    implementation(Depends.Libraries.hilt_lifecycle_viewmodel)
     kapt(Depends.Libraries.hilt_compiler)
     implementation(Depends.Libraries.java_inject)
     //other
