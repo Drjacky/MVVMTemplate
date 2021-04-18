@@ -44,6 +44,24 @@ class MainActivity : AppCompatActivity() {
         super.onStop()
     }
 
+    override fun onBackPressed() {
+        if (isTaskRoot
+            && supportFragmentManager.primaryNavigationFragment?.childFragmentManager?.backStackEntryCount == 0
+            && supportFragmentManager.backStackEntryCount == 0
+        ) {
+            finishAfterTransition()
+        } else {
+            super.onBackPressed()
+        }
+    }
+
+    override fun onDestroy() {
+        if (isTaskRoot && isFinishing) {
+            finishAfterTransition()
+        }
+        super.onDestroy()
+    }
+
     private fun setupUI() {
         lifecycleScope.launchWhenStarted {
             dataStoreManager.themeMode.collect { mode ->
