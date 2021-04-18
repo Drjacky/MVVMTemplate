@@ -58,7 +58,6 @@ class MainActivity : AppCompatActivity() {
                 dataStoreManager.setThemeMode(mode)
             }
         }
-        AppCompatDelegate.setDefaultNightMode(mode)
         when (mode) {
             AppCompatDelegate.MODE_NIGHT_NO -> {
                 binding.activityMainSwitchThemeFab.setImageResource(R.drawable.ic_mode_night_no_black)
@@ -79,6 +78,8 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+        if (AppCompatDelegate.getDefaultNightMode() != mode)
+            AppCompatDelegate.setDefaultNightMode(mode)
     }
 
 }
