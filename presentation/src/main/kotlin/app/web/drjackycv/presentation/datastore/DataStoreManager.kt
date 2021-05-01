@@ -5,12 +5,16 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.preferencesDataStore
 import app.web.drjackycv.presentation.base.preference.Settings
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
+import javax.inject.Singleton
 
 private val Context.dataStore by preferencesDataStore("settings")
 
-class DataStoreManager(appContext: Context) {
+@Singleton
+class DataStoreManager @Inject constructor(@ApplicationContext appContext: Context) {
 
     private val settingsDataStore = appContext.dataStore
 
