@@ -6,12 +6,12 @@ object Depends {
 
     object Versions {
         const val appVersionCode = 1_000_000
-        const val gradleVersion = "4.1.3"
-        const val androidCompileSdkVersion = 29
-        const val targetSdkVersion = 29
+        const val gradleVersion = "4.2.0"
+        const val androidCompileSdkVersion = 30
+        const val targetSdkVersion = 30
         const val minSdkVersion = 21
         const val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        const val kotlinVersion = "1.4.32"
+        const val kotlinVersion = "1.5.0"
         const val rxKotlinVersion = "3.0.1"
         const val rxAndroidVersion = "3.0.0"
         const val rxJavaVersion = "3.0.12"
@@ -21,17 +21,17 @@ object Depends {
         const val chuckerVersion = "3.4.0"
         const val gsonVersion = "2.9.0"
         const val lifecycleVersion = "2.4.0-alpha01"
-        const val constraintLayoutVersion = "2.1.0-beta01"
+        const val constraintLayoutVersion = "2.1.0-beta02"
         const val supportVersion = "1.3.0-rc01"
         const val materialVersion = "1.4.0-alpha02"
-        const val coreKtxVersion = "1.6.0-alpha02"
+        const val coreKtxVersion = "1.6.0-alpha03"
         const val navigationVersion = "2.3.5"
-        const val pagingVersion = "3.0.0-rc01"
+        const val pagingVersion = "3.0.0"
         const val multidexVersion = "2.0.1"
         const val fragmentExtVersion = "1.3.3"
         const val recyclerviewVersion = "1.2.0"
         const val hiltVersion = "2.35.1"
-        const val hiltCompilerVersion = "1.0.0-beta01"
+        const val hiltCompilerVersion = "1.0.0"
         const val javaxInjectVersion = "1"
         const val timberVersion = "4.7.1"
         const val lottieVersion = "3.7.0"
@@ -84,8 +84,6 @@ object Depends {
             "androidx.fragment:fragment-ktx:${Versions.fragmentExtVersion}"
         const val android_core_ktx =
             "androidx.core:core-ktx:${Versions.coreKtxVersion}"
-        const val android_lifecycle_extensions =
-            "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycleVersion}"
         const val paging_runtime_ktx =
             "androidx.paging:paging-runtime-ktx:${Versions.pagingVersion}"
         const val paging_rx =
