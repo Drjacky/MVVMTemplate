@@ -56,6 +56,9 @@ open class BaseViewModel @Inject constructor() : ViewModel(),
             is Failure.NoInternet -> {
                 Failure.NoInternet(resources.getString(R.string.error_no_internet))
             }
+            is Failure.Api -> {
+                Failure.Api(throwable.msg)
+            }
             is Failure.Timeout -> {
                 Failure.Timeout(resources.getString(R.string.error_timeout))
             }

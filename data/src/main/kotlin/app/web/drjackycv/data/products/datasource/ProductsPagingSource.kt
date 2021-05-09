@@ -2,6 +2,7 @@ package app.web.drjackycv.data.products.datasource
 
 import androidx.paging.PagingState
 import androidx.paging.rxjava3.RxPagingSource
+import app.web.drjackycv.data.network.NetworkResponse
 import app.web.drjackycv.data.products.entity.BeerMapper
 import app.web.drjackycv.data.products.remote.ProductsApi
 import app.web.drjackycv.domain.base.Failure
@@ -30,12 +31,26 @@ class ProductsPagingSource @Inject constructor(
 
         return productsApi.getBeersList(position, params.loadSize)
             .subscribeOn(Schedulers.io())
-            .map { listBeerResponse ->
-                listBeerResponse.map {
-                    BeerMapper().mapLeftToRight(it)
+            .map { response ->
+                when (response) {
+                    is NetworkResponse.Success -> {
+                        val list = response.body.map {
+                            BeerMapper().mapLeftToRight(it)
+                        }
+
+                        toLoadResult(list, position)
+                    }
+                    is NetworkResponse.ApiError -> {
+                        LoadResult.Error(Failure.Api(response.body?.message))
+                    }
+                    is NetworkResponse.NetworkError -> {
+                        LoadResult.Error(Failure.NoInternet(response.error.message))
+                    }
+                    else -> {
+                        LoadResult.Error(Failure.Unknown())
+                    }
                 }
             }
-            .map { toLoadResult(it, position) }
             .onErrorReturn { throwable ->
                 when (throwable) {
                     is UnknownHostException, is SocketTimeoutException -> {
@@ -55,6 +70,36 @@ class ProductsPagingSource @Inject constructor(
                     }
                 }
             }
+
+        /*return productsApi.getBeersList(position, params.loadSize)
+            .subscribeOn(Schedulers.io())
+            .map { listBeerResponse ->
+                listBeerResponse.map {
+                    BeerMapper().mapLeftToRight(it)
+                }
+            }
+            .map {
+                toLoadResult(it, position)
+            }
+            .onErrorReturn { throwable ->
+                when (throwable) {
+                    is UnknownHostException, is SocketTimeoutException -> {
+                        LoadResult.Error(
+                            Failure.NoInternet(throwable.message)
+                        )
+                    }
+                    is TimeoutException -> {
+                        LoadResult.Error(
+                            Failure.Timeout(throwable.message)
+                        )
+                    }
+                    else -> {
+                        LoadResult.Error(
+                            Failure.Unknown(throwable.message)
+                        )
+                    }
+                }
+            }*/
     }
 
     override val jumpingSupported = true

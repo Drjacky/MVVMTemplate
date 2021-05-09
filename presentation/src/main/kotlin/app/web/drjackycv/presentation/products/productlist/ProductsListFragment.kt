@@ -120,13 +120,11 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
         binding.productListRecyclerView.gone()
         binding.inclItemError.itemErrorContainer.visible()
         when (failure) {
-            is Failure.NoInternet, is Failure.Timeout -> {
-                binding.inclItemError.itemErrorMessage.text = failure.msg
-                binding.inclItemError.itemErrorRetryBtn.setOnClickListener { failure.retryAction() }
+            is Failure.NoInternet, is Failure.Api, is Failure.Timeout -> {
+                setupErrorItem(failure)
             }
             is Failure.Unknown -> {
-                binding.inclItemError.itemErrorMessage.text = failure.msg
-                binding.inclItemError.itemErrorRetryBtn.setOnClickListener { failure.retryAction() }
+                setupErrorItem(failure)
             }
             else -> {
                 binding.inclItemError.itemErrorMessage.text = failure.message
@@ -173,6 +171,11 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
     private fun retryFetchData() {
         binding.productListRecyclerView.visible()
         productsListAdapter.retry()
+    }
+
+    private fun setupErrorItem(failure: Failure) {
+        binding.inclItemError.itemErrorMessage.text = failure.msg
+        binding.inclItemError.itemErrorRetryBtn.setOnClickListener { failure.retryAction() }
     }
 
 }

@@ -13,11 +13,12 @@ import javax.inject.Singleton
 @Singleton
 class BaseRetrofit @Inject constructor(
     private val okHttpClient: OkHttpClient,
-    private val gson: Gson
+    private val gson: Gson,
 ) {
 
     val retrofit = Retrofit.Builder()
         .baseUrl(BuildConfig.BASE_URL)
+        .addCallAdapterFactory(RxJavaCustomCallAdapterFactory.create()) //Has to be on top of the other adapters
         .addConverterFactory(GsonConverterFactory.create(gson))
         .addCallAdapterFactory(RxJava3CallAdapterFactory.createWithScheduler(Schedulers.io()))
         .client(okHttpClient)
