@@ -70,36 +70,6 @@ class ProductsPagingSource @Inject constructor(
                     }
                 }
             }
-
-        /*return productsApi.getBeersList(position, params.loadSize)
-            .subscribeOn(Schedulers.io())
-            .map { listBeerResponse ->
-                listBeerResponse.map {
-                    BeerMapper().mapLeftToRight(it)
-                }
-            }
-            .map {
-                toLoadResult(it, position)
-            }
-            .onErrorReturn { throwable ->
-                when (throwable) {
-                    is UnknownHostException, is SocketTimeoutException -> {
-                        LoadResult.Error(
-                            Failure.NoInternet(throwable.message)
-                        )
-                    }
-                    is TimeoutException -> {
-                        LoadResult.Error(
-                            Failure.Timeout(throwable.message)
-                        )
-                    }
-                    else -> {
-                        LoadResult.Error(
-                            Failure.Unknown(throwable.message)
-                        )
-                    }
-                }
-            }*/
     }
 
     override val jumpingSupported = true
