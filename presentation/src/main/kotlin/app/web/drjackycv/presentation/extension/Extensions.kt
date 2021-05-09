@@ -70,9 +70,9 @@ class FragmentViewBindingDelegate<T : ViewBinding>(
 
 fun <T : ViewBinding> Fragment.viewBinding(
     viewBindingFactory: (View) -> T,
-    destroyTask: ((T?) -> Unit)? = null
+    cleanUp: ((T?) -> Unit)? = null,
 ) =
-    FragmentViewBindingDelegate(this, viewBindingFactory, destroyTask)
+    FragmentViewBindingDelegate(this, viewBindingFactory, cleanUp)
 
 inline fun <T : ViewBinding> AppCompatActivity.viewBinding(
     crossinline bindingInflater: (LayoutInflater) -> T
