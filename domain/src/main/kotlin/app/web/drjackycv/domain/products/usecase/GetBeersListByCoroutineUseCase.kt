@@ -16,4 +16,5 @@ class GetBeersListByCoroutineUseCase @Inject constructor(
 
 }
 
-inline class GetBeersListByCoroutineParams(val ids: String)
+@JvmInline
+value class GetBeersListByCoroutineParams(val ids: String)

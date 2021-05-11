@@ -16,4 +16,5 @@ class GetBeersListUseCase @Inject constructor(
 
 }
 
-inline class GetBeersListParams(val ids: String)
+@JvmInline
+value class GetBeersListParams(val ids: String)
