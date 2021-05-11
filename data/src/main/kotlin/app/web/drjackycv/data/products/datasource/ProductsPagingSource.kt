@@ -54,19 +54,13 @@ class ProductsPagingSource @Inject constructor(
             .onErrorReturn { throwable ->
                 when (throwable) {
                     is UnknownHostException, is SocketTimeoutException -> {
-                        LoadResult.Error(
-                            Failure.NoInternet(throwable.message)
-                        )
+                        LoadResult.Error(Failure.NoInternet(throwable.message))
                     }
                     is TimeoutException -> {
-                        LoadResult.Error(
-                            Failure.Timeout(throwable.message)
-                        )
+                        LoadResult.Error(Failure.Timeout(throwable.message))
                     }
                     else -> {
-                        LoadResult.Error(
-                            Failure.Unknown(throwable.message)
-                        )
+                        LoadResult.Error(Failure.Unknown(throwable.message))
                     }
                 }
             }
