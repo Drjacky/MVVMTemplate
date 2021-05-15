@@ -6,7 +6,7 @@ object Depends {
 
     object Versions {
         const val appVersionCode = 1_000_000
-        const val gradleVersion = "4.2.0"
+        const val gradleVersion = "4.2.1"
         const val androidCompileSdkVersion = 30
         const val targetSdkVersion = 30
         const val minSdkVersion = 21
