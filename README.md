@@ -57,6 +57,7 @@ Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20t
 - ~~Add coroutines and flow. To see changes, click [here](https://github.com/Drjacky/MVVMTemplate/pull/7/files).~~
 - ~~Replace Preferences by DataStore. To see changes, click [here](https://github.com/Drjacky/MVVMTemplate/commit/285892ce098e2a069324910a213b78cac2e643e8).~~
 - ~~Migrate from RxJava 2 to RxJava 3. To see changes, click [here](https://github.com/Drjacky/MVVMTemplate/pull/11).~~
+- ~~Add Custom Rx Adapter for Network Response Handling. To see changes, click [here](https://github.com/Drjacky/MVVMTemplate/pull/13/files).~~
 
 ## CI 🏭
 
