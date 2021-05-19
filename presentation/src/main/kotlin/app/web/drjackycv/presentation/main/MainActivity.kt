@@ -11,11 +11,12 @@ import app.web.drjackycv.presentation.R
 import app.web.drjackycv.presentation.base.preference.Settings
 import app.web.drjackycv.presentation.databinding.ActivityMainBinding
 import app.web.drjackycv.presentation.datastore.DataStoreManager
+import app.web.drjackycv.presentation.extension.collectIn
 import app.web.drjackycv.presentation.extension.setOnReactiveClickListener
 import app.web.drjackycv.presentation.extension.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -63,8 +64,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupUI() {
-        lifecycleScope.launchWhenStarted {
-            dataStoreManager.themeMode.collect { mode ->
+        lifecycleScope.launch {
+            dataStoreManager.themeMode.collectIn(this@MainActivity) { mode ->
                 setNightMode(mode)
             }
         }
