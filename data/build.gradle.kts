@@ -66,9 +66,13 @@ dependencies {
     implementation(Depends.Libraries.paging_rx)
     implementation(Depends.Libraries.multidex)
     //dependency injection
-    implementation(Depends.Libraries.hilt_android)
-    kapt(Depends.Libraries.hilt_android_compiler)
-    kapt(Depends.Libraries.hilt_compiler)
+    implementation(Depends.Libraries.dagger)
+    kapt(Depends.Libraries.dagger_compiler)
+    implementation(Depends.Libraries.dagger_hilt_android)
+    kapt(Depends.Libraries.dagger_hilt_compiler)
+//    kapt(Depends.Libraries.dagger_hilt_android_compiler)
+//    kapt(Depends.Libraries.hilt_androidx_compiler)
+//    implementation(Depends.Libraries.dagger_hilt_core)
     implementation(Depends.Libraries.java_inject)
     //parser
     api(Depends.Libraries.converter_gson)

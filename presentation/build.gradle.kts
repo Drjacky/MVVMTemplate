@@ -70,9 +70,14 @@ dependencies {
     implementation(Depends.Libraries.kotlin_reflect)
 
     //dependency injection
-    implementation(Depends.Libraries.hilt_android)
-    kapt(Depends.Libraries.hilt_android_compiler)
-    kapt(Depends.Libraries.hilt_compiler)
+    implementation(Depends.Libraries.dagger)
+    kapt(Depends.Libraries.dagger_compiler)
+    implementation(Depends.Libraries.dagger_hilt_android)
+//    kapt(Depends.Libraries.dagger_hilt_android_compiler)
+//    implementation(Depends.Libraries.dagger_hilt_core)
+    kapt(Depends.Libraries.dagger_hilt_compiler)
+    kapt(Depends.Libraries.dagger_hilt_android_compiler)
+//    kapt(Depends.Libraries.hilt_androidx_compiler)
     implementation(Depends.Libraries.java_inject)
     //other
     implementation(Depends.Libraries.timber)

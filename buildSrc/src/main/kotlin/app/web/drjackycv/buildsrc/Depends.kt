@@ -39,7 +39,7 @@ object Depends {
         const val glideVersion = "4.12.0"
         const val autoDispose = "2.0.0"
         const val dataStorePreferenceVersion = "1.0.0-beta01"
-        const val composeVersion = "1.0.0-beta03"
+        const val composeVersion = "1.0.0-beta07"
         const val uiTestVersion = "1.0.0-alpha07"
         const val uiToolingVersion = "1.0.0-alpha07"
         const val uiFrameworkVersion = "0.1.0-dev10"
@@ -81,12 +81,16 @@ object Depends {
         const val kotlin_reflect =
             "org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlinVersion}"
         const val multidex = "androidx.multidex:multidex:${Versions.multidexVersion}"
-        const val hilt_android =
-            "com.google.dagger:hilt-android:${Versions.hiltVersion}"
-        const val hilt_android_compiler =
-            "com.google.dagger:hilt-android-compiler:${Versions.hiltVersion}"
-        const val hilt_compiler =
-            "androidx.hilt:hilt-compiler:${Versions.hiltCompilerVersion}"
+        const val dagger = "com.google.dagger:dagger:${Versions.hiltVersion}"
+        const val dagger_compiler = "com.google.dagger:dagger-compiler:${Versions.hiltVersion}"
+        const val dagger_hilt_android = "com.google.dagger:hilt-android:${Versions.hiltVersion}"
+
+        /*const val dagger_hilt_android_compiler =
+            "com.google.dagger:hilt-android-compiler:${Versions.hiltVersion}"*/
+        /*const val hilt_androidx_compiler =
+            "androidx.hilt:hilt-compiler:${Versions.hiltCompilerVersion}"*/
+        /*const val dagger_hilt_core = "com.google.dagger:hilt-core:${Versions.hiltVersion}"*/
+        const val dagger_hilt_compiler = "com.google.dagger:hilt-compiler:${Versions.hiltVersion}"
         const val fragment_ktx =
             "androidx.fragment:fragment-ktx:${Versions.fragmentExtVersion}"
         const val android_core_ktx =
