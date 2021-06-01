@@ -5,6 +5,7 @@ plugins {
     kotlin("android")
     id("kotlin-parcelize")
     kotlin("kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -59,6 +60,10 @@ dependencies {
     implementation(Depends.Libraries.paging_rx)
     implementation(Depends.Libraries.lifecycle_livedata)
     implementation(Depends.Libraries.multidex)
+    //dependency injection
+    implementation(Depends.Libraries.hilt_android)
+    kapt(Depends.Libraries.hilt_android_compiler)
+    kapt(Depends.Libraries.hilt_compiler)
     //reactive
     implementation(Depends.Libraries.rx_kotlin)
     implementation(Depends.Libraries.rx_java)
@@ -69,4 +74,8 @@ dependencies {
     testImplementation(Depends.Libraries.mockito_core)
     testImplementation(Depends.Libraries.mockito_inline)
     testImplementation(Depends.Libraries.mockito_kotlin)
+}
+
+kapt {
+    correctErrorTypes = true
 }

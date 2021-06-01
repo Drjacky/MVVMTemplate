@@ -133,3 +133,7 @@ dependencies {
 
     implementation(project(":domain"))
 }
+
+kapt {
+    correctErrorTypes = true
+}

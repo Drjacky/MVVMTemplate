@@ -5,6 +5,7 @@ plugins {
     kotlin("android")
     id("kotlin-parcelize")
     kotlin("kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -88,4 +89,8 @@ dependencies {
 
     testImplementation(project(path = ":domain", configuration = "unitTestImplementation"))
     implementation(project(":domain"))
+}
+
+kapt {
+    correctErrorTypes = true
 }
