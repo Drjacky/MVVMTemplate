@@ -12,10 +12,6 @@ plugins {
 android {
     compileSdkVersion(Depends.Versions.androidCompileSdkVersion)
 
-    buildFeatures {
-        dataBinding = true
-    }
-
     defaultConfig {
         multiDexEnabled = true
         applicationId = "app.web.drjackycv.mvvmtemplate"
