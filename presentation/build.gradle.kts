@@ -76,7 +76,7 @@ dependencies {
 //    kapt(Depends.Libraries.dagger_hilt_android_compiler)
 //    implementation(Depends.Libraries.dagger_hilt_core)
     kapt(Depends.Libraries.dagger_hilt_compiler)
-    kapt(Depends.Libraries.dagger_hilt_android_compiler)
+//    kapt(Depends.Libraries.dagger_hilt_android_compiler)
 //    kapt(Depends.Libraries.hilt_androidx_compiler)
     implementation(Depends.Libraries.java_inject)
     //other
