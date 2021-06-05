@@ -65,6 +65,7 @@ android {
     }
     //testOptions.unitTests.returnDefaultValues = true
     packagingOptions {
+        exclude("META-INF/ui-tooling_release.kotlin_module")
 //        exclude("META-INF/rxjava.properties")
 //        exclude("META-INF/proguard/androidx-annotations.pro")
 //        exclude("error_prone/Annotations.gwt.xml")
