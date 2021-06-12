@@ -1,44 +1,88 @@
 package app.web.drjackycv.presentation.main
 
 import android.os.Bundle
+import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.compose.material.FloatingActionButton
+import androidx.compose.material.Icon
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import app.web.drjackycv.domain.extension.allowReads
 import app.web.drjackycv.presentation.R
-import app.web.drjackycv.presentation.base.preference.Settings
-import app.web.drjackycv.presentation.databinding.ActivityMainBinding
+import app.web.drjackycv.presentation.base.compose.BaseTheme
 import app.web.drjackycv.presentation.datastore.DataStoreManager
 import app.web.drjackycv.presentation.extension.collectIn
-import app.web.drjackycv.presentation.extension.setOnReactiveClickListener
-import app.web.drjackycv.presentation.extension.viewBinding
+import app.web.drjackycv.presentation.products.choose.ChooseView
+import app.web.drjackycv.presentation.products.productlist.ProductsListView
+import app.web.drjackycv.presentation.products.productlist.ProductsListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+sealed class Screens(val route: String, val label: String, val icon: ImageVector? = null) {
+    object ChooseScreen : Screens("Choose", "Choose")
+    object ProductsScreen : Screens("Products", "Products", Icons.Default.Person)
+    object ProductDetailsScreen : Screens("ProductDetails", "ProductDetails")
+}
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private val binding by viewBinding(ActivityMainBinding::inflate)
-    private val navController: NavController by lazy {
-        findNavController(R.id.activityMainChooseHostFragment)
+    object ThemeState {
+        var darkModeState: MutableState<Boolean> = mutableStateOf(false)
     }
+
+    private val viewModel: ProductsListViewModel by viewModels()
     private var uiStateJob: Job? = null
+    private val isDark = ThemeState.darkModeState.value
 
     @Inject
     lateinit var dataStoreManager: DataStoreManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
+        setContent {
+            BaseTheme {
+                MainLayout(
+                    viewModel = viewModel,
+                    themeFAB = {
+                        FloatingActionButton(
+                            onClick = {
+                                val theme = when (isDark) {
+                                    true -> AppCompatDelegate.MODE_NIGHT_NO
+                                    false -> AppCompatDelegate.MODE_NIGHT_YES
+                                }
+                                AppCompatDelegate.setDefaultNightMode(theme)
+                                ThemeState.darkModeState.value = isDark.not()
+                                setNightMode(isDark.not())
+                            },
+                            content = {
+                                Icon(
+                                    painter = painterResource(id = whichThemeIcon(isDark)),
+                                    contentDescription = "Theme",
+                                    tint = Color.Black
+                                )
+                            }
+                        )
+                    },
+                )
+            }
+        }
         setupUI()
     }
-
-    override fun onSupportNavigateUp() = navController.navigateUp()
 
     override fun onStop() {
         uiStateJob?.cancel()
@@ -66,39 +110,72 @@ class MainActivity : AppCompatActivity() {
     private fun setupUI() {
         lifecycleScope.launch {
             dataStoreManager.themeMode.collectIn(this@MainActivity) { mode ->
-                setNightMode(mode)
+                //TODO
             }
         }
     }
 
-    private fun setNightMode(mode: Int) {
+    private fun setNightMode(isDark: Boolean) {
         allowReads {
             uiStateJob = lifecycleScope.launchWhenStarted {
-                dataStoreManager.setThemeMode(mode)
+                dataStoreManager.setThemeMode(whichThemeMode(isDark))
             }
         }
-        when (mode) {
-            AppCompatDelegate.MODE_NIGHT_NO -> {
-                binding.activityMainSwitchThemeFab.setImageResource(R.drawable.ic_mode_night_no_black)
-                binding.activityMainSwitchThemeFab.setOnReactiveClickListener {
-                    setNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                }
+    }
+
+    private fun whichThemeIcon(isDark: Boolean): Int {
+        return when (isDark) {
+            true -> {
+                R.drawable.ic_mode_night_yes_black
             }
-            AppCompatDelegate.MODE_NIGHT_YES -> {
-                binding.activityMainSwitchThemeFab.setImageResource(R.drawable.ic_mode_night_yes_black)
-                binding.activityMainSwitchThemeFab.setOnReactiveClickListener {
-                    setNightMode(Settings.MODE_NIGHT_DEFAULT)
-                }
-            }
-            else -> {
-                binding.activityMainSwitchThemeFab.setImageResource(R.drawable.ic_mode_night_default_black)
-                binding.activityMainSwitchThemeFab.setOnReactiveClickListener {
-                    setNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                }
+            false -> {
+                R.drawable.ic_mode_night_no_black
             }
         }
-        if (AppCompatDelegate.getDefaultNightMode() != mode)
-            AppCompatDelegate.setDefaultNightMode(mode)
+    }
+
+    private fun whichThemeMode(isDark: Boolean): Int {
+        return when (isDark) {
+            true -> {
+                AppCompatDelegate.MODE_NIGHT_YES
+            }
+            false -> {
+                AppCompatDelegate.MODE_NIGHT_NO
+            }
+        }
+    }
+
+}
+
+@Composable
+fun MainLayout(
+    viewModel: ProductsListViewModel,
+    themeFAB: @Composable () -> Unit,
+) {
+
+    val navController = rememberNavController()
+
+    NavHost(navController = navController, startDestination = Screens.ProductsScreen.route) {
+        composable(Screens.ChooseScreen.route) {
+            ChooseView() {
+                navController.navigate(Screens.ProductsScreen.route + "/${it}")
+            }
+        }
+        composable(route = Screens.ProductsScreen.route) { backStackEntry ->
+            ProductsListView(
+                viewModel = viewModel,
+                themeFAB = {
+                    themeFAB()
+                }
+            ) {
+                navController.navigate(Screens.ProductDetailsScreen.route + "/${it.id}")
+            }
+        }
+        composable(Screens.ProductDetailsScreen.route + "/{id}") { backStackEntry ->
+            /*ProductDetailView(viewModel,
+                backStackEntry.arguments?.get("id") as String,
+                popBack = { navController.popBackStack() })*/
+        }
     }
 
 }

@@ -59,7 +59,12 @@ tasks.withType<KotlinCompile> {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
         freeCompilerArgs = listOf(
             "-XXLanguage:+InlineClasses",
-            "-Xskip-prerelease-check"
+            "-Xskip-prerelease-check",
+            "-Xallow-jvm-ir-dependencies",
+            "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi",
+            "-Xopt-in=kotlin.RequiresOptIn",
+            "-Xuse-experimental=androidx.compose.foundation.ExperimentalFoundationApi",
+            "-Xuse-experimental=androidx.compose.ui.ExperimentalComposeUiApi"
         )
         useIR = true
     }
@@ -105,6 +110,9 @@ dependencies {
     implementation(Depends.Libraries.compose_ui)
     implementation(Depends.Libraries.compose_material)
     implementation(Depends.Libraries.compose_runtime)
+    implementation(Depends.Libraries.compose_paging)
+    implementation(Depends.Libraries.compose_navigation)
+    implementation(Depends.Libraries.compose_material_icons_extended)
 //    implementation(Depends.Libraries.compose_runtime_dispatch)
 //    implementation(Depends.Libraries.compose_runtime_saved_instance_state)
 //    implementation(Depends.Libraries.compose_navigation)
@@ -128,6 +136,7 @@ dependencies {
     //ui
     implementation(Depends.Libraries.glide)
     kapt(Depends.Libraries.glide_compiler)
+    implementation(Depends.Libraries.coil)
     implementation(Depends.Libraries.lottie)
     //test
     androidTestImplementation(Depends.Libraries.test_runner)

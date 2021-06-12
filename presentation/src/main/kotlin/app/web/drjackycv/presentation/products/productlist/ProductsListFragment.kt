@@ -1,9 +1,5 @@
 package app.web.drjackycv.presentation.products.productlist
 
-import android.os.Bundle
-import android.view.View
-import android.view.ViewGroup
-import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,43 +12,22 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.FragmentNavigatorExtras
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
-import androidx.paging.CombinedLoadStates
-import androidx.paging.LoadState
-import androidx.paging.PagingData
-import androidx.recyclerview.widget.RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
-import app.web.drjackycv.domain.base.Failure
 import app.web.drjackycv.presentation.R
-import app.web.drjackycv.presentation.base.adapter.LoadingStateAdapter
-import app.web.drjackycv.presentation.base.adapter.RecyclerItem
-import app.web.drjackycv.presentation.base.compose.*
 import app.web.drjackycv.presentation.base.compose.BaseTheme
 import app.web.drjackycv.presentation.base.compose.purple200
 import app.web.drjackycv.presentation.base.compose.teal200
 import app.web.drjackycv.presentation.base.compose.transparent
-import app.web.drjackycv.presentation.databinding.FragmentProductListBinding
-import app.web.drjackycv.presentation.extension.*
-import app.web.drjackycv.presentation.products.choose.ChoosePathType
-import app.web.drjackycv.presentation.products.entity.BeerUI
-import com.google.android.material.transition.platform.Hold
-import com.google.android.material.transition.platform.MaterialElevationScale
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
 @AndroidEntryPoint
 class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
 
-    private val binding by viewBinding(FragmentProductListBinding::bind) {
+    /*private val binding by viewBinding(FragmentProductListBinding::bind) {
         cleanUp(it)
     }
     private val productsListViewModel: ProductsListViewModel by viewModels()
@@ -209,7 +184,7 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
     private fun setupErrorItem(failure: Failure) {
         binding.inclItemError.itemErrorMessage.text = failure.msg
         binding.inclItemError.itemErrorRetryBtn.setOnClickListener { failure.retryAction() }
-    }
+    }*/
 
 }
 

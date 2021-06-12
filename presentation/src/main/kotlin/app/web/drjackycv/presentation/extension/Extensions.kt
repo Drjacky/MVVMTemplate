@@ -2,6 +2,7 @@ package app.web.drjackycv.presentation.extension
 
 import android.view.LayoutInflater
 import android.view.View
+import androidx.activity.ComponentActivity
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
@@ -75,6 +76,13 @@ fun <T : ViewBinding> Fragment.viewBinding(
     FragmentViewBindingDelegate(this, viewBindingFactory, cleanUp)
 
 inline fun <T : ViewBinding> AppCompatActivity.viewBinding(
+    crossinline bindingInflater: (LayoutInflater) -> T
+) =
+    lazy(LazyThreadSafetyMode.NONE) {
+        bindingInflater.invoke(layoutInflater)
+    }
+
+inline fun <T : ViewBinding> ComponentActivity.viewBinding(
     crossinline bindingInflater: (LayoutInflater) -> T
 ) =
     lazy(LazyThreadSafetyMode.NONE) {

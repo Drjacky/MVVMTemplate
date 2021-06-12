@@ -12,10 +12,10 @@ import app.web.drjackycv.domain.products.usecase.GetBeersListByCoroutineParams
 import app.web.drjackycv.domain.products.usecase.GetBeersListByCoroutineUseCase
 import app.web.drjackycv.domain.products.usecase.GetBeersListParams
 import app.web.drjackycv.domain.products.usecase.GetBeersListUseCase
-import app.web.drjackycv.presentation.base.adapter.RecyclerItem
 import app.web.drjackycv.presentation.base.viewmodel.BaseViewModel
 import app.web.drjackycv.presentation.products.choose.ChoosePathType
 import app.web.drjackycv.presentation.products.entity.BeerMapper
+import app.web.drjackycv.presentation.products.entity.BeerUI
 import autodispose2.autoDispose
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -33,16 +33,16 @@ class ProductsListViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
 ) : BaseViewModel() {
 
-    private val _ldProductsList: MutableLiveData<PagingData<RecyclerItem>> = MutableLiveData()
-    val ldProductsList: LiveData<PagingData<RecyclerItem>> = _ldProductsList
+    private val _ldProductsList: MutableLiveData<PagingData<BeerUI>> = MutableLiveData()
+    val ldProductsList: LiveData<PagingData<BeerUI>> = _ldProductsList
 
     private val _productsListByCoroutine =
-        MutableStateFlow<PagingData<RecyclerItem>>(PagingData.empty())
-    val productsListByCoroutine: Flow<PagingData<RecyclerItem>> = _productsListByCoroutine
+        MutableStateFlow<PagingData<BeerUI>>(PagingData.empty())
+    val productsListByCoroutine: Flow<PagingData<BeerUI>> = _productsListByCoroutine
 
 
     init {
-        val path = savedStateHandle.get<ChoosePathType>("choosePathType")
+        val path = ChoosePathType.COROUTINE//savedStateHandle.get<ChoosePathType>("choosePathType")
         Timber.d("Which path: $path")
         getProductsBaseOnPath("", path)
     }
