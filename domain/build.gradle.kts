@@ -10,8 +10,7 @@ plugins {
 
 android {
 
-    compileSdkVersion(Depends.Versions.androidCompileSdkVersion)
-
+    compileSdk = Depends.Versions.androidCompileSdkVersion
     defaultConfig {
         multiDexEnabled = true
         minSdkVersion(Depends.Versions.minSdkVersion)

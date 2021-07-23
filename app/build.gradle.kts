@@ -14,11 +14,11 @@ android {
         dataBinding = false
         viewBinding = true
     }
-    compileSdkVersion(Depends.Versions.androidCompileSdkVersion)
 
     buildFeatures {
         dataBinding = true
     }
+    compileSdk = Depends.Versions.androidCompileSdkVersion
 
     defaultConfig {
         multiDexEnabled = true

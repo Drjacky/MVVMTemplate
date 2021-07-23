@@ -10,7 +10,8 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.animatedVectorResource
+import androidx.compose.ui.res.painterResource
+//import androidx.compose.ui.res.animatedVectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import app.web.drjackycv.presentation.R
@@ -50,11 +51,12 @@ fun ProductRowView(product: BeerUI, selectedProduct: (network: BeerUI) -> Unit) 
                     CircularProgressIndicator(/*Modifier.align(Alignment.Center)*/)
                 }
                 is ImageLoadState.Error -> {
-                    val failedImage = animatedVectorResource(id = R.drawable.ic_cloud_download)
+//                    val failedImage = animatedVectorResource(id = R.drawable.ic_cloud_download)
                     //val atEnd by remember { mutableStateOf(false) }
 
                     Image(
-                        painter = failedImage.painterFor(atEnd = false),
+//                        painter = failedImage.painterFor(atEnd = false),
+                        painter = painterResource(id = R.drawable.ic_cloud_download),
                         modifier = Modifier.size(72.dp),
                         contentDescription = product.name,
                     )

@@ -19,8 +19,7 @@ android {
         composeOptions.kotlinCompilerExtensionVersion = Depends.Versions.composeVersion
         composeOptions.kotlinCompilerVersion = Depends.Versions.kotlinVersion
     }
-
-    compileSdkVersion(Depends.Versions.androidCompileSdkVersion)
+    compileSdk = Depends.Versions.androidCompileSdkVersion
 
     defaultConfig {
         multiDexEnabled = true
@@ -108,6 +107,7 @@ dependencies {
     implementation(Depends.Libraries.compose_foundation)
     implementation(Depends.Libraries.compose_foundation_layout)
     implementation(Depends.Libraries.compose_ui)
+    implementation(Depends.Libraries.compose_ui_text)
     implementation(Depends.Libraries.compose_material)
     implementation(Depends.Libraries.compose_runtime)
     implementation(Depends.Libraries.compose_paging)
