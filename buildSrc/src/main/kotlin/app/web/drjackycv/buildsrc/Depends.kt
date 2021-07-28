@@ -39,15 +39,15 @@ object Depends {
         const val coilVersion = "0.14.0"
         const val autoDispose = "2.0.0"
         const val dataStorePreferenceVersion = "1.0.0-beta02"
-        const val composeVersion = "1.0.0-rc02"
-        const val composePagingVersion = "1.0.0-alpha11"
-        const val composeNavigationVersion = "2.4.0-alpha04"
+        const val composeVersion = "1.0.0"
+        const val composePagingVersion = "1.0.0-alpha12"
+        const val composeNavigationVersion = "2.4.0-alpha05"
         const val uiTestVersion = "1.0.0-alpha07"
         const val uiToolingVersion = "1.0.0-alpha07"
         const val uiFrameworkVersion = "0.1.0-dev10"
         const val uiVersion = "0.1.0-dev14"
         const val activityComposeVersion = "1.3.0-rc02"
-        const val composeTextVersion = "1.0.0-beta04"
+        const val composeTextVersion = "1.0.0"
 
         const val mockitoKotlinVersion = "2.2.0"
         const val mockitoCoreVersion = "3.11.1"
@@ -60,7 +60,7 @@ object Depends {
         const val sonarqubeVersion = "3.3"
         const val detektVersion = "1.17.1"
         const val checkDependencyVersionsVersion = "0.38.0"
-        const val gradleDoctorVersion = "0.7.0"
+        const val gradleDoctorVersion = "0.7.1"
         const val leakCanaryVersion = "2.7"
     }
 
