@@ -2,7 +2,6 @@ package app.web.drjackycv.presentation.main
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.material.FloatingActionButton
@@ -15,6 +14,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -45,7 +45,6 @@ class MainActivity : AppCompatActivity() {
         var darkModeState: MutableState<Boolean> = mutableStateOf(false)
     }
 
-    private val viewModel: ProductsListViewModel by viewModels()
     private var uiStateJob: Job? = null
     private val isDark = ThemeState.darkModeState.value
 
@@ -57,7 +56,6 @@ class MainActivity : AppCompatActivity() {
         setContent {
             BaseTheme {
                 MainLayout(
-                    viewModel = viewModel,
                     themeFAB = {
                         FloatingActionButton(
                             onClick = {
@@ -149,11 +147,11 @@ class MainActivity : AppCompatActivity() {
 
 @Composable
 fun MainLayout(
-    viewModel: ProductsListViewModel,
     themeFAB: @Composable () -> Unit,
 ) {
 
     val navController = rememberNavController()
+    val viewModel = hiltViewModel<ProductsListViewModel>()
 
     NavHost(navController = navController, startDestination = Screens.ProductsScreen.route) {
         composable(Screens.ChooseScreen.route) {

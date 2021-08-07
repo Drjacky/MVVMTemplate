@@ -134,6 +134,7 @@ dependencies {
     implementation(Depends.Libraries.dagger)
     kapt(Depends.Libraries.dagger_compiler)
     implementation(Depends.Libraries.dagger_hilt_android)
+    implementation(Depends.Libraries.dagger_hilt_navigation_compose)
     kapt(Depends.Libraries.dagger_hilt_compiler)
 //    kapt(Depends.Libraries.dagger_hilt_android_compiler)
 //    kapt(Depends.Libraries.hilt_androidx_compiler)

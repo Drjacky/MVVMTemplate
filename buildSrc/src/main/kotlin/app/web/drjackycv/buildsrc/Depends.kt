@@ -6,19 +6,19 @@ object Depends {
 
     object Versions {
         const val appVersionCode = 1_000_000
-        const val gradleVersion = "4.2.1"//"7.0.0-beta04"//"7.1.0-alpha01"
+        const val gradleVersion = "4.2.1"//"7.1.0-alpha06"//"4.2.1"//"7.0.0-beta04"
         const val androidCompileSdkVersion = 30
         const val targetSdkVersion = 30
         const val minSdkVersion = 21
         const val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        const val kotlinVersion = "1.5.10"
+        const val kotlinVersion = "1.5.10" //"1.5.21"
         const val rxKotlinVersion = "3.0.1"
         const val rxAndroidVersion = "3.0.0"
         const val rxJavaVersion = "3.0.13"
         const val rxBinding = "4.0.0"
         const val retrofit2Version = "2.9.0"
         const val okhttpLoggingVersion = "5.0.0-alpha.2"
-        const val chuckerVersion = "3.5.1"
+        const val chuckerVersion = "3.5.2"
         const val gsonVersion = "2.9.0"
         const val lifecycleVersion = "2.4.0-alpha02"
         const val constraintLayoutVersion = "2.1.0-rc01"
@@ -30,11 +30,12 @@ object Depends {
         const val multidexVersion = "2.0.1"
         const val fragmentExtVersion = "1.3.3"
         const val recyclerviewVersion = "1.2.1"
-        const val hiltVersion = "2.37"
+        const val hiltVersion = "2.38.1"
         const val hiltCompilerVersion = "1.0.0"
+        const val hiltNavigationComposeVersion = "1.0.0-alpha03"
         const val javaxInjectVersion = "1"
         const val timberVersion = "4.7.1"
-        const val lottieVersion = "3.7.2"
+        const val lottieVersion = "4.0.0"
         const val glideVersion = "4.12.0"
         const val coilVersion = "0.15.0"
         const val autoDispose = "2.0.0"
@@ -54,8 +55,8 @@ object Depends {
         const val mockitoInlineVersion = "3.11.1"
         const val espressoVersion = "3.4.0-beta01"
         const val junitVersion = "4.13.2"
-        const val supportTestVersion = "1.4.0-beta01"
-        const val testCoreVersion = "1.4.0-beta01"
+        const val supportTestVersion = "1.4.0"
+        const val testCoreVersion = "1.4.0"
         const val testExtJunitVersion = "1.1.3-beta01"
         const val sonarqubeVersion = "3.3"
         const val detektVersion = "1.17.1"
@@ -94,6 +95,8 @@ object Depends {
             "androidx.hilt:hilt-compiler:${Versions.hiltCompilerVersion}"*/
         /*const val dagger_hilt_core = "com.google.dagger:hilt-core:${Versions.hiltVersion}"*/
         const val dagger_hilt_compiler = "com.google.dagger:hilt-compiler:${Versions.hiltVersion}"
+        const val dagger_hilt_navigation_compose =
+            "androidx.hilt:hilt-navigation-compose:${Versions.hiltNavigationComposeVersion}"
         const val fragment_ktx =
             "androidx.fragment:fragment-ktx:${Versions.fragmentExtVersion}"
         const val android_core_ktx =

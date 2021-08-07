@@ -59,7 +59,7 @@ tasks.withType<KotlinCompile> {
         freeCompilerArgs = listOf(
             "-XXLanguage:+InlineClasses",
             "-Xskip-prerelease-check",
-            "-Xallow-jvm-ir-dependencies",
+            //"-Xallow-jvm-ir-dependencies",
             "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi",
             "-Xopt-in=kotlin.RequiresOptIn",
             "-Xuse-experimental=androidx.compose.foundation.ExperimentalFoundationApi",
@@ -77,6 +77,7 @@ dependencies {
     implementation(Depends.Libraries.dagger)
     kapt(Depends.Libraries.dagger_compiler)
     implementation(Depends.Libraries.dagger_hilt_android)
+    implementation(Depends.Libraries.dagger_hilt_navigation_compose)
 //    kapt(Depends.Libraries.dagger_hilt_android_compiler)
 //    implementation(Depends.Libraries.dagger_hilt_core)
     kapt(Depends.Libraries.dagger_hilt_compiler)
