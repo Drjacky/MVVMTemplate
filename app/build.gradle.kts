@@ -103,7 +103,7 @@ tasks.withType<KotlinCompile> {
         freeCompilerArgs = listOf(
             "-XXLanguage:+InlineClasses"
         )
-        useIR = true
+        //useIR = true
     }
 }
 

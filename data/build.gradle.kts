@@ -28,7 +28,7 @@ android {
     }
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
-        useIR = true
+        //useIR = true
     }
     sourceSets {
         map { it.java.srcDir("src/${it.name}/kotlin") }

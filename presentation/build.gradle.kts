@@ -65,7 +65,7 @@ tasks.withType<KotlinCompile> {
             "-Xuse-experimental=androidx.compose.foundation.ExperimentalFoundationApi",
             "-Xuse-experimental=androidx.compose.ui.ExperimentalComposeUiApi"
         )
-        useIR = true
+        //useIR = true
     }
 }
 
