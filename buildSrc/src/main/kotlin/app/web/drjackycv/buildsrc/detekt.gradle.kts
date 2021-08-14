@@ -21,7 +21,7 @@ detekt {
     buildUponDefaultConfig = true
     baseline = baselineFile
     config = files("config/detekt/detekt.yml")
-    input = objects.fileCollection().from(
+    source = objects.fileCollection().from(
         DetektExtension.DEFAULT_SRC_DIR_JAVA,
         "src/test/java",
         DetektExtension.DEFAULT_SRC_DIR_KOTLIN,
