@@ -11,10 +11,10 @@ object Depends {
         const val targetSdkVersion = 30
         const val minSdkVersion = 21
         const val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        const val kotlinVersion = "1.5.21"
+        const val kotlinVersion = "1.5.30"
         const val rxKotlinVersion = "3.0.1"
         const val rxAndroidVersion = "3.0.0"
-        const val rxJavaVersion = "3.1.0"
+        const val rxJavaVersion = "3.1.1"
         const val rxBinding = "4.0.0"
         const val retrofit2Version = "2.9.0"
         const val okhttpLoggingVersion = "5.0.0-alpha.2"
@@ -35,9 +35,9 @@ object Depends {
         const val hiltNavigationComposeVersion = "1.0.0-alpha03"
         const val javaxInjectVersion = "1"
         const val timberVersion = "5.0.1"
-        const val lottieVersion = "4.0.0"
+        const val lottieVersion = "4.1.0"
         const val glideVersion = "4.12.0"
-        const val autoDispose = "2.1.0"
+        const val autoDispose = "2.1.1"
         const val dataStorePreferenceVersion = "1.0.0"
 
         const val mockitoKotlinVersion = "2.2.0"
@@ -49,9 +49,9 @@ object Depends {
         const val testCoreVersion = "1.4.0"
         const val testExtJunitVersion = "1.1.3"
         const val sonarqubeVersion = "3.3"
-        const val detektVersion = "1.18.0"
+        const val detektVersion = "1.18.1"
         const val checkDependencyVersionsVersion = "0.39.0"
-        const val gradleDoctorVersion = "0.7.1"
+        const val gradleDoctorVersion = "0.7.2"
         const val leakCanaryVersion = "2.7"
     }
 
