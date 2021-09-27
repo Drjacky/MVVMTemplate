@@ -13,7 +13,7 @@ import app.web.drjackycv.presentation.databinding.ActivityMainBinding
 import app.web.drjackycv.presentation.datastore.DataStoreManager
 import app.web.drjackycv.presentation.extension.collectIn
 import app.web.drjackycv.presentation.extension.setOnReactiveClickListener
-import app.web.drjackycv.presentation.extension.viewBinding
+import app.web.drjackycv.presentation.extension.viewInflateBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
@@ -23,7 +23,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private val binding by viewBinding(ActivityMainBinding::inflate)
+    private val binding by viewInflateBinding(ActivityMainBinding::inflate)
     private val navController: NavController by lazy {
         findNavController(R.id.activityMainChooseHostFragment)
     }

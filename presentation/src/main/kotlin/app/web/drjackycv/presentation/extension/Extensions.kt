@@ -5,6 +5,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
+import androidx.lifecycle.Observer
 import androidx.viewbinding.ViewBinding
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
@@ -13,12 +14,10 @@ fun <T> LifecycleOwner.observe(liveData: LiveData<T>, action: (t: T) -> Unit) {
     liveData.observe(this, Observer { it?.let { t -> action(t) } })
 }
 
-/*fun <T> Fragment.viewBinding(initialise: () -> T): ReadOnlyProperty<Fragment, T> =
-    object : ReadOnlyProperty<Fragment, T>, DefaultLifecycleObserver {*/
 class FragmentViewBindingDelegate<T : ViewBinding>(
     val fragment: Fragment,
-    val viewBindingFactory: (View) -> T,
-    val cleanUp: ((T?) -> Unit)?
+    val viewBindingFactory: (Fragment) -> T,
+    val cleanUp: ((T?) -> Unit)?,
 ) : ReadOnlyProperty<Fragment, T> {
 
     // A backing property to hold our value
@@ -54,28 +53,36 @@ class FragmentViewBindingDelegate<T : ViewBinding>(
 
     override fun getValue(
         thisRef: Fragment,
-        property: KProperty<*>
+        property: KProperty<*>,
     ): T {
+        val binding = binding
+        if (binding != null) {
+            return binding
+        }
+
         val lifecycle = fragment.viewLifecycleOwner.lifecycle
         if (lifecycle.currentState.isAtLeast(Lifecycle.State.INITIALIZED).not()) {
             throw IllegalStateException("Should not attempt to get bindings when Fragment views are destroyed.")
         }
 
-        // Return the backing property if it's set, or initialise
-        return this.binding ?: viewBindingFactory(fragment.requireView()).also {
-            this.binding = it
-        }
+        return viewBindingFactory(thisRef).also { this.binding = it }
     }
 }
 
-fun <T : ViewBinding> Fragment.viewBinding(
-    viewBindingFactory: (View) -> T,
-    cleanUp: ((T?) -> Unit)? = null,
-) =
-    FragmentViewBindingDelegate(this, viewBindingFactory, cleanUp)
+inline fun <T : ViewBinding> Fragment.viewBinding(
+    crossinline viewBindingFactory: (View) -> T,
+    noinline cleanUp: ((T?) -> Unit)? = null,
+): FragmentViewBindingDelegate<T> =
+    FragmentViewBindingDelegate(this, { f -> viewBindingFactory(f.requireView()) }, cleanUp)
 
-inline fun <T : ViewBinding> AppCompatActivity.viewBinding(
-    crossinline bindingInflater: (LayoutInflater) -> T
+inline fun <T : ViewBinding> Fragment.viewInflateBinding(
+    crossinline bindingInflater: (LayoutInflater) -> T,
+    noinline cleanUp: ((T?) -> Unit)? = null,
+): FragmentViewBindingDelegate<T> =
+    FragmentViewBindingDelegate(this, { f -> bindingInflater(f.layoutInflater) }, cleanUp)
+
+inline fun <T : ViewBinding> AppCompatActivity.viewInflateBinding(
+    crossinline bindingInflater: (LayoutInflater) -> T,
 ) =
     lazy(LazyThreadSafetyMode.NONE) {
         bindingInflater.invoke(layoutInflater)
