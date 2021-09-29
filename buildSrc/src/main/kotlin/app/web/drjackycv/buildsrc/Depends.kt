@@ -11,7 +11,7 @@ object Depends {
         const val targetSdkVersion = 30
         const val minSdkVersion = 21
         const val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        const val kotlinVersion = "1.5.10"
+        const val kotlinVersion = "1.5.21"
         const val rxKotlinVersion = "3.0.1"
         const val rxAndroidVersion = "3.0.0"
         const val rxJavaVersion = "3.1.1"
@@ -40,7 +40,7 @@ object Depends {
         const val coilVersion = "0.15.0"
         const val autoDispose = "2.1.1"
         const val dataStorePreferenceVersion = "1.0.0"
-        const val composeVersion = "1.0.0"
+        const val composeVersion = "1.0.2"
         const val composePagingVersion = "1.0.0-alpha12"
         const val composeNavigationVersion = "2.4.0-alpha09"
         const val uiTestVersion = "1.0.0-alpha07"
