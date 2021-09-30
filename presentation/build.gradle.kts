@@ -14,7 +14,6 @@ plugins {
 android {
     buildFeatures {
         compose = true
-        dataBinding = false
         viewBinding = true
         composeOptions.kotlinCompilerExtensionVersion = Depends.Versions.composeVersion
         composeOptions.kotlinCompilerVersion = Depends.Versions.kotlinVersion
@@ -24,8 +23,8 @@ android {
     defaultConfig {
         multiDexEnabled = true
         vectorDrawables.useSupportLibrary = true
-        minSdkVersion(Depends.Versions.minSdkVersion)
-        targetSdkVersion(Depends.Versions.targetSdkVersion)
+        minSdk = Depends.Versions.minSdkVersion
+        targetSdk = Depends.Versions.targetSdkVersion
         testInstrumentationRunner =
             Depends.Versions.testInstrumentationRunner
         consumerProguardFiles("consumer-rules.pro")

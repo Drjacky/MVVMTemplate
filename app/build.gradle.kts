@@ -11,20 +11,16 @@ plugins {
 
 android {
     buildFeatures {
-        dataBinding = false
         viewBinding = true
     }
 
-    buildFeatures {
-        dataBinding = true
-    }
     compileSdk = Depends.Versions.androidCompileSdkVersion
 
     defaultConfig {
         multiDexEnabled = true
         applicationId = "app.web.drjackycv.mvvmtemplate"
-        minSdkVersion(Depends.Versions.minSdkVersion)
-        targetSdkVersion(Depends.Versions.targetSdkVersion)
+        minSdk = Depends.Versions.minSdkVersion
+        targetSdk = Depends.Versions.targetSdkVersion
         versionCode = Depends.Versions.appVersionCode
         versionName = Depends.generateVersionName()
         testInstrumentationRunner =
