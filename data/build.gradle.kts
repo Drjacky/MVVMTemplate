@@ -10,14 +10,12 @@ plugins {
 
 android {
 
-    compileSdkVersion(Depends.Versions.androidCompileSdkVersion)
+    compileSdk = Depends.Versions.androidCompileSdkVersion
 
     defaultConfig {
         multiDexEnabled = true
         minSdkVersion(Depends.Versions.minSdkVersion)
         targetSdkVersion(Depends.Versions.targetSdkVersion)
-        versionCode = Depends.Versions.appVersionCode
-        versionName = Depends.generateVersionName()
         testInstrumentationRunner =
             Depends.Versions.testInstrumentationRunner
         consumerProguardFiles("consumer-rules.pro")

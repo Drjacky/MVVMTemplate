@@ -26,8 +26,6 @@ android {
         vectorDrawables.useSupportLibrary = true
         minSdkVersion(Depends.Versions.minSdkVersion)
         targetSdkVersion(Depends.Versions.targetSdkVersion)
-        versionCode = Depends.Versions.appVersionCode
-        versionName = Depends.generateVersionName()
         testInstrumentationRunner =
             Depends.Versions.testInstrumentationRunner
         consumerProguardFiles("consumer-rules.pro")
