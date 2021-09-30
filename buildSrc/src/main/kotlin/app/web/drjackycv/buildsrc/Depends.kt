@@ -6,12 +6,13 @@ object Depends {
 
     object Versions {
         const val appVersionCode = 1_000_000
-        const val gradleVersion = "4.2.1"//"7.1.0-alpha06"//"4.2.1"//"7.0.0-beta04"
+        const val gradleVersion = "7.1.0-alpha05"//"7.1.0-alpha06"//"4.2.1"//"7.0.0-beta04"
         const val androidCompileSdkVersion = 31
         const val targetSdkVersion = 31
-        const val minSdkVersion = 21
+        const val minSdkVersion =
+            24 //Set it back to 21 when https://developer.android.com/jetpack/androidx/releases/compose-runtime#1.0.0
         const val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        const val kotlinVersion = "1.5.21"
+        const val kotlinVersion = "1.5.30"
         const val rxKotlinVersion = "3.0.1"
         const val rxAndroidVersion = "3.0.0"
         const val rxJavaVersion = "3.1.1"
@@ -40,7 +41,7 @@ object Depends {
         const val coilVersion = "0.15.0"
         const val autoDispose = "2.1.1"
         const val dataStorePreferenceVersion = "1.0.0"
-        const val composeVersion = "1.0.2"
+        const val composeVersion = "1.0.3"
         const val composePagingVersion = "1.0.0-alpha12"
         const val composeNavigationVersion = "2.4.0-alpha09"
         const val composeTextVersion = "1.0.1"
