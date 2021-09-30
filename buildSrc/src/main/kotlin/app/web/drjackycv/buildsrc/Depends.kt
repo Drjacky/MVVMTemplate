@@ -43,13 +43,9 @@ object Depends {
         const val composeVersion = "1.0.2"
         const val composePagingVersion = "1.0.0-alpha12"
         const val composeNavigationVersion = "2.4.0-alpha09"
-        const val uiTestVersion = "1.0.0-alpha07"
-        const val uiToolingVersion = "1.0.0-alpha07"
-        const val uiFrameworkVersion = "0.1.0-dev10"
-        const val uiVersion = "0.1.0-dev14"
-        const val activityComposeVersion = "1.3.1"
         const val composeTextVersion = "1.0.1"
-        const val composeThemeAdapter = "1.0.2"
+        const val activityComposeVersion = "1.3.1"
+        const val materialComposeThemeAdapter = "1.0.2"
 
         const val mockitoKotlinVersion = "2.2.0"
         const val mockitoCoreVersion = "3.12.4"
@@ -185,14 +181,8 @@ object Depends {
         const val compose_paging = "androidx.paging:paging-compose:${Versions.composePagingVersion}"
         const val compose_material_icons_extended =
             "androidx.compose.material:material-icons-extended:${Versions.composeVersion}"
-        const val ui_test = "androidx.ui:ui-test:${Versions.uiTestVersion}"
-        const val ui_tooling = "androidx.ui:ui-tooling:${Versions.uiToolingVersion}"
-        const val ui_framework = "androidx.ui:ui-framework:${Versions.uiFrameworkVersion}"
-        const val ui_foundation = "androidx.ui:ui-foundation:${Versions.uiVersion}"
-        const val ui_layout = "androidx.ui:ui-layout:${Versions.uiVersion}"
-        const val ui_material = "androidx.ui:ui-material:${Versions.uiVersion}"
         const val material_compose_theme_adapter =
-            "com.google.android.material:compose-theme-adapter:${Versions.composeThemeAdapter}"
+            "com.google.android.material:compose-theme-adapter:${Versions.materialComposeThemeAdapter}"
         const val activity_compose =
             "androidx.activity:activity-compose:${Versions.activityComposeVersion}"
     }
