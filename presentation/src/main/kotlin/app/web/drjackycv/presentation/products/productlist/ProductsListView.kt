@@ -1,5 +1,6 @@
 package app.web.drjackycv.presentation.products.productlist
 
+import androidx.compose.animation.graphics.ExperimentalAnimationGraphicsApi
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
@@ -8,7 +9,10 @@ import androidx.compose.runtime.Composable
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import app.web.drjackycv.presentation.products.entity.BeerUI
+import coil.annotation.ExperimentalCoilApi
 
+@ExperimentalCoilApi
+@ExperimentalAnimationGraphicsApi
 @Composable
 fun ProductsListView(
     viewModel: ProductsListViewModel,

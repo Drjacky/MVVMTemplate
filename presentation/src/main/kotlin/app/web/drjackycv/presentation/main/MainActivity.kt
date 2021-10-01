@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.compose.animation.graphics.ExperimentalAnimationGraphicsApi
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
@@ -39,6 +40,7 @@ sealed class Screens(val route: String, val label: String, val icon: ImageVector
     object ProductDetailsScreen : Screens("ProductDetails", "ProductDetails")
 }
 
+@ExperimentalAnimationGraphicsApi
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
@@ -146,6 +148,7 @@ class MainActivity : AppCompatActivity() {
 
 }
 
+@ExperimentalAnimationGraphicsApi
 @Composable
 fun MainLayout(
     themeFAB: @Composable () -> Unit,
@@ -179,6 +182,7 @@ fun MainLayout(
 
 }
 
+@ExperimentalAnimationGraphicsApi
 @Preview
 @Composable
 fun MainLayoutPreview() {

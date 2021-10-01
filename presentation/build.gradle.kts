@@ -111,6 +111,7 @@ dependencies {
     implementation(Depends.Libraries.compose_paging)
     implementation(Depends.Libraries.compose_navigation)
     implementation(Depends.Libraries.compose_material_icons_extended)
+    implementation(Depends.Libraries.composeAnimationGraphics)
 //    implementation(Depends.Libraries.compose_runtime_dispatch)
 //    implementation(Depends.Libraries.compose_runtime_saved_instance_state)
 //    implementation(Depends.Libraries.compose_navigation)
@@ -128,7 +129,7 @@ dependencies {
     //ui
     implementation(Depends.Libraries.glide)
     kapt(Depends.Libraries.glide_compiler)
-    implementation(Depends.Libraries.coil)
+    implementation(Depends.Libraries.coil_compose)
     implementation(Depends.Libraries.lottie)
     //test
     androidTestImplementation(Depends.Libraries.test_runner)

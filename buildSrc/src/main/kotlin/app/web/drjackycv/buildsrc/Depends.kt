@@ -12,7 +12,7 @@ object Depends {
         const val minSdkVersion =
             24 //Set it back to 21 when https://developer.android.com/jetpack/androidx/releases/compose-runtime#1.0.0
         const val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        const val kotlinVersion = "1.5.30"
+        const val kotlinVersion = "1.5.31"
         const val rxKotlinVersion = "3.0.1"
         const val rxAndroidVersion = "3.0.0"
         const val rxJavaVersion = "3.1.1"
@@ -38,15 +38,16 @@ object Depends {
         const val timberVersion = "5.0.1"
         const val lottieVersion = "4.1.0"
         const val glideVersion = "4.12.0"
-        const val coilVersion = "0.15.0"
+        const val coilComposeVersion = "1.3.2"
         const val autoDispose = "2.1.1"
         const val dataStorePreferenceVersion = "1.0.0"
-        const val composeVersion = "1.0.3"
+        const val composeVersion = "1.1.0-alpha05"
         const val composePagingVersion = "1.0.0-alpha12"
         const val composeNavigationVersion = "2.4.0-alpha09"
         const val composeTextVersion = "1.0.1"
         const val activityComposeVersion = "1.3.1"
         const val materialComposeThemeAdapter = "1.0.2"
+        const val composeConstraintLayout = "1.0.0-beta02"
 
         const val mockitoKotlinVersion = "2.2.0"
         const val mockitoCoreVersion = "3.12.4"
@@ -149,7 +150,7 @@ object Depends {
         const val rx_binding3 = "com.jakewharton.rxbinding4:rxbinding:${Versions.rxBinding}"
         const val glide = "com.github.bumptech.glide:glide:${Versions.glideVersion}"
         const val glide_compiler = "com.github.bumptech.glide:compiler:${Versions.glideVersion}"
-        const val coil = "com.google.accompanist:accompanist-coil:${Versions.coilVersion}"
+        const val coil_compose = "io.coil-kt:coil-compose:${Versions.coilComposeVersion}"
         const val lottie = "com.airbnb.android:lottie:${Versions.lottieVersion}"
         const val autodispose = "com.uber.autodispose2:autodispose:${Versions.autoDispose}"
         const val autodispose_android =
@@ -186,6 +187,10 @@ object Depends {
             "com.google.android.material:compose-theme-adapter:${Versions.materialComposeThemeAdapter}"
         const val activity_compose =
             "androidx.activity:activity-compose:${Versions.activityComposeVersion}"
+        const val composeAnimationGraphics =
+            "androidx.compose.animation:animation-graphics:${Versions.composeVersion}"
+        const val composeConstraintLayout =
+            "androidx.constraintlayout:constraintlayout-compose:${Versions.composeConstraintLayout}"
     }
 
     object Environments {
