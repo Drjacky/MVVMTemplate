@@ -6,7 +6,7 @@ object Depends {
 
     object Versions {
         const val appVersionCode = 1_000_000
-        const val gradleVersion = "7.1.0-alpha05"//"7.1.0-alpha06"//"4.2.1"//"7.0.0-beta04"
+        const val gradleVersion = "7.1.0-alpha05"
         const val androidCompileSdkVersion = 31
         const val targetSdkVersion = 31
         const val minSdkVersion =
@@ -21,7 +21,7 @@ object Depends {
         const val okhttpLoggingVersion = "5.0.0-alpha.2"
         const val chuckerVersion = "3.5.2"
         const val gsonVersion = "2.9.0"
-        const val lifecycleVersion = "2.4.0-beta01"
+        const val lifecycleVersion = "2.4.0-rc01"
         const val constraintLayoutVersion = "2.1.1"
         const val supportVersion = "1.4.0-alpha03"
         const val materialVersion = "1.4.0"
@@ -31,8 +31,7 @@ object Depends {
         const val multidexVersion = "2.0.1"
         const val fragmentExtVersion = "1.3.3"
         const val recyclerviewVersion = "1.2.1"
-        const val hiltVersion = "2.38.1"
-        const val hiltCompilerVersion = "1.0.0"
+        const val hiltVersion = "2.39.1"
         const val hiltNavigationComposeVersion = "1.0.0-alpha03"
         const val javaxInjectVersion = "1"
         const val timberVersion = "5.0.1"
@@ -44,10 +43,10 @@ object Depends {
         const val composeVersion = "1.1.0-alpha05"
         const val composePagingVersion = "1.0.0-alpha12"
         const val composeNavigationVersion = "2.4.0-alpha09"
-        const val composeTextVersion = "1.0.1"
+        const val composeTextVersion = "1.1.0-alpha05"
         const val activityComposeVersion = "1.3.1"
-        const val materialComposeThemeAdapter = "1.0.2"
-        const val composeConstraintLayout = "1.0.0-beta02"
+        const val materialComposeThemeAdapter = "1.0.3"
+        const val composeConstraintLayout = "1.0.0-rc01"
 
         const val mockitoKotlinVersion = "2.2.0"
         const val mockitoCoreVersion = "3.12.4"
