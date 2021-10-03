@@ -6,6 +6,7 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import app.web.drjackycv.presentation.products.entity.BeerUI
@@ -15,7 +16,7 @@ import coil.annotation.ExperimentalCoilApi
 @ExperimentalAnimationGraphicsApi
 @Composable
 fun ProductsListView(
-    viewModel: ProductsListViewModel,
+    viewModel: ProductsListViewModel = hiltViewModel(),
     themeFAB: @Composable () -> Unit,
     selectedProduct: (product: BeerUI) -> Unit,
 ) {

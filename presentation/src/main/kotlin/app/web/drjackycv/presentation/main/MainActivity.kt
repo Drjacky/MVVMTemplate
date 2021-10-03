@@ -16,7 +16,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -28,7 +27,6 @@ import app.web.drjackycv.presentation.datastore.DataStoreManager
 import app.web.drjackycv.presentation.extension.collectIn
 import app.web.drjackycv.presentation.products.choose.ChooseView
 import app.web.drjackycv.presentation.products.productlist.ProductsListView
-import app.web.drjackycv.presentation.products.productlist.ProductsListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
@@ -155,7 +153,6 @@ fun MainLayout(
 ) {
 
     val navController = rememberNavController()
-    val viewModel = hiltViewModel<ProductsListViewModel>()
 
     NavHost(navController = navController, startDestination = Screens.ProductsScreen.route) {
         composable(Screens.ChooseScreen.route) {
@@ -165,7 +162,6 @@ fun MainLayout(
         }
         composable(route = Screens.ProductsScreen.route) { backStackEntry ->
             ProductsListView(
-                viewModel = viewModel,
                 themeFAB = {
                     themeFAB()
                 }
