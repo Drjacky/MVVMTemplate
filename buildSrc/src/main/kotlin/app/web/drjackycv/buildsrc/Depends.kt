@@ -36,6 +36,7 @@ object Depends {
         const val javaxInjectVersion = "1"
         const val timberVersion = "5.0.1"
         const val lottieVersion = "4.1.0"
+        const val paletteVersion = "1.0.0"
         const val glideVersion = "4.12.0"
         const val coilComposeVersion = "1.3.2"
         const val autoDispose = "2.1.1"
@@ -151,6 +152,7 @@ object Depends {
         const val glide_compiler = "com.github.bumptech.glide:compiler:${Versions.glideVersion}"
         const val coil_compose = "io.coil-kt:coil-compose:${Versions.coilComposeVersion}"
         const val lottie = "com.airbnb.android:lottie:${Versions.lottieVersion}"
+        const val palette = "androidx.palette:palette:${Versions.paletteVersion}"
         const val autodispose = "com.uber.autodispose2:autodispose:${Versions.autoDispose}"
         const val autodispose_android =
             "com.uber.autodispose2:autodispose-android:${Versions.autoDispose}"

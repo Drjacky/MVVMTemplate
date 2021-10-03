@@ -130,6 +130,7 @@ dependencies {
     kapt(Depends.Libraries.glide_compiler)
     implementation(Depends.Libraries.coil_compose)
     implementation(Depends.Libraries.lottie)
+    implementation(Depends.Libraries.palette)
     //test
     androidTestImplementation(Depends.Libraries.test_runner)
     androidTestImplementation(Depends.Libraries.test_rules)

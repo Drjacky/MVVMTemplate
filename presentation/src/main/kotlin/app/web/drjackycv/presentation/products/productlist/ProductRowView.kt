@@ -1,6 +1,7 @@
 package app.web.drjackycv.presentation.products.productlist
 
 //import androidx.compose.ui.res.animatedVectorResource
+import android.graphics.drawable.BitmapDrawable
 import androidx.compose.animation.graphics.ExperimentalAnimationGraphicsApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -8,19 +9,24 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.*
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.palette.graphics.Palette
 import app.web.drjackycv.presentation.R
+import app.web.drjackycv.presentation.main.MainActivity
 import app.web.drjackycv.presentation.products.entity.BeerUI
+import coil.ImageLoader
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.ImagePainter
 import coil.compose.rememberImagePainter
+import coil.request.SuccessResult
 
 @ExperimentalAnimationGraphicsApi
 @ExperimentalCoilApi
@@ -28,13 +34,17 @@ import coil.compose.rememberImagePainter
 @Composable
 fun ProductRowView(product: BeerUI, selectedProduct: (network: BeerUI) -> Unit) {
 
+    val defaultColor = MaterialTheme.colors.surface
+    val cardColor = remember { mutableStateOf(defaultColor) }
+    val isDark = remember { mutableStateOf(MainActivity.ThemeState.darkModeState.value) }
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .clickable(onClick = { selectedProduct(product) })
             .padding(4.dp),
         shape = RoundedCornerShape(4.dp),
-        backgroundColor = MaterialTheme.colors.surface,
+        backgroundColor = cardColor.value,
         elevation = 2.dp
     ) {
         Row() {
@@ -45,20 +55,29 @@ fun ProductRowView(product: BeerUI, selectedProduct: (network: BeerUI) -> Unit) 
                 shape = CircleShape,
                 color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f)
             ) {
-                val painter = rememberImagePainter(
+                val imagePainter = rememberImagePainter(
                     data = product.imageUrl,
                     builder = {
                         crossfade(true)
                         placeholder(R.drawable.ic_cloud_download)
+                        allowHardware(false)
                     }
                 )
+
                 Image(
-                    painter = painter,
+                    painter = imagePainter,
                     modifier = Modifier.size(72.dp),
                     contentDescription = product.name,
                 )
 
-                when (painter.state) {
+                when (imagePainter.state) {
+                    is ImagePainter.State.Success -> {
+                        ChangeCardColor(
+                            imagePainter = imagePainter,
+                            cardColor = cardColor,
+                            isDark = isDark
+                        )
+                    }
                     is ImagePainter.State.Loading -> {
                         CircularProgressIndicator(modifier = Modifier.padding(8.dp))
                     }
@@ -97,6 +116,42 @@ fun ProductRowView(product: BeerUI, selectedProduct: (network: BeerUI) -> Unit) 
         }
     }
     Spacer(modifier = Modifier.height(2.dp))
+}
+
+@Composable
+private fun ChangeCardColor(
+    imagePainter: ImagePainter,
+    cardColor: MutableState<Color>,
+    isDark: MutableState<Boolean>
+) {
+    val context = LocalContext.current
+    val imageLoader = ImageLoader(context)
+
+    LaunchedEffect(key1 = imagePainter) {
+        val result =
+            (imageLoader.execute(imagePainter.request) as SuccessResult).drawable
+        val bitmap = (result as BitmapDrawable).bitmap
+
+        if (isDark.value) {
+            val vibrant = Palette.from(bitmap)
+                .generate()
+                //.vibrantSwatch
+                .darkVibrantSwatch
+
+            vibrant?.let {
+                cardColor.value = Color(it.rgb)
+            }
+        } else {
+            val vibrant = Palette.from(bitmap)
+                .generate()
+                //.vibrantSwatch
+                .lightVibrantSwatch
+
+            vibrant?.let {
+                cardColor.value = Color(it.rgb)
+            }
+        }
+    }
 }
 
 @ExperimentalAnimationGraphicsApi
