@@ -111,15 +111,6 @@ dependencies {
     implementation(Depends.Libraries.paging_runtime_ktx)
     implementation(Depends.Libraries.paging_rx)
     implementation(Depends.Libraries.dataStore_preferences)
-    //compose
-//    implementation(Depends.Libraries.compose_foundation)
-//    implementation(Depends.Libraries.compose_foundation_layout)
-    implementation(Depends.Libraries.compose_ui)
-    implementation(Depends.Libraries.compose_material)
-//    implementation(Depends.Libraries.compose_runtime)
-//    implementation(Depends.Libraries.compose_runtime_dispatch)
-//    implementation(Depends.Libraries.compose_runtime_saved_instance_state)
-//    implementation(Depends.Libraries.compose_navigation)
     //dependency injection
     implementation(Depends.Libraries.dagger)
     kapt(Depends.Libraries.dagger_compiler)
