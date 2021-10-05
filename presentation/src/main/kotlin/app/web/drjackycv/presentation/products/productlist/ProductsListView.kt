@@ -6,12 +6,15 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import app.web.drjackycv.presentation.products.entity.BeerUI
 import coil.annotation.ExperimentalCoilApi
+import kotlinx.coroutines.flow.flowOf
 
 @ExperimentalCoilApi
 @ExperimentalAnimationGraphicsApi
@@ -68,12 +71,27 @@ fun ProductsListContent(
         }
     }
 }
-/*
 
 @ExperimentalCoilApi
 @ExperimentalAnimationGraphicsApi
 @Preview
 @Composable
 fun ProductsListContentPreview() {
-    ProductsListContent(lazyProductList = ,themeFAB = {}, popBackStack = {}, onSelectedProduct = { 1 })
-}*/
+    val items = listOf(
+        BeerUI(
+            id = 1,
+            name = "name",
+            tagline = "tagline",
+            description = "description",
+            imageUrl = "https://images.punkapi.com/v2/5.png",
+            abv = 4.9
+        )
+    )
+    val lazyProductList = flowOf(PagingData.from(items)).collectAsLazyPagingItems()
+
+    ProductsListContent(
+        lazyProductList = lazyProductList,
+        themeFAB = {},
+        popBackStack = {},
+        onSelectedProduct = { 1 })
+}
