@@ -45,7 +45,7 @@ object Depends {
         const val composePagingVersion = "1.0.0-alpha12"
         const val composeNavigationVersion = "2.4.0-alpha09"
         const val composeTextVersion = "1.1.0-alpha05"
-        const val activityComposeVersion = "1.3.1"
+        const val activityComposeVersion = "1.4.0-beta01"
         const val materialComposeThemeAdapter = "1.0.3"
         const val composeConstraintLayout = "1.0.0-rc01"
 

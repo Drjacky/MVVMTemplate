@@ -24,9 +24,9 @@ class ProductDetailFragment : Fragment(R.layout.fragment_product_detail) {
         val composeView = ComposeView(requireContext()).apply {
             layoutParams = ViewGroup.LayoutParams(WRAP_CONTENT, WRAP_CONTENT)
             setContent {
-                ProductDetailComposable {
+                /*ProductDetailView {
                     MyScreenContent("Buzz")
-                }
+                }*/
             }
         }
         setupUI()

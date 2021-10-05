@@ -32,7 +32,10 @@ import coil.request.SuccessResult
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
 @Composable
-fun ProductRowView(product: BeerUI, selectedProduct: (network: BeerUI) -> Unit) {
+fun ProductRowView(
+    product: BeerUI,
+    onSelectedProduct: (productId: Int) -> Unit
+) {
 
     val defaultColor = MaterialTheme.colors.surface
     val cardColor = remember { mutableStateOf(defaultColor) }
@@ -41,13 +44,13 @@ fun ProductRowView(product: BeerUI, selectedProduct: (network: BeerUI) -> Unit) 
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable(onClick = { selectedProduct(product) })
+            .clickable(onClick = { onSelectedProduct(product.id) })
             .padding(4.dp),
         shape = RoundedCornerShape(4.dp),
         backgroundColor = cardColor.value,
         elevation = 2.dp
     ) {
-        Row() {
+        Row {
             Surface(
                 modifier = Modifier
                     .size(72.dp)
@@ -95,6 +98,8 @@ fun ProductRowView(product: BeerUI, selectedProduct: (network: BeerUI) -> Unit) 
                                 },
                             contentDescription = product.name,
                         )
+                    }
+                    ImagePainter.State.Empty -> {
                     }
                 }
             }
@@ -168,5 +173,5 @@ fun ProductRowViewPreview() {
             imageUrl = "https://images.punkapi.com/v2/5.png",
             abv = 4.9
         )
-    ) {}
+    ) { (1) }
 }

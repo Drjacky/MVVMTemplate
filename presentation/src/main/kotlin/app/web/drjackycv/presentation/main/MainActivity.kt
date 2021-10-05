@@ -7,13 +7,10 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.animation.graphics.ExperimentalAnimationGraphicsApi
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.lifecycleScope
@@ -26,17 +23,14 @@ import app.web.drjackycv.presentation.base.compose.BaseTheme
 import app.web.drjackycv.presentation.datastore.DataStoreManager
 import app.web.drjackycv.presentation.extension.collectIn
 import app.web.drjackycv.presentation.products.choose.ChooseView
+import app.web.drjackycv.presentation.products.entity.BeerUI
+import app.web.drjackycv.presentation.products.productdetail.ProductDetailView
 import app.web.drjackycv.presentation.products.productlist.ProductsListView
+import coil.annotation.ExperimentalCoilApi
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-
-sealed class Screens(val route: String, val label: String, val icon: ImageVector? = null) {
-    object ChooseScreen : Screens("Choose", "Choose")
-    object ProductsScreen : Screens("Products", "Products", Icons.Default.Person)
-    object ProductDetailsScreen : Screens("ProductDetails", "ProductDetails")
-}
 
 @ExperimentalAnimationGraphicsApi
 @AndroidEntryPoint
@@ -146,6 +140,7 @@ class MainActivity : AppCompatActivity() {
 
 }
 
+@ExperimentalCoilApi
 @ExperimentalAnimationGraphicsApi
 @Composable
 fun MainLayout(
@@ -156,7 +151,11 @@ fun MainLayout(
 
     NavHost(navController = navController, startDestination = Screens.ProductsScreen.route) {
         composable(Screens.ChooseScreen.route) {
-            ChooseView() {
+            ChooseView(
+                themeFAB = {
+                    themeFAB()
+                }
+            ) {
                 navController.navigate(Screens.ProductsScreen.route + "/${it}")
             }
         }
@@ -164,20 +163,25 @@ fun MainLayout(
             ProductsListView(
                 themeFAB = {
                     themeFAB()
-                }
-            ) {
-                navController.navigate(Screens.ProductDetailsScreen.route + "/${it.id}")
-            }
+                },
+                popBackStack = { navController.popBackStack() },
+                onSelectedProduct = { navController.navigate(Screens.ProductDetailsScreen.route + "/${it}") }
+            )
         }
-        composable(Screens.ProductDetailsScreen.route + "/{id}") { backStackEntry ->
-            /*ProductDetailView(viewModel,
-                backStackEntry.arguments?.get("id") as String,
-                popBack = { navController.popBackStack() })*/
+        composable(Screens.ProductDetailsScreen.route) { backStackEntry ->
+            ProductDetailView(
+                themeFAB = {
+                    themeFAB()
+                },
+                popBackStack = { navController.popBackStack() },
+                product = backStackEntry.arguments?.getParcelable<BeerUI>("beer") as BeerUI
+            )
         }
     }
 
 }
 
+@ExperimentalCoilApi
 @ExperimentalAnimationGraphicsApi
 @Preview
 @Composable
