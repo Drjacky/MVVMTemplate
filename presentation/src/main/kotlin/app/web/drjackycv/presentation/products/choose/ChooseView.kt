@@ -18,7 +18,7 @@ import java.io.Serializable
 @Composable
 fun ChooseView(
     themeFAB: @Composable () -> Unit,
-    selectedPath: (selectedPathType: ChoosePathType2) -> Unit
+    selectedPath: (selectedPathType: ChoosePathType) -> Unit
 ) {
     Scaffold(
         floatingActionButton = themeFAB
@@ -69,7 +69,7 @@ fun ChooseView(
 }
 
 @Composable
-fun PathButton(name: String/*, selectedPath: (ChoosePathType2) -> Unit*/) {
+fun PathButton(name: String/*, selectedPath: (ChoosePathType) -> Unit*/) {
     Button(
         onClick = {
 
@@ -83,7 +83,7 @@ fun PathButton(name: String/*, selectedPath: (ChoosePathType2) -> Unit*/) {
     }
 }
 
-enum class ChoosePathType2 : Serializable {
+enum class ChoosePathType : Serializable {
     COROUTINE,
     RX
 }
@@ -91,5 +91,5 @@ enum class ChoosePathType2 : Serializable {
 @Preview
 @Composable
 fun ChooseViewPreview() {
-    ChooseView(themeFAB = {}) { ChoosePathType2.COROUTINE }
+    ChooseView(themeFAB = {}) { ChoosePathType.COROUTINE }
 }
