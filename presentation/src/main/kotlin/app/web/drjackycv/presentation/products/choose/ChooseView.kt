@@ -18,7 +18,7 @@ import java.io.Serializable
 @Composable
 fun ChooseView(
     themeFAB: @Composable () -> Unit,
-    selectedPath: (selectedPathType: ChoosePathType) -> Unit
+    onSelectedPath: (selectedPathType: ChoosePathType) -> Unit
 ) {
     Scaffold(
         floatingActionButton = themeFAB
@@ -37,8 +37,7 @@ fun ChooseView(
                         top.linkTo(parent.top)
                         bottom.linkTo(parent.bottom)
                     },
-                onClick = {
-                }
+                onClick = { onSelectedPath(ChoosePathType.RX) }
             ) {
                 Text(
                     text = "RxJava",
@@ -55,8 +54,7 @@ fun ChooseView(
                         top.linkTo(parent.top)
                         bottom.linkTo(parent.bottom)
                     },
-                onClick = {
-                }
+                onClick = { onSelectedPath(ChoosePathType.COROUTINE) }
             ) {
                 Text(
                     text = "Coroutines",

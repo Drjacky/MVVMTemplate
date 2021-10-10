@@ -23,6 +23,7 @@ import app.web.drjackycv.presentation.R
 import app.web.drjackycv.presentation.base.compose.BaseTheme
 import app.web.drjackycv.presentation.datastore.DataStoreManager
 import app.web.drjackycv.presentation.extension.collectIn
+import app.web.drjackycv.presentation.products.choose.ChoosePathType
 import app.web.drjackycv.presentation.products.choose.ChooseView
 import app.web.drjackycv.presentation.products.entity.BeerMapper
 import app.web.drjackycv.presentation.products.productdetail.ProductDetailView
@@ -153,23 +154,30 @@ fun MainLayout(
     val viewModel = hiltViewModel<ProductsListViewModel>()
     val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = Screens.ProductsScreen.route) {
+    NavHost(navController = navController, startDestination = Screens.ChooseScreen.route) {
         composable(Screens.ChooseScreen.route) {
             ChooseView(
                 themeFAB = {
                     themeFAB()
                 }
-            ) {
-                navController.navigate(Screens.ProductsScreen.route + "/${it}")
+            ) { choosePathType ->
+                navController.navigate(Screens.ProductsScreen.route + "/${choosePathType}")
             }
         }
-        composable(route = Screens.ProductsScreen.route) { backStackEntry ->
+        composable(
+            route = Screens.ProductsScreen.route + "/{choosePathType}",
+            arguments = listOf(navArgument("choosePathType") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val choosePathType: String = backStackEntry.arguments?.getString("choosePathType")
+                ?: ChoosePathType.COROUTINE.name
+
             ProductsListView(
                 viewModel = viewModel,
                 themeFAB = {
                     themeFAB()
                 },
                 popBackStack = { navController.popBackStack() },
+                choosePathType = ChoosePathType.valueOf(choosePathType),
                 onSelectedProduct = { beerId ->
                     navController.navigate(Screens.ProductDetailsScreen.route + "/${beerId}")
                 }

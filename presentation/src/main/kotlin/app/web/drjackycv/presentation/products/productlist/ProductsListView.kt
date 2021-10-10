@@ -11,6 +11,7 @@ import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
+import app.web.drjackycv.presentation.products.choose.ChoosePathType
 import app.web.drjackycv.presentation.products.entity.BeerUI
 import coil.annotation.ExperimentalCoilApi
 import kotlinx.coroutines.flow.flowOf
@@ -22,16 +23,25 @@ fun ProductsListView(
     viewModel: ProductsListViewModel,
     themeFAB: @Composable () -> Unit,
     popBackStack: () -> Unit,
+    choosePathType: ChoosePathType,
     onSelectedProduct: (productId: Int) -> Unit
 ) {
-    val lazyProductList = viewModel.productsListByCoroutine.collectAsLazyPagingItems()
+    when (choosePathType) {
+        ChoosePathType.RX -> {
+            //TODO
+        }
+        ChoosePathType.COROUTINE -> {
+            val lazyProductList = viewModel.productsListByCoroutine.collectAsLazyPagingItems()
 
-    ProductsListContent(
-        lazyProductList = lazyProductList,
-        themeFAB = themeFAB,
-        popBackStack = popBackStack,
-        onSelectedProduct = onSelectedProduct
-    )
+            ProductsListContent(
+                lazyProductList = lazyProductList,
+                themeFAB = themeFAB,
+                popBackStack = popBackStack,
+                onSelectedProduct = onSelectedProduct
+            )
+        }
+    }
+
 }
 
 @ExperimentalCoilApi
