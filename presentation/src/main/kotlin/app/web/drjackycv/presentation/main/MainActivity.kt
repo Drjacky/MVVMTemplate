@@ -7,31 +7,34 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.animation.graphics.ExperimentalAnimationGraphicsApi
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import app.web.drjackycv.domain.extension.allowReads
 import app.web.drjackycv.presentation.R
 import app.web.drjackycv.presentation.base.compose.BaseTheme
 import app.web.drjackycv.presentation.datastore.DataStoreManager
 import app.web.drjackycv.presentation.extension.collectIn
 import app.web.drjackycv.presentation.products.choose.ChooseView
-import app.web.drjackycv.presentation.products.entity.BeerUI
+import app.web.drjackycv.presentation.products.entity.BeerMapper
 import app.web.drjackycv.presentation.products.productdetail.ProductDetailView
 import app.web.drjackycv.presentation.products.productlist.ProductsListView
+import app.web.drjackycv.presentation.products.productlist.ProductsListViewModel
 import coil.annotation.ExperimentalCoilApi
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@ExperimentalCoilApi
 @ExperimentalAnimationGraphicsApi
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -147,6 +150,7 @@ fun MainLayout(
     themeFAB: @Composable () -> Unit,
 ) {
 
+    val viewModel = hiltViewModel<ProductsListViewModel>()
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = Screens.ProductsScreen.route) {
@@ -161,21 +165,38 @@ fun MainLayout(
         }
         composable(route = Screens.ProductsScreen.route) { backStackEntry ->
             ProductsListView(
+                viewModel = viewModel,
                 themeFAB = {
                     themeFAB()
                 },
                 popBackStack = { navController.popBackStack() },
-                onSelectedProduct = { navController.navigate(Screens.ProductDetailsScreen.route + "/${it}") }
+                onSelectedProduct = { beerId ->
+                    navController.navigate(Screens.ProductDetailsScreen.route + "/${beerId}")
+                }
             )
         }
-        composable(Screens.ProductDetailsScreen.route) { backStackEntry ->
-            ProductDetailView(
-                themeFAB = {
-                    themeFAB()
-                },
-                popBackStack = { navController.popBackStack() },
-                product = backStackEntry.arguments?.getParcelable<BeerUI>("beer") as BeerUI
-            )
+        composable(
+            route = Screens.ProductDetailsScreen.route + "/{beerId}",
+            arguments = listOf(navArgument("beerId") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val beerId: String? = backStackEntry.arguments?.getString("beerId")
+
+            beerId?.let {
+                viewModel.getProductByCoroutine(beerId)
+                    .collectAsState(initial = null).apply {
+                        this.value?.let {
+                            ProductDetailView(
+                                themeFAB = {
+                                    themeFAB()
+                                },
+                                popBackStack = { navController.popBackStack() },
+                                product = BeerMapper().mapLeftToRight(it)
+                            )
+                        }
+                    }
+            }
+
+
         }
     }
 

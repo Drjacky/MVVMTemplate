@@ -18,13 +18,11 @@ private const val STARTING_PAGE_INDEX = 1
 
 @Singleton
 class ProductsPagingSourceByCoroutine @Inject constructor(
-    private val productsApi: ProductsApi,
-    //private val query: String
+    private val productsApi: ProductsApi
 ) : PagingSource<Int, Beer>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Beer> {
         val position = params.key ?: STARTING_PAGE_INDEX
-        //val apiQuery = query
 
         return try {
             val response = productsApi.getBeersListByCoroutine(position)

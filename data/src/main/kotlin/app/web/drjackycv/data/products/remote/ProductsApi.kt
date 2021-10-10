@@ -11,16 +11,24 @@ interface ProductsApi : BaseApiService {
 
     @GET("beers")
     fun getBeersList(
-        /*@Query("ids") ids: String,*/
         @Query("page") page: Int = 1,
         @Query("per_page") perPage: Int = 40,
     ): Single<GenericNetworkResponse<List<BeerResponse>>>
 
     @GET("beers")
+    fun getBeer(
+        @Query("ids") ids: String,
+    ): Single<GenericNetworkResponse<List<BeerResponse>>>
+
+    @GET("beers")
     suspend fun getBeersListByCoroutine(
-        /*@Query("ids") ids: String,*/
         @Query("page") page: Int = 1,
         @Query("per_page") perPage: Int = 40,
+    ): List<BeerResponse>
+
+    @GET("beers")
+    suspend fun getBeerByCoroutine(
+        @Query("ids") ids: String?,
     ): List<BeerResponse>
 
 }

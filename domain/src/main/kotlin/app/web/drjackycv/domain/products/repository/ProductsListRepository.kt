@@ -7,8 +7,10 @@ import kotlinx.coroutines.flow.Flow
 
 interface ProductsListRepository {
 
-    fun getBeersList(ids: String): Flowable<PagingData<Beer>>
+    fun getBeersList(): Flowable<PagingData<Beer>>
+    fun getBeer(ids: String): Flowable<Beer>
 
-    fun getBeersListByCoroutine(ids: String): Flow<PagingData<Beer>>
+    fun getBeersListByCoroutine(): Flow<PagingData<Beer>>
+    fun getBeerByCoroutine(ids: String): Flow<Beer>
 
 }

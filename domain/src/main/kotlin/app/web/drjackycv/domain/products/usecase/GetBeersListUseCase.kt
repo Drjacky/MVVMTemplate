@@ -9,12 +9,9 @@ import javax.inject.Inject
 
 class GetBeersListUseCase @Inject constructor(
     private val productsListRepository: ProductsListRepository,
-) : GeneralUseCase<Flowable<PagingData<Beer>>, GetBeersListParams> {
+) : GeneralUseCase<Flowable<PagingData<Beer>>, Unit> {
 
-    override fun invoke(params: GetBeersListParams): Flowable<PagingData<Beer>> =
-        productsListRepository.getBeersList(params.ids)
+    override fun invoke(params: Unit): Flowable<PagingData<Beer>> =
+        productsListRepository.getBeersList()
 
 }
-
-@JvmInline
-value class GetBeersListParams(val ids: String)

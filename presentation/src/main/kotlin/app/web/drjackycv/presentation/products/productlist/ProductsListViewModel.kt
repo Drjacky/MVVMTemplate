@@ -8,10 +8,7 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
 import androidx.paging.rxjava3.cachedIn
-import app.web.drjackycv.domain.products.usecase.GetBeersListByCoroutineParams
-import app.web.drjackycv.domain.products.usecase.GetBeersListByCoroutineUseCase
-import app.web.drjackycv.domain.products.usecase.GetBeersListParams
-import app.web.drjackycv.domain.products.usecase.GetBeersListUseCase
+import app.web.drjackycv.domain.products.usecase.*
 import app.web.drjackycv.presentation.base.viewmodel.BaseViewModel
 import app.web.drjackycv.presentation.products.choose.ChoosePathType
 import app.web.drjackycv.presentation.products.entity.BeerMapper
@@ -29,12 +26,17 @@ import javax.inject.Inject
 @HiltViewModel
 class ProductsListViewModel @Inject constructor(
     private val getBeersUseCase: GetBeersListUseCase,
+    private val getBeerUseCase: GetBeerUseCase,
     private val getBeersListByCoroutineUseCase: GetBeersListByCoroutineUseCase,
+    private val getBeerByCoroutineUseCase: GetBeerByCoroutineUseCase,
     private val savedStateHandle: SavedStateHandle,
 ) : BaseViewModel() {
 
     private val _ldProductsList: MutableLiveData<PagingData<BeerUI>> = MutableLiveData()
     val ldProductsList: LiveData<PagingData<BeerUI>> = _ldProductsList
+
+    private val _ldProduct: MutableLiveData<BeerUI> = MutableLiveData()
+    val ldProduct: LiveData<BeerUI> = _ldProduct
 
     private val _productsListByCoroutine =
         MutableStateFlow<PagingData<BeerUI>>(PagingData.empty())
@@ -44,11 +46,11 @@ class ProductsListViewModel @Inject constructor(
     init {
         val path = ChoosePathType.COROUTINE//savedStateHandle.get<ChoosePathType>("choosePathType")
         Timber.d("Which path: $path")
-        getProductsBaseOnPath("", path)
+        getProductsBaseOnPath(path)
     }
 
-    private fun getProductsByRxPath(ids: String) {
-        getBeersUseCase(GetBeersListParams(ids = ids))
+    private fun getProductsByRxPath() {
+        getBeersUseCase(Unit)
             .cachedIn(viewModelScope)
             .observeOn(AndroidSchedulers.mainThread())
             .autoDispose(this)
@@ -60,24 +62,36 @@ class ProductsListViewModel @Inject constructor(
             }
     }
 
-    private fun getProductsByCoroutinePath(ids: String) =
-        getBeersListByCoroutineUseCase(GetBeersListByCoroutineParams(ids = ids))
+    fun getProduct(ids: String) {
+        getBeerUseCase(GetBeerParams(ids = ids))
+            .observeOn(AndroidSchedulers.mainThread())
+            .autoDispose(this)
+            .subscribe {
+                _ldProduct.value = BeerMapper().mapLeftToRight(it)
+            }
+    }
+
+    private fun getProductsByCoroutinePath() =
+        getBeersListByCoroutineUseCase(Unit)
             .cachedIn(viewModelScope)
 
-    private fun getProductsBaseOnPath(ids: String, path: ChoosePathType?) {
+    fun getProductByCoroutine(ids: String) =
+        getBeerByCoroutineUseCase(GetBeerByCoroutineParams(ids = ids))
+
+    private fun getProductsBaseOnPath(path: ChoosePathType?) {
         when (path) {
             ChoosePathType.RX -> {
-                getProductsByRxPath(ids)
+                getProductsByRxPath()
             }
             ChoosePathType.COROUTINE -> {
                 viewModelScope.launch {
-                    _productsListByCoroutine.value = getProductsByCoroutinePath(ids).first()
+                    _productsListByCoroutine.value = getProductsByCoroutinePath().first()
                         .map { beer ->
                             BeerMapper().mapLeftToRight(beer)
                         }
                 }
             }
-            else -> getProductsByRxPath(ids)
+            else -> getProductsByRxPath()
         }
     }
 

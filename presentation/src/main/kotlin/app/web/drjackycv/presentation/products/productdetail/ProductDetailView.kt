@@ -46,7 +46,7 @@ fun ProductDetailView(
     ) {
         Column(modifier = Modifier.fillMaxSize()) {
             Text(
-                text = "Details",
+                text = product.description,
                 modifier = Modifier.padding(16.dp),
                 style = TextStyle(fontSize = 17.sp),
                 overflow = TextOverflow.Ellipsis,

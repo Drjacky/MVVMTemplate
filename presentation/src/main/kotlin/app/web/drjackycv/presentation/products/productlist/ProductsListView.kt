@@ -7,7 +7,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -20,7 +19,7 @@ import kotlinx.coroutines.flow.flowOf
 @ExperimentalAnimationGraphicsApi
 @Composable
 fun ProductsListView(
-    viewModel: ProductsListViewModel = hiltViewModel(),
+    viewModel: ProductsListViewModel,
     themeFAB: @Composable () -> Unit,
     popBackStack: () -> Unit,
     onSelectedProduct: (productId: Int) -> Unit
