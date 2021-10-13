@@ -41,7 +41,7 @@ object Depends {
         const val coilComposeVersion = "1.3.2"
         const val autoDispose = "2.1.1"
         const val dataStorePreferenceVersion = "1.0.0"
-        const val composeVersion = "1.1.0-alpha05"
+        const val composeVersion = "1.1.0-alpha06"
         const val composePagingVersion = "1.0.0-alpha12"
         const val composeNavigationVersion = "2.4.0-alpha10"
         const val composeTextVersion = "1.1.0-alpha05"
