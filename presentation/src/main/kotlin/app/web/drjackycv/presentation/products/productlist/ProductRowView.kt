@@ -140,27 +140,29 @@ private fun ChangeCardColor(
     val imageLoader = ImageLoader(context)
 
     LaunchedEffect(key1 = imagePainter) {
-        val result =
-            (imageLoader.execute(imagePainter.request) as SuccessResult).drawable
-        val bitmap = (result as BitmapDrawable).bitmap
+        val result = imageLoader.execute(imagePainter.request)
 
-        if (isDark.value) {
-            val vibrant = Palette.from(bitmap)
-                .generate()
-                //.vibrantSwatch
-                .darkVibrantSwatch
+        if (result is SuccessResult) {
+            val bitmap = (result.drawable as BitmapDrawable).bitmap
 
-            vibrant?.let {
-                cardColor.value = Color(it.rgb)
-            }
-        } else {
-            val vibrant = Palette.from(bitmap)
-                .generate()
-                //.vibrantSwatch
-                .lightVibrantSwatch
+            if (isDark.value) {
+                val vibrant = Palette.from(bitmap)
+                    .generate()
+                    //.vibrantSwatch
+                    .darkVibrantSwatch
 
-            vibrant?.let {
-                cardColor.value = Color(it.rgb)
+                vibrant?.let {
+                    cardColor.value = Color(it.rgb)
+                }
+            } else {
+                val vibrant = Palette.from(bitmap)
+                    .generate()
+                    //.vibrantSwatch
+                    .lightVibrantSwatch
+
+                vibrant?.let {
+                    cardColor.value = Color(it.rgb)
+                }
             }
         }
     }

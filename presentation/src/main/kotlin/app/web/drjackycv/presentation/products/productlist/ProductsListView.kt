@@ -1,8 +1,8 @@
 package app.web.drjackycv.presentation.products.productlist
 
 import androidx.compose.animation.graphics.ExperimentalAnimationGraphicsApi
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -16,6 +16,8 @@ import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
+import app.web.drjackycv.presentation.base.view.ErrorItemView
+import app.web.drjackycv.presentation.base.view.LoadingItemView
 import app.web.drjackycv.presentation.extension.shimmer
 import app.web.drjackycv.presentation.products.choose.ChoosePathType
 import app.web.drjackycv.presentation.products.entity.BeerUI
@@ -77,25 +79,12 @@ fun ProductsListContent(
         },
         floatingActionButton = themeFAB
     ) {
-        LazyColumn(contentPadding = it) {
-            if (lazyProductList.loadState.refresh == LoadState.Loading) {
-                val beerUI = BeerUI(
-                    id = -1,
-                    name = "",
-                    tagline = "",
-                    description = "",
-                    imageUrl = "",
-                    abv = 0.0
-                )
-                items(10) {
-                    ProductRowView(
-                        product = beerUI,
-                        onSelectedProduct = {},
-                        modifier = Modifier.shimmer(true)
-                    )
-                }
-            }
-
+        LazyColumn(
+            contentPadding = it,
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+            modifier = Modifier.fillMaxSize()
+        ) {
             items(lazyProductList) { product ->
                 product?.let { beer ->
                     ProductRowView(
@@ -105,14 +94,51 @@ fun ProductsListContent(
                     )
                 }
             }
-
-            if (lazyProductList.loadState.append == LoadState.Loading) {
-                item {
-                    CircularProgressIndicator(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .wrapContentWidth(Alignment.CenterHorizontally)
+            lazyProductList.apply {
+                if (loadState.refresh == LoadState.Loading) {
+                    val beerUI = BeerUI(
+                        id = -1,
+                        name = "",
+                        tagline = "",
+                        description = "",
+                        imageUrl = "",
+                        abv = 0.0
                     )
+                    items(10) {
+                        ProductRowView(
+                            product = beerUI,
+                            onSelectedProduct = {},
+                            modifier = Modifier.shimmer(true)
+                        )
+                    }
+                }
+
+                if (loadState.append == LoadState.Loading) {
+                    item {
+                        LoadingItemView()
+                    }
+                } else {
+                    val error = when {
+                        loadState.prepend is LoadState.Error ->
+                            loadState.prepend as LoadState.Error
+                        loadState.source.prepend is LoadState.Error ->
+                            loadState.prepend as LoadState.Error
+                        loadState.append is LoadState.Error ->
+                            loadState.append as LoadState.Error
+                        loadState.source.append is LoadState.Error ->
+                            loadState.append as LoadState.Error
+                        loadState.refresh is LoadState.Error ->
+                            loadState.refresh as LoadState.Error
+                        else -> null
+                    }
+                    error?.run {
+                        item {
+                            ErrorItemView(
+                                message = error.error.localizedMessage,
+                                onClickRetry = { retry() }
+                            )
+                        }
+                    }
                 }
             }
         }
