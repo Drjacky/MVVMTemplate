@@ -43,11 +43,12 @@ object Depends {
         const val dataStorePreferenceVersion = "1.0.0"
         const val composeVersion = "1.1.0-alpha05"
         const val composePagingVersion = "1.0.0-alpha12"
-        const val composeNavigationVersion = "2.4.0-alpha09"
+        const val composeNavigationVersion = "2.4.0-alpha10"
         const val composeTextVersion = "1.1.0-alpha05"
         const val activityComposeVersion = "1.4.0-beta01"
         const val materialComposeThemeAdapter = "1.0.3"
         const val composeConstraintLayout = "1.0.0-rc01"
+        const val accompanistPlaceholderVersion = "0.19.0"
 
         const val mockitoKotlinVersion = "2.2.0"
         const val mockitoCoreVersion = "3.12.4"
@@ -190,6 +191,8 @@ object Depends {
             "androidx.compose.animation:animation-graphics:${Versions.composeVersion}"
         const val composeConstraintLayout =
             "androidx.constraintlayout:constraintlayout-compose:${Versions.composeConstraintLayout}"
+        const val accompanistPlaceholder =
+            "com.google.accompanist:accompanist-placeholder-material:${Versions.accompanistPlaceholderVersion}"
     }
 
     object Environments {

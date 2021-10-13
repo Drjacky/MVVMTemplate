@@ -6,6 +6,8 @@ import android.view.View
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.composed
 import androidx.core.app.ActivityCompat.startPostponedEnterTransition
 import app.web.drjackycv.presentation.R
 import app.web.drjackycv.presentation.base.util.GlideApp
@@ -15,6 +17,9 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
+import com.google.accompanist.placeholder.PlaceholderHighlight
+import com.google.accompanist.placeholder.material.fade
+import com.google.accompanist.placeholder.material.placeholder
 import com.jakewharton.rxbinding4.view.clicks
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.Disposable
@@ -92,3 +97,10 @@ fun View.setOnReactiveClickListener(windowDuration: Long = 500, action: (() -> U
                 stack = throwable.stackTrace
             )
         })
+
+internal fun Modifier.fade(visible: Boolean) = composed {
+    Modifier.placeholder(
+        highlight = PlaceholderHighlight.fade(),
+        visible = visible,
+    )
+}

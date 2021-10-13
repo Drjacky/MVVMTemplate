@@ -1,16 +1,22 @@
 package app.web.drjackycv.presentation.products.productlist
 
 import androidx.compose.animation.graphics.ExperimentalAnimationGraphicsApi
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
+import app.web.drjackycv.presentation.extension.fade
 import app.web.drjackycv.presentation.products.choose.ChoosePathType
 import app.web.drjackycv.presentation.products.entity.BeerUI
 import coil.annotation.ExperimentalCoilApi
@@ -72,9 +78,41 @@ fun ProductsListContent(
         floatingActionButton = themeFAB
     ) {
         LazyColumn(contentPadding = it) {
+            if (lazyProductList.loadState.refresh == LoadState.Loading) {
+                val beerUI = BeerUI(
+                    id = -1,
+                    name = "",
+                    tagline = "",
+                    description = "",
+                    imageUrl = "",
+                    abv = 0.0
+                )
+                items(10) {
+                    ProductRowView(
+                        product = beerUI,
+                        onSelectedProduct = {},
+                        modifier = Modifier.fade(true)
+                    )
+                }
+            }
+
             items(lazyProductList) { product ->
                 product?.let { beer ->
-                    ProductRowView(beer, onSelectedProduct)
+                    ProductRowView(
+                        product = beer,
+                        onSelectedProduct = onSelectedProduct,
+                        modifier = Modifier.fade(false)
+                    )
+                }
+            }
+
+            if (lazyProductList.loadState.append == LoadState.Loading) {
+                item {
+                    CircularProgressIndicator(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .wrapContentWidth(Alignment.CenterHorizontally)
+                    )
                 }
             }
         }

@@ -113,6 +113,7 @@ dependencies {
     implementation(Depends.Libraries.compose_material_icons_extended)
     implementation(Depends.Libraries.composeAnimationGraphics)
     implementation(Depends.Libraries.composeConstraintLayout)
+    implementation(Depends.Libraries.accompanistPlaceholder)
 //    implementation(Depends.Libraries.compose_runtime_saved_instance_state)
 //    implementation(Depends.Libraries.compose_ui_test)
     implementation(Depends.Libraries.compose_ui_tooling)

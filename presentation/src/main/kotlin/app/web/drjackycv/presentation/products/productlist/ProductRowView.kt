@@ -34,7 +34,8 @@ import coil.request.SuccessResult
 @Composable
 fun ProductRowView(
     product: BeerUI,
-    onSelectedProduct: (productId: Int) -> Unit
+    onSelectedProduct: (productId: Int) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
 
     val defaultColor = MaterialTheme.colors.surface
@@ -54,7 +55,8 @@ fun ProductRowView(
             Surface(
                 modifier = Modifier
                     .size(72.dp)
-                    .padding(4.dp),
+                    .padding(4.dp)
+                    .then(modifier),
                 shape = CircleShape,
                 color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f)
             ) {
@@ -106,13 +108,18 @@ fun ProductRowView(
 
             Column(modifier = Modifier.padding(4.dp)) {
                 Text(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .then(modifier),
                     text = product.name,
                     style = MaterialTheme.typography.h6,
                     fontWeight = FontWeight.Normal
                 )
                 CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
                     Text(
+                        modifier = Modifier
+                            .padding(top = 4.dp)
+                            .then(modifier),
                         text = product.id.toString(),
                         style = MaterialTheme.typography.body2
                     )
@@ -172,6 +179,7 @@ fun ProductRowViewPreview() {
             description = "description",
             imageUrl = "https://images.punkapi.com/v2/5.png",
             abv = 4.9
-        )
-    ) { (1) }
+        ),
+        onSelectedProduct = { (1) }
+    )
 }
