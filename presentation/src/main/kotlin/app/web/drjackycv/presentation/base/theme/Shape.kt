@@ -1,4 +1,4 @@
-package app.web.drjackycv.presentation.base.compose
+package app.web.drjackycv.presentation.base.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

@@ -20,7 +20,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import app.web.drjackycv.domain.extension.allowReads
 import app.web.drjackycv.presentation.R
-import app.web.drjackycv.presentation.base.compose.BaseTheme
+import app.web.drjackycv.presentation.base.theme.BaseTheme
 import app.web.drjackycv.presentation.datastore.DataStoreManager
 import app.web.drjackycv.presentation.extension.collectIn
 import app.web.drjackycv.presentation.products.choose.ChoosePathType

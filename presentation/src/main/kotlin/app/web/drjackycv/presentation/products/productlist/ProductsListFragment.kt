@@ -18,10 +18,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.fragment.app.Fragment
 import app.web.drjackycv.presentation.R
-import app.web.drjackycv.presentation.base.compose.BaseTheme
-import app.web.drjackycv.presentation.base.compose.purple200
-import app.web.drjackycv.presentation.base.compose.teal200
-import app.web.drjackycv.presentation.base.compose.transparent
+import app.web.drjackycv.presentation.base.theme.BaseTheme
+import app.web.drjackycv.presentation.base.theme.purple200
+import app.web.drjackycv.presentation.base.theme.teal200
+import app.web.drjackycv.presentation.base.theme.transparent
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
