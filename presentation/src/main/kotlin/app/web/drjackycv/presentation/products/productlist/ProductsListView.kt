@@ -16,7 +16,7 @@ import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
-import app.web.drjackycv.presentation.extension.fade
+import app.web.drjackycv.presentation.extension.shimmer
 import app.web.drjackycv.presentation.products.choose.ChoosePathType
 import app.web.drjackycv.presentation.products.entity.BeerUI
 import coil.annotation.ExperimentalCoilApi
@@ -91,7 +91,7 @@ fun ProductsListContent(
                     ProductRowView(
                         product = beerUI,
                         onSelectedProduct = {},
-                        modifier = Modifier.fade(true)
+                        modifier = Modifier.shimmer(true)
                     )
                 }
             }
@@ -101,7 +101,7 @@ fun ProductsListContent(
                     ProductRowView(
                         product = beer,
                         onSelectedProduct = onSelectedProduct,
-                        modifier = Modifier.fade(false)
+                        modifier = Modifier.shimmer(false)
                     )
                 }
             }
