@@ -2,6 +2,7 @@ package app.web.drjackycv.presentation.products.productlist
 
 //import androidx.compose.ui.res.animatedVectorResource
 import android.graphics.drawable.BitmapDrawable
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.graphics.ExperimentalAnimationGraphicsApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -41,6 +42,7 @@ fun ProductRowView(
 
     val defaultColor = MaterialTheme.colors.surface
     val cardColor = remember { mutableStateOf(defaultColor) }
+    val animatedCardColor = animateColorAsState(cardColor.value)
     val isDark = remember { mutableStateOf(MainActivity.ThemeState.darkModeState.value) }
 
     Card(
@@ -49,7 +51,7 @@ fun ProductRowView(
             .clickable(onClick = { onSelectedProduct(product.id) })
             .padding(4.dp),
         shape = RoundedCornerShape(4.dp),
-        backgroundColor = cardColor.value,
+        backgroundColor = animatedCardColor.value,
         elevation = 2.dp
     ) {
         Row {
