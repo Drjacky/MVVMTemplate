@@ -23,6 +23,7 @@ import app.web.drjackycv.presentation.R
 import app.web.drjackycv.presentation.base.theme.BaseTheme
 import app.web.drjackycv.presentation.datastore.DataStoreManager
 import app.web.drjackycv.presentation.extension.collectIn
+import app.web.drjackycv.presentation.main.Screens.*
 import app.web.drjackycv.presentation.products.choose.ChoosePathType
 import app.web.drjackycv.presentation.products.choose.ChooseView
 import app.web.drjackycv.presentation.products.entity.BeerMapper
@@ -154,22 +155,25 @@ fun MainLayout(
     val viewModel = hiltViewModel<ProductsListViewModel>()
     val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = Screens.ChooseScreen.route) {
-        composable(Screens.ChooseScreen.route) {
+    NavHost(navController = navController, startDestination = ChooseScreen.route) {
+        composable(ChooseScreen.route) {
             ChooseView(
                 themeFAB = {
                     themeFAB()
                 }
             ) { choosePathType ->
-                navController.navigate(Screens.ProductsScreen.route + "/${choosePathType}")
+                navController.navigate(ProductsScreen.route + "/${choosePathType}")
             }
         }
         composable(
-            route = Screens.ProductsScreen.route + "/{choosePathType}",
-            arguments = listOf(navArgument("choosePathType") { type = NavType.StringType })
+            route = ProductsScreen.route + "/{" + ProductsScreen.navArgumentKey + "}",
+            arguments = listOf(navArgument(ProductsScreen.navArgumentKey) {
+                type = NavType.StringType
+            })
         ) { backStackEntry ->
-            val choosePathType: String = backStackEntry.arguments?.getString("choosePathType")
-                ?: ChoosePathType.COROUTINE.name
+            val choosePathType: String =
+                backStackEntry.arguments?.getString(ProductsScreen.navArgumentKey)
+                    ?: ChoosePathType.COROUTINE.name
 
             ProductsListView(
                 viewModel = viewModel,
@@ -179,15 +183,18 @@ fun MainLayout(
                 popBackStack = { navController.popBackStack() },
                 choosePathType = ChoosePathType.valueOf(choosePathType),
                 onSelectedProduct = { beerId ->
-                    navController.navigate(Screens.ProductDetailsScreen.route + "/${beerId}")
+                    navController.navigate(ProductDetailsScreen.route + "/${beerId}")
                 }
             )
         }
         composable(
-            route = Screens.ProductDetailsScreen.route + "/{beerId}",
-            arguments = listOf(navArgument("beerId") { type = NavType.StringType })
+            route = ProductDetailsScreen.route + "/{" + ProductDetailsScreen.navArgumentKey + "}",
+            arguments = listOf(navArgument(ProductDetailsScreen.navArgumentKey) {
+                type = NavType.StringType
+            })
         ) { backStackEntry ->
-            val beerId: String? = backStackEntry.arguments?.getString("beerId")
+            val beerId: String? =
+                backStackEntry.arguments?.getString(ProductDetailsScreen.navArgumentKey)
 
             beerId?.let {
                 viewModel.getProductByCoroutine(beerId)
