@@ -22,12 +22,10 @@ private const val STARTING_PAGE_INDEX = 1
 @Singleton
 class ProductsPagingSource @Inject constructor(
     private val productsApi: ProductsApi,
-    //private val query: String
 ) : RxPagingSource<Int, Beer>() {
 
     override fun loadSingle(params: LoadParams<Int>): Single<LoadResult<Int, Beer>> {
         val position = params.key ?: STARTING_PAGE_INDEX
-        //val apiQuery = query
 
         return productsApi.getBeersList(position, params.loadSize)
             .subscribeOn(Schedulers.io())

@@ -172,6 +172,8 @@ object Depends {
             "androidx.compose.foundation:foundation-layout:${Versions.composeVersion}"
         const val compose_material = "androidx.compose.material:material:${Versions.composeVersion}"
         const val compose_runtime = "androidx.compose.runtime:runtime:${Versions.composeVersion}"
+        const val compose_runtime_livedata =
+            "androidx.compose.runtime:runtime-livedata:${Versions.composeVersion}"
         const val compose_runtime_saved_instance_state =
             "androidx.compose.runtime:runtime-saved-instance-state:${Versions.composeVersion}"
         const val compose_navigation =

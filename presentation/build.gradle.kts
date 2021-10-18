@@ -108,6 +108,7 @@ dependencies {
     implementation(Depends.Libraries.compose_ui_text)
     implementation(Depends.Libraries.compose_material)
     implementation(Depends.Libraries.compose_runtime)
+    implementation(Depends.Libraries.compose_runtime_livedata)
     implementation(Depends.Libraries.compose_paging)
     implementation(Depends.Libraries.compose_navigation)
     implementation(Depends.Libraries.compose_material_icons_extended)

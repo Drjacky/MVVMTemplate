@@ -44,7 +44,8 @@ class ProductsListViewModel @Inject constructor(
 
 
     init {
-        val path = ChoosePathType.COROUTINE//savedStateHandle.get<ChoosePathType>("choosePathType")
+        val path =
+            ChoosePathType.COROUTINE//savedStateHandle.get<ChoosePathType>(Screens.ProductsScreen.navArgumentKey) //TODO
         Timber.d("Which path: $path")
         getProductsBaseOnPath(path)
     }

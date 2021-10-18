@@ -8,6 +8,8 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -36,7 +38,15 @@ fun ProductsListView(
 ) {
     when (choosePathType) {
         ChoosePathType.RX -> {
-            //TODO
+            val productsList by viewModel.ldProductsList.observeAsState(PagingData.empty())
+            val lazyProductList = flowOf(productsList).collectAsLazyPagingItems()
+
+            ProductsListContent(
+                lazyProductList = lazyProductList,
+                themeFAB = themeFAB,
+                popBackStack = popBackStack,
+                onSelectedProduct = onSelectedProduct
+            )
         }
         ChoosePathType.COROUTINE -> {
             val lazyProductList = viewModel.productsListByCoroutine.collectAsLazyPagingItems()

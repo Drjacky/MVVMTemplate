@@ -172,8 +172,7 @@ fun MainLayout(
             })
         ) { backStackEntry ->
             val choosePathType: String =
-                backStackEntry.arguments?.getString(ProductsScreen.navArgumentKey)
-                    ?: ChoosePathType.COROUTINE.name
+                backStackEntry.arguments?.getString(ProductsScreen.navArgumentKey)!!
 
             ProductsListView(
                 viewModel = viewModel,
