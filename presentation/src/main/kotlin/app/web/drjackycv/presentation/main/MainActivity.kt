@@ -5,6 +5,7 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.animation.graphics.ExperimentalAnimationGraphicsApi
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.runtime.*
@@ -46,7 +47,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private var uiStateJob: Job? = null
-    private val isDark = ThemeState.darkModeState.value
 
     @Inject
     lateinit var dataStoreManager: DataStoreManager
@@ -54,22 +54,18 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            BaseTheme {
+            val darkMode by dataStoreManager.isDarkMode.collectAsState(initial = isSystemInDarkTheme())
+
+            BaseTheme(darkMode) {
                 MainLayout(
                     themeFAB = {
                         FloatingActionButton(
                             onClick = {
-                                val theme = when (isDark) {
-                                    true -> AppCompatDelegate.MODE_NIGHT_NO
-                                    false -> AppCompatDelegate.MODE_NIGHT_YES
-                                }
-                                AppCompatDelegate.setDefaultNightMode(theme)
-                                ThemeState.darkModeState.value = isDark.not()
-                                setNightMode(isDark.not())
+                                setNightMode(darkMode.not())
                             },
                             content = {
                                 Icon(
-                                    painter = painterResource(id = whichThemeIcon(isDark)),
+                                    painter = painterResource(id = whichThemeIcon(darkMode.not())),
                                     contentDescription = "Theme",
                                     tint = Color.Black
                                 )
@@ -106,17 +102,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupUI() {
-        lifecycleScope.launch {
-            dataStoreManager.themeMode.collectIn(this@MainActivity) { mode ->
-                //TODO
+        lifecycleScope.launchWhenStarted {
+            dataStoreManager.isDarkMode.collectIn(this@MainActivity) {
+                val mode = when (it) {
+                    true -> AppCompatDelegate.MODE_NIGHT_YES
+                    false -> AppCompatDelegate.MODE_NIGHT_NO
+                }
+                if (AppCompatDelegate.getDefaultNightMode() != mode)
+                    AppCompatDelegate.setDefaultNightMode(mode)
             }
         }
     }
 
     private fun setNightMode(isDark: Boolean) {
         allowReads {
-            uiStateJob = lifecycleScope.launchWhenStarted {
-                dataStoreManager.setThemeMode(whichThemeMode(isDark))
+            uiStateJob = lifecycleScope.launch {
+                dataStoreManager.setDarkMode(isDark)
+                ThemeState.darkModeState.value = isDark
             }
         }
     }
@@ -128,17 +130,6 @@ class MainActivity : AppCompatActivity() {
             }
             false -> {
                 R.drawable.ic_mode_night_no_black
-            }
-        }
-    }
-
-    private fun whichThemeMode(isDark: Boolean): Int {
-        return when (isDark) {
-            true -> {
-                AppCompatDelegate.MODE_NIGHT_YES
-            }
-            false -> {
-                AppCompatDelegate.MODE_NIGHT_NO
             }
         }
     }
