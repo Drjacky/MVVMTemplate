@@ -1,6 +1,6 @@
 # MVVMTemplate 🧞‍
 
-![Language](https://img.shields.io/badge/Kotlin-1.5.10-blue) ![License](https://img.shields.io/github/license/Drjacky/MVVMTemplate?logo=MIT) [![Actions Status](https://github.com/Drjacky/MVVMTemplate/workflows/Pre%20Merge%20Checks/badge.svg)](https://github.com/Drjacky/MVVMTemplate/actions) [![Build Status](https://github.com/Drjacky/MVVMTemplate/workflows/Android%20CI/badge.svg)](https://github.com/Drjacky/MVVMTemplate/actions) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Drjacky_MVVMTemplate&metric=alert_status)](https://sonarcloud.io/dashboard?id=Drjacky_MVVMTemplate)
+![Language](https://img.shields.io/badge/Kotlin-1.5.31-blue) ![License](https://img.shields.io/github/license/Drjacky/MVVMTemplate?logo=MIT) [![Actions Status](https://github.com/Drjacky/MVVMTemplate/workflows/Pre%20Merge%20Checks/badge.svg)](https://github.com/Drjacky/MVVMTemplate/actions) [![Build Status](https://github.com/Drjacky/MVVMTemplate/workflows/Android%20CI/badge.svg)](https://github.com/Drjacky/MVVMTemplate/actions) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Drjacky_MVVMTemplate&metric=alert_status)](https://sonarcloud.io/dashboard?id=Drjacky_MVVMTemplate)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FDrjacky%2FMVVMTemplate.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FDrjacky%2FMVVMTemplate?ref=badge_shield)
 <!-- [![Known Vulnerabilities](https://snyk.io/test/github/Drjacky/MVVMTemplate/badge.svg)](https://snyk.io/test/github/Drjacky/MVVMTemplate) Snyk doesn't support kotlin dsl -->
 A simple Android template that lets you create an **Android** project quickly. 
@@ -12,6 +12,7 @@ Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20t
 ## Features 🕹
 
 - 100% Kotlin-only template
+- 100% [JetPack Compose](https://developer.android.com/jetpack/compose)
 - Following [Clean Architecture approach](https://proandroiddev.com/mvvm-with-clean-architecture-c2c021e05c89)
 - Following MVVM Architectural Design Pattern
 - Template Project
@@ -20,9 +21,7 @@ Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20t
 - [Flow](https://developer.android.com/kotlin/flow) - Built on top of coroutines and is stream of data that can be computed asynchronously
 - Github Actions - CI
 - [Hilt](https://dagger.dev/hilt/) - Dependency Injection framework
-- [Transition](https://developer.android.com/guide/navigation/navigation-animate-transitions) - Animation
 - [Paging V3](https://developer.android.com/topic/libraries/architecture/paging/v3-overview) - Pagination
-- [View Binding](https://developer.android.com/topic/libraries/view-binding) - View Binding
 - [OkHttp3](https://github.com/square/okhttp) - Network interceptor
 - [Retrofit](https://github.com/square/retrofit) - HTTP client
 - [Timber](https://github.com/JakeWharton/timber) - Log
