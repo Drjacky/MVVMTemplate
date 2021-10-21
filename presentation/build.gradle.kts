@@ -128,8 +128,6 @@ dependencies {
     implementation(Depends.Libraries.autodispose_android)
     implementation(Depends.Libraries.autodispose_android_arch)
     //ui
-    implementation(Depends.Libraries.glide)
-    kapt(Depends.Libraries.glide_compiler)
     implementation(Depends.Libraries.coil_compose)
     implementation(Depends.Libraries.lottie)
     implementation(Depends.Libraries.palette)

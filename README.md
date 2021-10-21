@@ -18,7 +18,6 @@ Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20t
 - [RxJava 3](https://github.com/ReactiveX/RxJava) - Reactive Extensions for the JVM
 - [Coroutines](https://developer.android.com/kotlin/coroutines) - A concurrency design pattern library
 - [Flow](https://developer.android.com/kotlin/flow) - Built on top of coroutines and is stream of data that can be computed asynchronously
-- Simplest Adapter Ever (based on this [workaround](https://proandroiddev.com/the-best-android-recycler-adapter-youve-ever-seen-probably-177e25279a28))
 - Github Actions - CI
 - [Hilt](https://dagger.dev/hilt/) - Dependency Injection framework
 - [Transition](https://developer.android.com/guide/navigation/navigation-animate-transitions) - Animation
@@ -26,7 +25,6 @@ Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20t
 - [View Binding](https://developer.android.com/topic/libraries/view-binding) - View Binding
 - [OkHttp3](https://github.com/square/okhttp) - Network interceptor
 - [Retrofit](https://github.com/square/retrofit) - HTTP client
-- [Glide](https://github.com/bumptech/glide) - Loading images
 - [Timber](https://github.com/JakeWharton/timber) - Log
 - [Gson](https://github.com/google/gson) - JSON library
 - [Material Components](https://github.com/material-components/material-components-android) - Material Design
