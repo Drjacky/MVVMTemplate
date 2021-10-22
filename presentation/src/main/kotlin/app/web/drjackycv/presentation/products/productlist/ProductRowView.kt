@@ -40,7 +40,6 @@ fun ProductRowView(
     onSelectedProduct: (productId: Int) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val clickState = remember { mutableStateOf(false) }
     val defaultColor = MaterialTheme.colors.surface
     val cardColor = remember { mutableStateOf(defaultColor) }
     val animatedCardColor = animateColorAsState(cardColor.value)
@@ -50,7 +49,6 @@ fun ProductRowView(
         modifier = Modifier
             .fillMaxWidth()
             .clickableOnce(
-                clickState = clickState,
                 onClick = { onSelectedProduct(product.id) })
             .padding(4.dp),
         shape = RoundedCornerShape(4.dp),
