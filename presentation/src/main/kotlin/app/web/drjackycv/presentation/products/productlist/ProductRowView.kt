@@ -22,6 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.palette.graphics.Palette
 import app.web.drjackycv.presentation.R
+import app.web.drjackycv.presentation.extension.clickableOnce
 import app.web.drjackycv.presentation.main.MainActivity
 import app.web.drjackycv.presentation.products.entity.BeerUI
 import coil.ImageLoader
@@ -39,7 +40,7 @@ fun ProductRowView(
     onSelectedProduct: (productId: Int) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val itemClickedState = remember { mutableStateOf(false) }
+    val clickState = remember { mutableStateOf(false) }
     val defaultColor = MaterialTheme.colors.surface
     val cardColor = remember { mutableStateOf(defaultColor) }
     val animatedCardColor = animateColorAsState(cardColor.value)
@@ -48,13 +49,9 @@ fun ProductRowView(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable(
-                onClick = {
-                    if (itemClickedState.value.not()) {
-                        itemClickedState.value = true
-                        onSelectedProduct(product.id)
-                    }
-                })
+            .clickableOnce(
+                clickState = clickState,
+                onClick = { onSelectedProduct(product.id) })
             .padding(4.dp),
         shape = RoundedCornerShape(4.dp),
         backgroundColor = animatedCardColor.value,
