@@ -4,6 +4,7 @@ import androidx.compose.animation.graphics.ExperimentalAnimationGraphicsApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -89,10 +90,13 @@ fun ProductsListContent(
         },
         floatingActionButton = themeFAB
     ) {
+        val scrollState = rememberLazyListState()
+
         LazyColumn(
             contentPadding = it,
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
+            state = scrollState,
             modifier = Modifier.fillMaxSize()
         ) {
             items(lazyProductList) { product ->
