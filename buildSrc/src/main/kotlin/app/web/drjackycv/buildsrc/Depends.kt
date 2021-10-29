@@ -37,7 +37,7 @@ object Depends {
         const val timberVersion = "5.0.1"
         const val lottieVersion = "4.1.0"
         const val paletteVersion = "1.0.0"
-        const val coilComposeVersion = "1.3.2"
+        const val coilComposeVersion = "2.0.0-alpha02"
         const val autoDispose = "2.1.1"
         const val dataStorePreferenceVersion = "1.0.0"
         const val composeVersion = "1.1.0-alpha06"
