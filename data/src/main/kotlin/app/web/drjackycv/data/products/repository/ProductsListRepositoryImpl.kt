@@ -12,13 +12,11 @@ import app.web.drjackycv.domain.extension.allowReads
 import app.web.drjackycv.domain.products.entity.Beer
 import app.web.drjackycv.domain.products.repository.ProductsListRepository
 import io.reactivex.rxjava3.core.Flowable
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@ExperimentalCoroutinesApi
 @Singleton
 class ProductsListRepositoryImpl @Inject constructor(
     private val pagingSource: ProductsPagingSource,
