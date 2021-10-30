@@ -35,7 +35,7 @@ object Depends {
         const val hiltNavigationComposeVersion = "1.0.0-alpha03"
         const val javaxInjectVersion = "1"
         const val timberVersion = "5.0.1"
-        const val lottieVersion = "4.1.0"
+        const val lottieVersion = "4.2.0"
         const val paletteVersion = "1.0.0"
         const val coilComposeVersion = "2.0.0-alpha02"
         const val autoDispose = "2.1.1"
@@ -45,7 +45,7 @@ object Depends {
         const val composeNavigationVersion = "2.4.0-alpha10"
         const val composeTextVersion = "1.1.0-alpha05"
         const val activityComposeVersion = "1.4.0-beta01"
-        const val materialComposeThemeAdapter = "1.0.3"
+        const val materialComposeThemeAdapter = "1.0.4"
         const val composeConstraintLayout = "1.0.0-rc01"
         const val accompanistPlaceholderVersion = "0.19.0"
 
