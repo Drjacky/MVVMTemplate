@@ -46,7 +46,7 @@ android {
 
 }
 
-val unitTestImplementation by configurations.creating
+val unitTestImplementation: Configuration by configurations.creating
 configurations["compileOnly"].extendsFrom(unitTestImplementation)
 configurations["testImplementation"].extendsFrom(unitTestImplementation)
 
