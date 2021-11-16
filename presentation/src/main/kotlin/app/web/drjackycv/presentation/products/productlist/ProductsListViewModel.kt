@@ -30,7 +30,7 @@ import javax.inject.Inject
 class ProductsListViewModel @Inject constructor(
     private val getBeersUseCase: GetBeersListUseCase,
     private val getBeersListByCoroutineUseCase: GetBeersListByCoroutineUseCase,
-    private val savedStateHandle: SavedStateHandle,
+    savedStateHandle: SavedStateHandle,
 ) : BaseViewModel() {
 
     private val _ldProductsList: MutableLiveData<PagingData<RecyclerItem>> = MutableLiveData()

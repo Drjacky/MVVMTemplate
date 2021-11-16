@@ -14,7 +14,9 @@
         android:theme="@style/AppTheme"
         tools:targetApi="n">
 
-        <activity android:name="app.web.drjackycv.presentation.main.MainActivity">
+        <activity
+            android:name="app.web.drjackycv.presentation.main.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
