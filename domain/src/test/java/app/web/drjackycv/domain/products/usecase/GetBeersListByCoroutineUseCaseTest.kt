@@ -6,9 +6,13 @@ import app.web.drjackycv.domain.products.repository.ProductsListRepository
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.test.setMain
 import org.hamcrest.CoreMatchers
 import org.hamcrest.MatcherAssert
 import org.junit.After
@@ -24,8 +28,10 @@ class GetBeersListByCoroutineUseCaseTest {
     @MockK
     lateinit var productsListRepository: ProductsListRepository
 
+    @ExperimentalCoroutinesApi
     @Before
     fun setUp() {
+        Dispatchers.setMain(StandardTestDispatcher())
         MockKAnnotations.init(this)
     }
 
@@ -33,31 +39,33 @@ class GetBeersListByCoroutineUseCaseTest {
     fun tearDown() {
     }
 
+    @ExperimentalCoroutinesApi
     @Test
-    fun `test invoking GetBeersListByCoroutineUseCase gives list of products`() = runBlocking {
-        // Given
-        val usecase = GetBeersListByCoroutineUseCase(productsListRepository)
-        val givenProducts = ProductFactory.createProducts(3)
+    fun `test invoking GetBeersListByCoroutineUseCase gives list of products`() =
+        runTest {
+            // Given
+            val usecase = GetBeersListByCoroutineUseCase(productsListRepository)
+            val givenProducts = ProductFactory.createProducts(3)
 
-        // When
-        coEvery { productsListRepository.getBeersListByCoroutine(anyString()) }
-            .returns(flowOf(PagingData.from(givenProducts)))
+            // When
+            coEvery { productsListRepository.getBeersListByCoroutine(anyString()) }
+                .returns(flowOf(PagingData.from(givenProducts)))
 
-        // Invoke
-        val productsListFlow = usecase(GetBeersListByCoroutineParams(""))
+            // Invoke
+            val productsListFlow = usecase(GetBeersListByCoroutineParams(""))
 
-        // Then
-        MatcherAssert.assertThat(productsListFlow, CoreMatchers.notNullValue())
+            // Then
+            MatcherAssert.assertThat(productsListFlow, CoreMatchers.notNullValue())
 
-        val productsListDataState = productsListFlow.first()
-        MatcherAssert.assertThat(productsListDataState, CoreMatchers.notNullValue())
-        MatcherAssert.assertThat(
-            productsListDataState,
-            CoreMatchers.instanceOf(PagingData::class.java)
-        )
+            val productsListDataState = productsListFlow.first()
+            MatcherAssert.assertThat(productsListDataState, CoreMatchers.notNullValue())
+            MatcherAssert.assertThat(
+                productsListDataState,
+                CoreMatchers.instanceOf(PagingData::class.java)
+            )
 
-        val productsList = (productsListDataState as PagingData)
-        MatcherAssert.assertThat(productsList, CoreMatchers.notNullValue())
-        //MatcherAssert.assertThat(productsList.size, `is`(givenProducts.size))
-    }
+            val productsList = (productsListDataState as PagingData)
+            MatcherAssert.assertThat(productsList, CoreMatchers.notNullValue())
+            //MatcherAssert.assertThat(productsList.size, `is`(givenProducts.size))
+        }
 }

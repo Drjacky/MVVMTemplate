@@ -13,7 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.test.StandardTestDispatcher
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.hamcrest.CoreMatchers
 import org.hamcrest.MatcherAssert
@@ -54,46 +54,47 @@ class ProductsListRepositoryImplTest {
 
     @ExperimentalCoroutinesApi
     @Test
-    fun `test getBeersListByCoroutine() gives list of products`() = runBlockingTest {
-        // Given
-        every { loadParams.key } returns 10
-        val givenProducts = ProductResponseFactory.createProducts(3)
-        val productsApi = mockk<ProductsApi> {
-            coEvery { getBeersListByCoroutine() } returns givenProducts
+    fun `test getBeersListByCoroutine() gives list of products`() =
+        runTest {
+            // Given
+            every { loadParams.key } returns 10
+            val givenProducts = ProductResponseFactory.createProducts(3)
+            val productsApi = mockk<ProductsApi> {
+                coEvery { getBeersListByCoroutine() } returns givenProducts
+            }
+            productsListRepositoryImpl =
+                ProductsListRepositoryImpl(pagingSource, pagingSourceByCoroutine)
+            val pagingSource = PagingData.from(givenProducts)
+
+            // When
+            coEvery { productsApi.getBeersListByCoroutine() }
+                .returns(givenProducts)
+
+            // Invoke
+            val productsListRepositoryResponseFlow =
+                productsListRepositoryImpl.getBeersListByCoroutine("")
+
+            // Then
+            MatcherAssert.assertThat(
+                productsListRepositoryResponseFlow,
+                CoreMatchers.notNullValue()
+            )
+
+            MatcherAssert.assertThat(
+                productsListRepositoryResponseFlow,
+                CoreMatchers.notNullValue()
+            )
+            MatcherAssert.assertThat(
+                productsListRepositoryResponseFlow,
+                CoreMatchers.instanceOf(Flow::class.java)
+            )
+
+            /*val productsList = (productsListRepositoryResponseFlow as PagingData<RecyclerItem>)
+            MatcherAssert.assertThat(productsList, CoreMatchers.notNullValue())
+            MatcherAssert.assertThat(productsList.size, CoreMatchers.`is`(givenProducts.size))*/
+
+            //coVerify(exactly = 1) { productsApi.getBeersListByCoroutine() }
+            confirmVerified(productsApi)
         }
-        productsListRepositoryImpl =
-            ProductsListRepositoryImpl(pagingSource, pagingSourceByCoroutine)
-        val pagingSource = PagingData.from(givenProducts)
-
-        // When
-        coEvery { productsApi.getBeersListByCoroutine() }
-            .returns(givenProducts)
-
-        // Invoke
-        val productsListRepositoryResponseFlow =
-            productsListRepositoryImpl.getBeersListByCoroutine("")
-
-        // Then
-        MatcherAssert.assertThat(
-            productsListRepositoryResponseFlow,
-            CoreMatchers.notNullValue()
-        )
-
-        MatcherAssert.assertThat(
-            productsListRepositoryResponseFlow,
-            CoreMatchers.notNullValue()
-        )
-        MatcherAssert.assertThat(
-            productsListRepositoryResponseFlow,
-            CoreMatchers.instanceOf(Flow::class.java)
-        )
-
-        /*val productsList = (productsListRepositoryResponseFlow as PagingData<RecyclerItem>)
-        MatcherAssert.assertThat(productsList, CoreMatchers.notNullValue())
-        MatcherAssert.assertThat(productsList.size, CoreMatchers.`is`(givenProducts.size))*/
-
-        //coVerify(exactly = 1) { productsApi.getBeersListByCoroutine() }
-        confirmVerified(productsApi)
-    }
 
 }
