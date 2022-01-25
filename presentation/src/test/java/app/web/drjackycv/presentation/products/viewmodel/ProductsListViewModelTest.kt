@@ -6,13 +6,14 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.asLiveData
 import androidx.paging.PagingData
 import app.web.drjackycv.domain.base.MainCoroutineRule
-import app.web.drjackycv.domain.base.RecyclerItem
+import app.web.drjackycv.domain.products.entity.Beer
+import app.web.drjackycv.domain.products.factory.ProductFactory
 import app.web.drjackycv.domain.products.usecase.GetBeersListByCoroutineParams
 import app.web.drjackycv.domain.products.usecase.GetBeersListByCoroutineUseCase
 import app.web.drjackycv.domain.products.usecase.GetBeersListParams
 import app.web.drjackycv.domain.products.usecase.GetBeersListUseCase
+import app.web.drjackycv.presentation.base.adapter.RecyclerItem
 import app.web.drjackycv.presentation.products.choose.ChoosePathType
-import app.web.drjackycv.presentation.products.factory.ProductUIFactory
 import app.web.drjackycv.presentation.products.productlist.CHOOSE_PATH_TYPE
 import app.web.drjackycv.presentation.products.productlist.ProductsListViewModel
 import io.mockk.*
@@ -65,8 +66,8 @@ class ProductsListViewModelTest {
     fun `test when ProductsListViewModel is initialized, products are fetched`() =
         coroutineRule.testDispatcher.runBlockingTest {
             // Given
-            val givenProducts = ProductUIFactory.createProducts(3)
-            val flow = flow<PagingData<RecyclerItem>> {
+            val givenProducts = ProductFactory.createProducts(3)
+            val flow = flow<PagingData<Beer>> {
 //                emit(LoadState.Loading)
                 delay(10)
                 emit(PagingData.from(givenProducts))
