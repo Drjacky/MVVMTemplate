@@ -26,6 +26,7 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
+    testOptions.unitTests.isReturnDefaultValues = true
     sourceSets {
         map { it.java.srcDir("src/${it.name}/kotlin") }
     }
@@ -82,6 +83,9 @@ dependencies {
     testImplementation(Depends.Libraries.mockito_core)
     testImplementation(Depends.Libraries.mockito_inline)
     testImplementation(Depends.Libraries.mockito_kotlin)
+    testImplementation(Depends.Libraries.mockk)
+    testImplementation(Depends.Libraries.coroutines_test)
+    testImplementation(Depends.Libraries.arch_core_testing)
 
     testImplementation(project(path = ":domain", configuration = "unitTestImplementation"))
     implementation(project(":domain"))

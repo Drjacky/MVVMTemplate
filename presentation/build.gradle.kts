@@ -35,7 +35,16 @@ android {
     }
 
     sourceSets {
-        map { it.java.srcDir("src/${it.name}/kotlin") }
+        val test by getting
+
+        map {
+            it.java.srcDir("src/${it.name}/kotlin")
+            it.java.srcDir("src/${it.name}/java")
+        }
+        map {
+            test.java.srcDir("src/${it.name}/kotlin")
+            test.java.srcDir("src/${it.name}/java")
+        }
     }
     buildTypes {
         named("debug") { }
@@ -97,6 +106,10 @@ dependencies {
     androidTestImplementation(Depends.Libraries.test_core)
     androidTestImplementation(Depends.Libraries.test_ext_junit)
     androidTestImplementation(Depends.Libraries.espresso_core)
+    testImplementation(Depends.Libraries.mockk)
+    testImplementation(Depends.Libraries.coroutines_test)
+    testImplementation(Depends.Libraries.arch_core_testing)
 
+    testImplementation(project(path = ":domain", configuration = "unitTestImplementation"))
     implementation(project(":domain"))
 }

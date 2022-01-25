@@ -26,6 +26,8 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
+const val CHOOSE_PATH_TYPE = "choosePathType"
+
 @HiltViewModel
 class ProductsListViewModel @Inject constructor(
     private val getBeersUseCase: GetBeersListUseCase,
@@ -42,7 +44,8 @@ class ProductsListViewModel @Inject constructor(
 
 
     init {
-        val path = savedStateHandle.get<ChoosePathType>("choosePathType")
+        val path =
+            savedStateHandle.get<ChoosePathType>(CHOOSE_PATH_TYPE) ?: ChoosePathType.COROUTINE
         Timber.d("Which path: $path")
         getProductsBaseOnPath("", path)
     }
@@ -64,7 +67,7 @@ class ProductsListViewModel @Inject constructor(
         getBeersListByCoroutineUseCase(GetBeersListByCoroutineParams(ids = ids))
             .cachedIn(viewModelScope)
 
-    private fun getProductsBaseOnPath(ids: String, path: ChoosePathType?) {
+    private fun getProductsBaseOnPath(ids: String, path: ChoosePathType) {
         when (path) {
             ChoosePathType.RX -> {
                 getProductsByRxPath(ids)
@@ -77,7 +80,6 @@ class ProductsListViewModel @Inject constructor(
                         }
                 }
             }
-            else -> getProductsByRxPath(ids)
         }
     }
 

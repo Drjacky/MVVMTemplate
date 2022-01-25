@@ -65,5 +65,8 @@ dependencies {
     testImplementation(Depends.Libraries.junit)
     testImplementation(Depends.Libraries.mockito_core)
     testImplementation(Depends.Libraries.mockito_inline)
+    testImplementation(Depends.Libraries.coroutines_test)
     testImplementation(Depends.Libraries.mockito_kotlin)
+    testImplementation(Depends.Libraries.mockk)
+    testImplementation(Depends.Libraries.arch_core_testing)
 }
