@@ -39,11 +39,7 @@ android {
 
         map {
             it.java.srcDir("src/${it.name}/kotlin")
-            it.java.srcDir("src/${it.name}/java")
-        }
-        map {
-            test.java.srcDir("src/${it.name}/kotlin")
-            test.java.srcDir("src/${it.name}/java")
+            test.java.srcDir("${project(":domain").projectDir}/src/test/java")
         }
     }
     buildTypes {

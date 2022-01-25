@@ -1,4 +1,4 @@
-package app.web.drjackycv.domain.base
+package app.web.drjackycv.presentation.base
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

@@ -41,8 +41,8 @@ object Depends {
         const val dataStorePreferenceVersion = "1.0.0"
 
         const val mockitoKotlinVersion = "2.2.0"
-        const val mockitoCoreVersion = "4.2.0"
-        const val mockitoInlineVersion = "4.2.0"
+        const val mockitoCoreVersion = "4.3.0"
+        const val mockitoInlineVersion = "4.3.0"
         const val espressoVersion = "3.4.0"
         const val junitVersion = "4.13.2"
         const val supportTestVersion = "1.4.0"
@@ -53,8 +53,8 @@ object Depends {
         const val checkDependencyVersionsVersion = "0.41.0"
         const val gradleDoctorVersion = "0.7.3"
         const val leakCanaryVersion = "2.8.1"
-        const val coroutinesTestVersion = "1.4.2"
-        const val mockkVersion = "1.10.5"
+        const val coroutinesTestVersion = "1.6.0"
+        const val mockkVersion = "1.12.2"
         const val archCoreTestingVersion = "2.1.0"
     }
 
