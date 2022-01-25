@@ -3,16 +3,18 @@ package app.web.drjackycv.data.products.repository
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.paging.PagingData
 import androidx.paging.PagingSource
-import app.web.drjackycv.data.base.MainCoroutineRule
 import app.web.drjackycv.data.products.datasource.ProductsPagingSource
 import app.web.drjackycv.data.products.datasource.ProductsPagingSourceByCoroutine
 import app.web.drjackycv.data.products.factory.ProductResponseFactory
 import app.web.drjackycv.data.products.remote.ProductsApi
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.test.setMain
 import org.hamcrest.CoreMatchers
 import org.hamcrest.MatcherAssert
 import org.junit.After
@@ -40,11 +42,9 @@ class ProductsListRepositoryImplTest {
     var instantExecutorRule = InstantTaskExecutorRule()
 
     @ExperimentalCoroutinesApi
-    @get:Rule
-    var coroutineRule = MainCoroutineRule()
-
     @Before
     fun setUp() {
+        Dispatchers.setMain(StandardTestDispatcher())
         MockKAnnotations.init(this)
     }
 

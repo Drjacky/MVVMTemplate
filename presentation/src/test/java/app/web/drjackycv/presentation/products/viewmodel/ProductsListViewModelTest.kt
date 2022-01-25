@@ -11,18 +11,20 @@ import app.web.drjackycv.domain.products.usecase.GetBeersListByCoroutineParams
 import app.web.drjackycv.domain.products.usecase.GetBeersListByCoroutineUseCase
 import app.web.drjackycv.domain.products.usecase.GetBeersListParams
 import app.web.drjackycv.domain.products.usecase.GetBeersListUseCase
-import app.web.drjackycv.presentation.base.MainCoroutineRule
 import app.web.drjackycv.presentation.base.adapter.RecyclerItem
 import app.web.drjackycv.presentation.products.choose.ChoosePathType
 import app.web.drjackycv.presentation.products.productlist.CHOOSE_PATH_TYPE
 import app.web.drjackycv.presentation.products.productlist.ProductsListViewModel
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.advanceTimeBy
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -40,10 +42,6 @@ class ProductsListViewModelTest {
     @get:Rule
     var instantExecutorRule = InstantTaskExecutorRule()
 
-    @ExperimentalCoroutinesApi
-    @get:Rule
-    var coroutineRule = MainCoroutineRule()
-
     @MockK
     lateinit var getBeersListUseCase: GetBeersListUseCase
 
@@ -53,8 +51,10 @@ class ProductsListViewModelTest {
     @MockK
     lateinit var savedStateHandle: SavedStateHandle
 
+    @ExperimentalCoroutinesApi
     @Before
     fun setUp() {
+        Dispatchers.setMain(StandardTestDispatcher())
         MockKAnnotations.init(this)
     }
 
@@ -65,7 +65,7 @@ class ProductsListViewModelTest {
     @ExperimentalCoroutinesApi
     @Test
     fun `test when ProductsListViewModel is initialized, products are fetched`() =
-        coroutineRule.testDispatcher.runBlockingTest {
+        runTest {
             // Given
             val givenProducts = ProductFactory.createProducts(3)
             val flow = flow<PagingData<Beer>> {
@@ -94,7 +94,7 @@ class ProductsListViewModelTest {
             viewModel.productsListByCoroutine.asLiveData().observeForever(productsListObserver)
 
             // Then
-            coroutineRule.advanceTimeBy(10)
+            advanceTimeBy(10)
             coVerify(exactly = 1) {
                 getBeersListByCoroutineUseCase.invoke(
                     GetBeersListByCoroutineParams(anyString())
