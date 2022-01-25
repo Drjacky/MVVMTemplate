@@ -50,7 +50,7 @@ For the compose version, which is under development, switch to [feature/compose]
 
 - ~~Add CI~~
 - ~~Use Kotlin DSL~~
-- Add Espresso, Instrumentation & Unit tests
+- Add Espresso, Instrumentation & Unit tests. To see a part of changes, click [here](https://github.com/Drjacky/MVVMTemplate/pull/18)
 - ~~Use Animations. To see changes, click [here](https://github.com/Drjacky/MVVMTemplate/commit/2fc51ef6ff82c4d43168e3ae0124a30c4ec3bfff).~~
 - ~~Use Hilt. To see changes, click [here](https://github.com/Drjacky/MVVMTemplate/commit/b8af89bb74e5d615e9704c9f3ce35befd11811ea).~~
 - ~~Migrate to [Hilt 2.31](https://github.com/google/dagger/releases/tag/dagger-2.31). To see changes, click [here](https://github.com/Drjacky/MVVMTemplate/commit/792d2ba54d214b3ef10862777fc386e7be5790f4).~~
