@@ -13,8 +13,8 @@ import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
-import org.hamcrest.CoreMatchers
-import org.hamcrest.MatcherAssert
+import org.hamcrest.CoreMatchers.*
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -46,26 +46,21 @@ class GetBeersListByCoroutineUseCaseTest {
             // Given
             val usecase = GetBeersListByCoroutineUseCase(productsListRepository)
             val givenProducts = ProductFactory.createProducts(3)
+            val expectedProducts = PagingData.from(givenProducts)
 
             // When
             coEvery { productsListRepository.getBeersListByCoroutine(anyString()) }
-                .returns(flowOf(PagingData.from(givenProducts)))
+                .returns(flowOf(expectedProducts))
 
             // Invoke
             val productsListFlow = usecase(GetBeersListByCoroutineParams(""))
 
             // Then
-            MatcherAssert.assertThat(productsListFlow, CoreMatchers.notNullValue())
+            assertThat(productsListFlow, notNullValue())
 
             val productsListDataState = productsListFlow.first()
-            MatcherAssert.assertThat(productsListDataState, CoreMatchers.notNullValue())
-            MatcherAssert.assertThat(
-                productsListDataState,
-                CoreMatchers.instanceOf(PagingData::class.java)
-            )
-
-            val productsList = (productsListDataState as PagingData)
-            MatcherAssert.assertThat(productsList, CoreMatchers.notNullValue())
-            //MatcherAssert.assertThat(productsList.size, `is`(givenProducts.size))
+            assertThat(productsListDataState, notNullValue())
+            assertThat(productsListDataState, instanceOf(PagingData::class.java))
+            assertThat(productsListDataState, equalTo(expectedProducts))
         }
 }

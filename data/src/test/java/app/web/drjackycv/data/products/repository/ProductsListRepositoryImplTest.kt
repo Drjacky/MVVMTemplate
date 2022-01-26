@@ -15,8 +15,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
-import org.hamcrest.CoreMatchers
-import org.hamcrest.MatcherAssert
+import org.hamcrest.CoreMatchers.instanceOf
+import org.hamcrest.CoreMatchers.notNullValue
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -75,19 +76,8 @@ class ProductsListRepositoryImplTest {
                 productsListRepositoryImpl.getBeersListByCoroutine("")
 
             // Then
-            MatcherAssert.assertThat(
-                productsListRepositoryResponseFlow,
-                CoreMatchers.notNullValue()
-            )
-
-            MatcherAssert.assertThat(
-                productsListRepositoryResponseFlow,
-                CoreMatchers.notNullValue()
-            )
-            MatcherAssert.assertThat(
-                productsListRepositoryResponseFlow,
-                CoreMatchers.instanceOf(Flow::class.java)
-            )
+            assertThat(productsListRepositoryResponseFlow, notNullValue())
+            assertThat(productsListRepositoryResponseFlow, instanceOf(Flow::class.java))
 
             /*val productsList = (productsListRepositoryResponseFlow as PagingData<RecyclerItem>)
             MatcherAssert.assertThat(productsList, CoreMatchers.notNullValue())
