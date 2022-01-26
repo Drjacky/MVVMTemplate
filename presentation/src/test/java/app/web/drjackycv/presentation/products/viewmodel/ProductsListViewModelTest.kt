@@ -100,9 +100,7 @@ class ProductsListViewModelTest {
                     GetBeersListByCoroutineParams(anyString())
                 )
             }
-            verify {
-                productsListObserver.onChanged(matchNullable { it != null })
-            }
+            verify { productsListObserver.onChanged(matchNullable { it != null }) }
         }
 
 }
