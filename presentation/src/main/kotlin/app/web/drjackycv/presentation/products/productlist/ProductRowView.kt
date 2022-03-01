@@ -27,6 +27,7 @@ import app.web.drjackycv.presentation.main.MainActivity
 import app.web.drjackycv.presentation.products.entity.BeerUI
 import coil.ImageLoader
 import coil.annotation.ExperimentalCoilApi
+import coil.compose.AsyncImagePainter
 import coil.compose.ImagePainter
 import coil.compose.rememberImagePainter
 import coil.request.SuccessResult
@@ -80,17 +81,17 @@ fun ProductRowView(
                 )
 
                 when (imagePainter.state) {
-                    is ImagePainter.State.Success -> {
+                    is AsyncImagePainter.State.Success -> {
                         ChangeCardColor(
                             imagePainter = imagePainter,
                             cardColor = cardColor,
                             isDark = isDark
                         )
                     }
-                    is ImagePainter.State.Loading -> {
+                    is AsyncImagePainter.State.Loading -> {
                         CircularProgressIndicator(modifier = Modifier.padding(8.dp))
                     }
-                    is ImagePainter.State.Error -> {
+                    is AsyncImagePainter.State.Error -> {
 //                        val failedImage = animatedVectorResource(id = R.drawable.ic_cloud_download)
 //                        var atEnd by remember { mutableStateOf(false) }
 
@@ -105,7 +106,7 @@ fun ProductRowView(
                             contentDescription = product.name,
                         )
                     }
-                    ImagePainter.State.Empty -> {
+                    AsyncImagePainter.State.Empty -> {
                     }
                 }
             }
