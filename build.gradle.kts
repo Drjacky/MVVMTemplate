@@ -3,6 +3,7 @@ plugins {
     detekt
     id("com.github.ben-manes.versions") version app.web.drjackycv.buildsrc.Depends.Versions.checkDependencyVersionsVersion
     id("com.osacky.doctor") version app.web.drjackycv.buildsrc.Depends.Versions.gradleDoctorVersion
+    id("com.autonomousapps.dependency-analysis") version app.web.drjackycv.buildsrc.Depends.Versions.dependencyAnalysisVersion
 }
 
 buildscript {
@@ -31,5 +32,17 @@ allprojects {
         maven("https://maven.google.com/")
         maven("https://jitpack.io")
         maven("https://plugins.gradle.org/m2/")
+    }
+}
+
+configure<com.osacky.doctor.DoctorExtension> {
+    disallowMultipleDaemons.set(false)
+    negativeAvoidanceThreshold.set(500)
+    warnWhenJetifierEnabled.set(true)
+
+    javaHome {
+        ensureJavaHomeIsSet.set(true)
+        ensureJavaHomeMatches.set(true)
+        failOnError.set(true)
     }
 }

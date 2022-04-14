@@ -52,6 +52,7 @@ object Depends {
         const val detektVersion = "1.19.0"
         const val checkDependencyVersionsVersion = "0.42.0"
         const val gradleDoctorVersion = "0.8.0"
+        const val dependencyAnalysisVersion = "1.0.0"
         const val leakCanaryVersion = "2.8.1"
         const val coroutinesTestVersion = "1.6.0"
         const val mockkVersion = "1.12.2"

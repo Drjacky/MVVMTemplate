@@ -76,6 +76,7 @@ Available workflows listed as follows:
 
 - Gradle Doctor: `dependencyUpdates` -  Displays the dependency updates for the project.
 - Detekt: `detektAll` - Run the static Kotlin code analysis for the whole project at once.
+- The Dependency Analysis: `buildHealth` - Provides advice for managing dependencies and other applied plugins
 
 ## References 🧷
 
