@@ -15,6 +15,7 @@ class ChooseFragment : Fragment(R.layout.fragment_choose) {
     private val binding by viewBinding(FragmentChooseBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         setupListeners()
     }
 
