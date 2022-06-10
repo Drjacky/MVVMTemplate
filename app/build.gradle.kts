@@ -66,8 +66,6 @@ android {
 }
 
 tasks.withType<KotlinCompile> {
-    sourceCompatibility = "unused"
-    targetCompatibility = "unused"
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_11.toString()
         freeCompilerArgs = freeCompilerArgs + listOf("-XXLanguage:+InlineClasses")
