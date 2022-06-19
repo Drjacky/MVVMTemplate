@@ -103,6 +103,7 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
     }
 
     private fun addProductsList(productsList: PagingData<RecyclerItem>) {
+        loadingUI(false)
         binding.productListRecyclerView.visible()
         productsListAdapter.submitData(lifecycle, productsList)
     }
@@ -169,6 +170,7 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
     }
 
     private fun retryFetchData() {
+        loadingUI(false)
         binding.productListRecyclerView.visible()
         productsListAdapter.retry()
     }
