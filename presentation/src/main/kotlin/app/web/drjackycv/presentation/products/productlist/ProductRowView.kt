@@ -28,8 +28,8 @@ import app.web.drjackycv.presentation.products.entity.BeerUI
 import coil.ImageLoader
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.AsyncImagePainter
-import coil.compose.ImagePainter
-import coil.compose.rememberImagePainter
+import coil.compose.rememberAsyncImagePainter
+import coil.request.ImageRequest
 import coil.request.SuccessResult
 
 @ExperimentalAnimationGraphicsApi
@@ -65,13 +65,13 @@ fun ProductRowView(
                 shape = CircleShape,
                 color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f)
             ) {
-                val imagePainter = rememberImagePainter(
-                    data = product.imageUrl,
-                    builder = {
-                        crossfade(true)
-                        placeholder(R.drawable.ic_cloud_download)
-                        allowHardware(false)
-                    }
+                val imagePainter = rememberAsyncImagePainter(
+                    ImageRequest.Builder(LocalContext.current).data(data = product.imageUrl)
+                        .apply(block = fun ImageRequest.Builder.() {
+                            crossfade(true)
+                            placeholder(R.drawable.ic_cloud_download)
+                            allowHardware(false)
+                        }).build()
                 )
 
                 Image(
@@ -139,7 +139,7 @@ fun ProductRowView(
 
 @Composable
 private fun ChangeCardColor(
-    imagePainter: ImagePainter,
+    imagePainter: AsyncImagePainter,
     cardColor: MutableState<Color>,
     isDark: MutableState<Boolean>
 ) {

@@ -6,7 +6,7 @@ object Depends {
 
     object Versions {
         const val appVersionCode = 1_000_000
-        const val gradleVersion = "7.1.2"
+        const val gradleVersion = "7.2.1"
         const val androidCompileSdkVersion = 32
         const val targetSdkVersion = 32
         const val minSdkVersion =
@@ -40,7 +40,7 @@ object Depends {
         const val coilComposeVersion = "2.1.0"
         const val autoDispose = "2.1.1"
         const val dataStorePreferenceVersion = "1.0.0"
-        const val composeVersion = "1.2.0-rc03"
+        const val composeVersion = "1.1.1"
         const val composeCompilerVersion = "1.2.0"
         const val composePagingVersion = "1.0.0-alpha14"
         const val composeNavigationVersion = "2.5.0-alpha03"
