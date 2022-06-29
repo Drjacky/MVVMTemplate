@@ -9,6 +9,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.runtime.*
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -38,6 +39,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @ExperimentalCoilApi
+@ExperimentalComposeUiApi
 @ExperimentalAnimationGraphicsApi
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -137,6 +139,7 @@ class MainActivity : AppCompatActivity() {
 }
 
 @ExperimentalCoilApi
+@ExperimentalComposeUiApi
 @ExperimentalAnimationGraphicsApi
 @Composable
 fun MainLayout(
@@ -208,6 +211,7 @@ fun MainLayout(
 }
 
 @ExperimentalCoilApi
+@ExperimentalComposeUiApi
 @ExperimentalAnimationGraphicsApi
 @Preview
 @Composable

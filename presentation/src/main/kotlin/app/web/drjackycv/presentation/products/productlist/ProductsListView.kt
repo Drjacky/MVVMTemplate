@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.paging.LoadState
@@ -28,6 +29,7 @@ import coil.annotation.ExperimentalCoilApi
 import kotlinx.coroutines.flow.flowOf
 
 @ExperimentalCoilApi
+@ExperimentalComposeUiApi
 @ExperimentalAnimationGraphicsApi
 @Composable
 fun ProductsListView(
@@ -64,6 +66,7 @@ fun ProductsListView(
 }
 
 @ExperimentalCoilApi
+@ExperimentalComposeUiApi
 @ExperimentalAnimationGraphicsApi
 @Composable
 fun ProductsListContent(
@@ -160,6 +163,7 @@ fun ProductsListContent(
 }
 
 @ExperimentalCoilApi
+@ExperimentalComposeUiApi
 @ExperimentalAnimationGraphicsApi
 @Preview
 @Composable

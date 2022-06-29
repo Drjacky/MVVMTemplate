@@ -7,12 +7,12 @@ object Depends {
     object Versions {
         const val appVersionCode = 1_000_000
         const val gradleVersion = "7.1.2"
-        const val androidCompileSdkVersion = 31
-        const val targetSdkVersion = 31
+        const val androidCompileSdkVersion = 32
+        const val targetSdkVersion = 32
         const val minSdkVersion =
             24 //Set it back to 21 when https://developer.android.com/jetpack/androidx/releases/compose-runtime#1.0.0
         const val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        const val kotlinVersion = "1.6.10"
+        const val kotlinVersion = "1.7.0"
         const val rxKotlinVersion = "3.0.1"
         const val rxAndroidVersion = "3.0.0"
         const val rxJavaVersion = "3.1.3"
@@ -31,16 +31,17 @@ object Depends {
         const val multidexVersion = "2.0.1"
         const val fragmentExtVersion = "1.5.0-alpha03"
         const val recyclerviewVersion = "1.3.0-alpha01"
-        const val hiltVersion = "2.41"
+        const val hiltVersion = "2.42"
         const val hiltNavigationComposeVersion = "1.0.0"
         const val javaxInjectVersion = "1"
         const val timberVersion = "5.0.1"
         const val lottieVersion = "4.2.0"
         const val paletteVersion = "1.0.0"
-        const val coilComposeVersion = "2.0.0-alpha09"
+        const val coilComposeVersion = "2.1.0"
         const val autoDispose = "2.1.1"
         const val dataStorePreferenceVersion = "1.0.0"
-        const val composeVersion = "1.2.0-alpha04"
+        const val composeVersion = "1.2.0-rc03"
+        const val composeCompilerVersion = "1.2.0"
         const val composePagingVersion = "1.0.0-alpha14"
         const val composeNavigationVersion = "2.5.0-alpha03"
         const val composeTextVersion = "1.2.0-alpha04"
@@ -60,7 +61,7 @@ object Depends {
         const val sonarqubeVersion = "3.3"
         const val detektVersion = "1.19.0"
         const val checkDependencyVersionsVersion = "0.42.0"
-        const val gradleDoctorVersion = "0.8.0"
+        const val gradleDoctorVersion = "0.8.1"
         const val leakCanaryVersion = "2.8.1"
     }
 

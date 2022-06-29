@@ -177,6 +177,7 @@ private fun ChangeCardColor(
 
 @ExperimentalAnimationGraphicsApi
 @ExperimentalCoilApi
+@ExperimentalComposeUiApi
 @Preview
 @Composable
 fun ProductRowViewPreview() {

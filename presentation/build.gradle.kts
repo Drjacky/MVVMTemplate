@@ -15,8 +15,7 @@ android {
     buildFeatures {
         compose = true
         viewBinding = true
-        composeOptions.kotlinCompilerExtensionVersion = Depends.Versions.composeVersion
-        composeOptions.kotlinCompilerVersion = Depends.Versions.kotlinVersion
+        composeOptions.kotlinCompilerExtensionVersion = Depends.Versions.composeCompilerVersion
     }
     compileSdk = Depends.Versions.androidCompileSdkVersion
 

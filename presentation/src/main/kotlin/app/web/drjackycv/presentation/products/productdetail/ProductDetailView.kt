@@ -8,6 +8,7 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
@@ -18,6 +19,7 @@ import app.web.drjackycv.presentation.products.entity.BeerUI
 import coil.annotation.ExperimentalCoilApi
 
 @ExperimentalCoilApi
+@ExperimentalComposeUiApi
 @ExperimentalAnimationGraphicsApi
 @Composable
 fun ProductDetailView(
@@ -58,6 +60,7 @@ fun ProductDetailView(
 }
 
 @ExperimentalCoilApi
+@ExperimentalComposeUiApi
 @ExperimentalAnimationGraphicsApi
 @Preview(showBackground = true)
 @Composable
