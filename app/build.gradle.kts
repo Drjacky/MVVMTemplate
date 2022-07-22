@@ -62,6 +62,7 @@ android {
     packagingOptions {
         exclude("META-INF/rxjava.properties")
         exclude("META-INF/proguard/androidx-annotations.pro")
+        resources.excludes += "DebugProbesKt.bin"
     }
 }
 
@@ -80,6 +81,7 @@ dependencies {
     implementation(Depends.Libraries.paging_runtime_ktx)
     implementation(Depends.Libraries.paging_rx)
     implementation(Depends.Libraries.dataStore_preferences)
+    implementation(Depends.Libraries.coroutines_android)
     //dependency injection
     implementation(Depends.Libraries.hilt_android)
     kapt(Depends.Libraries.hilt_android_compiler)

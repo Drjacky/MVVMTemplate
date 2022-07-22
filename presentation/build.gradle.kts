@@ -85,6 +85,7 @@ dependencies {
     implementation(Depends.Libraries.fragment_ktx)
     implementation(Depends.Libraries.recyclerview)
     implementation(Depends.Libraries.dataStore_preferences)
+    implementation(Depends.Libraries.coroutines_android)
     //reactive
     implementation(Depends.Libraries.rx_java_android)
     implementation(Depends.Libraries.rx_binding3)

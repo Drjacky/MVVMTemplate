@@ -3,7 +3,8 @@ package app.web.drjackycv.data.products.datasource
 import androidx.paging.PagingState
 import androidx.paging.rxjava3.RxPagingSource
 import app.web.drjackycv.data.network.NetworkResponse
-import app.web.drjackycv.data.products.entity.BeerMapper
+import app.web.drjackycv.data.products.entity.BeerResponse
+import app.web.drjackycv.data.products.entity.mapIt
 import app.web.drjackycv.data.products.remote.ProductsApi
 import app.web.drjackycv.domain.base.Failure
 import app.web.drjackycv.domain.products.entity.Beer
@@ -34,9 +35,7 @@ class ProductsPagingSource @Inject constructor(
             .map { response ->
                 when (response) {
                     is NetworkResponse.Success -> {
-                        val list = response.body.map {
-                            BeerMapper().mapLeftToRight(it)
-                        }
+                        val list = response.body.map(BeerResponse::mapIt)
 
                         toLoadResult(list, position)
                     }

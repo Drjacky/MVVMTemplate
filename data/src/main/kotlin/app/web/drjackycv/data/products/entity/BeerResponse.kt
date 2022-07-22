@@ -1,6 +1,7 @@
 package app.web.drjackycv.data.products.entity
 
 
+import app.web.drjackycv.domain.products.entity.Beer
 import com.google.gson.annotations.SerializedName
 
 data class BeerResponse(
@@ -11,3 +12,13 @@ data class BeerResponse(
     @SerializedName("image_url") val imageUrl: String?,
     @SerializedName("abv") val abv: Double,
 )
+
+fun BeerResponse.mapIt(): Beer =
+    Beer(
+        id = id,
+        name = name,
+        tagline = tagline,
+        description = description,
+        imageUrl = imageUrl,
+        abv = abv
+    )

@@ -8,6 +8,7 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
 import androidx.paging.rxjava3.cachedIn
+import app.web.drjackycv.domain.products.entity.Beer
 import app.web.drjackycv.domain.products.usecase.GetBeersListByCoroutineParams
 import app.web.drjackycv.domain.products.usecase.GetBeersListByCoroutineUseCase
 import app.web.drjackycv.domain.products.usecase.GetBeersListParams
@@ -15,7 +16,7 @@ import app.web.drjackycv.domain.products.usecase.GetBeersListUseCase
 import app.web.drjackycv.presentation.base.adapter.RecyclerItem
 import app.web.drjackycv.presentation.base.viewmodel.BaseViewModel
 import app.web.drjackycv.presentation.products.choose.ChoosePathType
-import app.web.drjackycv.presentation.products.entity.BeerMapper
+import app.web.drjackycv.presentation.products.entity.mapIt
 import autodispose2.autoDispose
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -56,10 +57,7 @@ class ProductsListViewModel @Inject constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .autoDispose(this)
             .subscribe { pagingDataBeer ->
-                _ldProductsList.value = pagingDataBeer
-                    .map { beer ->
-                        BeerMapper().mapLeftToRight(beer)
-                    }
+                _ldProductsList.value = pagingDataBeer.map(Beer::mapIt)
             }
     }
 
@@ -75,9 +73,7 @@ class ProductsListViewModel @Inject constructor(
             ChoosePathType.COROUTINE -> {
                 viewModelScope.launch {
                     _productsListByCoroutine.value = getProductsByCoroutinePath(ids).first()
-                        .map { beer ->
-                            BeerMapper().mapLeftToRight(beer)
-                        }
+                        .map(Beer::mapIt)
                 }
             }
         }
