@@ -11,13 +11,13 @@ plugins {
 
 android {
 
-    compileSdkVersion(Depends.Versions.androidCompileSdkVersion)
+    compileSdk = Depends.Versions.androidCompileSdkVersion
 
     defaultConfig {
         multiDexEnabled = true
         vectorDrawables.useSupportLibrary = true
-        minSdkVersion(Depends.Versions.minSdkVersion)
-        targetSdkVersion(Depends.Versions.targetSdkVersion)
+        minSdk = Depends.Versions.minSdkVersion
+        targetSdk = Depends.Versions.targetSdkVersion
         testInstrumentationRunner =
             Depends.Versions.testInstrumentationRunner
         consumerProguardFiles("consumer-rules.pro")
