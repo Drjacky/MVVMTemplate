@@ -102,7 +102,12 @@ fun ProductsListContent(
             state = scrollState,
             modifier = Modifier.fillMaxSize()
         ) {
-            items(lazyProductList) { product ->
+            items(
+                items = lazyProductList,
+                key = { product ->
+                    product.id
+                }
+            ) { product ->
                 product?.let { beer ->
                     ProductRowView(
                         product = beer,
