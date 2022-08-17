@@ -18,6 +18,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -40,7 +41,7 @@ class ProductsListViewModel @Inject constructor(
 
     private val _productsListByCoroutine =
         MutableStateFlow<PagingData<BeerUI>>(PagingData.empty())
-    val productsListByCoroutine: Flow<PagingData<BeerUI>> = _productsListByCoroutine
+    val productsListByCoroutine: Flow<PagingData<BeerUI>> = _productsListByCoroutine.asStateFlow()
 
 
     init {
