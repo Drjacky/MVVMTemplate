@@ -9,9 +9,7 @@ import androidx.paging.cachedIn
 import androidx.paging.map
 import androidx.paging.rxjava3.cachedIn
 import app.web.drjackycv.domain.products.entity.Beer
-import app.web.drjackycv.domain.products.usecase.GetBeersListByCoroutineParams
 import app.web.drjackycv.domain.products.usecase.GetBeersListByCoroutineUseCase
-import app.web.drjackycv.domain.products.usecase.GetBeersListParams
 import app.web.drjackycv.domain.products.usecase.GetBeersListUseCase
 import app.web.drjackycv.presentation.base.adapter.RecyclerItem
 import app.web.drjackycv.presentation.base.viewmodel.BaseViewModel
@@ -52,7 +50,7 @@ class ProductsListViewModel @Inject constructor(
     }
 
     private fun getProductsByRxPath(ids: String) {
-        getBeersUseCase(GetBeersListParams(ids = ids))
+        getBeersUseCase(ids)
             .cachedIn(viewModelScope)
             .observeOn(AndroidSchedulers.mainThread())
             .autoDispose(this)
@@ -62,7 +60,7 @@ class ProductsListViewModel @Inject constructor(
     }
 
     private fun getProductsByCoroutinePath(ids: String) =
-        getBeersListByCoroutineUseCase(GetBeersListByCoroutineParams(ids = ids))
+        getBeersListByCoroutineUseCase(ids)
             .cachedIn(viewModelScope)
 
     private fun getProductsBaseOnPath(ids: String, path: ChoosePathType) {

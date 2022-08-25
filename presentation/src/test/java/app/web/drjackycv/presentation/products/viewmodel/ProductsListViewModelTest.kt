@@ -7,9 +7,7 @@ import androidx.lifecycle.asLiveData
 import androidx.paging.PagingData
 import app.web.drjackycv.domain.products.entity.Beer
 import app.web.drjackycv.domain.products.factory.ProductFactory
-import app.web.drjackycv.domain.products.usecase.GetBeersListByCoroutineParams
 import app.web.drjackycv.domain.products.usecase.GetBeersListByCoroutineUseCase
-import app.web.drjackycv.domain.products.usecase.GetBeersListParams
 import app.web.drjackycv.domain.products.usecase.GetBeersListUseCase
 import app.web.drjackycv.presentation.base.adapter.RecyclerItem
 import app.web.drjackycv.presentation.products.choose.ChoosePathType
@@ -77,8 +75,8 @@ class ProductsListViewModelTest {
 
             // When
             coEvery {
-                getBeersListUseCase.invoke(GetBeersListParams(anyString()))
-                getBeersListByCoroutineUseCase.invoke(GetBeersListByCoroutineParams(anyString()))
+                getBeersListUseCase(anyString())
+                getBeersListByCoroutineUseCase(anyString())
             }
                 .returns(flow)
 
@@ -96,9 +94,7 @@ class ProductsListViewModelTest {
             // Then
             advanceTimeBy(10)
             coVerify(exactly = 1) {
-                getBeersListByCoroutineUseCase.invoke(
-                    GetBeersListByCoroutineParams(anyString())
-                )
+                getBeersListByCoroutineUseCase(anyString())
             }
             verify { productsListObserver.onChanged(matchNullable { it != null }) }
         }

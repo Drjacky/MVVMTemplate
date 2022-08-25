@@ -44,7 +44,8 @@ class GetBeersListByCoroutineUseCaseTest {
     fun `test invoking GetBeersListByCoroutineUseCase gives list of products`() =
         runTest {
             // Given
-            val usecase = GetBeersListByCoroutineUseCase(productsListRepository)
+            val usecase =
+                GetBeersListByCoroutineUseCase(productsListRepository::getBeersListByCoroutine)
             val givenProducts = ProductFactory.createProducts(3)
             val expectedProducts = PagingData.from(givenProducts)
 
@@ -53,7 +54,7 @@ class GetBeersListByCoroutineUseCaseTest {
                 .returns(flowOf(expectedProducts))
 
             // Invoke
-            val productsListFlow = usecase(GetBeersListByCoroutineParams(""))
+            val productsListFlow = usecase("")
 
             // Then
             assertThat(productsListFlow, notNullValue())
