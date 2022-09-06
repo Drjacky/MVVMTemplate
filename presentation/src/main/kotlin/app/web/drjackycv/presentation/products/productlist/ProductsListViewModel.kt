@@ -8,7 +8,10 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
 import androidx.paging.rxjava3.cachedIn
-import app.web.drjackycv.domain.products.usecase.*
+import app.web.drjackycv.domain.products.usecase.GetBeerByCoroutineUseCase
+import app.web.drjackycv.domain.products.usecase.GetBeerUseCase
+import app.web.drjackycv.domain.products.usecase.GetBeersListByCoroutineUseCase
+import app.web.drjackycv.domain.products.usecase.GetBeersListUseCase
 import app.web.drjackycv.presentation.base.viewmodel.BaseViewModel
 import app.web.drjackycv.presentation.products.choose.ChoosePathType
 import app.web.drjackycv.presentation.products.entity.BeerMapper
@@ -52,7 +55,7 @@ class ProductsListViewModel @Inject constructor(
     }
 
     private fun getProductsByRxPath() {
-        getBeersUseCase(Unit)
+        getBeersUseCase()
             .cachedIn(viewModelScope)
             .observeOn(AndroidSchedulers.mainThread())
             .autoDispose(this)
@@ -65,7 +68,7 @@ class ProductsListViewModel @Inject constructor(
     }
 
     fun getProduct(ids: String) {
-        getBeerUseCase(GetBeerParams(ids = ids))
+        getBeerUseCase(ids)
             .observeOn(AndroidSchedulers.mainThread())
             .autoDispose(this)
             .subscribe {
@@ -74,11 +77,10 @@ class ProductsListViewModel @Inject constructor(
     }
 
     private fun getProductsByCoroutinePath() =
-        getBeersListByCoroutineUseCase(Unit)
+        getBeersListByCoroutineUseCase()
             .cachedIn(viewModelScope)
 
-    fun getProductByCoroutine(ids: String) =
-        getBeerByCoroutineUseCase(GetBeerByCoroutineParams(ids = ids))
+    fun getProductByCoroutine(ids: String) = getBeerByCoroutineUseCase(ids)
 
     private fun getProductsBaseOnPath(path: ChoosePathType?) {
         when (path) {
