@@ -74,9 +74,12 @@ Available workflows listed as follows:
 
 ## Tasks 🔧
 
-- Gradle Doctor: `dependencyUpdates` -  Displays the dependency updates for the project.
+- Gradle Doctor: `dependencyUpdates` - Displays the dependency updates for the project.
 - Detekt: `detektAll` - Run the static Kotlin code analysis for the whole project at once.
-- The Dependency Analysis: `buildHealth` - Provides advice for managing dependencies and other applied plugins
+- The Dependency Analysis: `buildHealth` - Provides advice for managing dependencies and other
+  applied plugins.
+- Sonatype Scan Gradle Plugin - AKA Sherlock Trunks: `ossIndexAudit` - Scans the dependencies of a
+  Gradle project using Sonatype platforms; OSS Index and Nexus IQ Server.
 
 ## References 🧷
 
