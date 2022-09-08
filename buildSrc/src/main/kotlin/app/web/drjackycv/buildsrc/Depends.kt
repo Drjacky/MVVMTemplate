@@ -7,17 +7,17 @@ object Depends {
     object Versions {
         const val appVersionCode = 1_000_000
         const val gradleVersion = "7.2.1"
-        const val androidCompileSdkVersion = 31
-        const val targetSdkVersion = 31
+        const val androidCompileSdkVersion = 32
+        const val targetSdkVersion = 32
         const val minSdkVersion = 21
         const val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         const val kotlinVersion = "1.7.10"
         const val rxKotlinVersion = "3.0.1"
         const val rxAndroidVersion = "3.0.0"
-        const val rxJavaVersion = "3.1.4"
+        const val rxJavaVersion = "3.1.5"
         const val rxBinding = "4.0.0"
         const val retrofit2Version = "2.9.0"
-        const val okhttpLoggingVersion = "5.0.0-alpha.6"
+        const val okhttpLoggingVersion = "5.0.0-alpha.10"
         const val chuckerVersion = "3.5.2"
         const val gsonVersion = "2.9.0"
         const val lifecycleVersion = "2.4.0"
@@ -25,7 +25,7 @@ object Depends {
         const val supportVersion = "1.4.1"
         const val materialVersion = "1.4.0"
         const val coreKtxVersion = "1.8.0"
-        const val navigationVersion = "2.5.0-alpha04"
+        const val navigationVersion = "2.5.1"
         const val pagingVersion = "3.1.1"
         const val multidexVersion = "2.0.1"
         const val fragmentExtVersion = "1.4.0"
@@ -36,7 +36,7 @@ object Depends {
         const val javaxInjectVersion = "1"
         const val timberVersion = "5.0.1"
         const val lottieVersion = "4.2.2"
-        const val glideVersion = "4.13.1"
+        const val glideVersion = "4.13.2"
         const val autoDispose = "2.1.1"
         const val dataStorePreferenceVersion = "1.0.0"
         const val coroutinesAndroidVersion = "1.6.4"
@@ -49,13 +49,13 @@ object Depends {
         const val supportTestVersion = "1.4.0"
         const val testCoreVersion = "1.4.0"
         const val testExtJunitVersion = "1.1.3"
-        const val sonarqubeVersion = "3.3"
-        const val detektVersion = "1.19.0"
+        const val sonarqubeVersion = "3.4.0.2513"
+        const val detektVersion = "1.21.0"
         const val checkDependencyVersionsVersion = "0.42.0"
         const val gradleDoctorVersion = "0.8.1"
-        const val dependencyAnalysisVersion = "1.0.0"
+        const val dependencyAnalysisVersion = "1.13.1"
         const val sonatypeScanGradleVersion = "2.4.1"
-        const val leakCanaryVersion = "2.8.1"
+        const val leakCanaryVersion = "2.9.1"
         const val coroutinesTestVersion = "1.6.0"
         const val mockkVersion = "1.12.2"
         const val archCoreTestingVersion = "2.1.0"
