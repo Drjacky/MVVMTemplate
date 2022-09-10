@@ -7,8 +7,8 @@ object Depends {
     object Versions {
         const val appVersionCode = 1_000_000
         const val gradleVersion = "7.2.2"
-        const val androidCompileSdkVersion = 32
-        const val targetSdkVersion = 32
+        const val androidCompileSdkVersion = 33
+        const val targetSdkVersion = 33
         const val minSdkVersion =
             24 //Set it back to 21 when https://developer.android.com/jetpack/androidx/releases/compose-runtime#1.0.0
         const val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -43,12 +43,12 @@ object Depends {
         const val dataStorePreferenceVersion = "1.0.0"
         const val composeVersion = "1.2.1"
         const val composeCompilerVersion = "1.3.1"
-        const val composePagingVersion = "1.0.0-alpha15"
-        const val composeNavigationVersion = "2.5.0"
-        const val composeTextVersion = "1.2.0-rc01"
-        const val activityComposeVersion = "1.5.0-alpha03"
-        const val materialComposeThemeAdapter = "1.1.5"
-        const val composeConstraintLayout = "1.0.0"
+        const val composePagingVersion = "1.0.0-alpha16"
+        const val composeNavigationVersion = "2.5.1"
+        const val composeTextVersion = "1.3.0-beta01"
+        const val activityComposeVersion = "1.6.0-rc01"
+        const val materialComposeThemeAdapter = "1.1.17"
+        const val composeConstraintLayout = "1.1.0-alpha03"
         const val accompanistPlaceholderVersion = "0.24.3-alpha"
 
         const val mockitoKotlinVersion = "2.2.0"
