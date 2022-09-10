@@ -20,7 +20,7 @@ import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
-import app.web.drjackycv.presentation.base.view.ErrorItemView
+import app.web.drjackycv.presentation.base.view.ErrorListView
 import app.web.drjackycv.presentation.base.view.LoadingItemView
 import app.web.drjackycv.presentation.extension.shimmer
 import app.web.drjackycv.presentation.products.choose.ChoosePathType
@@ -155,7 +155,7 @@ fun ProductsListContent(
                     }
                     error?.run {
                         item {
-                            ErrorItemView(
+                            ErrorListView(
                                 message = error.error.localizedMessage,
                                 onClickRetry = { retry() }
                             )

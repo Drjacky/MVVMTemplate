@@ -36,7 +36,7 @@ object Depends {
         const val hiltNavigationComposeVersion = "1.0.0"
         const val javaxInjectVersion = "1"
         const val timberVersion = "5.0.1"
-        const val lottieVersion = "4.2.0"
+        const val lottieVersion = "5.2.0"
         const val paletteVersion = "1.0.0"
         const val coilComposeVersion = "2.2.1"
         const val autoDispose = "2.1.1"
@@ -156,6 +156,7 @@ object Depends {
         const val rx_binding3 = "com.jakewharton.rxbinding4:rxbinding:${Versions.rxBinding}"
         const val coil_compose = "io.coil-kt:coil-compose:${Versions.coilComposeVersion}"
         const val lottie = "com.airbnb.android:lottie:${Versions.lottieVersion}"
+        const val lottie_compose = "com.airbnb.android:lottie-compose:${Versions.lottieVersion}"
         const val palette = "androidx.palette:palette:${Versions.paletteVersion}"
         const val autodispose = "com.uber.autodispose2:autodispose:${Versions.autoDispose}"
         const val autodispose_android =

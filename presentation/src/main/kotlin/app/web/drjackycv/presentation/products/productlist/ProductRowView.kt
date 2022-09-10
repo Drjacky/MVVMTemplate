@@ -1,11 +1,9 @@
 package app.web.drjackycv.presentation.products.productlist
 
-//import androidx.compose.ui.res.animatedVectorResource
 import android.graphics.drawable.BitmapDrawable
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.graphics.ExperimentalAnimationGraphicsApi
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -15,13 +13,12 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.palette.graphics.Palette
-import app.web.drjackycv.presentation.R
+import app.web.drjackycv.presentation.base.view.ErrorRowView
 import app.web.drjackycv.presentation.extension.clickableOnce
 import app.web.drjackycv.presentation.main.MainActivity
 import app.web.drjackycv.presentation.products.entity.BeerUI
@@ -69,7 +66,6 @@ fun ProductRowView(
                     ImageRequest.Builder(LocalContext.current).data(data = product.imageUrl)
                         .apply(block = fun ImageRequest.Builder.() {
                             crossfade(true)
-                            placeholder(R.drawable.ic_cloud_download)
                             allowHardware(false)
                         }).build()
                 )
@@ -92,19 +88,7 @@ fun ProductRowView(
                         CircularProgressIndicator(modifier = Modifier.padding(8.dp))
                     }
                     is AsyncImagePainter.State.Error -> {
-//                        val failedImage = animatedVectorResource(id = R.drawable.ic_cloud_download)
-//                        var atEnd by remember { mutableStateOf(false) }
-
-                        Image(
-//                            painter = failedImage.painterFor(atEnd = atEnd),
-                            painter = painterResource(id = R.drawable.ic_cloud_download),
-                            modifier = Modifier
-                                .size(72.dp)
-                                .clickable {
-//                                    atEnd = atEnd.not()
-                                },
-                            contentDescription = product.name,
-                        )
+                        ErrorRowView()
                     }
                     AsyncImagePainter.State.Empty -> {
                     }

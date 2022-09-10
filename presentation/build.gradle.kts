@@ -129,6 +129,7 @@ dependencies {
     //ui
     implementation(Depends.Libraries.coil_compose)
     implementation(Depends.Libraries.lottie)
+    implementation(Depends.Libraries.lottie_compose)
     implementation(Depends.Libraries.palette)
     //test
     androidTestImplementation(Depends.Libraries.test_runner)

@@ -7,6 +7,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -15,9 +16,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import app.web.drjackycv.presentation.R
+import com.airbnb.lottie.compose.*
 
 @Composable
-fun ErrorItemView(
+fun ErrorListView(
     message: String?,
     onClickRetry: () -> Unit,
     modifier: Modifier = Modifier
@@ -64,14 +66,33 @@ fun LoadingItemView(modifier: Modifier = Modifier) {
     )
 }
 
+@Composable
+fun ErrorRowView() {
+    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.no_image))
+    val progress by animateLottieCompositionAsState(
+        composition = composition,
+        iterations = LottieConstants.IterateForever,
+    )
+    LottieAnimation(
+        composition = composition,
+        progress = { progress },
+    )
+}
+
 @Preview
 @Composable
 fun ErrorItemViewPreview() {
-    ErrorItemView(message = null, onClickRetry = {})
+    ErrorListView(message = null, onClickRetry = {})
 }
 
 @Preview
 @Composable
 fun LoadingItemViewPreview() {
     LoadingItemView()
+}
+
+@Preview
+@Composable
+fun ErrorRowViewPreview() {
+    ErrorRowView()
 }
