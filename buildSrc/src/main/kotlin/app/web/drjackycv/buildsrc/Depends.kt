@@ -49,7 +49,7 @@ object Depends {
         const val activityComposeVersion = "1.6.0-rc01"
         const val materialComposeThemeAdapter = "1.1.17"
         const val composeConstraintLayout = "1.1.0-alpha03"
-        const val accompanistPlaceholderVersion = "0.24.3-alpha"
+        const val accompanistPlaceholderVersion = "0.26.3-beta"
 
         const val mockitoKotlinVersion = "2.2.0"
         const val mockitoCoreVersion = "3.12.4"
