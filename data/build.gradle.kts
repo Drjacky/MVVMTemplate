@@ -73,6 +73,7 @@ dependencies {
 //    implementation(Depends.Libraries.dagger_hilt_core)
     implementation(Depends.Libraries.java_inject)
     //parser
+    implementation(Depends.Libraries.gson)
     api(Depends.Libraries.converter_gson)
     //network
     implementation(Depends.Libraries.retrofit)

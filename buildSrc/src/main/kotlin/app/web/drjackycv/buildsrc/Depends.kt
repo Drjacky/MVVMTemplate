@@ -20,7 +20,8 @@ object Depends {
         const val retrofit2Version = "2.9.0"
         const val okhttpLoggingVersion = "5.0.0-alpha.5"
         const val chuckerVersion = "3.5.2"
-        const val gsonVersion = "2.9.0"
+        const val gsonVersion = "2.9.1"
+        const val retrofitConverterGson = "2.9.0"
         const val lifecycleVersion = "2.5.0-alpha03"
         const val constraintLayoutVersion = "2.1.3"
         const val supportVersion = "1.4.0-rc01"
@@ -63,6 +64,8 @@ object Depends {
         const val checkDependencyVersionsVersion = "0.42.0"
         const val gradleDoctorVersion = "0.8.1"
         const val leakCanaryVersion = "2.8.1"
+        const val dependencyAnalysisVersion = "1.0.0"
+        const val sonatypeScanGradleVersion = "2.4.1"
     }
 
     object ClassPaths {
@@ -119,7 +122,9 @@ object Depends {
         const val test_core = "androidx.test:core:${Versions.testCoreVersion}"
         const val test_ext_junit = "androidx.test.ext:junit:${Versions.testExtJunitVersion}"
         const val espresso_core = "androidx.test.espresso:espresso-core:${Versions.espressoVersion}"
-        const val converter_gson = "com.squareup.retrofit2:converter-gson:${Versions.gsonVersion}"
+        const val gson = "com.google.code.gson:gson:2.9.1:${Versions.gsonVersion}"
+        const val converter_gson =
+            "com.squareup.retrofit2:converter-gson:${Versions.retrofitConverterGson}"
         const val appcompat = "androidx.appcompat:appcompat:${Versions.supportVersion}"
         const val mockito_core = "org.mockito:mockito-core:${Versions.mockitoCoreVersion}"
         const val mockito_inline = "org.mockito:mockito-inline:${Versions.mockitoInlineVersion}"
