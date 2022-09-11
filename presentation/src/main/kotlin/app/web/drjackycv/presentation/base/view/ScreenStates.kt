@@ -27,8 +27,17 @@ fun ErrorListView(
     ConstraintLayout(
         modifier = modifier.fillMaxWidth()
     ) {
-        val (text, button) = createRefs()
+        val (image, text, button) = createRefs()
+        val guide = createGuidelineFromTop(0.5f)
 
+        ErrorRowView(
+            modifier = modifier
+                .constrainAs(image) {
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                    top.linkTo(parent.top)
+                    bottom.linkTo(guide)
+                })
         Text(
             text = message ?: stringResource(id = R.string.error_unknown),
             maxLines = 2,
@@ -48,8 +57,7 @@ fun ErrorListView(
                 .constrainAs(button) {
                     start.linkTo(text.end, margin = 5.dp)
                     end.linkTo(parent.end)
-                    top.linkTo(parent.top)
-                    bottom.linkTo(parent.bottom)
+                    top.linkTo(guide)
                 }
         ) {
             Text(text = "Try again")
@@ -67,13 +75,14 @@ fun LoadingItemView(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun ErrorRowView() {
+fun ErrorRowView(modifier: Modifier = Modifier) {
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.no_image))
     val progress by animateLottieCompositionAsState(
         composition = composition,
         iterations = LottieConstants.IterateForever,
     )
     LottieAnimation(
+        modifier = modifier,
         composition = composition,
         progress = { progress },
     )
