@@ -61,6 +61,7 @@ object Depends {
         const val testExtJunitVersion = "1.1.3"
         const val sonarqubeVersion = "3.3"
         const val detektVersion = "1.19.0"
+        const val detektComposeRulesVersion = "0.0.1-SNAPSHOT"
         const val checkDependencyVersionsVersion = "0.42.0"
         const val gradleDoctorVersion = "0.8.1"
         const val leakCanaryVersion = "2.8.1"
@@ -80,6 +81,8 @@ object Depends {
             "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:${Versions.sonarqubeVersion}"
         const val detekt_gradle_plugin =
             "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${Versions.detektVersion}"
+        const val detekt_compose_rules =
+            "com.twitter.compose.rules:detekt:${Versions.detektComposeRulesVersion}"
     }
 
     object Libraries {
