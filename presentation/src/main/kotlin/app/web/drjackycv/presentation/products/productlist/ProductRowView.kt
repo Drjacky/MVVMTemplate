@@ -63,11 +63,11 @@ fun ProductRowView(
                 color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f)
             ) {
                 val imagePainter = rememberAsyncImagePainter(
-                    ImageRequest.Builder(LocalContext.current).data(data = product.imageUrl)
-                        .apply(block = fun ImageRequest.Builder.() {
-                            crossfade(true)
-                            allowHardware(false)
-                        }).build()
+                    ImageRequest.Builder(LocalContext.current)
+                        .data(data = product.imageUrl)
+                        .crossfade(true)
+                        .allowHardware(false)
+                        .build()
                 )
 
                 Image(
