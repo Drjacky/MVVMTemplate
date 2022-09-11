@@ -96,11 +96,11 @@ fun ProductsListContent(
         val scrollState = rememberLazyListState()
 
         LazyColumn(
+            modifier = Modifier.fillMaxSize(),
             contentPadding = it,
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
-            state = scrollState,
-            modifier = Modifier.fillMaxSize()
+            state = scrollState
         ) {
             items(
                 items = lazyProductList,
@@ -110,9 +110,9 @@ fun ProductsListContent(
             ) { product ->
                 product?.let { beer ->
                     ProductRowView(
+                        modifier = Modifier.shimmer(false),
                         product = beer,
-                        onSelectedProduct = onSelectedProduct,
-                        modifier = Modifier.shimmer(false)
+                        onSelectedProduct = onSelectedProduct
                     )
                 }
             }
@@ -128,9 +128,9 @@ fun ProductsListContent(
                     )
                     items(10) {
                         ProductRowView(
+                            modifier = Modifier.shimmer(true),
                             product = beerUI,
-                            onSelectedProduct = {},
-                            modifier = Modifier.shimmer(true)
+                            onSelectedProduct = {}
                         )
                     }
                 }

@@ -20,9 +20,9 @@ import com.airbnb.lottie.compose.*
 
 @Composable
 fun ErrorListView(
+    modifier: Modifier = Modifier,
     message: String?,
     onClickRetry: () -> Unit,
-    modifier: Modifier = Modifier
 ) {
     ConstraintLayout(
         modifier = modifier.fillMaxWidth()
@@ -31,7 +31,7 @@ fun ErrorListView(
         val guide = createGuidelineFromTop(0.5f)
 
         ErrorRowView(
-            modifier = modifier
+            modifier = Modifier
                 .constrainAs(image) {
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
@@ -43,7 +43,7 @@ fun ErrorListView(
             maxLines = 2,
             style = MaterialTheme.typography.body1,
             color = Color.Red,
-            modifier = modifier
+            modifier = Modifier
                 .constrainAs(text) {
                     start.linkTo(parent.start, margin = 10.dp)
                     end.linkTo(button.start, margin = 5.dp)
@@ -53,7 +53,7 @@ fun ErrorListView(
         )
         OutlinedButton(
             onClick = onClickRetry,
-            modifier = modifier
+            modifier = Modifier
                 .constrainAs(button) {
                     start.linkTo(text.end, margin = 5.dp)
                     end.linkTo(parent.end)

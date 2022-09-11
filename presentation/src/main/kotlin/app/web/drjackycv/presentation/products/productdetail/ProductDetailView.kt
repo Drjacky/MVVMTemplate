@@ -46,10 +46,14 @@ fun ProductDetailView(
         },
         floatingActionButton = themeFAB
     ) {
-        Column(modifier = Modifier.fillMaxSize()) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(it)
+        ) {
             Text(
-                text = product.description,
                 modifier = Modifier.padding(16.dp),
+                text = product.description,
                 style = TextStyle(fontSize = 17.sp),
                 overflow = TextOverflow.Ellipsis,
                 maxLines = 1
