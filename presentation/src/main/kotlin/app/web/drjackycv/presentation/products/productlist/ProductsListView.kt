@@ -22,7 +22,6 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import app.web.drjackycv.presentation.base.view.ErrorListView
 import app.web.drjackycv.presentation.base.view.LoadingItemView
-import app.web.drjackycv.presentation.extension.shimmer
 import app.web.drjackycv.presentation.products.choose.ChoosePathType
 import app.web.drjackycv.presentation.products.entity.BeerUI
 import coil.annotation.ExperimentalCoilApi
@@ -110,8 +109,8 @@ fun ProductsListContent(
             ) { product ->
                 product?.let { beer ->
                     ProductRowView(
-                        modifier = Modifier.shimmer(false),
                         product = beer,
+                        isShimmerVisible = false,
                         onSelectedProduct = onSelectedProduct
                     )
                 }
@@ -128,7 +127,7 @@ fun ProductsListContent(
                     )
                     items(10) {
                         ProductRowView(
-                            modifier = Modifier.shimmer(true),
+                            isShimmerVisible = true,
                             product = beerUI,
                             onSelectedProduct = {}
                         )

@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.palette.graphics.Palette
 import app.web.drjackycv.presentation.base.view.ErrorRowView
 import app.web.drjackycv.presentation.extension.clickableOnce
+import app.web.drjackycv.presentation.extension.shimmer
 import app.web.drjackycv.presentation.main.MainActivity
 import app.web.drjackycv.presentation.products.entity.BeerUI
 import coil.ImageLoader
@@ -35,6 +36,7 @@ import coil.request.SuccessResult
 @Composable
 fun ProductRowView(
     product: BeerUI,
+    isShimmerVisible: Boolean,
     onSelectedProduct: (productId: Int) -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -57,7 +59,8 @@ fun ProductRowView(
             Surface(
                 modifier = Modifier
                     .size(72.dp)
-                    .padding(4.dp),
+                    .padding(4.dp)
+                    .shimmer(isShimmerVisible),
                 shape = CircleShape,
                 color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f)
             ) {
@@ -97,7 +100,8 @@ fun ProductRowView(
             Column(modifier = Modifier.padding(4.dp)) {
                 Text(
                     modifier = Modifier
-                        .fillMaxWidth(),
+                        .fillMaxWidth()
+                        .shimmer(isShimmerVisible),
                     text = product.name,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
@@ -107,7 +111,8 @@ fun ProductRowView(
                 CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
                     Text(
                         modifier = Modifier
-                            .padding(top = 4.dp),
+                            .padding(top = 4.dp)
+                            .shimmer(isShimmerVisible),
                         text = product.id.toString(),
                         style = MaterialTheme.typography.body2
                     )
@@ -171,6 +176,7 @@ private fun ProductRowViewPreview() {
             imageUrl = "https://images.punkapi.com/v2/5.png",
             abv = 4.9
         ),
+        isShimmerVisible = false,
         onSelectedProduct = { (1) }
     )
 }
