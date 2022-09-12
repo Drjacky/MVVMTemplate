@@ -33,5 +33,15 @@ allprojects {
         maven("https://maven.google.com/")
         maven("https://jitpack.io")
         maven("https://plugins.gradle.org/m2/")
+        maven("https://oss.sonatype.org/content/repositories/snapshots") {
+            mavenContent {
+                snapshotsOnly()
+            }
+        }
+        maven("https://s01.oss.sonatype.org/content/repositories/snapshots") {
+            mavenContent {
+                snapshotsOnly()
+            }
+        }
     }
 }

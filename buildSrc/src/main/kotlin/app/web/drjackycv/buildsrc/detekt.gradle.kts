@@ -39,7 +39,8 @@ detekt {
 
 dependencies {
     detektPlugins(app.web.drjackycv.buildsrc.Depends.ClassPaths.detekt_gradle_plugin)
-//    detektPlugins(app.web.drjackycv.buildsrc.Depends.ClassPaths.detekt_compose_rules)
+    detektPlugins(app.web.drjackycv.buildsrc.Depends.ClassPaths.detekt_twitter_compose_rules)
+    detektPlugins(app.web.drjackycv.buildsrc.Depends.ClassPaths.detekt_kode_compose_rules)
 }
 
 val detektFormat by tasks.registering(Detekt::class) {
