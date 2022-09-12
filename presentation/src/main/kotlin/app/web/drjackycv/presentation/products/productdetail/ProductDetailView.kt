@@ -68,7 +68,7 @@ fun ProductDetailView(
 @ExperimentalAnimationGraphicsApi
 @Preview(showBackground = true)
 @Composable
-fun ProductDetailViewPreview() {
+private fun ProductDetailViewPreview() {
     ProductDetailView(
         themeFAB = {},
         popBackStack = {},

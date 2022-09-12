@@ -172,7 +172,7 @@ fun ProductsListContent(
 @ExperimentalAnimationGraphicsApi
 @Preview
 @Composable
-fun ProductsListContentPreview() {
+private fun ProductsListContentPreview() {
     val items = listOf(
         BeerUI(
             id = 1,

@@ -88,6 +88,6 @@ enum class ChoosePathType : Serializable {
 
 @Preview
 @Composable
-fun ChooseViewPreview() {
+private fun ChooseViewPreview() {
     ChooseView(themeFAB = {}) { ChoosePathType.COROUTINE }
 }

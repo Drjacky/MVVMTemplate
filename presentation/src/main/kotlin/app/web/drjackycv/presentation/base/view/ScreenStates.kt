@@ -90,18 +90,18 @@ fun ErrorRowView(modifier: Modifier = Modifier) {
 
 @Preview
 @Composable
-fun ErrorListViewPreview() {
+private fun ErrorListViewPreview() {
     ErrorListView(message = null, onClickRetry = {})
 }
 
 @Preview
 @Composable
-fun LoadingItemViewPreview() {
+private fun LoadingItemViewPreview() {
     LoadingItemView()
 }
 
 @Preview
 @Composable
-fun ErrorRowViewPreview() {
+private fun ErrorRowViewPreview() {
     ErrorRowView()
 }

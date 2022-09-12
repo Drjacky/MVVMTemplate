@@ -164,7 +164,7 @@ private fun ChangeCardColor(
 @ExperimentalComposeUiApi
 @Preview
 @Composable
-fun ProductRowViewPreview() {
+private fun ProductRowViewPreview() {
     ProductRowView(
         product = BeerUI(
             id = 1,

@@ -215,6 +215,6 @@ fun MainLayout(
 @ExperimentalAnimationGraphicsApi
 @Preview
 @Composable
-fun MainLayoutPreview() {
+private fun MainLayoutPreview() {
     MainLayout {}
 }
