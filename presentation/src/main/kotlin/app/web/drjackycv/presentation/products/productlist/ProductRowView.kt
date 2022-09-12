@@ -57,8 +57,7 @@ fun ProductRowView(
             Surface(
                 modifier = Modifier
                     .size(72.dp)
-                    .padding(4.dp)
-                    .then(modifier),
+                    .padding(4.dp),
                 shape = CircleShape,
                 color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f)
             ) {
@@ -98,8 +97,7 @@ fun ProductRowView(
             Column(modifier = Modifier.padding(4.dp)) {
                 Text(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .then(modifier),
+                        .fillMaxWidth(),
                     text = product.name,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
@@ -109,8 +107,7 @@ fun ProductRowView(
                 CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
                     Text(
                         modifier = Modifier
-                            .padding(top = 4.dp)
-                            .then(modifier),
+                            .padding(top = 4.dp),
                         text = product.id.toString(),
                         style = MaterialTheme.typography.body2
                     )
