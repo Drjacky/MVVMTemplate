@@ -44,7 +44,7 @@ fun ProductRowView(
     val isDark = remember { mutableStateOf(MainActivity.ThemeState.darkModeState.value) }
 
     Card(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .clickableOnce(
                 onClick = { onSelectedProduct(product.id) })
