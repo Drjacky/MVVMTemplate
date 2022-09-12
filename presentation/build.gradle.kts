@@ -116,7 +116,10 @@ dependencies {
     implementation(Depends.Libraries.accompanistPlaceholder)
 //    implementation(Depends.Libraries.compose_runtime_saved_instance_state)
 //    implementation(Depends.Libraries.compose_ui_test)
-    implementation(Depends.Libraries.compose_ui_tooling)
+    debugImplementation(Depends.Libraries.compose_ui_tooling)
+    implementation(Depends.Libraries.compose_ui_tooling_preview)
+    debugImplementation(Depends.Libraries.customview)
+    debugImplementation(Depends.Libraries.customview_poolingcontainer)
     implementation(Depends.Libraries.material_compose_theme_adapter)
     implementation(Depends.Libraries.activity_compose)
     //reactive

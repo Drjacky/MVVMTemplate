@@ -41,6 +41,8 @@ object Depends {
         const val autoDispose = "2.1.1"
         const val dataStorePreferenceVersion = "1.0.0"
         const val composeVersion = "1.2.1"
+        const val customViewPoolingContainerVersion = "1.0.0"
+        const val customViewVersion = "1.2.0-alpha01"
         const val composeCompilerVersion = "1.3.1"
         const val composePagingVersion = "1.0.0-alpha16"
         const val composeNavigationVersion = "2.5.1"
@@ -186,6 +188,11 @@ object Depends {
             "androidx.navigation:navigation-compose:${Versions.composeNavigationVersion}"
         const val compose_ui = "androidx.compose.ui:ui:${Versions.composeVersion}"
         const val compose_ui_tooling = "androidx.compose.ui:ui-tooling:${Versions.composeVersion}"
+        const val compose_ui_tooling_preview =
+            "androidx.compose.ui:ui-tooling-preview:${Versions.composeVersion}"
+        const val customview = "androidx.customview:customview:${Versions.customViewVersion}"
+        const val customview_poolingcontainer =
+            "androidx.customview:customview-poolingcontainer:${Versions.customViewPoolingContainerVersion}"
         const val compose_ui_text = "androidx.compose.ui:ui-text:${Versions.composeTextVersion}"
         const val compose_ui_test = "androidx.compose.ui:ui-test:${Versions.composeVersion}"
         const val compose_paging = "androidx.paging:paging-compose:${Versions.composePagingVersion}"
