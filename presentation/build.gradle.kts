@@ -118,8 +118,8 @@ dependencies {
 //    implementation(Depends.Libraries.compose_ui_test)
     debugImplementation(Depends.Libraries.compose_ui_tooling)
     implementation(Depends.Libraries.compose_ui_tooling_preview)
-    debugImplementation(Depends.Libraries.customview)
-    debugImplementation(Depends.Libraries.customview_poolingcontainer)
+    debugImplementation(Depends.Libraries.customview) //No more need for these two dependencies on Dolphin IDE: https://issuetracker.google.com/issues/227767363
+    debugImplementation(Depends.Libraries.customview_poolingcontainer) //And this
     implementation(Depends.Libraries.material_compose_theme_adapter)
     implementation(Depends.Libraries.activity_compose)
     //reactive

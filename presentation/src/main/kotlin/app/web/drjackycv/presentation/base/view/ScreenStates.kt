@@ -56,7 +56,7 @@ fun ErrorListView(
             modifier = Modifier
                 .constrainAs(button) {
                     start.linkTo(text.end, margin = 5.dp)
-                    end.linkTo(parent.end)
+                    end.linkTo(parent.end, margin = 10.dp)
                     top.linkTo(guide)
                 }
         ) {
@@ -90,7 +90,7 @@ fun ErrorRowView(modifier: Modifier = Modifier) {
 
 @Preview
 @Composable
-fun ErrorItemViewPreview() {
+fun ErrorListViewPreview() {
     ErrorListView(message = null, onClickRetry = {})
 }
 
