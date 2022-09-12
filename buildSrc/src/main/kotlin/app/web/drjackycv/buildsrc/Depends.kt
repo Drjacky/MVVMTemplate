@@ -21,7 +21,7 @@ object Depends {
         const val chuckerVersion = "3.5.2"
         const val gsonVersion = "2.9.1"
         const val retrofitConverterGson = "2.9.0"
-        const val lifecycleVersion = "2.5.0-alpha03"
+        const val lifecycleVersion = "2.6.0-alpha01"
         const val constraintLayoutVersion = "2.1.3"
         const val supportVersion = "1.4.0-rc01"
         const val materialVersion = "1.6.0-alpha03"
@@ -151,6 +151,8 @@ object Depends {
             "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycleVersion}"
         const val lifecycle_runtime_ktx =
             "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleVersion}"
+        const val lifecycle_runtime_compose =
+            "androidx.lifecycle:lifecycle-runtime-compose:${Versions.lifecycleVersion}"
         const val lifecycle_viewmodel_runtime_ktx =
             "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleVersion}"
         const val lifecycle_common_java8 =

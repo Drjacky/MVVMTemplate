@@ -8,12 +8,17 @@ import androidx.compose.animation.graphics.ExperimentalAnimationGraphicsApi
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -38,6 +43,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@ExperimentalLifecycleComposeApi
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
 @ExperimentalAnimationGraphicsApi
@@ -56,7 +62,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            val darkMode by dataStoreManager.isDarkMode.collectAsState(initial = isSystemInDarkTheme())
+            val darkMode by dataStoreManager.isDarkMode.collectAsStateWithLifecycle(initialValue = isSystemInDarkTheme())
 
             BaseTheme(darkMode) {
                 MainLayout(
@@ -138,6 +144,7 @@ class MainActivity : AppCompatActivity() {
 
 }
 
+@ExperimentalLifecycleComposeApi
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
 @ExperimentalAnimationGraphicsApi
@@ -191,7 +198,7 @@ fun MainLayout(
 
             beerId?.let {
                 viewModel.getProductByCoroutine(beerId)
-                    .collectAsState(initial = null).apply {
+                    .collectAsStateWithLifecycle(initialValue = null).apply {
                         this.value?.let {
                             ProductDetailView(
                                 themeFAB = {
@@ -210,6 +217,7 @@ fun MainLayout(
 
 }
 
+@ExperimentalLifecycleComposeApi
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
 @ExperimentalAnimationGraphicsApi

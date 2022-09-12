@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
@@ -27,6 +28,7 @@ import app.web.drjackycv.presentation.products.entity.BeerUI
 import coil.annotation.ExperimentalCoilApi
 import kotlinx.coroutines.flow.flowOf
 
+@ExperimentalLifecycleComposeApi
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
 @ExperimentalAnimationGraphicsApi
@@ -64,6 +66,7 @@ fun ProductsListView(
 
 }
 
+@ExperimentalLifecycleComposeApi
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
 @ExperimentalAnimationGraphicsApi
@@ -127,8 +130,8 @@ fun ProductsListContent(
                     )
                     items(10) {
                         ProductRowView(
-                            isShimmerVisible = true,
                             product = beerUI,
+                            isShimmerVisible = true,
                             onSelectedProduct = {}
                         )
                     }
@@ -166,6 +169,7 @@ fun ProductsListContent(
     }
 }
 
+@ExperimentalLifecycleComposeApi
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
 @ExperimentalAnimationGraphicsApi

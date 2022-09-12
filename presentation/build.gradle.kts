@@ -92,6 +92,7 @@ dependencies {
     implementation(Depends.Libraries.paging_rx)
     implementation(Depends.Libraries.lifecycle_livedata_ktx)
     implementation(Depends.Libraries.lifecycle_runtime_ktx)
+    implementation(Depends.Libraries.lifecycle_runtime_compose)
     implementation(Depends.Libraries.lifecycle_viewmodel_runtime_ktx)
     implementation(Depends.Libraries.lifecycle_common_java8)
     implementation(Depends.Libraries.lifecycle_viewmodel_ktx)

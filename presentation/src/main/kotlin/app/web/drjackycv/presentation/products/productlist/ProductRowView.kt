@@ -17,6 +17,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.palette.graphics.Palette
 import app.web.drjackycv.presentation.base.view.ErrorRowView
 import app.web.drjackycv.presentation.extension.clickableOnce
@@ -30,6 +31,7 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.request.SuccessResult
 
+@ExperimentalLifecycleComposeApi
 @ExperimentalAnimationGraphicsApi
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
@@ -161,6 +163,7 @@ private fun ChangeCardColor(
     }
 }
 
+@ExperimentalLifecycleComposeApi
 @ExperimentalAnimationGraphicsApi
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
