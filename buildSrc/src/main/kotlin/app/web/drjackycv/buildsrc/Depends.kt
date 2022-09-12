@@ -9,8 +9,7 @@ object Depends {
         const val gradleVersion = "7.2.2"
         const val androidCompileSdkVersion = 33
         const val targetSdkVersion = 33
-        const val minSdkVersion =
-            24 //Set it back to 21 when https://developer.android.com/jetpack/androidx/releases/compose-runtime#1.0.0
+        const val minSdkVersion = 21
         const val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         const val kotlinVersion = "1.7.10"
         const val rxKotlinVersion = "3.0.1"
