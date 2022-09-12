@@ -34,9 +34,9 @@ import coil.request.SuccessResult
 @ExperimentalComposeUiApi
 @Composable
 fun ProductRowView(
-    modifier: Modifier = Modifier,
     product: BeerUI,
     onSelectedProduct: (productId: Int) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val defaultColor = MaterialTheme.colors.surface
     val cardColor = remember { mutableStateOf(defaultColor) }

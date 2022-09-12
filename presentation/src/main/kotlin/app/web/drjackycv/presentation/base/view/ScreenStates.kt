@@ -20,9 +20,9 @@ import com.airbnb.lottie.compose.*
 
 @Composable
 fun ErrorListView(
-    modifier: Modifier = Modifier,
     message: String?,
     onClickRetry: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     ConstraintLayout(
         modifier = modifier.fillMaxWidth()
