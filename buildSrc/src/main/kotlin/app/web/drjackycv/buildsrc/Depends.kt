@@ -110,7 +110,7 @@ object Depends {
         const val test_core = "androidx.test:core:${Versions.testCoreVersion}"
         const val test_ext_junit = "androidx.test.ext:junit:${Versions.testExtJunitVersion}"
         const val espresso_core = "androidx.test.espresso:espresso-core:${Versions.espressoVersion}"
-        const val gson = "com.google.code.gson:gson:2.9.1:${Versions.gsonVersion}"
+        const val gson = "com.google.code.gson:gson:${Versions.gsonVersion}"
         const val converter_gson =
             "com.squareup.retrofit2:converter-gson:${Versions.retrofitConverterGson}"
         const val appcompat = "androidx.appcompat:appcompat:${Versions.supportVersion}"
