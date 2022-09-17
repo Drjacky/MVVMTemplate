@@ -2,7 +2,7 @@
 
 ![Language](https://img.shields.io/badge/Kotlin-1.7.10-blue) ![License](https://img.shields.io/github/license/Drjacky/MVVMTemplate?logo=MIT) [![Actions Status](https://github.com/Drjacky/MVVMTemplate/workflows/Pre%20Merge%20Checks/badge.svg)](https://github.com/Drjacky/MVVMTemplate/actions) [![Build Status](https://github.com/Drjacky/MVVMTemplate/workflows/Android%20CI/badge.svg)](https://github.com/Drjacky/MVVMTemplate/actions) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Drjacky_MVVMTemplate&metric=alert_status)](https://sonarcloud.io/dashboard?id=Drjacky_MVVMTemplate)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FDrjacky%2FMVVMTemplate.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FDrjacky%2FMVVMTemplate?ref=badge_shield)
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MVVMTemplate-green.svg?style=flat)](https://android-arsenal.com/details/1/8368)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MVVMTemplate-green.svg?style=flat)](https://android-arsenal.com/details/1/8368) [![CodeScene Code Health](https://codescene.io/projects/29433/status-badges/code-health)](https://codescene.io/projects/29433)
 <!-- [![Known Vulnerabilities](https://snyk.io/test/github/Drjacky/MVVMTemplate/badge.svg)](https://snyk.io/test/github/Drjacky/MVVMTemplate) Snyk doesn't support kotlin dsl -->
 A simple Android template that lets you create an **Android** project quickly. 
 
@@ -52,7 +52,7 @@ For the compose version, which is under development, switch to [feature/compose]
   streams to a provided scope
 - [Dependency Analysis](https://github.com/autonomousapps/dependency-analysis-android-gradle-plugin)
   - Dependency analysis android gradle plugin
-- [Sonatype Scan Gradle Plugin](https://github.com/sonatype-nexus-community/scan-gradle-plugin)
+- [Sonatype Scan Gradle Plugin](https://github.com/sonatype-nexus-community/scan-gradle-plugin)-
   Gradle plugin that scans the dependencies of a Gradle project using Sonatype platforms: OSS Index
   and Nexus IQ Server.
 
