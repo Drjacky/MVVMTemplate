@@ -39,7 +39,7 @@ import coil.request.SuccessResult
 fun ProductRowView(
     product: BeerUI,
     isShimmerVisible: Boolean,
-    onSelectedProduct: (productId: Int) -> Unit,
+    navigateToProduct: (product: String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val defaultColor = MaterialTheme.colors.surface
@@ -50,8 +50,7 @@ fun ProductRowView(
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .clickableOnce(
-                onClick = { onSelectedProduct(product.id) })
+            .clickableOnce(onClick = { navigateToProduct(product.id.toString()) })
             .padding(4.dp),
         shape = RoundedCornerShape(4.dp),
         backgroundColor = animatedCardColor.value,
@@ -180,6 +179,6 @@ private fun ProductRowViewPreview() {
             abv = 4.9
         ),
         isShimmerVisible = false,
-        onSelectedProduct = { (1) }
+        navigateToProduct = {}
     )
 }

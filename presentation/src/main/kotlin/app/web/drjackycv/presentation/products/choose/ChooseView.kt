@@ -1,5 +1,6 @@
 package app.web.drjackycv.presentation.products.choose
 
+import androidx.compose.animation.graphics.ExperimentalAnimationGraphicsApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredWidth
@@ -7,18 +8,36 @@ import androidx.compose.material.Button
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+import coil.annotation.ExperimentalCoilApi
 import java.io.Serializable
+
+@ExperimentalLifecycleComposeApi
+@ExperimentalCoilApi
+@ExperimentalComposeUiApi
+@ExperimentalAnimationGraphicsApi
+@Composable
+fun ChooseRoute(
+    navigateToProductsList: (ChoosePathType) -> Unit,
+    themeFAB: @Composable () -> Unit,
+) {
+    ChooseView(
+        themeFAB = themeFAB,
+        navigateToProductsList = navigateToProductsList,
+    )
+}
 
 @Composable
 fun ChooseView(
     themeFAB: @Composable () -> Unit,
-    onSelectedPath: (selectedPathType: ChoosePathType) -> Unit
+    navigateToProductsList: (ChoosePathType) -> Unit
 ) {
     Scaffold(
         floatingActionButton = themeFAB
@@ -37,7 +56,7 @@ fun ChooseView(
                         top.linkTo(parent.top)
                         bottom.linkTo(parent.bottom)
                     },
-                onClick = { onSelectedPath(ChoosePathType.RX) }
+                onClick = { navigateToProductsList(ChoosePathType.RX) }
             ) {
                 Text(
                     text = "RxJava",
@@ -54,7 +73,7 @@ fun ChooseView(
                         top.linkTo(parent.top)
                         bottom.linkTo(parent.bottom)
                     },
-                onClick = { onSelectedPath(ChoosePathType.COROUTINE) }
+                onClick = { navigateToProductsList(ChoosePathType.COROUTINE) }
             ) {
                 Text(
                     text = "Coroutines",
@@ -66,7 +85,7 @@ fun ChooseView(
     }
 }
 
-@Composable
+@Composable //TODO
 fun PathButton(name: String/*, selectedPath: (ChoosePathType) -> Unit*/) {
     Button(
         onClick = {

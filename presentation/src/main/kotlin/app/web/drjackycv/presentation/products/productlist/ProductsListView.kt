@@ -10,15 +10,15 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.LoadState
 import androidx.paging.PagingData
-import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import app.web.drjackycv.presentation.base.view.ErrorListView
@@ -33,33 +33,31 @@ import kotlinx.coroutines.flow.flowOf
 @ExperimentalComposeUiApi
 @ExperimentalAnimationGraphicsApi
 @Composable
-fun ProductsListView(
-    viewModel: ProductsListViewModel,
+fun ProductsListRoute(
+    choose: ChoosePathType,
+    navigateToProduct: (String) -> Unit,
     themeFAB: @Composable () -> Unit,
-    popBackStack: () -> Unit,
-    choosePathType: ChoosePathType,
-    onSelectedProduct: (productId: Int) -> Unit
+    onBackClick: () -> Unit,
+    viewModel: ProductsListViewModel = hiltViewModel()
 ) {
-    when (choosePathType) {
+    when (choose) {
         ChoosePathType.RX -> {
-            val productsList by viewModel.ldProductsList.observeAsState(PagingData.empty())
-            val lazyProductList = flowOf(productsList).collectAsLazyPagingItems()
-
-            ProductsListContent(
-                lazyProductList = lazyProductList,
+            //val uiState by viewModel.ldProductsList.collectAsStateWithLifecycle() //TODO
+            val uiState by viewModel.productsListByCoroutine.collectAsStateWithLifecycle()
+            ProductsListView(
+                uiState = uiState,
                 themeFAB = themeFAB,
-                popBackStack = popBackStack,
-                onSelectedProduct = onSelectedProduct
+                navigateToProduct = navigateToProduct,
+                onBackClick = onBackClick
             )
         }
         ChoosePathType.COROUTINE -> {
-            val lazyProductList = viewModel.productsListByCoroutine.collectAsLazyPagingItems()
-
-            ProductsListContent(
-                lazyProductList = lazyProductList,
+            val uiState by viewModel.productsListByCoroutine.collectAsStateWithLifecycle()
+            ProductsListView(
+                uiState = uiState,
                 themeFAB = themeFAB,
-                popBackStack = popBackStack,
-                onSelectedProduct = onSelectedProduct
+                navigateToProduct = navigateToProduct,
+                onBackClick = onBackClick
             )
         }
     }
@@ -71,12 +69,33 @@ fun ProductsListView(
 @ExperimentalComposeUiApi
 @ExperimentalAnimationGraphicsApi
 @Composable
-fun ProductsListContent(
-    lazyProductList: LazyPagingItems<BeerUI>,
+fun ProductsListView(
+    uiState: ProductsListUIState,
     themeFAB: @Composable () -> Unit,
-    popBackStack: () -> Unit,
-    onSelectedProduct: (productId: Int) -> Unit
+    navigateToProduct: (String) -> Unit,
+    onBackClick: () -> Unit,
 ) {
+    ProductsListContent(
+        uiState = uiState,
+        themeFAB = themeFAB,
+        navigateToProduct = navigateToProduct,
+        onBackClick = onBackClick,
+    )
+}
+
+@ExperimentalLifecycleComposeApi
+@ExperimentalCoilApi
+@ExperimentalComposeUiApi
+@ExperimentalAnimationGraphicsApi
+@Composable
+fun ProductsListContent(
+    uiState: ProductsListUIState,
+    themeFAB: @Composable () -> Unit,
+    navigateToProduct: (String) -> Unit,
+    onBackClick: () -> Unit,
+) {
+    val lazyProductList = flowOf(uiState.items).collectAsLazyPagingItems()
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -84,7 +103,7 @@ fun ProductsListContent(
                     Text("Products")
                 },
                 navigationIcon = {
-                    IconButton(onClick = { popBackStack() }) {
+                    IconButton(onClick = { onBackClick() }) {
                         Icon(
                             imageVector = Icons.Filled.ArrowBack,
                             contentDescription = "Back"
@@ -108,16 +127,17 @@ fun ProductsListContent(
                 items = lazyProductList,
                 key = { product ->
                     product.id
+                },
+                itemContent = { product ->
+                    product?.let { beer ->
+                        ProductRowView(
+                            product = beer,
+                            isShimmerVisible = false,
+                            navigateToProduct = navigateToProduct
+                        )
+                    }
                 }
-            ) { product ->
-                product?.let { beer ->
-                    ProductRowView(
-                        product = beer,
-                        isShimmerVisible = false,
-                        onSelectedProduct = onSelectedProduct
-                    )
-                }
-            }
+            )
             lazyProductList.apply {
                 if (loadState.refresh == LoadState.Loading) {
                     val beerUI = BeerUI(
@@ -132,7 +152,7 @@ fun ProductsListContent(
                         ProductRowView(
                             product = beerUI,
                             isShimmerVisible = true,
-                            onSelectedProduct = {}
+                            navigateToProduct = {}
                         )
                     }
                 }
@@ -186,11 +206,11 @@ private fun ProductsListContentPreview() {
             abv = 4.9
         )
     )
-    val lazyProductList = flowOf(PagingData.from(items)).collectAsLazyPagingItems()
+    val uiState = ProductsListUIState(items = PagingData.from(items))
 
     ProductsListContent(
-        lazyProductList = lazyProductList,
+        uiState = uiState,
         themeFAB = {},
-        popBackStack = {},
-        onSelectedProduct = { 1 })
+        navigateToProduct = {},
+        onBackClick = {})
 }

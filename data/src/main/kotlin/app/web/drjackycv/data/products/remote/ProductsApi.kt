@@ -5,6 +5,7 @@ import app.web.drjackycv.data.network.GenericNetworkResponse
 import app.web.drjackycv.data.products.entity.BeerResponse
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ProductsApi : BaseApiService {
@@ -26,9 +27,9 @@ interface ProductsApi : BaseApiService {
         @Query("per_page") perPage: Int = 40,
     ): List<BeerResponse>
 
-    @GET("beers")
+    @GET("beers/{beer_id}")
     suspend fun getBeerByCoroutine(
-        @Query("ids") ids: String?,
+        @Path("beer_id") id: String?,
     ): List<BeerResponse>
 
 }

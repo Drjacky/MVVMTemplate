@@ -28,19 +28,19 @@ detekt {
         "src/test/kotlin"
     )
     reports {
-        html.enabled = true
-        html.destination = file("$projectDir/build/detekt/report.html")
-        xml.enabled = true
-        xml.destination = file("$projectDir/build/detekt/report.xml")
-        txt.enabled = true
-        txt.destination = file("$projectDir/build/detekt/report.txt")
+        html.required.set(true)
+        html.outputLocation.set(file("$projectDir/build/detekt/report.html"))
+        xml.required.set(true)
+        xml.outputLocation.set(file("$projectDir/build/detekt/report.xml"))
+        txt.required.set(true)
+        txt.outputLocation.set(file("$projectDir/build/detekt/report.txt"))
     }
 }
 
 dependencies {
     detektPlugins(app.web.drjackycv.buildsrc.Depends.ClassPaths.detekt_gradle_plugin)
     detektPlugins(app.web.drjackycv.buildsrc.Depends.ClassPaths.detekt_twitter_compose_rules)
-    detektPlugins(app.web.drjackycv.buildsrc.Depends.ClassPaths.detekt_kode_compose_rules)
+//    detektPlugins(app.web.drjackycv.buildsrc.Depends.ClassPaths.detekt_kode_compose_rules)
 }
 
 val detektFormat by tasks.registering(Detekt::class) {
@@ -57,9 +57,9 @@ val detektFormat by tasks.registering(Detekt::class) {
     exclude(buildFiles)
     baseline.set(baselineFile)
     reports {
-        xml.enabled = true
-        html.enabled = true
-        txt.enabled = true
+        xml.required.set(true)
+        html.required.set(true)
+        txt.required.set(true)
     }
 }
 
@@ -75,9 +75,9 @@ val detektAll by tasks.registering(Detekt::class) {
     exclude(buildFiles)
     baseline.set(baselineFile)
     reports {
-        xml.enabled = true
-        html.enabled = true
-        txt.enabled = true
+        xml.required.set(true)
+        html.required.set(true)
+        txt.required.set(true)
     }
 }
 

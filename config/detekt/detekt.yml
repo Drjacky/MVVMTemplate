@@ -711,6 +711,7 @@ KodeCompose:
     active: true
 
 TwitterCompose:
+active: true
   ContentEmitterReturningValues:
     active: true
   ModifierComposable:
