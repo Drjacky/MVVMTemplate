@@ -4,11 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
+import app.web.drjackycv.domain.products.entity.Beer
 import app.web.drjackycv.domain.products.usecase.GetBeerByCoroutineUseCase
 import app.web.drjackycv.domain.products.usecase.GetBeerUseCase
 import app.web.drjackycv.presentation.base.viewmodel.BaseViewModel
-import app.web.drjackycv.presentation.products.entity.BeerMapper
 import app.web.drjackycv.presentation.products.entity.BeerUI
+import app.web.drjackycv.presentation.products.entity.mapIt
 import app.web.drjackycv.presentation.products.productdetail.navigation.ProductDestination
 import autodispose2.autoDispose
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -37,15 +38,13 @@ class ProductViewModel @Inject constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .autoDispose(this)
             .subscribe {
-                _ldProduct.value = BeerMapper().mapLeftToRight(it)
+                _ldProduct.value = it.mapIt()
             }
     }
 
     private fun getProductByCoroutine(ids: String) =
         getBeerByCoroutineUseCase(ids)
-            .map {
-                BeerMapper().mapLeftToRight(it)
-            }
+            .map(Beer::mapIt)
             .map {
                 ProductUIState(it)
             }

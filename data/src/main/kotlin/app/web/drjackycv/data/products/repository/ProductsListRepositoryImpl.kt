@@ -6,7 +6,7 @@ import androidx.paging.PagingData
 import androidx.paging.rxjava3.flowable
 import app.web.drjackycv.data.products.datasource.ProductsPagingSource
 import app.web.drjackycv.data.products.datasource.ProductsPagingSourceByCoroutine
-import app.web.drjackycv.data.products.entity.BeerMapper
+import app.web.drjackycv.data.products.entity.mapIt
 import app.web.drjackycv.data.products.remote.ProductsApi
 import app.web.drjackycv.domain.extension.allowReads
 import app.web.drjackycv.domain.products.entity.Beer
@@ -104,7 +104,7 @@ class ProductsListRepositoryImpl @Inject constructor(
     override fun getBeerByCoroutine(ids: String): Flow<Beer> {
         return flow {
             val response = productsApi.getBeerByCoroutine(ids)
-            val result = BeerMapper().mapLeftToRight(response.first())
+            val result = response.first().mapIt()
 
             emit(result)
         }

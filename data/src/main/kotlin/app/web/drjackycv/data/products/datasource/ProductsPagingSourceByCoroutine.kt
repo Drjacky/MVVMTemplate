@@ -2,7 +2,8 @@ package app.web.drjackycv.data.products.datasource
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import app.web.drjackycv.data.products.entity.BeerMapper
+import app.web.drjackycv.data.products.entity.BeerResponse
+import app.web.drjackycv.data.products.entity.mapIt
 import app.web.drjackycv.data.products.remote.ProductsApi
 import app.web.drjackycv.domain.base.Failure
 import app.web.drjackycv.domain.products.entity.Beer
@@ -26,9 +27,7 @@ class ProductsPagingSourceByCoroutine @Inject constructor(
 
         return try {
             val response = productsApi.getBeersListByCoroutine(position)
-                .map {
-                    BeerMapper().mapLeftToRight(it)
-                }
+                .map(BeerResponse::mapIt)
 
             toLoadResult(response, position)
         } catch (e: Exception) {
