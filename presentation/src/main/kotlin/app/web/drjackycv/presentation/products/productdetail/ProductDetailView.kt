@@ -106,12 +106,11 @@ fun ProductDetailView(
                 },
                 floatingActionButton = themeFAB
             ) {
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(it)
-                ) {
-                    ErrorItemView(message = uiState.error.localizedMessage)
+                Box(modifier = Modifier.fillMaxSize()) {
+                    ErrorItemView(
+                        modifier = Modifier.align(Alignment.Center),
+                        message = uiState.error.localizedMessage
+                    )
                 }
             }
         }
