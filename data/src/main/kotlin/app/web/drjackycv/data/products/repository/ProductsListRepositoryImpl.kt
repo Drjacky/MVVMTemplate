@@ -14,6 +14,7 @@ import app.web.drjackycv.domain.products.repository.ProductsListRepository
 import io.reactivex.rxjava3.core.Flowable
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.rx3.asFlowable
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -39,52 +40,14 @@ class ProductsListRepositoryImpl @Inject constructor(
             ).flowable
         }
 
-    override fun getBeer(ids: String): Flowable<Beer> { //TODO
-        return Flowable.just(
-            Beer(
-                id = 1,
-                name = "name",
-                tagline = "tagline",
-                description = "description",
-                imageUrl = "https://images.punkapi.com/v2/5.png",
-                abv = 4.9
-            )
+    override fun getBeer(id: String): Flowable<Beer> { //TODO: Use Rx
+        return flow {
+            val response = productsApi.getBeerByCoroutine(id)
+            val result = response.first().mapIt()
 
-        )
+            emit(result)
+        }.asFlowable()
     }
-    /*override fun getBeer(ids: String): Flowable<Beer> {
-        return productsApi.getBeer(ids = ids)
-            .subscribeOn(Schedulers.io())
-            .map { response ->
-                when (response) {
-                    is NetworkResponse.Success -> {
-                        BeerMapper().mapLeftToRight(response.body))
-                    }
-                    is NetworkResponse.ApiError -> {
-                        Failure.Api(response.body?.message)
-                    }
-                    is NetworkResponse.NetworkError -> {
-                        Failure.NoInternet(response.error.message)
-                    }
-                    else -> {
-                        Failure.Unknown()
-                    }
-                }
-            }
-            .onErrorReturn { throwable ->
-                when (throwable) {
-                    is UnknownHostException, is SocketTimeoutException -> {
-                        PagingSource.LoadResult.Error(Failure.NoInternet(throwable.message))
-                    }
-                    is TimeoutException -> {
-                        PagingSource.LoadResult.Error(Failure.Timeout(throwable.message))
-                    }
-                    else -> {
-                        PagingSource.LoadResult.Error(Failure.Unknown(throwable.message))
-                    }
-                }
-            }
-    }*/
 
     override fun getBeersListByCoroutine(): Flow<PagingData<Beer>> =
         allowReads {
@@ -101,13 +64,12 @@ class ProductsListRepositoryImpl @Inject constructor(
             ).flow
         }
 
-    override fun getBeerByCoroutine(ids: String): Flow<Beer> {
-        return flow {
-            val response = productsApi.getBeerByCoroutine(ids)
+    override fun getBeerByCoroutine(id: String): Flow<Beer> = //TODO: Handle exception
+        flow {
+            val response = productsApi.getBeerByCoroutine(id)
             val result = response.first().mapIt()
 
             emit(result)
         }
-    }
 
 }

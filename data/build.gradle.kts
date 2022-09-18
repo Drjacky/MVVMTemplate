@@ -62,6 +62,7 @@ dependencies {
     implementation(Depends.Libraries.android_core_ktx)
     implementation(Depends.Libraries.paging_runtime_ktx)
     implementation(Depends.Libraries.paging_rx)
+    implementation(Depends.Libraries.rx_coroutine)
     implementation(Depends.Libraries.multidex)
     //dependency injection
     implementation(Depends.Libraries.dagger)

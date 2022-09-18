@@ -16,6 +16,7 @@ object Depends {
         const val rxAndroidVersion = "3.0.0"
         const val rxJavaVersion = "3.1.3"
         const val rxBinding = "4.0.0"
+        const val rxCoroutine = "1.6.4"
         const val retrofit2Version = "2.9.0"
         const val okhttpLoggingVersion = "5.0.0-alpha.5"
         const val chuckerVersion = "3.5.2"
@@ -163,6 +164,8 @@ object Depends {
             "androidx.recyclerview:recyclerview:${Versions.recyclerviewVersion}"
         const val rx_java_android = "io.reactivex.rxjava3:rxandroid:${Versions.rxAndroidVersion}"
         const val rx_binding3 = "com.jakewharton.rxbinding4:rxbinding:${Versions.rxBinding}"
+        const val rx_coroutine =
+            "org.jetbrains.kotlinx:kotlinx-coroutines-rx3:${Versions.rxCoroutine}"
         const val coil_compose = "io.coil-kt:coil-compose:${Versions.coilComposeVersion}"
         const val lottie = "com.airbnb.android:lottie:${Versions.lottieVersion}"
         const val lottie_compose = "com.airbnb.android:lottie-compose:${Versions.lottieVersion}"

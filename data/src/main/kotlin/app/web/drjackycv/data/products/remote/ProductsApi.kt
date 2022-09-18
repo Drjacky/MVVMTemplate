@@ -16,9 +16,9 @@ interface ProductsApi : BaseApiService {
         @Query("per_page") perPage: Int = 40,
     ): Single<GenericNetworkResponse<List<BeerResponse>>>
 
-    @GET("beers")
+    @GET("beers/{beer_id}")
     fun getBeer(
-        @Query("ids") ids: String,
+        @Path("beer_id") id: String?,
     ): Single<GenericNetworkResponse<List<BeerResponse>>>
 
     @GET("beers")

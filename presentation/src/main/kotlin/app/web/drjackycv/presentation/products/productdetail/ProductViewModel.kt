@@ -33,8 +33,8 @@ class ProductViewModel @Inject constructor(
     private val productId = savedStateHandle.get<String>(ProductDestination.productArg)!!
     val productByCoroutine: StateFlow<ProductUIState> = getProductByCoroutine(productId)
 
-    fun getProduct(ids: String) {
-        getBeerUseCase(ids)
+    fun getProduct(id: String) {
+        getBeerUseCase(id)
             .observeOn(AndroidSchedulers.mainThread())
             .autoDispose(this)
             .subscribe {

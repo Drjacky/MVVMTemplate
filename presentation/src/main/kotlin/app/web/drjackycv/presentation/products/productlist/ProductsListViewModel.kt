@@ -11,6 +11,8 @@ import androidx.paging.rxjava3.cachedIn
 import app.web.drjackycv.domain.products.entity.Beer
 import app.web.drjackycv.domain.products.usecase.GetBeersListByCoroutineUseCase
 import app.web.drjackycv.domain.products.usecase.GetBeersListUseCase
+import app.web.drjackycv.presentation.base.entity.Result
+import app.web.drjackycv.presentation.base.entity.asResult
 import app.web.drjackycv.presentation.base.viewmodel.BaseViewModel
 import app.web.drjackycv.presentation.products.choose.ChoosePathType
 import app.web.drjackycv.presentation.products.entity.BeerUI
@@ -32,8 +34,13 @@ class ProductsListViewModel @Inject constructor(
     private val _ldProductsList: MutableLiveData<PagingData<BeerUI>> = MutableLiveData()
     val ldProductsList: LiveData<PagingData<BeerUI>> = _ldProductsList
 
-    private val _productsListByCoroutine = MutableStateFlow(ProductsListUIState(isLoading = true))
-    val productsListByCoroutine: StateFlow<ProductsListUIState> = getProductsByCoroutinePath()
+    val productsListByCoroutine: StateFlow<ProductsUiState> =
+        getProductsByCoroutinePath()
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(5000),
+                initialValue = ProductsUiState.Loading
+            )
 
     init {
         val path =
@@ -53,20 +60,29 @@ class ProductsListViewModel @Inject constructor(
             }
     }
 
-    private fun getProductsByCoroutinePath() =
+    private fun getProductsByCoroutinePath(): Flow<ProductsUiState> =
         getBeersListByCoroutineUseCase()
             .cachedIn(viewModelScope)
-            .map {
-                it.map(Beer::mapIt)
+            .asResult()
+            .map { result ->
+                when (result) {
+                    is Result.Success -> {
+                        val items = result.data
+                        items.map {
+                            it.mapIt()
+                        }.let {
+                            ProductsUiState.Success(it)
+                        }
+                    }
+                    is Result.Error -> {
+                        ProductsUiState.Error(result.failure)
+                    }
+                    is Result.Loading -> {
+                        ProductsUiState.Loading
+                    }
+                }
             }
-            .map {
-                ProductsListUIState(it)
-            }
-            .stateIn(
-                scope = viewModelScope,
-                started = SharingStarted.WhileSubscribed(5000),
-                initialValue = ProductsListUIState(isLoading = true)
-            )
+
 
     private fun getProductsBaseOnPath(path: ChoosePathType?) {
         when (path) {
@@ -82,8 +98,8 @@ class ProductsListViewModel @Inject constructor(
 
 }
 
-data class ProductsListUIState(
-    val items: PagingData<BeerUI> = PagingData.empty(),
-    val isLoading: Boolean = false,
-    val userMessage: Int? = null
-)
+sealed interface ProductsUiState {
+    data class Success(val items: PagingData<BeerUI> = PagingData.empty()) : ProductsUiState
+    data class Error(val error: Throwable) : ProductsUiState
+    object Loading : ProductsUiState
+}

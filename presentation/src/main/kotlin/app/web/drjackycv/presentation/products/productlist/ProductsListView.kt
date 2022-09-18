@@ -70,7 +70,7 @@ fun ProductsListRoute(
 @ExperimentalAnimationGraphicsApi
 @Composable
 fun ProductsListView(
-    uiState: ProductsListUIState,
+    uiState: ProductsUiState,
     themeFAB: @Composable () -> Unit,
     navigateToProduct: (String) -> Unit,
     onBackClick: () -> Unit,
@@ -89,12 +89,11 @@ fun ProductsListView(
 @ExperimentalAnimationGraphicsApi
 @Composable
 fun ProductsListContent(
-    uiState: ProductsListUIState,
+    uiState: ProductsUiState,
     themeFAB: @Composable () -> Unit,
     navigateToProduct: (String) -> Unit,
     onBackClick: () -> Unit,
 ) {
-    val lazyProductList = flowOf(uiState.items).collectAsLazyPagingItems()
 
     Scaffold(
         topBar = {
@@ -115,75 +114,82 @@ fun ProductsListContent(
         floatingActionButton = themeFAB
     ) {
         val scrollState = rememberLazyListState()
-
-        LazyColumn(
-            modifier = Modifier.fillMaxSize(),
-            contentPadding = it,
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
-            state = scrollState
-        ) {
-            items(
-                items = lazyProductList,
-                key = { product ->
-                    product.id
-                },
-                itemContent = { product ->
-                    product?.let { beer ->
-                        ProductRowView(
-                            product = beer,
-                            isShimmerVisible = false,
-                            navigateToProduct = navigateToProduct
-                        )
-                    }
-                }
-            )
-            lazyProductList.apply {
-                if (loadState.refresh == LoadState.Loading) {
-                    val beerUI = BeerUI(
-                        id = -1,
-                        name = "",
-                        tagline = "",
-                        description = "",
-                        imageUrl = "",
-                        abv = 0.0
+        when (uiState) {
+            is ProductsUiState.Success -> {
+                val lazyProductList = flowOf(uiState.items).collectAsLazyPagingItems()
+                LazyColumn(
+                    modifier = Modifier.fillMaxSize(),
+                    contentPadding = it,
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center,
+                    state = scrollState
+                ) {
+                    items(
+                        items = lazyProductList,
+                        key = { product ->
+                            product.id
+                        },
+                        itemContent = { product ->
+                            product?.let { beer ->
+                                ProductRowView(
+                                    product = beer,
+                                    isShimmerVisible = false,
+                                    navigateToProduct = navigateToProduct
+                                )
+                            }
+                        }
                     )
-                    items(10) {
-                        ProductRowView(
-                            product = beerUI,
-                            isShimmerVisible = true,
-                            navigateToProduct = {}
-                        )
-                    }
-                }
-
-                if (loadState.append == LoadState.Loading) {
-                    item {
-                        LoadingItemView()
-                    }
-                } else {
-                    val error = when {
-                        loadState.prepend is LoadState.Error ->
-                            loadState.prepend as LoadState.Error
-                        loadState.source.prepend is LoadState.Error ->
-                            loadState.prepend as LoadState.Error
-                        loadState.append is LoadState.Error ->
-                            loadState.append as LoadState.Error
-                        loadState.source.append is LoadState.Error ->
-                            loadState.append as LoadState.Error
-                        loadState.refresh is LoadState.Error ->
-                            loadState.refresh as LoadState.Error
-                        else -> null
-                    }
-                    error?.run {
-                        item {
-                            ErrorListView(
-                                message = error.error.localizedMessage,
-                                onClickRetry = { retry() }
+                    lazyProductList.apply {
+                        if (loadState.refresh == LoadState.Loading) {
+                            val beerUI = BeerUI(
+                                id = -1,
+                                name = "",
+                                tagline = "",
+                                description = "",
+                                imageUrl = "",
+                                abv = 0.0
                             )
+                            items(10) {
+                                ProductRowView(
+                                    product = beerUI,
+                                    isShimmerVisible = true,
+                                    navigateToProduct = {}
+                                )
+                            }
+                        }
+
+                        if (loadState.append == LoadState.Loading) {
+                            item {
+                                LoadingItemView()
+                            }
+                        } else {
+                            val error = when {
+                                loadState.prepend is LoadState.Error ->
+                                    loadState.prepend as LoadState.Error
+                                loadState.source.prepend is LoadState.Error ->
+                                    loadState.prepend as LoadState.Error
+                                loadState.append is LoadState.Error ->
+                                    loadState.append as LoadState.Error
+                                loadState.source.append is LoadState.Error ->
+                                    loadState.append as LoadState.Error
+                                loadState.refresh is LoadState.Error ->
+                                    loadState.refresh as LoadState.Error
+                                else -> null
+                            }
+                            error?.run {
+                                item {
+                                    ErrorListView(
+                                        message = error.error.localizedMessage,
+                                        onClickRetry = { retry() }
+                                    )
+                                }
+                            }
                         }
                     }
                 }
+            }
+            else -> {
+                //no-op
             }
         }
     }
@@ -206,7 +212,7 @@ private fun ProductsListContentPreview() {
             abv = 4.9
         )
     )
-    val uiState = ProductsListUIState(items = PagingData.from(items))
+    val uiState = ProductsUiState.Success(items = PagingData.from(items))
 
     ProductsListContent(
         uiState = uiState,
