@@ -66,6 +66,40 @@ fun ErrorListView(
 }
 
 @Composable
+fun ErrorItemView(
+    message: String?,
+    modifier: Modifier = Modifier,
+) {
+    ConstraintLayout(
+        modifier = modifier.fillMaxWidth()
+    ) {
+        val (image, text) = createRefs()
+        val guide = createGuidelineFromTop(0.5f)
+
+        ErrorRowView(
+            modifier = Modifier
+                .constrainAs(image) {
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                    top.linkTo(parent.top)
+                    bottom.linkTo(guide)
+                })
+        Text(
+            text = message ?: stringResource(id = R.string.error_unknown),
+            maxLines = 2,
+            style = MaterialTheme.typography.body1,
+            color = Color.Red,
+            modifier = Modifier
+                .constrainAs(text) {
+                    start.linkTo(parent.start, margin = 10.dp)
+                    end.linkTo(parent.end, margin = 5.dp)
+                    top.linkTo(guide)
+                }
+        )
+    }
+}
+
+@Composable
 fun LoadingItemView(modifier: Modifier = Modifier) {
     CircularProgressIndicator(
         modifier = modifier
@@ -92,6 +126,12 @@ fun ErrorRowView(modifier: Modifier = Modifier) {
 @Composable
 private fun ErrorListViewPreview() {
     ErrorListView(message = null, onClickRetry = {})
+}
+
+@Preview
+@Composable
+private fun ErrorItemViewPreview() {
+    ErrorItemView(message = null)
 }
 
 @Preview

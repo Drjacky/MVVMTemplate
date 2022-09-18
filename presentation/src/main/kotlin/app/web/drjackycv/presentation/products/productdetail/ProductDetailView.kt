@@ -1,6 +1,7 @@
 package app.web.drjackycv.presentation.products.productdetail
 
 import androidx.compose.animation.graphics.ExperimentalAnimationGraphicsApi
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -9,6 +10,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
@@ -19,6 +21,8 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import app.web.drjackycv.presentation.base.view.ErrorItemView
+import app.web.drjackycv.presentation.base.view.LoadingItemView
 import app.web.drjackycv.presentation.products.entity.BeerUI
 import coil.annotation.ExperimentalCoilApi
 
@@ -44,41 +48,77 @@ fun ProductRoute(
 @ExperimentalAnimationGraphicsApi
 @Composable
 fun ProductDetailView(
-    uiState: ProductUIState,
+    uiState: ProductUiState,
     themeFAB: @Composable () -> Unit,
     onBackClick: () -> Unit
 ) {
-
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text(text = "${uiState.item?.name}")
+    when (uiState) {
+        is ProductUiState.Success -> {
+            Scaffold(
+                topBar = {
+                    TopAppBar(
+                        title = {
+                            Text(text = "${uiState.item?.name}")
+                        },
+                        navigationIcon = {
+                            IconButton(onClick = onBackClick) {
+                                Icon(
+                                    imageVector = Icons.Filled.ArrowBack,
+                                    contentDescription = "Back"
+                                )
+                            }
+                        }
+                    )
                 },
-                navigationIcon = {
-                    IconButton(onClick = onBackClick) {
-                        Icon(
-                            imageVector = Icons.Filled.ArrowBack,
-                            contentDescription = "Back"
-                        )
-                    }
+                floatingActionButton = themeFAB
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(it)
+                ) {
+                    Text(
+                        modifier = Modifier.padding(16.dp),
+                        text = "${uiState.item?.description}",
+                        style = TextStyle(fontSize = 17.sp),
+                        overflow = TextOverflow.Ellipsis,
+                        maxLines = 1
+                    )
                 }
-            )
-        },
-        floatingActionButton = themeFAB
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(it)
-        ) {
-            Text(
-                modifier = Modifier.padding(16.dp),
-                text = "${uiState.item?.description}",
-                style = TextStyle(fontSize = 17.sp),
-                overflow = TextOverflow.Ellipsis,
-                maxLines = 1
-            )
+            }
+        }
+        is ProductUiState.Error -> {
+            Scaffold(
+                topBar = {
+                    TopAppBar(
+                        title = {
+                            Text(text = "")
+                        },
+                        navigationIcon = {
+                            IconButton(onClick = onBackClick) {
+                                Icon(
+                                    imageVector = Icons.Filled.ArrowBack,
+                                    contentDescription = "Back"
+                                )
+                            }
+                        }
+                    )
+                },
+                floatingActionButton = themeFAB
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(it)
+                ) {
+                    ErrorItemView(message = uiState.error.localizedMessage)
+                }
+            }
+        }
+        is ProductUiState.Loading -> {
+            Box(modifier = Modifier.fillMaxSize()) {
+                LoadingItemView(modifier = Modifier.align(Alignment.Center))
+            }
         }
     }
 
@@ -90,7 +130,7 @@ fun ProductDetailView(
 @Preview(showBackground = true)
 @Composable
 private fun ProductDetailViewPreview() {
-    val uiState = ProductUIState(
+    val uiState = ProductUiState.Success(
         item = BeerUI(
             id = 1,
             name = "name",

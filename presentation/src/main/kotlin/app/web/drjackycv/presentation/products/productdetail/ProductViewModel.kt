@@ -4,9 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
-import app.web.drjackycv.domain.products.entity.Beer
 import app.web.drjackycv.domain.products.usecase.GetBeerByCoroutineUseCase
 import app.web.drjackycv.domain.products.usecase.GetBeerUseCase
+import app.web.drjackycv.presentation.base.entity.Result
+import app.web.drjackycv.presentation.base.entity.asResult
 import app.web.drjackycv.presentation.base.viewmodel.BaseViewModel
 import app.web.drjackycv.presentation.products.entity.BeerUI
 import app.web.drjackycv.presentation.products.entity.mapIt
@@ -31,7 +32,13 @@ class ProductViewModel @Inject constructor(
     val ldProduct: LiveData<BeerUI> = _ldProduct
 
     private val productId = savedStateHandle.get<String>(ProductDestination.productArg)!!
-    val productByCoroutine: StateFlow<ProductUIState> = getProductByCoroutine(productId)
+    val productByCoroutine: StateFlow<ProductUiState> =
+        getProductByCoroutine(productId)
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(5000),
+                initialValue = ProductUiState.Loading
+            )
 
     fun getProduct(id: String) {
         getBeerUseCase(id)
@@ -44,20 +51,25 @@ class ProductViewModel @Inject constructor(
 
     private fun getProductByCoroutine(ids: String) =
         getBeerByCoroutineUseCase(ids)
-            .map(Beer::mapIt)
-            .map {
-                ProductUIState(it)
+            .asResult()
+            .map { result ->
+                when (result) {
+                    is Result.Success -> {
+                        val item = result.data
+                        ProductUiState.Success(item.mapIt())
+                    }
+                    is Result.Error -> {
+                        ProductUiState.Error(result.failure)
+                    }
+                    is Result.Loading -> {
+                        ProductUiState.Loading
+                    }
+                }
             }
-            .stateIn(
-                scope = viewModelScope,
-                started = SharingStarted.WhileSubscribed(5000),
-                initialValue = ProductUIState(isLoading = true)
-            )
-
 }
 
-data class ProductUIState(
-    val item: BeerUI? = null,
-    val isLoading: Boolean = false,
-    val userMessage: Int? = null
-)
+sealed interface ProductUiState {
+    data class Success(val item: BeerUI? = null) : ProductUiState
+    data class Error(val error: Throwable) : ProductUiState
+    object Loading : ProductUiState
+}
