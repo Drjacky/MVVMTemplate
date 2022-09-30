@@ -1,6 +1,7 @@
 package app.web.drjackycv.presentation.main
 
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -67,22 +68,17 @@ class MainActivity : AppCompatActivity() {
                 })
         }
         setupUI()
+
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                finish()
+            }
+        })
     }
 
     override fun onStop() {
         uiStateJob?.cancel()
         super.onStop()
-    }
-
-    override fun onBackPressed() {
-        if (isTaskRoot
-            && supportFragmentManager.primaryNavigationFragment?.childFragmentManager?.backStackEntryCount == 0
-            && supportFragmentManager.backStackEntryCount == 0
-        ) {
-            finishAfterTransition()
-        } else {
-            super.onBackPressed()
-        }
     }
 
     override fun onDestroy() {
