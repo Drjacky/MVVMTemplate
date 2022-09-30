@@ -40,49 +40,50 @@ fun ChooseView(
     navigateToProductsList: (ChoosePathType) -> Unit
 ) {
     Scaffold(
-        floatingActionButton = themeFAB
-    ) {
-        ConstraintLayout(
-            modifier = Modifier.fillMaxSize()
-        ) {
-            val (rxButton, coroutineButton) = createRefs()
+        floatingActionButton = themeFAB, content = { padding ->
+            ConstraintLayout(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(padding)
+            ) {
+                val (rxButton, coroutineButton) = createRefs()
 
-            Button(
-                modifier = Modifier
-                    .requiredWidth(100.dp)
-                    .constrainAs(rxButton) {
-                        start.linkTo(parent.start, margin = 20.dp)
-                        end.linkTo(coroutineButton.start, margin = 10.dp)
-                        top.linkTo(parent.top)
-                        bottom.linkTo(parent.bottom)
-                    },
-                onClick = { navigateToProductsList(ChoosePathType.RX) }
-            ) {
-                Text(
-                    text = "RxJava",
-                    modifier = Modifier.padding(4.dp),
-                    style = TextStyle(fontSize = 11.sp)
-                )
+                Button(
+                    modifier = Modifier
+                        .requiredWidth(100.dp)
+                        .constrainAs(rxButton) {
+                            start.linkTo(parent.start, margin = 20.dp)
+                            end.linkTo(coroutineButton.start, margin = 10.dp)
+                            top.linkTo(parent.top)
+                            bottom.linkTo(parent.bottom)
+                        },
+                    onClick = { navigateToProductsList(ChoosePathType.RX) }
+                ) {
+                    Text(
+                        text = "RxJava",
+                        modifier = Modifier.padding(4.dp),
+                        style = TextStyle(fontSize = 11.sp)
+                    )
+                }
+                Button(
+                    modifier = Modifier
+                        .requiredWidth(100.dp)
+                        .constrainAs(coroutineButton) {
+                            start.linkTo(rxButton.end, margin = 10.dp)
+                            end.linkTo(parent.end, margin = 20.dp)
+                            top.linkTo(parent.top)
+                            bottom.linkTo(parent.bottom)
+                        },
+                    onClick = { navigateToProductsList(ChoosePathType.COROUTINE) }
+                ) {
+                    Text(
+                        text = "Coroutines",
+                        modifier = Modifier.padding(4.dp),
+                        style = TextStyle(fontSize = 11.sp)
+                    )
+                }
             }
-            Button(
-                modifier = Modifier
-                    .requiredWidth(100.dp)
-                    .constrainAs(coroutineButton) {
-                        start.linkTo(rxButton.end, margin = 10.dp)
-                        end.linkTo(parent.end, margin = 20.dp)
-                        top.linkTo(parent.top)
-                        bottom.linkTo(parent.bottom)
-                    },
-                onClick = { navigateToProductsList(ChoosePathType.COROUTINE) }
-            ) {
-                Text(
-                    text = "Coroutines",
-                    modifier = Modifier.padding(4.dp),
-                    style = TextStyle(fontSize = 11.sp)
-                )
-            }
-        }
-    }
+        })
 }
 
 @Composable //TODO
