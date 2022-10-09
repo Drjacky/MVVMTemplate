@@ -23,8 +23,8 @@ import app.web.drjackycv.presentation.products.choose.CirclePosition
 
 @Composable
 fun ChooseArrowAnimation(
+    circleState: CirclePosition,
     modifier: Modifier = Modifier,
-    circleState: CirclePosition
 ) {
     val offsetAnimation: Dp by animateDpAsState(
         targetValue = if (circleState == CirclePosition.Start) 0.dp else 100.dp,

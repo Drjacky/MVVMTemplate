@@ -97,7 +97,7 @@ fun ChooseView(
 
 @Composable
 fun SetupAndRunChooseArrowAnimation(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
 ) {
     var circleState by remember { mutableStateOf(CirclePosition.Start) }
 
