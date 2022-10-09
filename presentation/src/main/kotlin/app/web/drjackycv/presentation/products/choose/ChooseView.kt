@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.requiredWidth
 import androidx.compose.material.Button
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+import app.web.drjackycv.presentation.base.view.ChooseArrowAnimation
 import coil.annotation.ExperimentalCoilApi
 import java.io.Serializable
 
@@ -46,8 +47,16 @@ fun ChooseView(
                     .fillMaxSize()
                     .padding(padding)
             ) {
-                val (rxButton, coroutineButton) = createRefs()
+                val (chooseAnimation, rxButton, coroutineButton) = createRefs()
 
+                SetupAndRunChooseArrowAnimation(
+                    modifier = Modifier
+                        .constrainAs(chooseAnimation) {
+                            start.linkTo(parent.start, margin = 20.dp)
+                            end.linkTo(parent.end, margin = 20.dp)
+                            bottom.linkTo(rxButton.top, margin = 20.dp)
+                        }
+                )
                 Button(
                     modifier = Modifier
                         .requiredWidth(100.dp)
@@ -86,6 +95,24 @@ fun ChooseView(
         })
 }
 
+@Composable
+fun SetupAndRunChooseArrowAnimation(
+    modifier: Modifier,
+) {
+    var circleState by remember { mutableStateOf(CirclePosition.Start) }
+
+    ChooseArrowAnimation(
+        modifier = modifier,
+        circleState = circleState
+    )
+    LaunchedEffect(Unit) {
+        circleState = when (circleState) {
+            CirclePosition.Start -> CirclePosition.Finish
+            CirclePosition.Finish -> CirclePosition.Start
+        }
+    }
+}
+
 @Composable //TODO
 fun PathButton(name: String/*, selectedPath: (ChoosePathType) -> Unit*/) {
     Button(
@@ -99,6 +126,10 @@ fun PathButton(name: String/*, selectedPath: (ChoosePathType) -> Unit*/) {
             style = TextStyle(fontSize = 11.sp)
         )
     }
+}
+
+enum class CirclePosition {
+    Start, Finish
 }
 
 enum class ChoosePathType : Serializable {
