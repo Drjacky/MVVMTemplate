@@ -30,7 +30,7 @@ fun ChooseArrowAnimation(
         targetValue = if (circleState == CirclePosition.Start) 0.dp else 100.dp,
         animationSpec = infiniteRepeatable(
             animation = tween(
-                durationMillis = 600,
+                durationMillis = 500,
                 easing = LinearEasing
             ),
             repeatMode = RepeatMode.Reverse
@@ -42,7 +42,7 @@ fun ChooseArrowAnimation(
         targetValue = 180F,
         animationSpec = infiniteRepeatable(
             animation = tween(
-                durationMillis = 600,
+                durationMillis = 500,
                 easing = LinearEasing
             ),
             repeatMode = RepeatMode.Reverse
@@ -97,15 +97,17 @@ fun ChooseArrowAnimation(
             drawCircle(red200)
             drawLine(
                 color = purple600,
-                start = Offset(82f, 100f),
-                end = Offset(54f, 70f),
-                strokeWidth = 8f
+                start = Offset(82f, 105f),
+                end = Offset(54f, 77f),
+                strokeWidth = 8f,
+                cap = StrokeCap.Round
             )
             drawLine(
                 color = purple600,
-                start = Offset(54f, 74f),
-                end = Offset(82f, 44f),
-                strokeWidth = 8f
+                start = Offset(54f, 77f),
+                end = Offset(82f, 49f),
+                strokeWidth = 8f,
+                cap = StrokeCap.Round
             )
         }
     }
