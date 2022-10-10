@@ -1,4 +1,4 @@
-package app.web.drjackycv.presentation.base.extensions
+package app.web.drjackycv.presentation.extension
 
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Path

@@ -709,11 +709,20 @@ KodeCompose:
     active: true
   TopLevelComposableFunctions: #ensures that all composable functions are top-level functions (disabled by default)
     active: true
+  ComposeFunctionName: #ensures that Composable functions which return Unit should start with upper-case while the ones that return a value should start with lower case
+    active: true
 
 TwitterCompose:
-active: true
+  CompositionLocalAllowlist:
+    active: true
+    # You can optionally define a list of CompositionLocals that are allowed here
+    # allowedCompositionLocals: LocalSomething,LocalSomethingElse
+  CompositionLocalNaming:
+    active: true
   ContentEmitterReturningValues:
     active: true
+    # You can optionally add your own composables here
+    # contentEmitters: MyComposable,MyOtherComposable
   ModifierComposable:
     active: true
   ModifierMissing:
@@ -724,11 +733,17 @@ active: true
     active: true
   MultipleEmitters:
     active: true
+    # You can optionally add your own composables here
+    # contentEmitters: MyComposable,MyOtherComposable
   MutableParams:
     active: true
   ComposableNaming:
     active: true
   ComposableParamOrder:
+    active: true
+  PreviewNaming:
+    active: true
+  PreviewPublic:
     active: true
   RememberMissing:
     active: true

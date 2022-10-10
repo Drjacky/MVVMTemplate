@@ -14,10 +14,10 @@ import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import app.web.drjackycv.presentation.base.extensions.lineTo
-import app.web.drjackycv.presentation.base.extensions.percentOf
 import app.web.drjackycv.presentation.base.theme.purple600
 import app.web.drjackycv.presentation.base.theme.red200
+import app.web.drjackycv.presentation.extension.lineTo
+import app.web.drjackycv.presentation.extension.percentOf
 import app.web.drjackycv.presentation.products.choose.CirclePosition
 
 
