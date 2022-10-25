@@ -41,7 +41,7 @@ object Depends {
         const val coilComposeVersion = "2.2.1"
         const val autoDispose = "2.1.1"
         const val dataStorePreferenceVersion = "1.0.0"
-        const val composeVersion = "1.2.1"
+        const val composeBomVersion = "2022.10.00"
         const val customViewPoolingContainerVersion = "1.0.0"
         const val customViewVersion = "1.2.0-alpha01"
         const val composeCompilerVersion = "1.3.1"
@@ -182,36 +182,31 @@ object Depends {
             "com.github.chuckerteam.chucker:library-no-op:${Versions.chuckerVersion}"
         const val dataStore_preferences =
             "androidx.datastore:datastore-preferences:${Versions.dataStorePreferenceVersion}"
-        const val compose_foundation =
-            "androidx.compose.foundation:foundation:${Versions.composeVersion}"
-        const val compose_foundation_layout =
-            "androidx.compose.foundation:foundation-layout:${Versions.composeVersion}"
-        const val compose_material = "androidx.compose.material:material:${Versions.composeVersion}"
-        const val compose_runtime = "androidx.compose.runtime:runtime:${Versions.composeVersion}"
-        const val compose_runtime_livedata =
-            "androidx.compose.runtime:runtime-livedata:${Versions.composeVersion}"
-        const val compose_runtime_saved_instance_state =
-            "androidx.compose.runtime:runtime-saved-instance-state:${Versions.composeVersion}"
+        const val compose_bom = "androidx.compose:compose-bom:${Versions.composeBomVersion}"
+        const val compose_foundation = "androidx.compose.foundation:foundation"
+        const val compose_foundation_layout = "androidx.compose.foundation:foundation-layout"
+        const val compose_material = "androidx.compose.material:material"
+        const val compose_runtime = "androidx.compose.runtime:runtime"
+        const val compose_runtime_livedata = "androidx.compose.runtime:runtime-livedata"
+        const val compose_runtime_saved_instance_state = "androidx.compose.runtime:runtime-saveable"
         const val compose_navigation =
             "androidx.navigation:navigation-compose:${Versions.composeNavigationVersion}"
-        const val compose_ui = "androidx.compose.ui:ui:${Versions.composeVersion}"
-        const val compose_ui_tooling = "androidx.compose.ui:ui-tooling:${Versions.composeVersion}"
-        const val compose_ui_tooling_preview =
-            "androidx.compose.ui:ui-tooling-preview:${Versions.composeVersion}"
+        const val compose_ui = "androidx.compose.ui:ui"
+        const val compose_ui_tooling = "androidx.compose.ui:ui-tooling"
+        const val compose_ui_tooling_preview = "androidx.compose.ui:ui-tooling-preview"
         const val customview = "androidx.customview:customview:${Versions.customViewVersion}"
         const val customview_poolingcontainer =
             "androidx.customview:customview-poolingcontainer:${Versions.customViewPoolingContainerVersion}"
-        const val compose_ui_text = "androidx.compose.ui:ui-text:${Versions.composeTextVersion}"
-        const val compose_ui_test = "androidx.compose.ui:ui-test:${Versions.composeVersion}"
+        const val compose_ui_text = "androidx.compose.ui:ui-text"
+        const val compose_ui_test = "androidx.compose.ui:ui-test"
         const val compose_paging = "androidx.paging:paging-compose:${Versions.composePagingVersion}"
         const val compose_material_icons_extended =
-            "androidx.compose.material:material-icons-extended:${Versions.composeVersion}"
+            "androidx.compose.material:material-icons-extended"
         const val material_compose_theme_adapter =
             "com.google.android.material:compose-theme-adapter:${Versions.materialComposeThemeAdapter}"
         const val activity_compose =
             "androidx.activity:activity-compose:${Versions.activityComposeVersion}"
-        const val composeAnimationGraphics =
-            "androidx.compose.animation:animation-graphics:${Versions.composeVersion}"
+        const val composeAnimationGraphics = "androidx.compose.animation:animation-graphics"
         const val composeConstraintLayout =
             "androidx.constraintlayout:constraintlayout-compose:${Versions.composeConstraintLayout}"
         const val accompanistPlaceholder =

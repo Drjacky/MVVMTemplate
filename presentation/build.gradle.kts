@@ -102,6 +102,7 @@ dependencies {
     implementation(Depends.Libraries.recyclerview)
     implementation(Depends.Libraries.dataStore_preferences)
     //compose
+    implementation(platform(Depends.Libraries.compose_bom))
     implementation(Depends.Libraries.compose_foundation)
     implementation(Depends.Libraries.compose_foundation_layout)
     implementation(Depends.Libraries.compose_ui)
