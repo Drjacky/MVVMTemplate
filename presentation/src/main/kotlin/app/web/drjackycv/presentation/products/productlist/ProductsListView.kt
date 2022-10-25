@@ -9,7 +9,9 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -26,8 +28,10 @@ import app.web.drjackycv.presentation.base.view.LoadingItemView
 import app.web.drjackycv.presentation.products.choose.ChoosePathType
 import app.web.drjackycv.presentation.products.entity.BeerUI
 import coil.annotation.ExperimentalCoilApi
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
 
+@ExperimentalCoroutinesApi
 @ExperimentalLifecycleComposeApi
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
@@ -42,10 +46,12 @@ fun ProductsListRoute(
 ) {
     when (choose) {
         ChoosePathType.RX -> {
-            //val uiState by viewModel.ldProductsList.collectAsStateWithLifecycle() //TODO
-            val uiState by viewModel.productsListByCoroutine.collectAsStateWithLifecycle()
+            LaunchedEffect(Unit) {
+                viewModel.getProductsByRxPath()
+            }
+            val uiState = viewModel.ldProductsList.observeAsState(ProductsUiState.Loading)
             ProductsListView(
-                uiState = uiState,
+                uiState = uiState.value,
                 themeFAB = themeFAB,
                 navigateToProduct = navigateToProduct,
                 onBackClick = onBackClick

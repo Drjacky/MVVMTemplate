@@ -19,11 +19,11 @@ import coil.annotation.ExperimentalCoilApi
 @Composable
 fun MyApp(
     darkMode: Boolean,
-    floatingActionButton: @Composable () -> Unit,
+    themeFAB: @Composable () -> Unit,
     appState: MyAppState = rememberMyAppState()
 ) {
     BaseTheme(darkMode) {
-        MainLayout(themeFAB = { floatingActionButton() }, appState = appState)
+        MainLayout(themeFAB = { themeFAB() }, appState = appState)
     }
 }
 

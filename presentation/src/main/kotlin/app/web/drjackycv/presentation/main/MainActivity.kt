@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
 
             MyApp(
                 darkMode = darkMode,
-                floatingActionButton = {
+                themeFAB = {
                     FloatingActionButton(
                         onClick = {
                             setNightMode(darkMode.not())

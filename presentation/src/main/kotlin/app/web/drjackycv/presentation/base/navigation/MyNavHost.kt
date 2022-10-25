@@ -34,13 +34,13 @@ fun MyNavHost(
         modifier = modifier,
     ) {
         chooseGraph(
+            themeFAB = themeFAB,
             navigateToProductsList = {
                 onNavigateToDestination(
                     ProductsListDestination,
                     ProductsListDestination.createNavigationRoute(it)
                 )
             },
-            themeFAB = themeFAB
         )
         productsListGraph(
             navigateToProduct = {

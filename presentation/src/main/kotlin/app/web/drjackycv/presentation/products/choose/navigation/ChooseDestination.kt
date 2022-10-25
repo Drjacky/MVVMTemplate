@@ -21,13 +21,13 @@ object ChooseDestination : MyNavigationDestination {
 @ExperimentalComposeUiApi
 @ExperimentalAnimationGraphicsApi
 fun NavGraphBuilder.chooseGraph(
-    navigateToProductsList: (ChoosePathType) -> Unit,
     themeFAB: @Composable () -> Unit,
+    navigateToProductsList: (ChoosePathType) -> Unit,
 ) {
     composable(route = ChooseDestination.route) {
         ChooseRoute(
-            navigateToProductsList = navigateToProductsList,
             themeFAB = themeFAB,
+            navigateToProductsList = navigateToProductsList,
         )
     }
 }

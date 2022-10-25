@@ -26,8 +26,8 @@ import java.io.Serializable
 @ExperimentalAnimationGraphicsApi
 @Composable
 fun ChooseRoute(
-    navigateToProductsList: (ChoosePathType) -> Unit,
     themeFAB: @Composable () -> Unit,
+    navigateToProductsList: (ChoosePathType) -> Unit,
 ) {
     ChooseView(
         themeFAB = themeFAB,
