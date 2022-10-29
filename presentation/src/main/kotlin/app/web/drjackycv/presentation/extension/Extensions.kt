@@ -53,7 +53,7 @@ class FragmentViewBindingDelegate<T : ViewBinding>(
         property: KProperty<*>,
     ): T {
         val binding = binding
-        if (binding != null) {
+        if (binding != null && binding.root === thisRef.view) {
             return binding
         }
 
