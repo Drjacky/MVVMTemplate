@@ -19,7 +19,7 @@ android {
         minSdk = Depends.Versions.minSdkVersion
         targetSdk = Depends.Versions.targetSdkVersion
         testInstrumentationRunner =
-            Depends.Versions.testInstrumentationRunner
+            Depends.Libraries.testInstrumentationRunner
         consumerProguardFiles("consumer-rules.pro")
     }
     compileOptions {

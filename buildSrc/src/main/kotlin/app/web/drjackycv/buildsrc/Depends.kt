@@ -10,8 +10,7 @@ object Depends {
         const val androidCompileSdkVersion = 32
         const val targetSdkVersion = 32
         const val minSdkVersion = 21
-        const val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        const val kotlinVersion = "1.7.20"
+        const val kotlinVersion = "1.7.21"
         const val rxKotlinVersion = "3.0.1"
         const val rxAndroidVersion = "3.0.0"
         const val rxJavaVersion = "3.1.5"
@@ -104,6 +103,7 @@ object Depends {
             "com.squareup.okhttp3:logging-interceptor:${Versions.okhttpLoggingVersion}"
         const val timber = "com.jakewharton.timber:timber:${Versions.timberVersion}"
         const val material = "com.google.android.material:material:${Versions.materialVersion}"
+        const val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         const val junit = "junit:junit:${Versions.junitVersion}"
         const val test_runner = "androidx.test:runner:${Versions.supportTestVersion}"
         const val test_rules = "androidx.test:rules:${Versions.supportTestVersion}"

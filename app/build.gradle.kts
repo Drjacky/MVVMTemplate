@@ -20,7 +20,7 @@ android {
         versionCode = Depends.Versions.appVersionCode
         versionName = Depends.generateVersionName()
         testInstrumentationRunner =
-            Depends.Versions.testInstrumentationRunner
+            Depends.Libraries.testInstrumentationRunner
         javaCompileOptions.annotationProcessorOptions.arguments += mapOf(
             "room.schemaLocation" to "$projectDir/schemas"
         )
