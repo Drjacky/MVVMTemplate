@@ -1,8 +1,12 @@
 package app.web.drjackycv.presentation.extension
 
+import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
+import android.view.WindowManager
+import androidx.annotation.ColorRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
@@ -86,3 +90,11 @@ inline fun <T : ViewBinding> AppCompatActivity.viewInflateBinding(
     lazy(LazyThreadSafetyMode.NONE) {
         bindingInflater.invoke(layoutInflater)
     }
+
+fun Activity.setStatusBarColor(@ColorRes color: Int) {
+    window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+    window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+    ContextCompat.getColor(this, color).let {
+        this.window?.statusBarColor = it
+    }
+}

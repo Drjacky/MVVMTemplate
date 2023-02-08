@@ -2,6 +2,7 @@ package app.web.drjackycv.presentation.main
 
 import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
+import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.lifecycleScope
@@ -14,12 +15,12 @@ import app.web.drjackycv.presentation.databinding.ActivityMainBinding
 import app.web.drjackycv.presentation.datastore.DataStoreManager
 import app.web.drjackycv.presentation.extension.collectIn
 import app.web.drjackycv.presentation.extension.setOnReactiveClickListener
+import app.web.drjackycv.presentation.extension.setStatusBarColor
 import app.web.drjackycv.presentation.extension.viewInflateBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -74,27 +75,31 @@ class MainActivity : AppCompatActivity() {
             }
         }
         when (mode) {
-            AppCompatDelegate.MODE_NIGHT_NO -> {
-                binding.activityMainSwitchThemeFab.setImageResource(R.drawable.ic_mode_night_no_black)
-                binding.activityMainSwitchThemeFab.setOnReactiveClickListener {
-                    setNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                }
-            }
-            AppCompatDelegate.MODE_NIGHT_YES -> {
-                binding.activityMainSwitchThemeFab.setImageResource(R.drawable.ic_mode_night_yes_black)
-                binding.activityMainSwitchThemeFab.setOnReactiveClickListener {
-                    setNightMode(Settings.MODE_NIGHT_DEFAULT)
-                }
-            }
-            else -> {
-                binding.activityMainSwitchThemeFab.setImageResource(R.drawable.ic_mode_night_default_black)
-                binding.activityMainSwitchThemeFab.setOnReactiveClickListener {
-                    setNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                }
-            }
+            AppCompatDelegate.MODE_NIGHT_NO -> applyThemeMode(
+                AppCompatDelegate.MODE_NIGHT_YES,
+                R.drawable.ic_mode_night_default_black
+            )
+            AppCompatDelegate.MODE_NIGHT_YES -> applyThemeMode(
+                Settings.MODE_NIGHT_DEFAULT,
+                R.drawable.ic_mode_night_no_black
+            )
+            else -> applyThemeMode(
+                AppCompatDelegate.MODE_NIGHT_NO,
+                R.drawable.ic_mode_night_yes_black
+            )
         }
-        if (AppCompatDelegate.getDefaultNightMode() != mode)
-            AppCompatDelegate.setDefaultNightMode(mode)
+    }
+
+    private fun applyThemeMode(themeMode: Int, @DrawableRes icon: Int) {
+        this.setStatusBarColor(R.color.status_bar)
+        binding.activityMainSwitchThemeFab.setImageResource(icon)
+        binding.activityMainSwitchThemeFab.setOnReactiveClickListener {
+            setNightMode(themeMode)
+        }
+        if (AppCompatDelegate.getDefaultNightMode() != themeMode) {
+            AppCompatDelegate.setDefaultNightMode(themeMode)
+            window?.setWindowAnimations(R.style.WindowAnimationFadeInOut)
+        }
     }
 
 }
