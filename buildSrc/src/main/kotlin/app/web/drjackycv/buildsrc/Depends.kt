@@ -10,7 +10,7 @@ object Depends {
         const val androidCompileSdkVersion = 33
         const val targetSdkVersion = 33
         const val minSdkVersion = 21
-        const val kotlinVersion = "1.7.21"
+        const val kotlinVersion = "1.8.10"
         const val rxKotlinVersion = "3.0.1"
         const val rxAndroidVersion = "3.0.2"
         const val rxJavaVersion = "3.1.5"
