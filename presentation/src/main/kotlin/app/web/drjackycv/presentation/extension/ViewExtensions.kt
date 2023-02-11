@@ -1,12 +1,19 @@
 package app.web.drjackycv.presentation.extension
 
 import android.app.Activity
+import android.content.res.Configuration
 import android.graphics.drawable.Drawable
+import android.os.Build
 import android.view.View
+import android.view.WindowManager
 import android.widget.ImageView
+import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.app.ActivityCompat.startPostponedEnterTransition
+import androidx.core.content.ContextCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import app.web.drjackycv.presentation.R
 import app.web.drjackycv.presentation.base.util.GlideApp
 import app.web.drjackycv.presentation.exception.ReactiveClickException
@@ -92,3 +99,26 @@ fun View.setOnReactiveClickListener(windowDuration: Long = 500, action: (() -> U
                 stack = throwable.stackTrace
             )
         })
+
+fun AppCompatActivity.setStatusBarColor(@ColorRes color: Int) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        with(window) {
+            clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            WindowInsetsControllerCompat(window, decorView).isAppearanceLightStatusBars =
+                this@setStatusBarColor.isDarkMode().not()
+            ContextCompat.getColor(this@setStatusBarColor, color).let {
+                window?.statusBarColor = it
+            }
+        }
+    }
+}
+
+fun AppCompatActivity.isDarkMode(): Boolean {
+    return when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+        Configuration.UI_MODE_NIGHT_YES -> true
+        Configuration.UI_MODE_NIGHT_NO -> false
+        Configuration.UI_MODE_NIGHT_UNDEFINED -> true
+        else -> false
+    }
+}

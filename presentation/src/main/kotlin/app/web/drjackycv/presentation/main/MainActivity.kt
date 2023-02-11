@@ -1,6 +1,5 @@
 package app.web.drjackycv.presentation.main
 
-import android.os.Build
 import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.DrawableRes
@@ -92,9 +91,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun applyThemeMode(themeMode: Int, @DrawableRes icon: Int) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            this.setStatusBarColor(R.color.status_bar)
-        }
+        setStatusBarColor(R.color.status_bar)
         binding.activityMainSwitchThemeFab.setImageResource(icon)
         binding.activityMainSwitchThemeFab.setOnReactiveClickListener {
             setNightMode(themeMode)

@@ -1,14 +1,8 @@
 package app.web.drjackycv.presentation.extension
 
-import android.app.Activity
-import android.content.res.Configuration
 import android.view.LayoutInflater
 import android.view.View
-import android.view.WindowManager
-import androidx.annotation.ColorRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
@@ -92,24 +86,3 @@ inline fun <T : ViewBinding> AppCompatActivity.viewInflateBinding(
     lazy(LazyThreadSafetyMode.NONE) {
         bindingInflater.invoke(layoutInflater)
     }
-
-fun Activity.setStatusBarColor(@ColorRes color: Int) {
-    with(window) {
-        clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-        addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        WindowInsetsControllerCompat(window, decorView).isAppearanceLightStatusBars =
-            this@setStatusBarColor.isDarkMode().not()
-        ContextCompat.getColor(this@setStatusBarColor, color).let {
-            window?.statusBarColor = it
-        }
-    }
-}
-
-fun Activity.isDarkMode(): Boolean {
-    return when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-        Configuration.UI_MODE_NIGHT_YES -> true
-        Configuration.UI_MODE_NIGHT_NO -> false
-        Configuration.UI_MODE_NIGHT_UNDEFINED -> true
-        else -> false
-    }
-}
