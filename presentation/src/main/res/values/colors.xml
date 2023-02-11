@@ -7,6 +7,6 @@
     <color name="dark_gray">#757575</color>
     <color name="light_gray">#B8B8B8</color>
     <color name="red">#FF0000</color>
-
     <color name="detail_bg">@color/white</color>
+    <color name="status_bar">#FFFFFF</color>
 </resources>
