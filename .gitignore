@@ -6,6 +6,7 @@
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
 /.idea/sonarlint
+/.idea/deploymentTargetDropDown.xml
 /build
 /captures
 .cxx
