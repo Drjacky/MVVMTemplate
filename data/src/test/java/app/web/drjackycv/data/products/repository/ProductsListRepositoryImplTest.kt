@@ -2,7 +2,6 @@ package app.web.drjackycv.data.products.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.paging.PagingData
-import androidx.paging.PagingSource
 import app.web.drjackycv.data.products.datasource.ProductsPagingSource
 import app.web.drjackycv.data.products.datasource.ProductsPagingSourceByCoroutine
 import app.web.drjackycv.data.products.factory.ProductResponseFactory
@@ -31,9 +30,6 @@ class ProductsListRepositoryImplTest {
     private lateinit var productsListRepositoryImpl: ProductsListRepositoryImpl
 
     @MockK
-    lateinit var loadParams: PagingSource.LoadParams<Int>
-
-    @MockK
     lateinit var pagingSource: ProductsPagingSource
 
     @MockK
@@ -58,7 +54,6 @@ class ProductsListRepositoryImplTest {
     fun `test getBeersListByCoroutine() gives list of products`() =
         runTest {
             // Given
-            every { loadParams.key } returns 10
             val givenProducts = ProductResponseFactory.createProducts(3)
             val productsApi = mockk<ProductsApi> {
                 coEvery { getBeersListByCoroutine() } returns givenProducts
