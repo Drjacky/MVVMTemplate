@@ -2,14 +2,13 @@ package app.web.drjackycv.presentation.extension
 
 import android.app.Activity
 import android.content.res.Configuration
-import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
 import androidx.annotation.ColorRes
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
@@ -94,20 +93,15 @@ inline fun <T : ViewBinding> AppCompatActivity.viewInflateBinding(
         bindingInflater.invoke(layoutInflater)
     }
 
-@RequiresApi(Build.VERSION_CODES.M)
 fun Activity.setStatusBarColor(@ColorRes color: Int) {
-    window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-    window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-    val decorView = window.decorView
-    if (this.isDarkMode()) {
-        decorView.systemUiVisibility =
-            decorView.systemUiVisibility and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv()
-    } else {
-        decorView.systemUiVisibility =
-            decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-    }
-    ContextCompat.getColor(this, color).let {
-        this.window?.statusBarColor = it
+    with(window) {
+        clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        WindowInsetsControllerCompat(window, decorView).isAppearanceLightStatusBars =
+            this@setStatusBarColor.isDarkMode().not()
+        ContextCompat.getColor(this@setStatusBarColor, color).let {
+            window?.statusBarColor = it
+        }
     }
 }
 
