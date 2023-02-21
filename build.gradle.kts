@@ -1,7 +1,7 @@
 plugins {
     id("org.sonarqube") version app.web.drjackycv.buildsrc.Depends.Versions.sonarqubeVersion
     detekt
-    id("com.github.ben-manes.versions") version app.web.drjackycv.buildsrc.Depends.Versions.checkDependencyVersionsVersion
+    id("com.github.ben-manes.versions") version 0.46.0
     id("com.osacky.doctor") version app.web.drjackycv.buildsrc.Depends.Versions.gradleDoctorVersion
     id("com.autonomousapps.dependency-analysis") version app.web.drjackycv.buildsrc.Depends.Versions.dependencyAnalysisVersion
     id("org.sonatype.gradle.plugins.scan") version app.web.drjackycv.buildsrc.Depends.Versions.sonatypeScanGradleVersion
