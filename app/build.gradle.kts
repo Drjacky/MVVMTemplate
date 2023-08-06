@@ -49,11 +49,11 @@ android {
         }
     }
     compileOptions {
-        targetCompatibility = JavaVersion.VERSION_11
-        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
     lintOptions {
         isAbortOnError = false
@@ -64,11 +64,12 @@ android {
         exclude("META-INF/proguard/androidx-annotations.pro")
         resources.excludes += "DebugProbesKt.bin"
     }
+    namespace = "app.web.drjackycv.mvvmtemplate"
 }
 
 tasks.withType<KotlinCompile> {
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
+        jvmTarget = JavaVersion.VERSION_17.toString()
         freeCompilerArgs = freeCompilerArgs + listOf("-XXLanguage:+InlineClasses")
     }
 }
