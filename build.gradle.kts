@@ -11,8 +11,12 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        maven {
+            url = uri("https://storage.googleapis.com/r8-releases/raw")
+        }
     }
     dependencies {
+        classpath(app.web.drjackycv.buildsrc.Depends.ClassPaths.r8)
         classpath(app.web.drjackycv.buildsrc.Depends.ClassPaths.gradle)
         classpath(
             kotlin(

@@ -6,7 +6,8 @@ object Depends {
 
     object Versions {
         const val appVersionCode = 1_000_000
-        const val gradleVersion = "8.2.0-alpha14"
+        const val r8Version = "8.1.56"
+        const val gradleVersion = "8.2.0-alpha15"
         const val androidCompileSdkVersion = 33
         const val targetSdkVersion = 33
         const val minSdkVersion = 21
@@ -37,7 +38,7 @@ object Depends {
         const val timberVersion = "5.0.1"
         const val lottieVersion = "4.2.2"
         const val glideVersion = "4.14.2"
-        const val autoDispose = "2.1.1"
+        const val autoDispose = "2.2.1"
         const val dataStorePreferenceVersion = "1.0.0"
         const val coroutinesAndroidVersion = "1.6.4"
 
@@ -62,6 +63,7 @@ object Depends {
     }
 
     object ClassPaths {
+        const val r8 = "com.android.tools:r8:${Versions.r8Version}"
         const val gradle = "com.android.tools.build:gradle:${Versions.gradleVersion}"
         const val kotlin_gradle_plugin = "gradle-plugin"
         const val navigation_safe_args_gradle_plugin =
