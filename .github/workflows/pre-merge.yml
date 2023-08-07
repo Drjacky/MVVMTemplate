@@ -27,11 +27,15 @@ jobs:
         run: bash ./gradlew test --stacktrace
       - name: Cache Gradle Caches
         uses: actions/cache@v3
+        env:
+          cache-name: cache-gradle-cache
         with:
           path: ~/.gradle/caches/
           key: cache-gradle-cache
       - name: Cache Gradle Wrapper
         uses: actions/cache@v3
+        env:
+          cache-name: cache-gradle-wrapper
         with:
           path: ~/.gradle/wrapper/
           key: cache-gradle-wrapper
