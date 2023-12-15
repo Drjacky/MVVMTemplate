@@ -59,9 +59,11 @@ Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20t
 - ~~Use Hilt. To see changes, click [here](https://github.com/Drjacky/MVVMTemplate/commit/b8af89bb74e5d615e9704c9f3ce35befd11811ea).~~
 - ~~Migrate to [Hilt 2.31](https://github.com/google/dagger/releases/tag/dagger-2.31). To see changes, click [here](https://github.com/Drjacky/MVVMTemplate/commit/792d2ba54d214b3ef10862777fc386e7be5790f4).~~
 - ~~Use Paging V3. To see changes, click [here](https://github.com/Drjacky/MVVMTemplate/pull/4/files).~~
-- ~~Use ViewBinding. To see changes, click [here](https://github.com/Drjacky/MVVMTemplate/commit/cfc907532fa991cd8de3b295644bfdff88d67ceb).~~
-- Migrate to [JetPack Compose](https://developer.android.com/jetpack/compose)
-- ~~Use detekt. To see changes, click [here](https://github.com/Drjacky/MVVMTemplate/pull/6/files).~~
+- ~~Use ViewBinding. To see changes,
+  click [here](https://github.com/Drjacky/MVVMTemplate/commit/cfc907532fa991cd8de3b295644bfdff88d67ceb).~~
+- ~~Migrate to [JetPack Compose](https://developer.android.com/jetpack/compose)~~
+- ~~Use detekt. To see changes,
+  click [here](https://github.com/Drjacky/MVVMTemplate/pull/6/files).~~
 - ~~Add coroutines and flow. To see changes, click [here](https://github.com/Drjacky/MVVMTemplate/pull/7/files).~~
 - ~~Replace Preferences by DataStore. To see changes, click [here](https://github.com/Drjacky/MVVMTemplate/commit/285892ce098e2a069324910a213b78cac2e643e8).~~
 - ~~Migrate from RxJava 2 to RxJava 3. To see changes, click [here](https://github.com/Drjacky/MVVMTemplate/pull/11).~~
