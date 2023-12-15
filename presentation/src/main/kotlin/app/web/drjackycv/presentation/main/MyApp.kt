@@ -5,14 +5,14 @@ import androidx.compose.animation.graphics.ExperimentalAnimationGraphicsApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+
 import app.web.drjackycv.presentation.base.navigation.MyAppState
 import app.web.drjackycv.presentation.base.navigation.MyNavHost
 import app.web.drjackycv.presentation.base.navigation.rememberMyAppState
 import app.web.drjackycv.presentation.base.theme.BaseTheme
 import coil.annotation.ExperimentalCoilApi
 
-@ExperimentalLifecycleComposeApi
+
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
 @ExperimentalAnimationGraphicsApi
@@ -27,7 +27,7 @@ fun MyApp(
     }
 }
 
-@ExperimentalLifecycleComposeApi
+
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
 @ExperimentalAnimationGraphicsApi
@@ -46,7 +46,7 @@ fun MainLayout(
     )
 }
 
-@ExperimentalLifecycleComposeApi
+
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
 @ExperimentalAnimationGraphicsApi

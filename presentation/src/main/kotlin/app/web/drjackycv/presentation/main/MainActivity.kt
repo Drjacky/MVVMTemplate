@@ -15,7 +15,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import app.web.drjackycv.domain.extension.allowReads
@@ -28,7 +28,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@ExperimentalLifecycleComposeApi
+
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
 @ExperimentalAnimationGraphicsApi

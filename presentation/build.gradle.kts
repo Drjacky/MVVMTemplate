@@ -102,6 +102,7 @@ dependencies {
     implementation(Depends.Libraries.fragment_ktx)
     implementation(Depends.Libraries.recyclerview)
     implementation(Depends.Libraries.dataStore_preferences)
+    implementation(Depends.Libraries.coroutines_android)
     //compose
     implementation(platform(Depends.Libraries.compose_bom))
     implementation(Depends.Libraries.compose_foundation)

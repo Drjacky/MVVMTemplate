@@ -112,6 +112,7 @@ dependencies {
     implementation(Depends.Libraries.paging_runtime_ktx)
     implementation(Depends.Libraries.paging_rx)
     implementation(Depends.Libraries.dataStore_preferences)
+    implementation(Depends.Libraries.coroutines_android)
     //dependency injection
     implementation(Depends.Libraries.dagger)
     kapt(Depends.Libraries.dagger_compiler)

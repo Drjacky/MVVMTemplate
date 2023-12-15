@@ -5,7 +5,11 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material.*
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
@@ -17,7 +21,6 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.LoadState
 import androidx.paging.PagingData
@@ -32,7 +35,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
 
 @ExperimentalCoroutinesApi
-@ExperimentalLifecycleComposeApi
+
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
 @ExperimentalAnimationGraphicsApi
@@ -70,7 +73,7 @@ fun ProductsListRoute(
 
 }
 
-@ExperimentalLifecycleComposeApi
+
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
 @ExperimentalAnimationGraphicsApi
@@ -89,7 +92,7 @@ fun ProductsListView(
     )
 }
 
-@ExperimentalLifecycleComposeApi
+
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
 @ExperimentalAnimationGraphicsApi
@@ -201,7 +204,7 @@ fun ProductsListContent(
     }
 }
 
-@ExperimentalLifecycleComposeApi
+
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
 @ExperimentalAnimationGraphicsApi

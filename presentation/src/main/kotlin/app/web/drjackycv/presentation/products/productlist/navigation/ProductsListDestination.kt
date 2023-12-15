@@ -4,9 +4,12 @@ import android.net.Uri
 import androidx.compose.animation.graphics.ExperimentalAnimationGraphicsApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
-import androidx.navigation.*
+import androidx.navigation.NavBackStackEntry
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavType
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
+import androidx.navigation.navDeepLink
 import app.web.drjackycv.presentation.base.navigation.MyNavigationDestination
 import app.web.drjackycv.presentation.products.choose.ChoosePathType
 import app.web.drjackycv.presentation.products.productlist.ProductsListRoute
@@ -29,7 +32,7 @@ object ProductsListDestination : MyNavigationDestination {
     }
 }
 
-@ExperimentalLifecycleComposeApi
+
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
 @ExperimentalAnimationGraphicsApi

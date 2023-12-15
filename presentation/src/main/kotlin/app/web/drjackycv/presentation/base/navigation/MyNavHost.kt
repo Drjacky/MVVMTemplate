@@ -4,7 +4,7 @@ import androidx.compose.animation.graphics.ExperimentalAnimationGraphicsApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import app.web.drjackycv.presentation.products.choose.navigation.ChooseDestination
@@ -15,7 +15,7 @@ import app.web.drjackycv.presentation.products.productlist.navigation.ProductsLi
 import app.web.drjackycv.presentation.products.productlist.navigation.productsListGraph
 import coil.annotation.ExperimentalCoilApi
 
-@ExperimentalLifecycleComposeApi
+
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
 @ExperimentalAnimationGraphicsApi
