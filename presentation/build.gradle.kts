@@ -47,6 +47,7 @@ android {
             )
         }
     }
+    namespace = "app.web.drjackycv.presentation"
 }
 
 tasks.withType<KotlinCompile> {

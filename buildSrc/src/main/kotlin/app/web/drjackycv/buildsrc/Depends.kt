@@ -6,7 +6,7 @@ object Depends {
 
     object Versions {
         const val appVersionCode = 1_000_000
-        const val gradleVersion = "7.4.2"
+        const val gradleVersion = "8.2.0"
         const val androidCompileSdkVersion = 33
         const val targetSdkVersion = 33
         const val minSdkVersion = 21
@@ -27,7 +27,7 @@ object Depends {
         const val supportVersion = "1.4.0-rc01"
         const val materialVersion = "1.6.0-alpha03"
         const val coreKtxVersion = "1.9.0-alpha01"
-        const val navigationVersion = "2.5.0-alpha03"
+        const val navigationVersion = "2.5.0"
         const val pagingVersion = "3.1.0"
         const val multidexVersion = "2.0.1"
         const val fragmentExtVersion = "1.5.0-alpha03"

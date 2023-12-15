@@ -54,6 +54,7 @@ android {
             )
         }
     }
+    namespace = "app.web.drjackycv.data"
 
 }
 

@@ -91,6 +91,7 @@ android {
 //        exclude("META-INF/rxjava.properties")
 //        exclude("META-INF/services/javax.annotation.processing.Processor")
     }
+    namespace = "app.web.drjackycv.mvvmtemplate"
 }
 
 tasks.withType<KotlinCompile> {

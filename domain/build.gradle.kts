@@ -43,6 +43,7 @@ android {
             )
         }
     }
+    namespace = "app.web.drjackycv.domain"
 
 }
 
