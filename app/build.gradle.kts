@@ -59,38 +59,12 @@ android {
     lintOptions {
         isAbortOnError = false
     }
-    //testOptions.unitTests.returnDefaultValues = true
     packagingOptions {
-        exclude("META-INF/ui-tooling_release.kotlin_module")
-//        exclude("META-INF/rxjava.properties")
-//        exclude("META-INF/proguard/androidx-annotations.pro")
-//        exclude("error_prone/Annotations.gwt.xml")
-//        exclude("third_party/java_src/error_prone/project/annotations/Annotations.gwt.xml")
-//        exclude("third_party/java_src/error_prone/project/annotations/Google_internal.gwt.xml")
-//        exclude("jsr305_annotations/Jsr305_annotations.gwt.xml")
-//        exclude("META-INF/AL2.0")
-//        exclude("META-INF/LGPL2.1")
-//        exclude("**/*.dot")
-//        exclude("**/*.kotlin_metadata")
-//        exclude("**/*.properties")
-//        exclude("*.properties")
-//        exclude("kotlin/**")
-//        exclude("LICENSE.txt")
-//        exclude("LICENSE_OFL")
-//        exclude("LICENSE_UNICODE")
-//        exclude("META-INF/*.kotlin_module")
-//        exclude("META-INF/*.version")
-//        exclude("META-INF/androidx.*")
-//        exclude("META-INF/CHANGES")
-//        exclude("META-INF/com.uber.crumb/**")
-//        exclude("META-INF/LICENSE")
-//        exclude("META-INF/LICENSE.txt")
-//        exclude("META-INF/NOTICE")
-//        exclude("META-INF/NOTICE.txt")
-//        exclude("META-INF/README.md")
-//        exclude("META-INF/rxjava.properties")
-//        exclude("META-INF/services/javax.annotation.processing.Processor")
+        resources {
+            excludes += setOf("META-INF/ui-tooling_release.kotlin_module")
+        }
     }
+    //testOptions.unitTests.returnDefaultValues = true
     namespace = "app.web.drjackycv.mvvmtemplate"
 }
 
