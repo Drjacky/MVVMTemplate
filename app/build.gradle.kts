@@ -56,9 +56,6 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
         sourceCompatibility = JavaVersion.VERSION_11
     }
-    lintOptions {
-        isAbortOnError = false
-    }
     packagingOptions {
         resources {
             excludes += setOf("META-INF/ui-tooling_release.kotlin_module")
@@ -66,6 +63,9 @@ android {
     }
     //testOptions.unitTests.returnDefaultValues = true
     namespace = "app.web.drjackycv.mvvmtemplate"
+    lint {
+        abortOnError = false
+    }
 }
 
 tasks.withType<KotlinCompile> {
