@@ -4,11 +4,20 @@
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FDrjacky%2FMVVMTemplate.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FDrjacky%2FMVVMTemplate?ref=badge_shield)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MVVMTemplate-green.svg?style=flat)](https://android-arsenal.com/details/1/8368) [![CodeScene Code Health](https://codescene.io/projects/29433/status-badges/code-health)](https://codescene.io/projects/29433)
 <!-- [![Known Vulnerabilities](https://snyk.io/test/github/Drjacky/MVVMTemplate/badge.svg)](https://snyk.io/test/github/Drjacky/MVVMTemplate) Snyk doesn't support kotlin dsl -->
-A simple Android template that lets you create an **Android** project quickly. 
+
+##
+
+<p align="center">
+  <img width="300px" src="https://raw.githubusercontent.com/Drjacky/MVVMTemplate/master/gif/logo.svg" />
+</p>
+
+A simple Android template that lets you create an **Android** project quickly.
 
 ## How to use 👣
 
-Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20template-brightgreen)](https://github.com/Drjacky/MVVMTemplate/generate) button to create a new repo starting from this template.
+Just click
+on [![Use this template](https://img.shields.io/badge/-Use%20this%20template-brightgreen)](https://github.com/Drjacky/MVVMTemplate/generate)
+button to create a new repo starting from this template.
 
 ## Features 🕹
 
