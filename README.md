@@ -8,7 +8,7 @@
 ##
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Drjacky/MVVMTemplate/master/gif/logo.svg" />
+  <img width="300px" src="https://raw.githubusercontent.com/Drjacky/MVVMTemplate/master/gif/logo.svg" />
 </p>
 
 A simple Android template that lets you create an **Android** project quickly.
