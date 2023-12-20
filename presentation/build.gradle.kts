@@ -63,9 +63,15 @@ dependencies {
     implementation(Depends.Libraries.kotlin_reflect)
 
     //dependency injection
-    implementation(Depends.Libraries.hilt_android)
-    kapt(Depends.Libraries.hilt_android_compiler)
-    kapt(Depends.Libraries.hilt_compiler)
+    implementation(Depends.Libraries.dagger)
+    kapt(Depends.Libraries.dagger_compiler)
+    implementation(Depends.Libraries.dagger_hilt_android)
+    implementation(Depends.Libraries.dagger_hilt_navigation_compose)
+//    kapt(Depends.Libraries.dagger_hilt_android_compiler)
+//    implementation(Depends.Libraries.dagger_hilt_core)
+    kapt(Depends.Libraries.dagger_hilt_compiler)
+//    kapt(Depends.Libraries.dagger_hilt_android_compiler)
+//    kapt(Depends.Libraries.hilt_androidx_compiler)
     implementation(Depends.Libraries.java_inject)
     //other
     implementation(Depends.Libraries.timber)
@@ -79,7 +85,8 @@ dependencies {
     implementation(Depends.Libraries.paging_rx)
     implementation(Depends.Libraries.lifecycle_livedata_ktx)
     implementation(Depends.Libraries.lifecycle_runtime_ktx)
-    implementation(Depends.Libraries.lifecycle_common)
+    implementation(Depends.Libraries.lifecycle_viewmodel_runtime_ktx)
+    implementation(Depends.Libraries.lifecycle_common_java8)
     implementation(Depends.Libraries.lifecycle_viewmodel_ktx)
     implementation(Depends.Libraries.multidex)
     implementation(Depends.Libraries.android_core_ktx)

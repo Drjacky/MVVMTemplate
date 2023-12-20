@@ -7,11 +7,12 @@ object Depends {
     object Versions {
         const val appVersionCode = 1_000_000
         const val r8Version = "8.1.56"
-        const val gradleVersion = "8.2.0-alpha15"
-        const val androidCompileSdkVersion = 33
-        const val targetSdkVersion = 33
+        const val gradleVersion = "8.2.0"
+        const val androidCompileSdkVersion = 34
+        const val targetSdkVersion = 34
         const val minSdkVersion = 21
-        const val kotlinVersion = "1.9.0"
+        const val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        const val kotlinVersion = "1.9.21"
         const val rxKotlinVersion = "3.0.1"
         const val rxAndroidVersion = "3.0.2"
         const val rxJavaVersion = "3.1.5"
@@ -21,15 +22,15 @@ object Depends {
         const val chuckerVersion = "3.5.2"
         const val gsonVersion = "2.10"
         const val retrofitConverterGson = "2.9.0"
-        const val lifecycleVersion = "2.4.0"
+        const val lifecycleVersion = "2.6.0-alpha01"
         const val constraintLayoutVersion = "2.1.4"
         const val supportVersion = "1.4.1"
-        const val materialVersion = "1.4.0"
+        const val materialVersion = "1.6.0-alpha03"
         const val coreKtxVersion = "1.9.0"
         const val navigationVersion = "2.5.2"
         const val pagingVersion = "3.1.1"
         const val multidexVersion = "2.0.1"
-        const val fragmentExtVersion = "1.4.0"
+        const val fragmentExtVersion = "1.5.0-alpha03"
         const val recyclerviewVersion = "1.3.0-rc01"
         const val hiltVersion = "2.47"
         const val hiltCompilerVersion = "1.0.0"
@@ -51,7 +52,7 @@ object Depends {
         const val testCoreVersion = "1.4.0"
         const val testExtJunitVersion = "1.1.3"
         const val sonarqubeVersion = "3.5.0.2730"
-        const val detektVersion = "1.22.0"
+        const val detektVersion = "1.23.4"
         const val checkDependencyVersionsVersion = "0.44.0"
         const val gradleDoctorVersion = "0.8.1"
         const val dependencyAnalysisVersion = "1.17.0"
@@ -83,12 +84,18 @@ object Depends {
         const val kotlin_reflect =
             "org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlinVersion}"
         const val multidex = "androidx.multidex:multidex:${Versions.multidexVersion}"
-        const val hilt_android =
-            "com.google.dagger:hilt-android:${Versions.hiltVersion}"
-        const val hilt_android_compiler =
-            "com.google.dagger:hilt-android-compiler:${Versions.hiltVersion}"
-        const val hilt_compiler =
-            "androidx.hilt:hilt-compiler:${Versions.hiltCompilerVersion}"
+        const val dagger = "com.google.dagger:dagger:${Versions.hiltVersion}"
+        const val dagger_compiler = "com.google.dagger:dagger-compiler:${Versions.hiltVersion}"
+        const val dagger_hilt_android = "com.google.dagger:hilt-android:${Versions.hiltVersion}"
+
+        /*const val dagger_hilt_android_compiler =
+            "com.google.dagger:hilt-android-compiler:${Versions.hiltVersion}"*/
+        /*const val hilt_androidx_compiler =
+            "androidx.hilt:hilt-compiler:${Versions.hiltCompilerVersion}"*/
+        /*const val dagger_hilt_core = "com.google.dagger:hilt-core:${Versions.hiltVersion}"*/
+        const val dagger_hilt_compiler = "com.google.dagger:hilt-compiler:${Versions.hiltVersion}"
+        const val dagger_hilt_navigation_compose =
+            "androidx.hilt:hilt-navigation-compose:${Versions.hiltNavigationComposeVersion}"
         const val fragment_ktx =
             "androidx.fragment:fragment-ktx:${Versions.fragmentExtVersion}"
         const val android_core_ktx =
@@ -139,8 +146,10 @@ object Depends {
             "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycleVersion}"
         const val lifecycle_runtime_ktx =
             "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleVersion}"
-        const val lifecycle_common =
-            "androidx.lifecycle:lifecycle-common:${Versions.lifecycleVersion}"
+        const val lifecycle_viewmodel_runtime_ktx =
+            "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleVersion}"
+        const val lifecycle_common_java8 =
+            "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycleVersion}"
         const val lifecycle_viewmodel_ktx =
             "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleVersion}"
         const val recyclerview =

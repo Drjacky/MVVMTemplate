@@ -61,6 +61,13 @@ dependencies {
     implementation(Depends.Libraries.rx_kotlin)
     implementation(Depends.Libraries.rx_java)
     //dependency injection
+    implementation(Depends.Libraries.dagger)
+    kapt(Depends.Libraries.dagger_compiler)
+    implementation(Depends.Libraries.dagger_hilt_android)
+//    implementation(Depends.Libraries.dagger_hilt_core)
+    kapt(Depends.Libraries.dagger_hilt_compiler)
+//    kapt(Depends.Libraries.dagger_hilt_android_compiler)
+//    kapt(Depends.Libraries.hilt_androidx_compiler)
     implementation(Depends.Libraries.java_inject)
     //test
     testImplementation(Depends.Libraries.junit)
