@@ -68,6 +68,7 @@ class ProductsListViewModel @Inject constructor(
             ChoosePathType.RX -> {
                 getProductsByRxPath(ids)
             }
+
             ChoosePathType.COROUTINE -> {
                 viewModelScope.launch {
                     _productsListByCoroutine.value = getProductsByCoroutinePath(ids).first()

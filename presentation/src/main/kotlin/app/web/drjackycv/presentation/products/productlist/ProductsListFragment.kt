@@ -17,7 +17,12 @@ import app.web.drjackycv.presentation.R
 import app.web.drjackycv.presentation.base.adapter.LoadingStateAdapter
 import app.web.drjackycv.presentation.base.adapter.RecyclerItem
 import app.web.drjackycv.presentation.databinding.FragmentProductListBinding
-import app.web.drjackycv.presentation.extension.*
+import app.web.drjackycv.presentation.extension.collectIn
+import app.web.drjackycv.presentation.extension.gone
+import app.web.drjackycv.presentation.extension.invisible
+import app.web.drjackycv.presentation.extension.observe
+import app.web.drjackycv.presentation.extension.viewBinding
+import app.web.drjackycv.presentation.extension.visible
 import app.web.drjackycv.presentation.products.choose.ChoosePathType
 import app.web.drjackycv.presentation.products.entity.BeerUI
 import com.google.android.material.transition.platform.Hold
@@ -72,6 +77,7 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
             ChoosePathType.RX -> {
                 setupView()
             }
+
             ChoosePathType.COROUTINE -> {
                 setupViewByCoroutine()
             }
@@ -109,7 +115,6 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
     }
 
     private fun loadingUI(isLoading: Boolean) {
-        binding.inclItemError.itemErrorContainer.gone()
         if (isLoading) {
             binding.inclItemLoading.itemLoadingContainer.visible()
         } else {
@@ -124,9 +129,11 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
             is Failure.NoInternet, is Failure.Api, is Failure.Timeout -> {
                 setupErrorItem(failure)
             }
+
             is Failure.Unknown -> {
                 setupErrorItem(failure)
             }
+
             else -> {
                 binding.inclItemError.itemErrorMessage.text = failure.message
                 binding.inclItemError.itemErrorRetryBtn.invisible()
@@ -152,8 +159,10 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
 
     private fun adapterLoadingErrorHandling(combinedLoadStates: CombinedLoadStates) {
         if (combinedLoadStates.refresh is LoadState.Loading) {
+            binding.inclItemError.itemErrorContainer.gone()
             loadingUI(true)
         } else {
+            binding.inclItemError.itemErrorContainer.gone()
             loadingUI(false)
             val error = when {
                 combinedLoadStates.prepend is LoadState.Error -> combinedLoadStates.prepend as LoadState.Error
@@ -164,12 +173,15 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
                 else -> null
             }
             error?.run {
+                binding.inclItemError.itemErrorContainer.visible()
+                loadingUI(false)
                 productsListViewModel.handleFailure(this.error) { retryFetchData() }
             }
         }
     }
 
     private fun retryFetchData() {
+        binding.inclItemError.itemErrorContainer.gone()
         loadingUI(false)
         binding.productListRecyclerView.visible()
         productsListAdapter.retry()
