@@ -44,8 +44,8 @@ object Depends {
         const val coroutinesAndroidVersion = "1.8.1"
 
         const val mockitoKotlinVersion = "2.2.0"
-        const val mockitoCoreVersion = "4.10.0"
-        const val mockitoInlineVersion = "4.10.0"
+        const val mockitoCoreVersion = "5.12.0"
+        const val mockitoInlineVersion = "5.2.0"
         const val espressoVersion = "3.5.0"
         const val junitVersion = "4.13.2"
         const val supportTestVersion = "1.5.0"
