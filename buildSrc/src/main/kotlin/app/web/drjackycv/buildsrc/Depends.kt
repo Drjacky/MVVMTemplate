@@ -59,7 +59,7 @@ object Depends {
         const val sonatypeScanGradleVersion = "2.5.3"
         const val leakCanaryVersion = "2.10"
         const val coroutinesTestVersion = "1.8.1"
-        const val mockkVersion = "1.13.3"
+        const val mockkVersion = "1.13.11"
         const val archCoreTestingVersion = "2.1.0"
     }
 
