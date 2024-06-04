@@ -59,9 +59,6 @@ android {
             jvmTarget.set(JvmTarget.JVM_17)
         }
     }
-    lintOptions {
-        isAbortOnError = false
-    }
     packagingOptions {
         resources {
             excludes += setOf(
@@ -73,6 +70,9 @@ android {
     }
     //testOptions.unitTests.returnDefaultValues = true
     namespace = "app.web.drjackycv.mvvmtemplate"
+    lint {
+        abortOnError = false
+    }
 }
 
 dependencies {
