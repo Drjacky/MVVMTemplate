@@ -32,7 +32,7 @@ object Depends {
         const val multidexVersion = "2.0.1"
         const val fragmentExtVersion = "1.5.0-alpha03"
         const val recyclerviewVersion = "1.3.0-rc01"
-        const val hiltVersion = "2.47"
+        const val hiltVersion = "2.51.1"
         const val hiltCompilerVersion = "1.0.0"
         const val hiltNavigationComposeVersion = "1.0.0-alpha03"
         const val javaxInjectVersion = "1"
