@@ -62,12 +62,16 @@ android {
     lintOptions {
         isAbortOnError = false
     }
-    //testOptions.unitTests.returnDefaultValues = true
     packagingOptions {
-        exclude("META-INF/rxjava.properties")
-        exclude("META-INF/proguard/androidx-annotations.pro")
-        resources.excludes += "DebugProbesKt.bin"
+        resources {
+            excludes += setOf(
+                "DebugProbesKt.bin",
+                "META-INF/rxjava.properties",
+                "META-INF/proguard/androidx-annotations.pro"
+            )
+        }
     }
+    //testOptions.unitTests.returnDefaultValues = true
     namespace = "app.web.drjackycv.mvvmtemplate"
 }
 
