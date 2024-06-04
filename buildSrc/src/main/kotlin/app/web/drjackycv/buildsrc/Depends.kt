@@ -15,7 +15,7 @@ object Depends {
         const val kotlinVersion = "2.0.0"
         const val rxKotlinVersion = "3.0.1"
         const val rxAndroidVersion = "3.0.2"
-        const val rxJavaVersion = "3.1.5"
+        const val rxJavaVersion = "3.1.8"
         const val rxBinding = "4.0.0"
         const val retrofit2Version = "2.9.0"
         const val okhttpLoggingVersion = "5.0.0-alpha.10"
