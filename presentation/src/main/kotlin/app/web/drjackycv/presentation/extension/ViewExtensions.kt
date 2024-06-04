@@ -63,8 +63,8 @@ fun ImageView.load(
                 override fun onLoadFailed(
                     e: GlideException?,
                     model: Any?,
-                    target: Target<Drawable>?,
-                    isFirstResource: Boolean,
+                    target: Target<Drawable>,
+                    isFirstResource: Boolean
                 ): Boolean {
                     startPostponedEnterTransition(it)
                     return false
