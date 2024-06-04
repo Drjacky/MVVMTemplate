@@ -54,7 +54,7 @@ object Depends {
         const val sonarqubeVersion = "5.0.0.4638"
         const val detektVersion = "1.23.6"
         const val checkDependencyVersionsVersion = "0.44.0"
-        const val gradleDoctorVersion = "0.8.1"
+        const val gradleDoctorVersion = "0.10.0"
         const val dependencyAnalysisVersion = "1.17.0"
         const val sonatypeScanGradleVersion = "2.5.3"
         const val leakCanaryVersion = "2.14"
