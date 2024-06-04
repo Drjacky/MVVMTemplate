@@ -20,7 +20,7 @@ object Depends {
         const val retrofit2Version = "2.9.0"
         const val okhttpLoggingVersion = "5.0.0-alpha.14"
         const val chuckerVersion = "3.5.2"
-        const val gsonVersion = "2.10"
+        const val gsonVersion = "2.11.0"
         const val retrofitConverterGson = "2.9.0"
         const val lifecycleVersion = "2.6.0-alpha01"
         const val constraintLayoutVersion = "2.1.4"
