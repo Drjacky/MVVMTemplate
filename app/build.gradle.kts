@@ -1,4 +1,5 @@
 import app.web.drjackycv.buildsrc.Depends
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -51,9 +52,12 @@ android {
     compileOptions {
         targetCompatibility = JavaVersion.VERSION_17
         sourceCompatibility = JavaVersion.VERSION_17
+//        jvmTarget.set(JavaVersion.VERSION_17.toString())
     }
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
+    project.tasks.withType<KotlinCompile> {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_17)
+        }
     }
     lintOptions {
         isAbortOnError = false
@@ -65,13 +69,6 @@ android {
         resources.excludes += "DebugProbesKt.bin"
     }
     namespace = "app.web.drjackycv.mvvmtemplate"
-}
-
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
-        freeCompilerArgs = freeCompilerArgs + listOf("-XXLanguage:+InlineClasses")
-    }
 }
 
 dependencies {

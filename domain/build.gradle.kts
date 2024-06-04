@@ -1,4 +1,6 @@
 import app.web.drjackycv.buildsrc.Depends
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("com.android.library")
@@ -23,9 +25,10 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
         sourceCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
-        freeCompilerArgs = freeCompilerArgs + listOf("-XXLanguage:+InlineClasses")
+    project.tasks.withType<KotlinCompile> {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_17)
+        }
     }
     sourceSets {
         map { it.java.srcDir("src/${it.name}/kotlin") }

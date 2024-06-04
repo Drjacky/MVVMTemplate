@@ -12,7 +12,7 @@ object Depends {
         const val targetSdkVersion = 34
         const val minSdkVersion = 21
         const val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        const val kotlinVersion = "1.9.21"
+        const val kotlinVersion = "2.0.0"
         const val rxKotlinVersion = "3.0.1"
         const val rxAndroidVersion = "3.0.2"
         const val rxJavaVersion = "3.1.5"
@@ -41,7 +41,7 @@ object Depends {
         const val glideVersion = "4.14.2"
         const val autoDispose = "2.2.1"
         const val dataStorePreferenceVersion = "1.0.0"
-        const val coroutinesAndroidVersion = "1.6.4"
+        const val coroutinesAndroidVersion = "1.8.1"
 
         const val mockitoKotlinVersion = "2.2.0"
         const val mockitoCoreVersion = "4.10.0"
