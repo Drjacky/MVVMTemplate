@@ -18,7 +18,7 @@ object Depends {
         const val rxJavaVersion = "3.1.8"
         const val rxBinding = "4.0.0"
         const val retrofit2Version = "2.9.0"
-        const val okhttpLoggingVersion = "5.0.0-alpha.10"
+        const val okhttpLoggingVersion = "5.0.0-alpha.14"
         const val chuckerVersion = "3.5.2"
         const val gsonVersion = "2.10"
         const val retrofitConverterGson = "2.9.0"
