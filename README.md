@@ -54,15 +54,14 @@ to [feature/compose](https://github.com/Drjacky/MVVMTemplate/tree/feature/compos
 - [LeakCanary](https://square.github.io/leakcanary/) - Memory leak detection
 - [Chucker](https://github.com/ChuckerTeam/chucker) - An HTTP inspector for Android & OkHTTP
 - [StrictMode](https://developer.android.com/reference/android/os/StrictMode) - A developer tool
-  which detects things you might be doing by accident
+  which detects things you might be doing wrong by accident
 - [Dark/Light Theme](https://developer.android.com/guide/topics/ui/look-and-feel/darktheme) -
   Support dark/light themes
 - [DataStore](https://developer.android.com/topic/libraries/architecture/datastore) - Data storage
   solution that allows you to store key-value pairs or typed objects
 - [AutoDispose](https://uber.github.io/AutoDispose/) - Automatically binding the execution of RxJava
   streams to a provided scope
-- [Dependency Analysis](https://github.com/autonomousapps/dependency-analysis-android-gradle-plugin)
-  - Dependency analysis android gradle plugin
+- [Dependency Analysis](https://github.com/autonomousapps/dependency-analysis-android-gradle-plugin) - Dependency analysis android gradle plugin
 - [Sonatype Scan Gradle Plugin](https://github.com/sonatype-nexus-community/scan-gradle-plugin)-
   Gradle plugin that scans the dependencies of a Gradle project using Sonatype platforms: OSS Index
   and Nexus IQ Server.
