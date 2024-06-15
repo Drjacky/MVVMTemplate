@@ -59,8 +59,8 @@ testCoreVersion = "1.4.0"
 testExtJunitVersion = "1.1.3"
 sonarqubeVersion = "3.5.0.2730"
 detektVersion = "1.23.6"
-detektTwitterComposeRulesVersion = "0.0.18"
-detektKodeComposeRulesVersions = "1.2.2"
+detektTwitterComposeRulesVersion = "0.0.26"
+detektKodeComposeRulesVersions = "1.3.0"
 checkDependencyVersionsVersion = "0.44.0"
 gradleDoctorVersion = "0.8.1"
 dependencyAnalysisVersion = "1.17.0"
@@ -161,6 +161,7 @@ gradle = { module = "com.android.tools.build:gradle", version.ref = "gradleVersi
 navigation-safe-args-gradle-plugin = { module = "androidx.navigation:navigation-safe-args-gradle-plugin", version.ref = "navigationVersion" }
 hilt-android-gradle-plugin = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "hiltVersion" }
 sonarqube-gradle-plugin = { module = "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin", version.ref = "sonarqubeVersion" }
+detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detektVersion" }
 detekt-gradle-plugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detektVersion" }
 detekt-twitter-compose-rules = { module = "com.twitter.compose.rules:detekt", version.ref = "detektTwitterComposeRulesVersion" }
 detekt-kode-compose-rules = { module = "ru.kode:detekt-rules-compose", version.ref = "detektKodeComposeRulesVersions" }

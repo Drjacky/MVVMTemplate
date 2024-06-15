@@ -104,6 +104,7 @@ fun ProductsListContent(
     themeFAB: @Composable () -> Unit,
     navigateToProduct: (String) -> Unit,
     onBackClick: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
 
     Scaffold(
@@ -122,7 +123,8 @@ fun ProductsListContent(
                 }
             )
         },
-        floatingActionButton = themeFAB
+        floatingActionButton = themeFAB,
+        modifier = modifier
     ) {
         val scrollState = rememberLazyListState()
         when (uiState) {

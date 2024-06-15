@@ -53,7 +53,8 @@ fun ProductRoute(
 fun ProductDetailView(
     uiState: ProductUiState,
     themeFAB: @Composable () -> Unit,
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     when (uiState) {
         is ProductUiState.Success -> {
@@ -73,7 +74,8 @@ fun ProductDetailView(
                         }
                     )
                 },
-                floatingActionButton = themeFAB
+                floatingActionButton = themeFAB,
+                modifier = modifier
             ) {
                 Column(
                     modifier = Modifier

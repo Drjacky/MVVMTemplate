@@ -31,10 +31,12 @@ import java.io.Serializable
 @Composable
 fun ChooseRoute(
     themeFAB: @Composable () -> Unit,
+    modifier: Modifier = Modifier,
     navigateToProductsList: (ChoosePathType) -> Unit,
 ) {
     ChooseView(
         themeFAB = themeFAB,
+        modifier = modifier,
         navigateToProductsList = navigateToProductsList,
     )
 }
@@ -42,7 +44,8 @@ fun ChooseRoute(
 @Composable
 fun ChooseView(
     themeFAB: @Composable () -> Unit,
-    navigateToProductsList: (ChoosePathType) -> Unit
+    modifier: Modifier = Modifier,
+    navigateToProductsList: (ChoosePathType) -> Unit,
 ) {
     Scaffold(
         floatingActionButton = themeFAB, content = { padding ->
@@ -96,7 +99,9 @@ fun ChooseView(
                     )
                 }
             }
-        })
+        },
+        modifier = modifier
+    )
 }
 
 @Composable
@@ -118,11 +123,15 @@ fun SetupAndRunChooseArrowAnimation(
 }
 
 @Composable //TODO
-fun PathButton(name: String/*, selectedPath: (ChoosePathType) -> Unit*/) {
+fun PathButton(
+    name: String,
+    modifier: Modifier = Modifier/*, selectedPath: (ChoosePathType) -> Unit*/
+) {
     Button(
         onClick = {
 
-        }
+        },
+        modifier = modifier
     ) {
         Text(
             text = name,
@@ -144,5 +153,5 @@ enum class ChoosePathType : Serializable {
 @Preview
 @Composable
 private fun ChooseViewPreview() {
-    ChooseView(themeFAB = {}) { ChoosePathType.COROUTINE }
+    ChooseView(themeFAB = {}, modifier = Modifier) { ChoosePathType.COROUTINE }
 }
