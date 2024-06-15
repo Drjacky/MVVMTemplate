@@ -39,6 +39,7 @@ buildscript {
 
 dependencies {
     detektPlugins(libs.detekt.gradle.plugin)
+    detektPlugins(libs.detekt.formatting)
     detektPlugins(libs.detekt.twitter.compose.rules)
     detektPlugins(libs.detekt.kode.compose.rules)
 }
@@ -78,6 +79,8 @@ detekt {
     buildUponDefaultConfig = true
     baseline = baselineFile
     config = files("config/detekt/detekt.yml")
+    config.from(files("config/detekt/detekt.yml"))
+    config.setFrom(files(rootProject.file("config/detekt/detekt.yml")))
     source = objects.fileCollection().from(
         DetektExtension.DEFAULT_SRC_DIR_JAVA,
         "src/test/java",
@@ -101,7 +104,8 @@ val detektFormat by tasks.registering(Detekt::class) {
     buildUponDefaultConfig = true
     autoCorrect = true
     setSource(analysisDir)
-//    config.setFrom(listOf(statisticsConfigFile, configFile))
+    config.from(files("config/detekt/detekt.yml"))
+    config.setFrom(files(rootProject.file("config/detekt/detekt.yml")))
     include(kotlinFiles)
     include(kotlinScriptFiles)
     exclude(resourceFiles)
@@ -119,7 +123,8 @@ val detektAll by tasks.registering(Detekt::class) {
     parallel = true
     buildUponDefaultConfig = true
     setSource(analysisDir)
-//    config.setFrom(listOf(statisticsConfigFile, configFile))
+    config.from(files("config/detekt/detekt.yml"))
+    config.setFrom(files(rootProject.file("config/detekt/detekt.yml")))
     include(kotlinFiles)
     include(kotlinScriptFiles)
     exclude(resourceFiles)
@@ -138,7 +143,8 @@ val detektProjectBaseline by tasks.registering(DetektCreateBaselineTask::class) 
     ignoreFailures.set(true)
     parallel.set(true)
     setSource(analysisDir)
-//    config.setFrom(listOf(statisticsConfigFile, configFile))
+    config.from(files("config/detekt/detekt.yml"))
+    config.setFrom(files(rootProject.file("config/detekt/detekt.yml")))
     include(kotlinFiles)
     include(kotlinScriptFiles)
     exclude(resourceFiles)
