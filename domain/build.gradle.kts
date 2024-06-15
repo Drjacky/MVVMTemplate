@@ -1,32 +1,27 @@
-import app.web.drjackycv.buildsrc.Depends
-
 plugins {
     id("com.android.library")
     kotlin("android")
     id("kotlin-parcelize")
     kotlin("kapt")
-    id("dagger.hilt.android.plugin")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
 
-    compileSdk = Depends.Versions.androidCompileSdkVersion
+    compileSdk = libs.versions.androidCompileSdkVersion.get().toInt()
     defaultConfig {
         multiDexEnabled = true
-        minSdk = Depends.Versions.minSdkVersion
-        targetSdk = Depends.Versions.targetSdkVersion
-        testInstrumentationRunner =
-            Depends.Versions.testInstrumentationRunner
+        minSdk = libs.versions.minSdkVersion.get().toInt()
+        targetSdk = libs.versions.targetSdkVersion.get().toInt()
+        testInstrumentationRunner = libs.versions.testInstrumentationRunner.get()
         consumerProguardFiles("consumer-rules.pro")
     }
     compileOptions {
-        targetCompatibility = JavaVersion.VERSION_11
-        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
-        freeCompilerArgs = listOf("-XXLanguage:+InlineClasses")
-        //useIR = true
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
     sourceSets {
         map { it.java.srcDir("src/${it.name}/kotlin") }
@@ -34,7 +29,7 @@ android {
     buildTypes {
         named("debug") { }
         named("release") {
-            isMinifyEnabled = true
+            isMinifyEnabled = false
             setProguardFiles(
                 listOf(
                     getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -52,31 +47,31 @@ configurations["compileOnly"].extendsFrom(unitTestImplementation)
 configurations["testImplementation"].extendsFrom(unitTestImplementation)
 
 dependencies {
-    implementation(Depends.Libraries.kotlin)
+    implementation(libs.kotlin)
     //android
-    implementation(Depends.Libraries.paging_runtime_ktx)
-    implementation(Depends.Libraries.paging_rx)
-    implementation(Depends.Libraries.lifecycle_livedata)
-    implementation(Depends.Libraries.multidex)
+    implementation(libs.paging.runtime.ktx)
+    implementation(libs.paging.rx)
+    implementation(libs.lifecycle.livedata)
+    implementation(libs.multidex)
     //dependency injection
-    implementation(Depends.Libraries.dagger)
-    kapt(Depends.Libraries.dagger_compiler)
-    implementation(Depends.Libraries.dagger_hilt_android)
-//    implementation(Depends.Libraries.dagger_hilt_core)
-    kapt(Depends.Libraries.dagger_hilt_compiler)
-//    kapt(Depends.Libraries.dagger_hilt_android_compiler)
-//    kapt(Depends.Libraries.hilt_androidx_compiler)
-    implementation(Depends.Libraries.java_inject)
+    implementation(libs.dagger)
+    kapt(libs.dagger.compiler)
+    implementation(libs.dagger.hilt.android)
+//    implementation(libs.dagger.hilt.core)
+    kapt(libs.dagger.hilt.compiler)
+//    kapt(libs.dagger.hilt.android.compiler)
+//    kapt(libs.hilt.androidx.compiler)
+    implementation(libs.java.inject)
     //reactive
-    implementation(Depends.Libraries.rx_kotlin)
-    implementation(Depends.Libraries.rx_java)
+    implementation(libs.rx.kotlin)
+    implementation(libs.rx.java)
     //dependency injection
-    implementation(Depends.Libraries.java_inject)
+    implementation(libs.java.inject)
     //test
-    testImplementation(Depends.Libraries.junit)
-    testImplementation(Depends.Libraries.mockito_core)
-    testImplementation(Depends.Libraries.mockito_inline)
-    testImplementation(Depends.Libraries.mockito_kotlin)
+    testImplementation(libs.junit)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.inline)
+    testImplementation(libs.mockito.kotlin)
 }
 
 kapt {

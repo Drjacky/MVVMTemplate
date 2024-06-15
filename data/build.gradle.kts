@@ -1,31 +1,28 @@
-import app.web.drjackycv.buildsrc.Depends
-
 plugins {
     id("com.android.library")
     kotlin("android")
     id("kotlin-parcelize")
     kotlin("kapt")
-    id("dagger.hilt.android.plugin")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
 
-    compileSdk = Depends.Versions.androidCompileSdkVersion
+    compileSdk = libs.versions.androidCompileSdkVersion.get().toInt()
 
     defaultConfig {
         multiDexEnabled = true
-        minSdk = Depends.Versions.minSdkVersion
-        targetSdk = Depends.Versions.targetSdkVersion
-        testInstrumentationRunner =
-            Depends.Versions.testInstrumentationRunner
+        minSdk = libs.versions.minSdkVersion.get().toInt()
+        targetSdk = libs.versions.targetSdkVersion.get().toInt()
+        testInstrumentationRunner = libs.versions.testInstrumentationRunner.get()
         consumerProguardFiles("consumer-rules.pro")
     }
     compileOptions {
-        targetCompatibility = JavaVersion.VERSION_11
-        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
+        jvmTarget = JavaVersion.VERSION_17.toString()
         //useIR = true
     }
     sourceSets {
@@ -36,15 +33,15 @@ android {
             buildConfigField(
                 "String",
                 "BASE_URL",
-                "\"" + Depends.Environments.debugBaseUrl + "\""
+                "\"" + "https://api.punkapi.com/v2/" + "\""
             )
         }
         named("release") {
-            isMinifyEnabled = true
+            isMinifyEnabled = false
             buildConfigField(
                 "String",
                 "BASE_URL",
-                "\"" + Depends.Environments.releaseBaseUrl + "\""
+                "\"" + "https://api.punkapi.com/v2/" + "\""
             )
             setProguardFiles(
                 listOf(
@@ -59,38 +56,38 @@ android {
 }
 
 dependencies {
-    implementation(Depends.Libraries.kotlin)
-    implementation(Depends.Libraries.android_core_ktx)
-    implementation(Depends.Libraries.paging_runtime_ktx)
-    implementation(Depends.Libraries.paging_rx)
-    implementation(Depends.Libraries.rx_coroutine)
-    implementation(Depends.Libraries.multidex)
+    implementation(libs.kotlin)
+    implementation(libs.android.core.ktx)
+    implementation(libs.paging.runtime.ktx)
+    implementation(libs.paging.rx)
+    implementation(libs.rx.coroutine)
+    implementation(libs.multidex)
     //dependency injection
-    implementation(Depends.Libraries.dagger)
-    kapt(Depends.Libraries.dagger_compiler)
-    implementation(Depends.Libraries.dagger_hilt_android)
-    kapt(Depends.Libraries.dagger_hilt_compiler)
-//    kapt(Depends.Libraries.dagger_hilt_android_compiler)
-//    kapt(Depends.Libraries.hilt_androidx_compiler)
-//    implementation(Depends.Libraries.dagger_hilt_core)
-    implementation(Depends.Libraries.java_inject)
+    implementation(libs.dagger)
+    kapt(libs.dagger.compiler)
+    implementation(libs.dagger.hilt.android)
+    kapt(libs.dagger.hilt.compiler)
+//    kapt(libs.dagger.hilt.android.compiler)
+//    kapt(libs.hilt.androidx.compiler)
+//    implementation(libs.dagger.hilt.core)
+    implementation(libs.java.inject)
     //parser
-    implementation(Depends.Libraries.gson)
-    api(Depends.Libraries.converter_gson)
+    implementation(libs.gson)
+    api(libs.converter.gson)
     //network
-    implementation(Depends.Libraries.retrofit)
-    implementation(Depends.Libraries.retrofit_adapter_rx)
-    implementation(Depends.Libraries.logging_interceptor)
-    debugImplementation(Depends.Libraries.chucker)
-    releaseImplementation(Depends.Libraries.chucker_no_op)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.adapter.rx)
+    implementation(libs.logging.interceptor)
+    debugImplementation(libs.chucker)
+    releaseImplementation(libs.chucker.no.op)
     //other
-    implementation(Depends.Libraries.timber)
-    implementation(Depends.Libraries.material)
+    implementation(libs.timber)
+    implementation(libs.material)
     //test
-    testImplementation(Depends.Libraries.junit)
-    testImplementation(Depends.Libraries.mockito_core)
-    testImplementation(Depends.Libraries.mockito_inline)
-    testImplementation(Depends.Libraries.mockito_kotlin)
+    testImplementation(libs.junit)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.inline)
+    testImplementation(libs.mockito.kotlin)
 
     testImplementation(project(path = ":domain", configuration = "unitTestImplementation"))
     implementation(project(":domain"))

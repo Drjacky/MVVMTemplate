@@ -1,5 +1,6 @@
 package app.web.drjackycv.presentation.products.productlist
 
+//import androidx.paging.compose.items
 import androidx.compose.animation.graphics.ExperimentalAnimationGraphicsApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
@@ -25,7 +26,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
-import androidx.paging.compose.items
+import androidx.paging.compose.itemContentType
+import androidx.paging.compose.itemKey
 import app.web.drjackycv.presentation.base.view.ErrorListView
 import app.web.drjackycv.presentation.base.view.LoadingItemView
 import app.web.drjackycv.presentation.products.choose.ChoosePathType
@@ -134,20 +136,19 @@ fun ProductsListContent(
                     state = scrollState
                 ) {
                     items(
-                        items = lazyProductList,
-                        key = { product ->
-                            product.id
-                        },
-                        itemContent = { product ->
-                            product?.let { beer ->
-                                ProductRowView(
-                                    product = beer,
-                                    isShimmerVisible = false,
-                                    navigateToProduct = navigateToProduct
-                                )
-                            }
+                        count = lazyProductList.itemCount,
+                        key = lazyProductList.itemKey { product -> product.id },
+                        contentType = lazyProductList.itemContentType { "MyPagingItems" }
+                    ) { index ->
+                        val product = lazyProductList[index]
+                        product?.let { beer ->
+                            ProductRowView(
+                                product = beer,
+                                isShimmerVisible = false,
+                                navigateToProduct = navigateToProduct
+                            )
                         }
-                    )
+                    }
                     lazyProductList.apply {
                         if (loadState.refresh == LoadState.Loading) {
                             val beerUI = BeerUI(

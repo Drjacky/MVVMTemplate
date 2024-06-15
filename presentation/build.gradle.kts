@@ -1,5 +1,3 @@
-import app.web.drjackycv.buildsrc.Depends
-
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -8,29 +6,28 @@ plugins {
     id("kotlin-parcelize")
     kotlin("kapt")
     id("androidx.navigation.safeargs.kotlin")
-    id("dagger.hilt.android.plugin")
+    id("com.google.dagger.hilt.android")
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
     buildFeatures {
         compose = true
         viewBinding = true
-        composeOptions.kotlinCompilerExtensionVersion = Depends.Versions.composeCompilerVersion
     }
-    compileSdk = Depends.Versions.androidCompileSdkVersion
+    compileSdk = libs.versions.androidCompileSdkVersion.get().toInt()
 
     defaultConfig {
         multiDexEnabled = true
         vectorDrawables.useSupportLibrary = true
-        minSdk = Depends.Versions.minSdkVersion
-        targetSdk = Depends.Versions.targetSdkVersion
-        testInstrumentationRunner =
-            Depends.Versions.testInstrumentationRunner
+        minSdk = libs.versions.minSdkVersion.get().toInt()
+        targetSdk = libs.versions.targetSdkVersion.get().toInt()
+        testInstrumentationRunner = libs.versions.testInstrumentationRunner.get()
         consumerProguardFiles("consumer-rules.pro")
     }
     compileOptions {
-        targetCompatibility = JavaVersion.VERSION_11
-        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_17
     }
     sourceSets {
         map { it.java.srcDir("src/${it.name}/kotlin") }
@@ -38,7 +35,7 @@ android {
     buildTypes {
         named("debug") { }
         named("release") {
-            isMinifyEnabled = true
+            isMinifyEnabled = false
             setProguardFiles(
                 listOf(
                     getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -52,98 +49,92 @@ android {
 
 tasks.withType<KotlinCompile> {
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
+        jvmTarget = JavaVersion.VERSION_17.toString()
         freeCompilerArgs = listOf(
-            "-XXLanguage:+InlineClasses",
             "-Xskip-prerelease-check",
             //"-Xallow-jvm-ir-dependencies",
-            "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi",
             "-Xopt-in=kotlin.RequiresOptIn",
-            "-Xuse-experimental=androidx.compose.foundation.ExperimentalFoundationApi",
-            "-Xuse-experimental=androidx.compose.ui.ExperimentalComposeUiApi"
         )
-        //useIR = true
     }
 }
 
 dependencies {
-    implementation(Depends.Libraries.kotlin)
-    implementation(Depends.Libraries.kotlin_reflect)
+    implementation(libs.kotlin)
+    implementation(libs.kotlin.reflect)
 
     //dependency injection
-    implementation(Depends.Libraries.dagger)
-    kapt(Depends.Libraries.dagger_compiler)
-    implementation(Depends.Libraries.dagger_hilt_android)
-    implementation(Depends.Libraries.dagger_hilt_navigation_compose)
-//    kapt(Depends.Libraries.dagger_hilt_android_compiler)
-//    implementation(Depends.Libraries.dagger_hilt_core)
-    kapt(Depends.Libraries.dagger_hilt_compiler)
-//    kapt(Depends.Libraries.dagger_hilt_android_compiler)
-//    kapt(Depends.Libraries.hilt_androidx_compiler)
-    implementation(Depends.Libraries.java_inject)
+    implementation(libs.dagger)
+    kapt(libs.dagger.compiler)
+    implementation(libs.dagger.hilt.android)
+    implementation(libs.dagger.hilt.navigation.compose)
+//    kapt(libs.dagger.hilt.android.compiler)
+//    implementation(libs.dagger.hilt.core)
+    kapt(libs.dagger.hilt.compiler)
+//    kapt(libs.dagger.hilt.android.compiler)
+//    kapt(libs.hilt.androidx.compiler)
+    implementation(libs.java.inject)
     //other
-    implementation(Depends.Libraries.timber)
+    implementation(libs.timber)
     //android
-    implementation(Depends.Libraries.appcompat)
-    implementation(Depends.Libraries.constraintlayout)
-    implementation(Depends.Libraries.material)
-    implementation(Depends.Libraries.navigation_fragment_ktx)
-    implementation(Depends.Libraries.navigation_ui_ktx)
-    implementation(Depends.Libraries.paging_runtime_ktx)
-    implementation(Depends.Libraries.paging_rx)
-    implementation(Depends.Libraries.lifecycle_livedata_ktx)
-    implementation(Depends.Libraries.lifecycle_runtime_ktx)
-    implementation(Depends.Libraries.lifecycle_runtime_compose)
-    implementation(Depends.Libraries.lifecycle_viewmodel_runtime_ktx)
-    implementation(Depends.Libraries.lifecycle_common_java8)
-    implementation(Depends.Libraries.lifecycle_viewmodel_ktx)
-    implementation(Depends.Libraries.multidex)
-    implementation(Depends.Libraries.android_core_ktx)
-    implementation(Depends.Libraries.fragment_ktx)
-    implementation(Depends.Libraries.recyclerview)
-    implementation(Depends.Libraries.dataStore_preferences)
-    implementation(Depends.Libraries.coroutines_android)
+    implementation(libs.appcompat)
+    implementation(libs.constraintlayout)
+    implementation(libs.material)
+    implementation(libs.navigation.fragment.ktx)
+    implementation(libs.navigation.ui.ktx)
+    implementation(libs.paging.runtime.ktx)
+    implementation(libs.paging.rx)
+    implementation(libs.lifecycle.livedata.ktx)
+    implementation(libs.lifecycle.runtime.ktx)
+    implementation(libs.lifecycle.runtime.compose)
+    implementation(libs.lifecycle.common.java8)
+    implementation(libs.lifecycle.viewmodel.ktx)
+    implementation(libs.multidex)
+    implementation(libs.android.core.ktx)
+    implementation(libs.fragment.ktx)
+    implementation(libs.recyclerview)
+    implementation(libs.dataStore.preferences)
+    implementation(libs.coroutines.android)
     //compose
-    implementation(platform(Depends.Libraries.compose_bom))
-    implementation(Depends.Libraries.compose_foundation)
-    implementation(Depends.Libraries.compose_foundation_layout)
-    implementation(Depends.Libraries.compose_ui)
-    implementation(Depends.Libraries.compose_ui_text)
-    implementation(Depends.Libraries.compose_material)
-    implementation(Depends.Libraries.compose_runtime)
-    implementation(Depends.Libraries.compose_runtime_livedata)
-    implementation(Depends.Libraries.compose_paging)
-    implementation(Depends.Libraries.compose_navigation)
-    implementation(Depends.Libraries.compose_material_icons_extended)
-    implementation(Depends.Libraries.composeAnimationGraphics)
-    implementation(Depends.Libraries.composeConstraintLayout)
-    implementation(Depends.Libraries.accompanistPlaceholder)
-//    implementation(Depends.Libraries.compose_runtime_saved_instance_state)
-//    implementation(Depends.Libraries.compose_ui_test)
-    debugImplementation(Depends.Libraries.compose_ui_tooling)
-    implementation(Depends.Libraries.compose_ui_tooling_preview)
-    debugImplementation(Depends.Libraries.customview) //No more need for these two dependencies on Dolphin IDE: https://issuetracker.google.com/issues/227767363
-    debugImplementation(Depends.Libraries.customview_poolingcontainer) //And this
-    implementation(Depends.Libraries.material_compose_theme_adapter)
-    implementation(Depends.Libraries.activity_compose)
+    implementation(platform(libs.compose.bom))
+    implementation(libs.compose.foundation)
+    implementation(libs.compose.foundation.layout)
+    implementation(libs.compose.ui)
+    implementation(libs.compose.ui.text)
+    implementation(libs.compose.material)
+    implementation(libs.compose.runtime)
+    implementation(libs.compose.runtime.livedata)
+    implementation(libs.compose.paging)
+    implementation(libs.compose.navigation)
+    implementation(libs.compose.material.icons.extended)
+    implementation(libs.composeAnimationGraphics)
+    implementation(libs.composeConstraintLayout)
+    implementation(libs.accompanistPlaceholder)
+//    implementation(libs.compose.runtime.saved.instance.state)
+//    implementation(libs.compose.ui.test)
+    debugImplementation(libs.compose.ui.tooling)
+    implementation(libs.compose.ui.tooling.preview)
+    debugImplementation(libs.customview) //No more need for these two dependencies on Dolphin IDE: https://issuetracker.google.com/issues/227767363
+    debugImplementation(libs.customview.poolingcontainer) //And this
+    implementation(libs.material.compose.theme.adapter)
+    implementation(libs.activity.compose)
     //reactive
-    implementation(Depends.Libraries.rx_java_android)
-    implementation(Depends.Libraries.rx_binding3)
-    implementation(Depends.Libraries.rx_kotlin)
-    implementation(Depends.Libraries.autodispose)
-    implementation(Depends.Libraries.autodispose_android)
-    implementation(Depends.Libraries.autodispose_android_arch)
+    implementation(libs.rx.java.android)
+    implementation(libs.rx.binding3)
+    implementation(libs.rx.kotlin)
+    implementation(libs.autodispose)
+    implementation(libs.autodispose.android)
+    implementation(libs.autodispose.android.arch)
     //ui
-    implementation(Depends.Libraries.coil_compose)
-    implementation(Depends.Libraries.lottie)
-    implementation(Depends.Libraries.lottie_compose)
-    implementation(Depends.Libraries.palette)
+    implementation(libs.coil.compose)
+    implementation(libs.lottie)
+    implementation(libs.lottie.compose)
+    implementation(libs.palette)
     //test
-    androidTestImplementation(Depends.Libraries.test_runner)
-    androidTestImplementation(Depends.Libraries.test_rules)
-    androidTestImplementation(Depends.Libraries.test_core)
-    androidTestImplementation(Depends.Libraries.test_ext_junit)
-    androidTestImplementation(Depends.Libraries.espresso_core)
+    androidTestImplementation(libs.test.runner)
+    androidTestImplementation(libs.test.rules)
+    androidTestImplementation(libs.test.core)
+    androidTestImplementation(libs.test.ext.junit)
+    androidTestImplementation(libs.espresso.core)
 
     implementation(project(":domain"))
 }

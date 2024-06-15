@@ -1,10 +1,17 @@
+import io.gitlab.arturbosch.detekt.Detekt
+import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
+import io.gitlab.arturbosch.detekt.extensions.DetektExtension
+
 plugins {
-    id("org.sonarqube") version app.web.drjackycv.buildsrc.Depends.Versions.sonarqubeVersion
-    detekt
-    id("com.github.ben-manes.versions") version app.web.drjackycv.buildsrc.Depends.Versions.checkDependencyVersionsVersion
-    id("com.osacky.doctor") version app.web.drjackycv.buildsrc.Depends.Versions.gradleDoctorVersion
-    id("com.autonomousapps.dependency-analysis") version app.web.drjackycv.buildsrc.Depends.Versions.dependencyAnalysisVersion
-    id("org.sonatype.gradle.plugins.scan") version app.web.drjackycv.buildsrc.Depends.Versions.sonatypeScanGradleVersion
+//    alias(libs.plugins.android.application) apply false
+    id("org.sonarqube") version libs.versions.sonarqubeVersion.get()
+    alias(libs.plugins.detekt)
+    alias(libs.plugins.gradleVersionsPlugin) apply false
+    alias(libs.plugins.gradleDoctorPlugin) apply false
+    alias(libs.plugins.dependencyAnalysis) apply false
+    alias(libs.plugins.sonatypeScanGradle) apply false
+    alias(libs.plugins.compose.compiler) apply false
+    id("com.google.dagger.hilt.android") version "2.51.1" apply false
 }
 
 buildscript {
@@ -16,17 +23,24 @@ buildscript {
         }
     }
     dependencies {
-        classpath(app.web.drjackycv.buildsrc.Depends.ClassPaths.gradle)
-        classpath(
+//        classpath(libs.r8)
+        classpath(libs.gradle)
+        /*classpath(
             kotlin(
-                app.web.drjackycv.buildsrc.Depends.ClassPaths.kotlin_gradle_plugin,
+                libs.kotlin_gradle_plugin,
                 version = app.web.drjackycv.buildsrc.Depends.Versions.kotlinVersion
             )
-        )
-        classpath(app.web.drjackycv.buildsrc.Depends.ClassPaths.navigation_safe_args_gradle_plugin)
-        classpath(app.web.drjackycv.buildsrc.Depends.ClassPaths.hilt_android_gradle_plugin)
-        classpath(app.web.drjackycv.buildsrc.Depends.ClassPaths.sonarqube_gradle_plugin)
+        )*/
+        classpath(libs.navigation.safe.args.gradle.plugin)
+        classpath(libs.hilt.android.gradle.plugin)
+        classpath(libs.sonarqube.gradle.plugin)
     }
+}
+
+dependencies {
+    detektPlugins(libs.detekt.gradle.plugin)
+    detektPlugins(libs.detekt.twitter.compose.rules)
+    detektPlugins(libs.detekt.kode.compose.rules)
 }
 
 allprojects {
@@ -47,4 +61,87 @@ allprojects {
             }
         }
     }
+}
+
+val analysisDir = file(projectDir)
+val baselineFile = file("$rootDir/config/detekt/baseline.xml")
+val configFile = file("$rootDir/config/detekt/detekt.yml")
+//val statisticsConfigFile = file("$rootDir/config/detekt/statistics.yml")
+
+val kotlinFiles = "**/*.kt"
+val kotlinScriptFiles = "**/*.kts"
+val resourceFiles = "**/resources/**"
+val buildFiles = "**/build/**"
+
+detekt {
+    toolVersion = libs.versions.detektVersion.get()
+    buildUponDefaultConfig = true
+    baseline = baselineFile
+    config = files("config/detekt/detekt.yml")
+    source = objects.fileCollection().from(
+        DetektExtension.DEFAULT_SRC_DIR_JAVA,
+        "src/test/java",
+        DetektExtension.DEFAULT_SRC_DIR_KOTLIN,
+        "src/test/kotlin"
+    )
+    reports {
+        html.required.set(true)
+        html.outputLocation.set(file("$projectDir/build/detekt/report.html"))
+        xml.required.set(true)
+        xml.outputLocation.set(file("$projectDir/build/detekt/report.xml"))
+        txt.required.set(true)
+        txt.outputLocation.set(file("$projectDir/build/detekt/report.txt"))
+    }
+}
+
+val detektFormat by tasks.registering(Detekt::class) {
+    description = "Formats whole project."
+    parallel = true
+    disableDefaultRuleSets = true
+    buildUponDefaultConfig = true
+    autoCorrect = true
+    setSource(analysisDir)
+//    config.setFrom(listOf(statisticsConfigFile, configFile))
+    include(kotlinFiles)
+    include(kotlinScriptFiles)
+    exclude(resourceFiles)
+    exclude(buildFiles)
+    baseline.set(baselineFile)
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+        txt.required.set(true)
+    }
+}
+
+val detektAll by tasks.registering(Detekt::class) {
+    description = "Runs the whole project at once."
+    parallel = true
+    buildUponDefaultConfig = true
+    setSource(analysisDir)
+//    config.setFrom(listOf(statisticsConfigFile, configFile))
+    include(kotlinFiles)
+    include(kotlinScriptFiles)
+    exclude(resourceFiles)
+    exclude(buildFiles)
+    baseline.set(baselineFile)
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+        txt.required.set(true)
+    }
+}
+
+val detektProjectBaseline by tasks.registering(DetektCreateBaselineTask::class) {
+    description = "Overrides current baseline."
+    buildUponDefaultConfig.set(true)
+    ignoreFailures.set(true)
+    parallel.set(true)
+    setSource(analysisDir)
+//    config.setFrom(listOf(statisticsConfigFile, configFile))
+    include(kotlinFiles)
+    include(kotlinScriptFiles)
+    exclude(resourceFiles)
+    exclude(buildFiles)
+    baseline.set(baselineFile)
 }

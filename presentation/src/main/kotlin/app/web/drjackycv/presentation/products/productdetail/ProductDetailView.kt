@@ -108,8 +108,10 @@ fun ProductDetailView(
                     )
                 },
                 floatingActionButton = themeFAB
-            ) {
-                Box(modifier = Modifier.fillMaxSize()) {
+            ) { padding ->
+                Box(modifier = Modifier
+                    .fillMaxSize()
+                    .padding(padding)) {
                     ErrorItemView(
                         modifier = Modifier.align(Alignment.Center),
                         message = uiState.error.localizedMessage

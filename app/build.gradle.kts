@@ -1,4 +1,3 @@
-import app.web.drjackycv.buildsrc.Depends
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -6,7 +5,8 @@ plugins {
     kotlin("android")
     id("kotlin-parcelize")
     kotlin("kapt")
-    id("dagger.hilt.android.plugin")
+    id("com.google.dagger.hilt.android")
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
@@ -14,17 +14,16 @@ android {
         viewBinding = true
     }
 
-    compileSdk = Depends.Versions.androidCompileSdkVersion
+    compileSdk = libs.versions.androidCompileSdkVersion.get().toInt()
 
     defaultConfig {
         multiDexEnabled = true
         applicationId = "app.web.drjackycv.mvvmtemplate"
-        minSdk = Depends.Versions.minSdkVersion
-        targetSdk = Depends.Versions.targetSdkVersion
-        versionCode = Depends.Versions.appVersionCode
-        versionName = Depends.generateVersionName()
-        testInstrumentationRunner =
-            Depends.Versions.testInstrumentationRunner
+        minSdk = libs.versions.minSdkVersion.get().toInt()
+        targetSdk = libs.versions.targetSdkVersion.get().toInt()
+        versionCode = 1
+        versionName = "1.0.0"
+        testInstrumentationRunner = libs.versions.testInstrumentationRunner.get()
         javaCompileOptions.annotationProcessorOptions.arguments += mapOf(
             "room.schemaLocation" to "$projectDir/schemas"
         )
@@ -53,8 +52,8 @@ android {
         }
     }
     compileOptions {
-        targetCompatibility = JavaVersion.VERSION_11
-        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_17
     }
     packagingOptions {
         resources {
@@ -64,52 +63,48 @@ android {
     //testOptions.unitTests.returnDefaultValues = true
     namespace = "app.web.drjackycv.mvvmtemplate"
     lint {
-        abortOnError = false
+//        abortOnError = false
     }
 }
 
 tasks.withType<KotlinCompile> {
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
-        freeCompilerArgs = listOf(
-            "-XXLanguage:+InlineClasses"
-        )
-        //useIR = true
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
 }
 
 dependencies {
-    implementation(Depends.Libraries.kotlin)
-    implementation(Depends.Libraries.android_core_ktx)
-    implementation(Depends.Libraries.multidex)
-    implementation(Depends.Libraries.fragment_ktx)
-    implementation(Depends.Libraries.paging_runtime_ktx)
-    implementation(Depends.Libraries.paging_rx)
-    implementation(Depends.Libraries.dataStore_preferences)
-    implementation(Depends.Libraries.coroutines_android)
+    implementation(libs.kotlin)
+    implementation(libs.android.core.ktx)
+    implementation(libs.multidex)
+    implementation(libs.fragment.ktx)
+    implementation(libs.paging.runtime.ktx)
+    implementation(libs.paging.rx)
+    implementation(libs.dataStore.preferences)
+    implementation(libs.coroutines.android)
     //dependency injection
-    implementation(Depends.Libraries.dagger)
-    kapt(Depends.Libraries.dagger_compiler)
-    implementation(Depends.Libraries.dagger_hilt_android)
-    implementation(Depends.Libraries.dagger_hilt_navigation_compose)
-    kapt(Depends.Libraries.dagger_hilt_compiler)
-//    kapt(Depends.Libraries.dagger_hilt_android_compiler)
-//    kapt(Depends.Libraries.hilt_androidx_compiler)
-    implementation(Depends.Libraries.java_inject)
+    implementation(libs.dagger)
+    kapt(libs.dagger.compiler)
+    implementation(libs.dagger.hilt.android)
+    implementation(libs.dagger.hilt.navigation.compose)
+    kapt(libs.dagger.hilt.compiler)
+//    kapt(libs.dagger.hilt.android.compiler)
+//    kapt(libs.hilt.androidx.compiler)
+    implementation(libs.java.inject)
     //network
-    implementation(Depends.Libraries.retrofit)
-    implementation(Depends.Libraries.retrofit_adapter_rx)
-    implementation(Depends.Libraries.logging_interceptor)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.adapter.rx)
+    implementation(libs.logging.interceptor)
     //other
-    implementation(Depends.Libraries.timber)
-    implementation(Depends.Libraries.material)
-    debugImplementation(Depends.Libraries.leak_canary)
-    debugImplementation(Depends.Libraries.chucker)
-    releaseImplementation(Depends.Libraries.chucker_no_op)
+    implementation(libs.timber)
+    implementation(libs.material)
+    debugImplementation(libs.leak.canary)
+    debugImplementation(libs.chucker)
+    releaseImplementation(libs.chucker.no.op)
     //test
-    testImplementation(Depends.Libraries.junit)
-    androidTestImplementation(Depends.Libraries.test_runner)
-    androidTestImplementation(Depends.Libraries.espresso_core)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.test.runner)
+    androidTestImplementation(libs.espresso.core)
 
     implementation(project(":presentation"))
     implementation(project(":data"))
