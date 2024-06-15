@@ -21,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.LoadState
@@ -134,7 +135,7 @@ fun ProductsListContent(
                     modifier = Modifier.fillMaxSize(),
                     contentPadding = it,
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center,
+                    verticalArrangement = Arrangement.spacedBy(2.dp),
                     state = scrollState
                 ) {
                     items(
@@ -217,6 +218,14 @@ private fun ProductsListContentPreview() {
     val items = listOf(
         BeerUI(
             id = 1,
+            name = "name",
+            tagline = "tagline",
+            description = "description",
+            imageUrl = "https://images.punkapi.com/v2/5.png",
+            abv = 4.9
+        ),
+        BeerUI(
+            id = 2,
             name = "name",
             tagline = "tagline",
             description = "description",

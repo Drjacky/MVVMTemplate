@@ -27,6 +27,7 @@ class RxJavaCustomCallAdapterFactory private constructor() : CallAdapter.Factory
         fun create() = RxJavaCustomCallAdapterFactory()
     }
 
+    @Suppress("ComplexCondition")
     override fun get(
         returnType: Type,
         annotations: Array<Annotation>,
