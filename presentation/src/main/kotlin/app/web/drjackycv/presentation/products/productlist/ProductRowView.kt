@@ -21,7 +21,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -58,7 +57,7 @@ fun ProductRowView(
 ) {
     val defaultColor = MaterialTheme.colors.surface
     val cardColor = remember { mutableStateOf(defaultColor) }
-    val animatedCardColor = animateColorAsState(cardColor.value)
+    val animatedCardColor = animateColorAsState(cardColor.value, label = "animatedCardColor")
     val isDark = remember { mutableStateOf(MainActivity.ThemeState.darkModeState.value) }
 
     Card(
@@ -95,11 +94,12 @@ fun ProductRowView(
 
                 when (imagePainter.state) {
                     is AsyncImagePainter.State.Success -> {
-                        ChangeCardColor(
+                        val newCardColor = changeCardColor(
                             imagePainter = imagePainter,
-                            cardColor = cardColor,
-                            isDark = isDark
+                            cardColor = cardColor.value,
+                            isDark = isDark.value
                         )
+                        cardColor.value = newCardColor
                     }
                     is AsyncImagePainter.State.Loading -> {
                         CircularProgressIndicator(modifier = Modifier.padding(8.dp))
@@ -138,13 +138,14 @@ fun ProductRowView(
 }
 
 @Composable
-private fun ChangeCardColor(
+private fun changeCardColor(
     imagePainter: AsyncImagePainter,
-    cardColor: MutableState<Color>,
-    isDark: MutableState<Boolean>
-) {
+    cardColor: Color,
+    isDark: Boolean
+): Color {
     val context = LocalContext.current
     val imageLoader = ImageLoader(context)
+    var newCardColor = cardColor
 
     LaunchedEffect(key1 = imagePainter) {
         val result = imageLoader.execute(imagePainter.request)
@@ -152,14 +153,14 @@ private fun ChangeCardColor(
         if (result is SuccessResult) {
             val bitmap = (result.drawable as BitmapDrawable).bitmap
 
-            if (isDark.value) {
+            if (isDark) {
                 val vibrant = Palette.from(bitmap)
                     .generate()
                     //.vibrantSwatch
                     .darkVibrantSwatch
 
                 vibrant?.let {
-                    cardColor.value = Color(it.rgb)
+                    newCardColor = Color(it.rgb)
                 }
             } else {
                 val vibrant = Palette.from(bitmap)
@@ -168,11 +169,13 @@ private fun ChangeCardColor(
                     .lightVibrantSwatch
 
                 vibrant?.let {
-                    cardColor.value = Color(it.rgb)
+                    newCardColor = Color(it.rgb)
                 }
             }
         }
     }
+
+    return newCardColor
 }
 
 
