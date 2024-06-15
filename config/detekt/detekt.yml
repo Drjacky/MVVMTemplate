@@ -694,7 +694,7 @@ compose:
   UnnecessaryEventHandlerParameter: #suggests hoisting event argument passing to the upper level which often simplifies individual composable components
     active: true
   ComposableEventParameterNaming: #ensures that all event handler parameters of composable functions are named in the same Compose-like style, i.e. they have on prefix and do not use past tense
-    active: true
+    active: false
   ComposableParametersOrdering: #suggests separating required an optional parameters of the composable function into groups
     active: true
   ModifierHeightWithText: #suggests using Modifier.heightIn() instead of Modifier.height() on a layouts which have Text children, so that if the text turns out to be long and would wrap, layout will not cut it off
