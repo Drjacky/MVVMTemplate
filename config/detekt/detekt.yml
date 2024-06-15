@@ -389,7 +389,7 @@ naming:
     functionPattern: '([a-z][a-zA-Z0-9]*)|(`.*`)'
     excludeClassPattern: '$^'
     ignoreOverridden: true
-    ignoreAnnotated: ['Composable']
+    ignoreAnnotated: [ 'Composable', 'Preview' ]
   FunctionParameterNaming:
     active: true
     excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
@@ -688,7 +688,7 @@ style:
     excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
     excludeImports: [ 'java.util.*', 'kotlinx.android.synthetic.*' ]
 
-KodeCompose:
+compose:
   ReusedModifierInstance: #finds usages of modifier parameter on non-top-level children of a composable function. This tends to happen during refactorings and often leads to incorrect rendering of a composable
     active: true
   UnnecessaryEventHandlerParameter: #suggests hoisting event argument passing to the upper level which often simplifies individual composable components
