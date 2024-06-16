@@ -80,7 +80,7 @@ fun ProductRowView(
             ) {
                 val imagePainter = rememberAsyncImagePainter(
                     ImageRequest.Builder(LocalContext.current)
-                        .data(data = product.imageUrl)
+                        .data(data = product.image)
                         .crossfade(true)
                         .allowHardware(false)
                         .build()
@@ -187,12 +187,13 @@ private fun changeCardColor(
 private fun ProductRowViewPreview() {
     ProductRowView(
         product = BeerUI(
-            id = 1,
-            name = "name",
-            tagline = "tagline",
-            description = "description",
-            imageUrl = "https://images.punkapi.com/v2/5.png",
-            abv = 4.9
+            id = 361,
+            name = "Toxic Rick",
+            status = "Dead",
+            species = "Humanoid",
+            gender = "Male",
+            image = "https://rickandmortyapi.com/api/character/avatar/361.jpeg",
+            url = "https://rickandmortyapi.com/api/character/361",
         ),
         isShimmerVisible = false,
         navigateToProduct = {}

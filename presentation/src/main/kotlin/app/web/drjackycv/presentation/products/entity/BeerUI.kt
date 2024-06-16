@@ -8,18 +8,20 @@ import kotlinx.parcelize.Parcelize
 data class BeerUI(
     val id: Int,
     val name: String,
-    val tagline: String,
-    val description: String,
-    val imageUrl: String?,
-    val abv: Double,
+    val status: String,
+    val species: String,
+    val gender: String,
+    val image: String,
+    val url: String
 ) : Parcelable
 
 fun Beer.mapIt(): BeerUI =
     BeerUI(
         id = id,
         name = name,
-        tagline = tagline,
-        description = description,
-        imageUrl = imageUrl,
-        abv = abv
+        status = status,
+        species = species,
+        gender = gender,
+        image = image,
+        url = url,
     )

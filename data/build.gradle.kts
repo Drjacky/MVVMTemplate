@@ -33,7 +33,7 @@ android {
             buildConfigField(
                 "String",
                 "BASE_URL",
-                "\"" + "https://api.punkapi.com/v2/" + "\""
+                "\"" + "https://rickandmortyapi.com/api/" + "\""
             )
         }
         named("release") {
@@ -41,7 +41,7 @@ android {
             buildConfigField(
                 "String",
                 "BASE_URL",
-                "\"" + "https://api.punkapi.com/v2/" + "\""
+                "\"" + "https://rickandmortyapi.com/api/" + "\""
             )
             setProguardFiles(
                 listOf(

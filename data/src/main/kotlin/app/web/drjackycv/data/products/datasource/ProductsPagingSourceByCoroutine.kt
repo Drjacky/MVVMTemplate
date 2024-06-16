@@ -26,7 +26,7 @@ class ProductsPagingSourceByCoroutine @Inject constructor(
         val position = params.key ?: STARTING_PAGE_INDEX
 
         return try {
-            val response = productsApi.getBeersListByCoroutine(position)
+            val response = productsApi.getBeersListByCoroutine(position).results
                 .map(BeerResponse::mapIt)
 
             toLoadResult(response, position)

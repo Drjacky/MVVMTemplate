@@ -98,7 +98,7 @@ Available workflows listed as follows:
 
 ## References 🧷
 
-- [The Punk API](https://punkapi.com/)
+- [Rick and Morty API](https://rickandmortyapi.com/)
 - [Right or Left animation by Marco Martina on LottieFiles](https://lottiefiles.com/21141-right-or-left)
 - [Loading Beer animation by Hashim Irfan on LottieFiles](https://lottiefiles.com/30697-loading-beer-animation)
 

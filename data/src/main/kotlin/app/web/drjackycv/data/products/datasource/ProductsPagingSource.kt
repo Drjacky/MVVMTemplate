@@ -33,7 +33,7 @@ class ProductsPagingSource @Inject constructor(
             .map { response ->
                 when (response) {
                     is NetworkResponse.Success -> {
-                        val list = response.body.map(BeerResponse::mapIt)
+                        val list = response.body.results.map(BeerResponse::mapIt)
 
                         toLoadResult(list, position)
                     }

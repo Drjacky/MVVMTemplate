@@ -43,7 +43,7 @@ class ProductsListRepositoryImpl @Inject constructor(
     override fun getBeer(id: String): Flowable<Beer> { //TODO: Use Rx
         return flow {
             val response = productsApi.getBeerByCoroutine(id)
-            val result = response.first().mapIt()
+            val result = response.mapIt()
 
             emit(result)
         }.asFlowable()
@@ -67,7 +67,7 @@ class ProductsListRepositoryImpl @Inject constructor(
     override fun getBeerByCoroutine(id: String): Flow<Beer> = //TODO: Handle exception
         flow {
             val response = productsApi.getBeerByCoroutine(id)
-            val result = response.first().mapIt()
+            val result = response.mapIt()
 
             emit(result)
         }

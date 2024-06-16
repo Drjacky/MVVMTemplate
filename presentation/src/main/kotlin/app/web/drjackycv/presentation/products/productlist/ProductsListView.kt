@@ -157,10 +157,11 @@ fun ProductsListContent(
                             val beerUI = BeerUI(
                                 id = -1,
                                 name = "",
-                                tagline = "",
-                                description = "",
-                                imageUrl = "",
-                                abv = 0.0
+                                status = "",
+                                species = "",
+                                gender = "",
+                                image = "",
+                                url = "",
                             )
                             items(10) {
                                 ProductRowView(
@@ -217,20 +218,22 @@ fun ProductsListContent(
 private fun ProductsListContentPreview() {
     val items = listOf(
         BeerUI(
-            id = 1,
-            name = "name",
-            tagline = "tagline",
-            description = "description",
-            imageUrl = "https://images.punkapi.com/v2/5.png",
-            abv = 4.9
+            id = 361,
+            name = "Toxic Rick",
+            status = "Dead",
+            species = "Humanoid",
+            gender = "Male",
+            image = "https://rickandmortyapi.com/api/character/avatar/361.jpeg",
+            url = "https://rickandmortyapi.com/api/character/361",
         ),
         BeerUI(
-            id = 2,
-            name = "name",
-            tagline = "tagline",
-            description = "description",
-            imageUrl = "https://images.punkapi.com/v2/5.png",
-            abv = 4.9
+            id = 362,
+            name = "Traflorkian",
+            status = "Alive",
+            species = "Alien",
+            gender = "unknown",
+            image = "https://rickandmortyapi.com/api/character/avatar/362.jpeg",
+            url = "https://rickandmortyapi.com/api/character/362",
         )
     )
     val uiState = ProductsUiState.Success(items = PagingData.from(items))

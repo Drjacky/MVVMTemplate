@@ -84,7 +84,7 @@ fun ProductDetailView(
                 ) {
                     Text(
                         modifier = Modifier.padding(16.dp),
-                        text = "${uiState.item?.description}",
+                        text = "${uiState.item?.species}",
                         style = TextStyle(fontSize = 17.sp),
                         overflow = TextOverflow.Ellipsis,
                         maxLines = 1
@@ -138,12 +138,13 @@ fun ProductDetailView(
 private fun ProductDetailViewPreview() {
     val uiState = ProductUiState.Success(
         item = BeerUI(
-            id = 1,
-            name = "name",
-            tagline = "tagline",
-            description = "description",
-            imageUrl = "https://images.punkapi.com/v2/5.png",
-            abv = 4.9
+            id = 361,
+            name = "Toxic Rick",
+            status = "Dead",
+            species = "Humanoid",
+            gender = "Male",
+            image = "https://rickandmortyapi.com/api/character/avatar/361.jpeg",
+            url = "https://rickandmortyapi.com/api/character/361",
         )
     )
     ProductDetailView(
