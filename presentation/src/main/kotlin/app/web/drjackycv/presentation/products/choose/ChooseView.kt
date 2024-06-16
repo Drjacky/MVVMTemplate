@@ -8,11 +8,6 @@ import androidx.compose.material.Button
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
@@ -56,7 +51,7 @@ fun ChooseView(
             ) {
                 val (chooseAnimation, rxButton, coroutineButton) = createRefs()
 
-                SetupAndRunChooseArrowAnimation(
+                ChooseArrowAnimation(
                     modifier = Modifier
                         .constrainAs(chooseAnimation) {
                             start.linkTo(parent.start, margin = 20.dp)
@@ -102,24 +97,6 @@ fun ChooseView(
         },
         modifier = modifier
     )
-}
-
-@Composable
-fun SetupAndRunChooseArrowAnimation(
-    modifier: Modifier = Modifier,
-) {
-    var circleState by remember { mutableStateOf(CirclePosition.Start) }
-
-    ChooseArrowAnimation(
-        modifier = modifier,
-        circleState = circleState
-    )
-    LaunchedEffect(Unit) {
-        circleState = when (circleState) {
-            CirclePosition.Start -> CirclePosition.Finish
-            CirclePosition.Finish -> CirclePosition.Start
-        }
-    }
 }
 
 @Composable //TODO

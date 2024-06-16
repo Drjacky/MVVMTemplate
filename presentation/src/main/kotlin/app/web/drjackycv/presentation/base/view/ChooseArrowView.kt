@@ -14,7 +14,11 @@ import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.foundation.layout.requiredWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.graphics.Color
@@ -32,9 +36,17 @@ import app.web.drjackycv.presentation.products.choose.CirclePosition
 @Suppress("MagicNumber")
 @Composable
 fun ChooseArrowAnimation(
-    circleState: CirclePosition,
     modifier: Modifier = Modifier,
 ) {
+    var circleState by remember { mutableStateOf(CirclePosition.Start) }
+
+    LaunchedEffect(Unit) {
+        circleState = when (circleState) {
+            CirclePosition.Start -> CirclePosition.Finish
+            CirclePosition.Finish -> CirclePosition.Start
+        }
+    }
+
     val offsetAnimation: Dp by animateDpAsState(
         label = "offsetAnimation",
         targetValue = if (circleState == CirclePosition.Start) 0.dp else 100.dp,
@@ -128,6 +140,5 @@ fun ChooseArrowAnimation(
 private fun ChooseArrowAnimationPreview() {
     ChooseArrowAnimation(
         modifier = Modifier,
-        circleState = CirclePosition.Start
     )
 }
