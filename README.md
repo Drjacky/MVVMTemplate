@@ -118,3 +118,7 @@ Feel free to open an issue or submit a pull request for any bugs/improvements.
 
 ## License ⚖️
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FDrjacky%2FMVVMTemplate.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FDrjacky%2FMVVMTemplate?ref=badge_large)
+
+## Star History Chart 
+
+[![Star History Chart](https://api.star-history.com/svg?repos=Drjacky/MVVMTemplate&Date&type=Date)](https://star-history.com/#Drjacky/MVVMTemplate&Date&Date)
