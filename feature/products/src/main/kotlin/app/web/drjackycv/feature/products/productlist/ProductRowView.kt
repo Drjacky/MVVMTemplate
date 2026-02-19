@@ -56,7 +56,8 @@ fun ProductRowView(
     val defaultColor = MaterialTheme.colorScheme.surface
     val cardColor = remember { mutableStateOf(defaultColor) }
     val animatedCardColor = animateColorAsState(cardColor.value, label = "animatedCardColor")
-    val isDark = remember { mutableStateOf(ThemeState.darkModeState.value) }
+    val isDark = ThemeState.darkModeState.value
+    val context = LocalContext.current
 
     Card(
         modifier = modifier
@@ -77,7 +78,7 @@ fun ProductRowView(
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.2f),
             ) {
                 val imagePainter = rememberAsyncImagePainter(
-                    ImageRequest.Builder(LocalContext.current)
+                    ImageRequest.Builder(context)
                         .data(data = product.image)
                         .crossfade(true)
                         .allowHardware(false)
@@ -92,12 +93,19 @@ fun ProductRowView(
 
                 when (imagePainter.state) {
                     is AsyncImagePainter.State.Success -> {
-                        val newCardColor = changeCardColor(
-                            imagePainter = imagePainter,
-                            cardColor = cardColor.value,
-                            isDark = isDark.value,
-                        )
-                        cardColor.value = newCardColor
+                        LaunchedEffect(imagePainter.state) {
+                            val imageLoader = ImageLoader(context)
+                            val result = imageLoader.execute(imagePainter.request)
+                            if (result is SuccessResult) {
+                                val bitmap = (result.drawable as BitmapDrawable).bitmap
+                                val swatch = if (isDark) {
+                                    Palette.from(bitmap).generate().darkVibrantSwatch
+                                } else {
+                                    Palette.from(bitmap).generate().lightVibrantSwatch
+                                }
+                                swatch?.let { cardColor.value = Color(it.rgb) }
+                            }
+                        }
                     }
 
                     is AsyncImagePainter.State.Loading -> {
@@ -108,8 +116,7 @@ fun ProductRowView(
                         ErrorRowView()
                     }
 
-                    AsyncImagePainter.State.Empty -> {
-                    }
+                    AsyncImagePainter.State.Empty -> Unit
                 }
             }
 
@@ -135,45 +142,6 @@ fun ProductRowView(
             }
         }
     }
-}
-
-@Composable
-private fun changeCardColor(
-    imagePainter: AsyncImagePainter,
-    cardColor: Color,
-    isDark: Boolean,
-): Color {
-    val context = LocalContext.current
-    val imageLoader = ImageLoader(context)
-    var newCardColor = cardColor
-
-    LaunchedEffect(key1 = imagePainter) {
-        val result = imageLoader.execute(imagePainter.request)
-
-        if (result is SuccessResult) {
-            val bitmap = (result.drawable as BitmapDrawable).bitmap
-
-            if (isDark) {
-                val vibrant = Palette.from(bitmap)
-                    .generate()
-                    .darkVibrantSwatch
-
-                vibrant?.let {
-                    newCardColor = Color(it.rgb)
-                }
-            } else {
-                val vibrant = Palette.from(bitmap)
-                    .generate()
-                    .lightVibrantSwatch
-
-                vibrant?.let {
-                    newCardColor = Color(it.rgb)
-                }
-            }
-        }
-    }
-
-    return newCardColor
 }
 
 
