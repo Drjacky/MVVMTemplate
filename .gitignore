@@ -6,6 +6,8 @@
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
 /.idea/sonarlint
+.aider*
+.vscode*
 /build
 /captures
 .cxx
