@@ -32,11 +32,13 @@ hilt = "2.56.2"
 hiltNavigationCompose = "1.2.0"
 javaxInject = "1"
 
+# Serialization
+kotlinxSerialization = "1.9.0"
+
 # Network
-retrofit = "2.9.0"
+retrofit = "3.0.0"
 okhttpLogging = "5.3.2"
 chucker = "4.1.0"
-gson = "2.10"
 
 # Reactive
 rxKotlin = "3.0.1"
@@ -142,14 +144,16 @@ androidx-paging-rx = { group = "androidx.paging", name = "paging-rxjava3", versi
 hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 java-inject = { group = "javax.inject", name = "javax.inject", version.ref = "javaxInject" }
 
+# Serialization
+kotlinx-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
+
 # Network
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 retrofit-adapter-rx = { group = "com.squareup.retrofit2", name = "adapter-rxjava3", version.ref = "retrofit" }
-retrofit-converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
+retrofit-converter-kotlinx-serialization = { group = "com.squareup.retrofit2", name = "converter-kotlinx-serialization", version.ref = "retrofit" }
 okhttp-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttpLogging" }
 chucker = { group = "com.github.chuckerteam.chucker", name = "library", version.ref = "chucker" }
 chucker-no-op = { group = "com.github.chuckerteam.chucker", name = "library-no-op", version.ref = "chucker" }
-gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 
 # Reactive
 rx-kotlin = { group = "io.reactivex.rxjava3", name = "rxkotlin", version.ref = "rxKotlin" }
@@ -198,6 +202,7 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }

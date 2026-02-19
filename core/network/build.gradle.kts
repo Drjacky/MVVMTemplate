@@ -1,6 +1,8 @@
 plugins {
     id("app.android.library")
     id("app.hilt")
+    alias(libs.plugins.kotlin.serialization)
+    id("app.kotlin.serialization")
 }
 
 android {
@@ -34,8 +36,7 @@ android {
 }
 
 dependencies {
-    implementation(libs.gson)
-    api(libs.retrofit.converter.gson)
+    api(libs.retrofit.converter.kotlinx.serialization)
     implementation(libs.retrofit)
     implementation(libs.retrofit.adapter.rx)
     implementation(libs.okhttp.logging.interceptor)

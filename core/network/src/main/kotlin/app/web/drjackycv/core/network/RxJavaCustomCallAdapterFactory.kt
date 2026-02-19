@@ -1,6 +1,5 @@
 package app.web.drjackycv.core.network
 
-import com.google.gson.reflect.TypeToken
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.core.Observable
@@ -61,13 +60,10 @@ class RxJavaCustomCallAdapterFactory private constructor() : CallAdapter.Factory
         }
 
         val successBodyType = getParameterUpperBound(0, observableEmissionType)
-        val delegateType = TypeToken.getParameterized(
-            Observable::class.java,
-            successBodyType
-        )
+        val delegateType = parameterizedType(Observable::class.java, successBodyType)
         val delegateAdapter = retrofit.nextCallAdapter(
             this,
-            delegateType.type,
+            delegateType,
             annotations
         )
 
@@ -78,7 +74,7 @@ class RxJavaCustomCallAdapterFactory private constructor() : CallAdapter.Factory
             annotations
         )
 
-        @Suppress("UNCHECKED_CAST") // Type of delegateAdapter is not known at compile time.
+        @Suppress("UNCHECKED_CAST")
         return RxJavaCustomCallAdapter(
             successBodyType,
             delegateAdapter as CallAdapter<Any, Observable<Any>>,
@@ -88,5 +84,12 @@ class RxJavaCustomCallAdapterFactory private constructor() : CallAdapter.Factory
             isMaybe
         )
     }
+
+    private fun parameterizedType(rawType: Type, vararg typeArguments: Type): Type =
+        object : ParameterizedType {
+            override fun getRawType(): Type = rawType
+            override fun getActualTypeArguments(): Array<out Type> = typeArguments
+            override fun getOwnerType(): Type? = null
+        }
 
 }

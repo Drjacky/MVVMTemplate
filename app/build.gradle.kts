@@ -2,6 +2,8 @@ plugins {
     id("app.android.application")
     id("app.android.application.compose")
     id("app.hilt")
+    alias(libs.plugins.kotlin.serialization)
+    id("app.kotlin.serialization")
     id("kotlin-parcelize")
 }
 

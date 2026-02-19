@@ -1,6 +1,8 @@
 plugins {
     id("app.android.library")
     id("app.hilt")
+    alias(libs.plugins.kotlin.serialization)
+    id("app.kotlin.serialization")
     id("kotlin-parcelize")
 }
 
@@ -18,7 +20,6 @@ dependencies {
     implementation(libs.rx.coroutine)
     implementation(libs.java.inject)
 
-    implementation(libs.gson)
     implementation(libs.retrofit)
     implementation(libs.retrofit.adapter.rx)
 

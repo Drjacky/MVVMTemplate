@@ -8,13 +8,12 @@ import app.web.drjackycv.core.network.BaseHttpClient
 import app.web.drjackycv.core.network.BaseRetrofit
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.RetentionManager
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import kotlinx.serialization.json.Json
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import javax.inject.Singleton
@@ -29,7 +28,10 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun gson(): Gson = GsonBuilder().create()
+    fun json(): Json = Json {
+        ignoreUnknownKeys = true
+        coerceInputValues = true
+    }
 
     @Provides
     @Singleton

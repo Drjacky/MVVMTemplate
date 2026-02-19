@@ -1,13 +1,14 @@
 package app.web.drjackycv.core.data.products.entity
 
-
 import app.web.drjackycv.core.domain.products.entity.Beer
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class CharactersResponse(
     val info: Info,
-    val results: List<BeerResponse>
+    val results: List<BeerResponse>,
 ) {
+    @Serializable
     data class Info(
         val count: Int,
         val pages: Int,
@@ -16,14 +17,15 @@ data class CharactersResponse(
     )
 }
 
+@Serializable
 data class BeerResponse(
-    @SerializedName("id") val id: Int,
-    @SerializedName("name") val name: String,
-    @SerializedName("status") val status: String,
-    @SerializedName("species") val species: String,
-    @SerializedName("gender") val gender: String,
-    @SerializedName("image") val image: String,
-    @SerializedName("url") val url: String
+    val id: Int,
+    val name: String,
+    val status: String,
+    val species: String,
+    val gender: String,
+    val image: String,
+    val url: String,
 )
 
 
