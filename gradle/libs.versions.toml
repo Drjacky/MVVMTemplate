@@ -1,6 +1,6 @@
 [versions]
 r8Version = "8.1.56"
-gradleVersion = "8.5.0"
+gradleVersion = "9.0.1"
 androidCompileSdkVersion = "34"
 targetSdkVersion = "34"
 minSdkVersion = "21"
