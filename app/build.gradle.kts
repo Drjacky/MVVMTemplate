@@ -51,21 +51,35 @@ android {
 }
 
 dependencies {
-    implementation(projects.presentation)
-    implementation(projects.data)
-    implementation(projects.domain)
+    implementation(projects.core.domain)
+    implementation(projects.core.data)
+    implementation(projects.core.common)
+    implementation(projects.core.network)
+    implementation(projects.core.ui)
+    implementation(projects.feature.products)
 
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.fragment.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.paging.runtime.ktx)
     implementation(libs.androidx.paging.rx)
-    implementation(libs.androidx.dataStore.preferences)
     implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.rx.java)
+    implementation(libs.rx.kotlin)
     implementation(libs.hilt.navigation.compose)
     implementation(libs.java.inject)
 
+    implementation(libs.androidx.compose.foundation)
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.material)
+    implementation(libs.androidx.compose.runtime)
+    implementation(libs.androidx.compose.animation.graphics)
+    implementation(libs.androidx.compose.navigation)
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.coil.compose)
+
     implementation(libs.retrofit)
-    implementation(libs.retrofit.adapter.rx)
     implementation(libs.okhttp.logging.interceptor)
 
     implementation(libs.timber)

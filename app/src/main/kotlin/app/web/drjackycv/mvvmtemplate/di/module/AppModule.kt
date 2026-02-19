@@ -3,9 +3,9 @@ package app.web.drjackycv.mvvmtemplate.di.module
 import android.app.Application
 import android.content.Context
 import android.content.res.Resources
-import app.web.drjackycv.data.network.BaseHttpClient
-import app.web.drjackycv.data.network.BaseRetrofit
-import app.web.drjackycv.domain.extension.allowWrites
+import app.web.drjackycv.core.domain.extension.allowWrites
+import app.web.drjackycv.core.network.BaseHttpClient
+import app.web.drjackycv.core.network.BaseRetrofit
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.RetentionManager
 import com.google.gson.Gson

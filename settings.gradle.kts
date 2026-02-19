@@ -33,6 +33,9 @@ rootProject.name = "MVVMTemplate"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 include(":app")
-include(":domain")
-include(":data")
-include(":presentation")
+include(":core:domain")
+include(":core:data")
+include(":core:common")
+include(":core:network")
+include(":core:ui")
+include(":feature:products")

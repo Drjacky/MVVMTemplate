@@ -1,10 +1,10 @@
 package app.web.drjackycv.mvvmtemplate.di.module
 
-import app.web.drjackycv.domain.products.repository.ProductsListRepository
-import app.web.drjackycv.domain.products.usecase.GetBeerByCoroutineUseCase
-import app.web.drjackycv.domain.products.usecase.GetBeerUseCase
-import app.web.drjackycv.domain.products.usecase.GetBeersListByCoroutineUseCase
-import app.web.drjackycv.domain.products.usecase.GetBeersListUseCase
+import app.web.drjackycv.core.domain.products.repository.ProductsListRepository
+import app.web.drjackycv.core.domain.products.usecase.GetBeerByCoroutineUseCase
+import app.web.drjackycv.core.domain.products.usecase.GetBeerUseCase
+import app.web.drjackycv.core.domain.products.usecase.GetBeersListByCoroutineUseCase
+import app.web.drjackycv.core.domain.products.usecase.GetBeersListUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
