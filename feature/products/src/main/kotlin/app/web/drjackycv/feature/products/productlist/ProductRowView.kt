@@ -11,15 +11,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.ContentAlpha
-import androidx.compose.material.LocalContentAlpha
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -55,7 +53,7 @@ fun ProductRowView(
     navigateToProduct: (product: String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val defaultColor = MaterialTheme.colors.surface
+    val defaultColor = MaterialTheme.colorScheme.surface
     val cardColor = remember { mutableStateOf(defaultColor) }
     val animatedCardColor = animateColorAsState(cardColor.value, label = "animatedCardColor")
     val isDark = remember { mutableStateOf(ThemeState.darkModeState.value) }
@@ -66,8 +64,8 @@ fun ProductRowView(
             .clickableOnce(onClick = { navigateToProduct(product.id.toString()) })
             .padding(4.dp),
         shape = RoundedCornerShape(4.dp),
-        backgroundColor = animatedCardColor.value,
-        elevation = 2.dp
+        colors = CardDefaults.cardColors(containerColor = animatedCardColor.value),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
     ) {
         Row {
             Surface(
@@ -76,7 +74,7 @@ fun ProductRowView(
                     .padding(4.dp)
                     .shimmer(isShimmerVisible),
                 shape = CircleShape,
-                color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f)
+                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.2f),
             ) {
                 val imagePainter = rememberAsyncImagePainter(
                     ImageRequest.Builder(LocalContext.current)
@@ -97,7 +95,7 @@ fun ProductRowView(
                         val newCardColor = changeCardColor(
                             imagePainter = imagePainter,
                             cardColor = cardColor.value,
-                            isDark = isDark.value
+                            isDark = isDark.value,
                         )
                         cardColor.value = newCardColor
                     }
@@ -123,18 +121,17 @@ fun ProductRowView(
                     text = product.name,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
-                    style = MaterialTheme.typography.h6,
-                    fontWeight = FontWeight.Normal
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.Normal,
                 )
-                CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
-                    Text(
-                        modifier = Modifier
-                            .padding(top = 4.dp)
-                            .shimmer(isShimmerVisible),
-                        text = product.id.toString(),
-                        style = MaterialTheme.typography.body2
-                    )
-                }
+                Text(
+                    modifier = Modifier
+                        .padding(top = 4.dp)
+                        .shimmer(isShimmerVisible),
+                    text = product.id.toString(),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
             }
         }
     }
@@ -144,7 +141,7 @@ fun ProductRowView(
 private fun changeCardColor(
     imagePainter: AsyncImagePainter,
     cardColor: Color,
-    isDark: Boolean
+    isDark: Boolean,
 ): Color {
     val context = LocalContext.current
     val imageLoader = ImageLoader(context)
@@ -159,7 +156,6 @@ private fun changeCardColor(
             if (isDark) {
                 val vibrant = Palette.from(bitmap)
                     .generate()
-                    //.vibrantSwatch
                     .darkVibrantSwatch
 
                 vibrant?.let {
@@ -168,7 +164,6 @@ private fun changeCardColor(
             } else {
                 val vibrant = Palette.from(bitmap)
                     .generate()
-                    //.vibrantSwatch
                     .lightVibrantSwatch
 
                 vibrant?.let {

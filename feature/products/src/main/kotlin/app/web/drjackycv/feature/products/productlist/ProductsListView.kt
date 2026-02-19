@@ -1,18 +1,18 @@
 package app.web.drjackycv.feature.products.productlist
 
-//import androidx.paging.compose.items
 import androidx.compose.animation.graphics.ExperimentalAnimationGraphicsApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -38,7 +38,6 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
 
 @ExperimentalCoroutinesApi
-
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
 @ExperimentalAnimationGraphicsApi
@@ -60,7 +59,7 @@ fun ProductsListRoute(
                 uiState = uiState.value,
                 themeFAB = themeFAB,
                 navigateToProduct = navigateToProduct,
-                onBackClick = onBackClick
+                onBackClick = onBackClick,
             )
         }
 
@@ -70,11 +69,10 @@ fun ProductsListRoute(
                 uiState = uiState,
                 themeFAB = themeFAB,
                 navigateToProduct = navigateToProduct,
-                onBackClick = onBackClick
+                onBackClick = onBackClick,
             )
         }
     }
-
 }
 
 
@@ -97,6 +95,7 @@ fun ProductsListView(
 }
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
 @ExperimentalAnimationGraphicsApi
@@ -106,9 +105,8 @@ fun ProductsListContent(
     themeFAB: @Composable () -> Unit,
     navigateToProduct: (String) -> Unit,
     onBackClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
-
     Scaffold(
         topBar = {
             TopAppBar(
@@ -119,14 +117,14 @@ fun ProductsListContent(
                     IconButton(onClick = { onBackClick() }) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Back"
+                            contentDescription = "Back",
                         )
                     }
-                }
+                },
             )
         },
         floatingActionButton = themeFAB,
-        modifier = modifier
+        modifier = modifier,
     ) {
         val scrollState = rememberLazyListState()
         when (uiState) {
@@ -137,19 +135,19 @@ fun ProductsListContent(
                     contentPadding = it,
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.spacedBy(2.dp),
-                    state = scrollState
+                    state = scrollState,
                 ) {
                     items(
                         count = lazyProductList.itemCount,
                         key = lazyProductList.itemKey { product -> product.id },
-                        contentType = lazyProductList.itemContentType { "MyPagingItems" }
+                        contentType = lazyProductList.itemContentType { "MyPagingItems" },
                     ) { index ->
                         val product = lazyProductList[index]
                         product?.let { beer ->
                             ProductRowView(
                                 product = beer,
                                 isShimmerVisible = false,
-                                navigateToProduct = navigateToProduct
+                                navigateToProduct = navigateToProduct,
                             )
                         }
                     }
@@ -168,7 +166,7 @@ fun ProductsListContent(
                                 ProductRowView(
                                     product = beerUI,
                                     isShimmerVisible = true,
-                                    navigateToProduct = {}
+                                    navigateToProduct = {},
                                 )
                             }
                         }
@@ -200,7 +198,7 @@ fun ProductsListContent(
                                 item {
                                     ErrorListView(
                                         message = error.error.localizedMessage,
-                                        onClickRetry = { retry() }
+                                        onClickRetry = { retry() },
                                     )
                                 }
                             }
@@ -249,5 +247,6 @@ private fun ProductsListContentPreview() {
         uiState = uiState,
         themeFAB = {},
         navigateToProduct = {},
-        onBackClick = {})
+        onBackClick = {},
+    )
 }

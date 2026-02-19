@@ -7,11 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.animation.graphics.ExperimentalAnimationGraphicsApi
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.FloatingActionButton
-import androidx.compose.material.Icon
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.ExperimentalComposeUiApi
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -57,11 +56,11 @@ class MainActivity : AppCompatActivity() {
                             Icon(
                                 painter = painterResource(id = whichThemeIcon(darkMode.not())),
                                 contentDescription = "Theme",
-                                tint = Color.Black
                             )
-                        }
+                        },
                     )
-                })
+                },
+            )
         }
         setupUI()
 

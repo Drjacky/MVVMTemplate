@@ -2,15 +2,14 @@ package app.web.drjackycv.core.ui.view
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedButton
-import androidx.compose.material.Text
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -45,8 +44,8 @@ fun ErrorListView(
         Text(
             text = message ?: stringResource(id = R.string.error_unknown),
             maxLines = 2,
-            style = MaterialTheme.typography.body1,
-            color = Color.Red,
+            style = MaterialTheme.typography.bodyLarge,
+            color = MaterialTheme.colorScheme.error,
             modifier = Modifier
                 .constrainAs(text) {
                     start.linkTo(parent.start, margin = 10.dp)
@@ -91,8 +90,8 @@ fun ErrorItemView(
         Text(
             text = message ?: stringResource(id = R.string.error_unknown),
             maxLines = 2,
-            style = MaterialTheme.typography.body1,
-            color = Color.Red,
+            style = MaterialTheme.typography.bodyLarge,
+            color = MaterialTheme.colorScheme.error,
             modifier = Modifier
                 .constrainAs(text) {
                     start.linkTo(parent.start, margin = 10.dp)

@@ -4,9 +4,9 @@ import androidx.compose.animation.graphics.ExperimentalAnimationGraphicsApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredWidth
-import androidx.compose.material.Button
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
+import androidx.compose.material3.Button
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -43,7 +43,8 @@ fun ChooseView(
     navigateToProductsList: (ChoosePathType) -> Unit,
 ) {
     Scaffold(
-        floatingActionButton = themeFAB, content = { padding ->
+        floatingActionButton = themeFAB,
+        content = { padding ->
             ConstraintLayout(
                 modifier = Modifier
                     .fillMaxSize()
@@ -68,12 +69,12 @@ fun ChooseView(
                             top.linkTo(parent.top)
                             bottom.linkTo(parent.bottom)
                         },
-                    onClick = { navigateToProductsList(ChoosePathType.RX) }
+                    onClick = { navigateToProductsList(ChoosePathType.RX) },
                 ) {
                     Text(
                         text = "RxJava",
                         modifier = Modifier.padding(4.dp),
-                        style = TextStyle(fontSize = 11.sp)
+                        style = TextStyle(fontSize = 11.sp),
                     )
                 }
                 Button(
@@ -85,42 +86,23 @@ fun ChooseView(
                             top.linkTo(parent.top)
                             bottom.linkTo(parent.bottom)
                         },
-                    onClick = { navigateToProductsList(ChoosePathType.COROUTINE) }
+                    onClick = { navigateToProductsList(ChoosePathType.COROUTINE) },
                 ) {
                     Text(
                         text = "Coroutines",
                         modifier = Modifier.padding(4.dp),
-                        style = TextStyle(fontSize = 11.sp)
+                        style = TextStyle(fontSize = 11.sp),
                     )
                 }
             }
         },
-        modifier = modifier
+        modifier = modifier,
     )
-}
-
-@Composable //TODO
-fun PathButton(
-    name: String,
-    modifier: Modifier = Modifier/*, selectedPath: (ChoosePathType) -> Unit*/
-) {
-    Button(
-        onClick = {
-
-        },
-        modifier = modifier
-    ) {
-        Text(
-            text = name,
-            modifier = Modifier.padding(4.dp),
-            style = TextStyle(fontSize = 11.sp)
-        )
-    }
 }
 
 enum class ChoosePathType : Serializable {
     COROUTINE,
-    RX
+    RX,
 }
 
 @Preview

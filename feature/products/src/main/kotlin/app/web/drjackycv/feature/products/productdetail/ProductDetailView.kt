@@ -5,13 +5,14 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -40,12 +41,12 @@ fun ProductRoute(
     onBackClick: () -> Unit,
     viewModel: ProductViewModel = hiltViewModel()
 ) {
-//    val uiState by viewModel.getProductByCoroutine(productId).collectAsStateWithLifecycle()
     val uiState by viewModel.productByCoroutine.collectAsStateWithLifecycle()
 
     ProductDetailView(uiState, themeFAB, onBackClick)
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
 @ExperimentalAnimationGraphicsApi
@@ -54,7 +55,7 @@ fun ProductDetailView(
     uiState: ProductUiState,
     themeFAB: @Composable () -> Unit,
     onBackClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     when (uiState) {
         is ProductUiState.Success -> {
@@ -68,14 +69,14 @@ fun ProductDetailView(
                             IconButton(onClick = onBackClick) {
                                 Icon(
                                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                                    contentDescription = "Back"
+                                    contentDescription = "Back",
                                 )
                             }
-                        }
+                        },
                     )
                 },
                 floatingActionButton = themeFAB,
-                modifier = modifier
+                modifier = modifier,
             ) {
                 Column(
                     modifier = Modifier
@@ -87,7 +88,7 @@ fun ProductDetailView(
                         text = "${uiState.item?.species}",
                         style = TextStyle(fontSize = 17.sp),
                         overflow = TextOverflow.Ellipsis,
-                        maxLines = 1
+                        maxLines = 1,
                     )
                 }
             }
@@ -104,13 +105,13 @@ fun ProductDetailView(
                             IconButton(onClick = onBackClick) {
                                 Icon(
                                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                                    contentDescription = "Back"
+                                    contentDescription = "Back",
                                 )
                             }
-                        }
+                        },
                     )
                 },
-                floatingActionButton = themeFAB
+                floatingActionButton = themeFAB,
             ) { padding ->
                 Box(
                     modifier = Modifier
@@ -119,7 +120,7 @@ fun ProductDetailView(
                 ) {
                     ErrorItemView(
                         modifier = Modifier.align(Alignment.Center),
-                        message = uiState.error.localizedMessage
+                        message = uiState.error.localizedMessage,
                     )
                 }
             }
@@ -131,7 +132,6 @@ fun ProductDetailView(
             }
         }
     }
-
 }
 
 @ExperimentalCoilApi
