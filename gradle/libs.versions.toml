@@ -9,14 +9,14 @@ targetSdk = "36"
 desugarJdk = "2.1.5"
 
 # Compose
-composeBom = "2025.10.01"
-composeNavigation = "2.8.5"
+composeBom = "2026.01.01"
+navigation3 = "1.0.0"
 composeConstraintLayout = "1.1.1"
-activityCompose = "1.11.0"
+activityCompose = "1.12.0"
 
 # Core Android
 coreKtx = "1.17.0"
-appcompat = "1.7.0"
+appcompat = "1.7.1"
 material = "1.12.0"
 lifecycle = "2.10.0"
 navigation = "2.8.5"
@@ -29,7 +29,7 @@ palette = "1.0.0"
 
 # Dependency Injection
 hilt = "2.56.2"
-hiltNavigationCompose = "1.2.0"
+hiltNavigationCompose = "1.3.0"
 javaxInject = "1"
 
 # Serialization
@@ -109,7 +109,9 @@ androidx-compose-ui-text = { group = "androidx.compose.ui", name = "ui-text" }
 androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-compose-animation-graphics = { group = "androidx.compose.animation", name = "animation-graphics" }
-androidx-compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "composeNavigation" }
+androidx-navigation3-runtime = { group = "androidx.navigation3", name = "navigation3-runtime", version.ref = "navigation3" }
+androidx-navigation3-ui = { group = "androidx.navigation3", name = "navigation3-ui", version.ref = "navigation3" }
+androidx-lifecycle-viewmodel-navigation3 = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-navigation3", version.ref = "lifecycle" }
 androidx-compose-paging = { group = "androidx.paging", name = "paging-compose", version.ref = "paging" }
 androidx-compose-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "composeConstraintLayout" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }

@@ -23,7 +23,6 @@ dependencies {
     implementation(libs.androidx.compose.runtime)
     implementation(libs.androidx.compose.animation.graphics)
     implementation(libs.androidx.compose.constraintlayout)
-    implementation(libs.androidx.compose.navigation)
     implementation(libs.androidx.activity.compose)
 
     implementation(libs.accompanist.placeholder)

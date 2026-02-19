@@ -1,16 +1,13 @@
 package app.web.drjackycv.mvvmtemplate.main
 
 import android.os.Bundle
-import androidx.activity.OnBackPressedCallback
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.compose.animation.graphics.ExperimentalAnimationGraphicsApi
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.res.painterResource
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -21,16 +18,11 @@ import app.web.drjackycv.core.common.extension.collectIn
 import app.web.drjackycv.core.domain.extension.allowReads
 import app.web.drjackycv.core.ui.R
 import app.web.drjackycv.core.ui.theme.ThemeState
-import coil.annotation.ExperimentalCoilApi
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
-@ExperimentalCoilApi
-@ExperimentalComposeUiApi
-@ExperimentalAnimationGraphicsApi
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
@@ -63,12 +55,6 @@ class MainActivity : AppCompatActivity() {
             )
         }
         setupUI()
-
-        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                finish()
-            }
-        })
     }
 
     override fun onStop() {
@@ -107,16 +93,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun whichThemeIcon(isDark: Boolean): Int {
-        return when (isDark) {
-            true -> {
-                R.drawable.ic_mode_night_yes_black
-            }
-
-            false -> {
-                R.drawable.ic_mode_night_no_black
-            }
-        }
+    private fun whichThemeIcon(isDark: Boolean): Int = when (isDark) {
+        true -> R.drawable.ic_mode_night_yes_black
+        false -> R.drawable.ic_mode_night_no_black
     }
-
 }

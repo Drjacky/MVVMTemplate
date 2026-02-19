@@ -14,6 +14,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -23,7 +24,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import app.web.drjackycv.core.ui.view.ErrorItemView
 import app.web.drjackycv.core.ui.view.LoadingItemView
@@ -41,6 +42,9 @@ fun ProductRoute(
     onBackClick: () -> Unit,
     viewModel: ProductViewModel = hiltViewModel()
 ) {
+    LaunchedEffect(productId) {
+        viewModel.setProductId(productId)
+    }
     val uiState by viewModel.productByCoroutine.collectAsStateWithLifecycle()
 
     ProductDetailView(uiState, themeFAB, onBackClick)

@@ -2,6 +2,8 @@ plugins {
     id("app.android.library")
     id("app.android.library.compose")
     id("app.hilt")
+    alias(libs.plugins.kotlin.serialization)
+    id("app.kotlin.serialization")
     id("kotlin-parcelize")
 }
 
@@ -32,7 +34,7 @@ dependencies {
     implementation(libs.androidx.compose.runtime)
     implementation(libs.androidx.compose.runtime.livedata)
     implementation(libs.androidx.compose.paging)
-    implementation(libs.androidx.compose.navigation)
+    implementation(libs.androidx.navigation3.runtime)
     implementation(libs.androidx.compose.material.icons.extended)
     implementation(libs.androidx.compose.animation.graphics)
     implementation(libs.androidx.compose.constraintlayout)
