@@ -16,8 +16,10 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import app.web.drjackycv.domain.extension.allowReads
 import app.web.drjackycv.presentation.R
 import app.web.drjackycv.presentation.datastore.DataStoreManager
@@ -89,14 +91,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupUI() {
-        lifecycleScope.launchWhenStarted {
-            dataStoreManager.isDarkMode.collectIn(this@MainActivity) {
-                val mode = when (it) {
-                    true -> AppCompatDelegate.MODE_NIGHT_YES
-                    false -> AppCompatDelegate.MODE_NIGHT_NO
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                dataStoreManager.isDarkMode.collectIn(this@MainActivity) {
+                    val mode = when (it) {
+                        true -> AppCompatDelegate.MODE_NIGHT_YES
+                        false -> AppCompatDelegate.MODE_NIGHT_NO
+                    }
+                    if (AppCompatDelegate.getDefaultNightMode() != mode)
+                        AppCompatDelegate.setDefaultNightMode(mode)
                 }
-                if (AppCompatDelegate.getDefaultNightMode() != mode)
-                    AppCompatDelegate.setDefaultNightMode(mode)
             }
         }
     }

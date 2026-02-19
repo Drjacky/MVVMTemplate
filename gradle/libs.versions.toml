@@ -1,47 +1,41 @@
 [versions]
 # Build
-agp = "8.5.0"
-kotlin = "2.0.0"
-ksp = "2.0.0-1.0.22"
-compileSdk = "34"
-minSdk = "21"
-targetSdk = "34"
-desugarJdk = "2.0.4"
+agp = "8.10.0"
+kotlin = "2.2.21"
+ksp = "2.3.6"
+compileSdk = "36"
+minSdk = "24"
+targetSdk = "36"
+desugarJdk = "2.1.5"
 
 # Compose
-composeBom = "2024.06.00"
-composeNavigation = "2.7.7"
-composePaging = "3.3.0"
-composeConstraintLayout = "1.1.0-alpha13"
-accompanistPlaceholder = "0.34.0"
-activityCompose = "1.9.0"
-materialComposeThemeAdapter = "1.2.1"
+composeBom = "2025.10.01"
+composeNavigation = "2.8.5"
+composeConstraintLayout = "1.1.1"
+activityCompose = "1.11.0"
 
 # Core Android
-coreKtx = "1.13.1"
+coreKtx = "1.17.0"
 appcompat = "1.7.0"
 material = "1.12.0"
-lifecycle = "2.8.2"
-navigation = "2.7.7"
-paging = "3.3.0"
+lifecycle = "2.10.0"
+navigation = "2.8.5"
+paging = "3.3.6"
 fragmentKtx = "1.8.0"
 recyclerview = "1.3.2"
 constraintLayout = "2.1.4"
-multidex = "2.0.1"
-dataStorePreferences = "1.0.0"
-customView = "1.2.0-alpha02"
-customViewPoolingContainer = "1.0.0"
+dataStorePreferences = "1.1.4"
 palette = "1.0.0"
 
 # Dependency Injection
-hilt = "2.51.1"
+hilt = "2.56.2"
 hiltNavigationCompose = "1.2.0"
 javaxInject = "1"
 
 # Network
 retrofit = "2.9.0"
-okhttpLogging = "5.0.0-alpha.10"
-chucker = "3.5.2"
+okhttpLogging = "5.3.2"
+chucker = "4.1.0"
 gson = "2.10"
 
 # Reactive
@@ -51,28 +45,29 @@ rxJava = "3.1.5"
 rxBinding = "4.0.0"
 rxCoroutine = "1.6.4"
 autoDispose = "2.2.1"
-coroutines = "1.8.1"
+coroutines = "1.10.2"
 
 # UI
-coilCompose = "2.6.0"
-lottie = "5.2.0"
+accompanistPlaceholder = "0.34.0"
+coilCompose = "2.7.0"
+lottie = "6.6.2"
 
 # Logging & Debug
 timber = "5.0.1"
-leakCanary = "2.10"
+leakCanary = "2.14"
 
 # Testing
 junit = "4.13.2"
-mockitoCore = "4.10.0"
-mockitoInline = "4.10.0"
+mockitoCore = "5.15.2"
+mockitoInline = "5.2.0"
 mockitoKotlin = "2.2.0"
-mockk = "1.13.3"
-coroutinesTest = "1.8.1"
-archCoreTesting = "2.1.0"
-espresso = "3.5.0"
-testRunner = "1.5.0"
-testCore = "1.4.0"
-testExtJunit = "1.1.3"
+mockk = "1.13.16"
+coroutinesTest = "1.10.2"
+archCoreTesting = "2.2.0"
+espresso = "3.6.1"
+testRunner = "1.6.2"
+testCore = "1.6.1"
+testExtJunit = "1.2.1"
 
 # Code Quality
 detekt = "1.23.6"
@@ -113,19 +108,14 @@ androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-compose-animation-graphics = { group = "androidx.compose.animation", name = "animation-graphics" }
 androidx-compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "composeNavigation" }
-androidx-compose-paging = { group = "androidx.paging", name = "paging-compose", version.ref = "composePaging" }
+androidx-compose-paging = { group = "androidx.paging", name = "paging-compose", version.ref = "paging" }
 androidx-compose-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "composeConstraintLayout" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
-accompanist-placeholder = { group = "com.google.accompanist", name = "accompanist-placeholder-material", version.ref = "accompanistPlaceholder" }
-material-compose-theme-adapter = { group = "com.google.android.material", name = "compose-theme-adapter", version.ref = "materialComposeThemeAdapter" }
-customview = { group = "androidx.customview", name = "customview", version.ref = "customView" }
-customview-poolingcontainer = { group = "androidx.customview", name = "customview-poolingcontainer", version.ref = "customViewPoolingContainer" }
 
 # Core Android
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 google-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
-multidex = { group = "androidx.multidex", name = "multidex", version.ref = "multidex" }
 androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragmentKtx" }
 androidx-recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintLayout" }
@@ -173,6 +163,7 @@ autodispose-android-arch = { group = "com.uber.autodispose2", name = "autodispos
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 
 # UI
+accompanist-placeholder = { group = "com.google.accompanist", name = "accompanist-placeholder-material", version.ref = "accompanistPlaceholder" }
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coilCompose" }
 lottie = { group = "com.airbnb.android", name = "lottie", version.ref = "lottie" }
 lottie-compose = { group = "com.airbnb.android", name = "lottie-compose", version.ref = "lottie" }
@@ -215,4 +206,3 @@ gradleVersionsPlugin = { id = "com.github.ben-manes.versions", version.ref = "ch
 gradleDoctorPlugin = { id = "com.osacky.doctor", version.ref = "gradleDoctor" }
 dependencyAnalysis = { id = "com.autonomousapps.dependency-analysis", version.ref = "dependencyAnalysis" }
 sonatypeScanGradle = { id = "org.sonatype.gradle.plugins.scan", version.ref = "sonatypeScanGradle" }
-

@@ -39,7 +39,6 @@ dependencies {
     implementation(libs.androidx.paging.runtime.ktx)
     implementation(libs.androidx.paging.rx)
     implementation(libs.rx.coroutine)
-    implementation(libs.multidex)
     implementation(libs.java.inject)
 
     implementation(libs.gson)

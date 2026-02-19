@@ -16,7 +16,6 @@ dependencies {
     implementation(libs.androidx.paging.runtime.ktx)
     implementation(libs.androidx.paging.rx)
     implementation(libs.androidx.lifecycle.livedata)
-    implementation(libs.multidex)
     implementation(libs.java.inject)
 
     implementation(libs.rx.kotlin)

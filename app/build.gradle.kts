@@ -12,7 +12,6 @@ android {
         applicationId = "app.web.drjackycv.mvvmtemplate"
         versionCode = 1
         versionName = "1.0.0"
-        multiDexEnabled = true
         javaCompileOptions.annotationProcessorOptions.arguments += mapOf(
             "room.schemaLocation" to "$projectDir/schemas"
         )
@@ -37,9 +36,16 @@ android {
         }
     }
 
+    buildFeatures {
+        buildConfig = true
+    }
+
     packaging {
         resources {
-            excludes += setOf("META-INF/ui-tooling_release.kotlin_module")
+            excludes += setOf(
+                "META-INF/ui-tooling_release.kotlin_module",
+                "META-INF/versions/9/OSGI-INF/MANIFEST.MF",
+            )
         }
     }
 }
@@ -50,7 +56,6 @@ dependencies {
     implementation(projects.domain)
 
     implementation(libs.androidx.core.ktx)
-    implementation(libs.multidex)
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.paging.runtime.ktx)
     implementation(libs.androidx.paging.rx)

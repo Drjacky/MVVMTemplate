@@ -27,7 +27,6 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.lifecycle.common.java8)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.multidex)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.recyclerview)
@@ -48,12 +47,8 @@ dependencies {
     implementation(libs.androidx.compose.animation.graphics)
     implementation(libs.androidx.compose.constraintlayout)
     implementation(libs.accompanist.placeholder)
-    implementation(libs.material.compose.theme.adapter)
     implementation(libs.androidx.activity.compose)
     implementation(libs.hilt.navigation.compose)
-
-    debugImplementation(libs.customview)
-    debugImplementation(libs.customview.poolingcontainer)
 
     implementation(libs.rx.android)
     implementation(libs.rx.binding)
