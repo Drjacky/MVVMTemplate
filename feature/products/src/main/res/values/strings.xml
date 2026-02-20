@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Screen titles -->
+    <string name="products_title">Products</string>
+
+    <!-- Choose screen - reactive framework labels -->
+    <string name="rxjava">RxJava</string>
+    <string name="coroutines">Coroutines</string>
+</resources>

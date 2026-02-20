@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Error message shown when device has no internet connection -->
     <string name="error_no_internet">No Internet Connection</string>
+    <!-- Error message shown when the network request takes too long -->
     <string name="error_timeout">Oops! Slow Connection</string>
+    <!-- Fallback error message when the error type is unknown -->
     <string name="error_unknown">Unknown Error! That\'s all we know</string>
 </resources>

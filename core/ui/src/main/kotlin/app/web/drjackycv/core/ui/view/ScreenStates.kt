@@ -16,6 +16,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
+import app.web.drjackycv.core.common.R as CommonR
 import app.web.drjackycv.core.ui.R
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
@@ -44,7 +45,7 @@ fun ErrorListView(
                     bottom.linkTo(guide)
                 })
         Text(
-            text = message ?: stringResource(id = R.string.error_unknown),
+            text = message ?: stringResource(id = CommonR.string.error_unknown),
             maxLines = 2,
             style = MaterialTheme.typography.bodyLarge,
             color = MaterialTheme.colorScheme.error,
@@ -90,7 +91,7 @@ fun ErrorItemView(
                     bottom.linkTo(guide)
                 })
         Text(
-            text = message ?: stringResource(id = R.string.error_unknown),
+            text = message ?: stringResource(id = CommonR.string.error_unknown),
             maxLines = 2,
             style = MaterialTheme.typography.bodyLarge,
             color = MaterialTheme.colorScheme.error,

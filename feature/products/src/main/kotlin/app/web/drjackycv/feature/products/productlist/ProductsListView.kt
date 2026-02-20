@@ -32,8 +32,9 @@ import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemContentType
 import androidx.paging.compose.itemKey
-import app.web.drjackycv.core.ui.R
+import app.web.drjackycv.core.ui.R as CoreUiR
 import app.web.drjackycv.core.ui.view.ErrorListView
+import app.web.drjackycv.feature.products.R
 import app.web.drjackycv.core.ui.view.LoadingItemView
 import app.web.drjackycv.feature.products.choose.ChoosePathType
 import app.web.drjackycv.feature.products.entity.BeerUI
@@ -108,7 +109,7 @@ fun ProductsListContent(
                     IconButton(onClick = { onBackClick() }) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = stringResource(R.string.content_description_back),
+                            contentDescription = stringResource(CoreUiR.string.content_description_back),
                         )
                     }
                 },
