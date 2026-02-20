@@ -80,7 +80,7 @@ class ProductViewModel @Inject constructor(
 }
 
 sealed interface ProductUiState {
-    data class Success(val item: BeerUI? = null) : ProductUiState
+    data class Success(val item: BeerUI?) : ProductUiState
     data class Error(val error: Throwable) : ProductUiState
     data object Loading : ProductUiState
 }

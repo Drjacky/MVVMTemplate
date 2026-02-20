@@ -1,9 +1,11 @@
 package app.web.drjackycv.feature.products.entity
 
 import android.os.Parcelable
+import androidx.compose.runtime.Immutable
 import app.web.drjackycv.core.domain.products.entity.Beer
 import kotlinx.parcelize.Parcelize
 
+@Immutable
 @Parcelize
 data class BeerUI(
     val id: Int,

@@ -47,7 +47,8 @@ fun ProductsListRoute(
     navigateToProduct: (String) -> Unit,
     themeFAB: @Composable () -> Unit,
     onBackClick: () -> Unit,
-    viewModel: ProductsListViewModel = hiltViewModel()
+    modifier: Modifier = Modifier,
+    viewModel: ProductsListViewModel = hiltViewModel(),
 ) {
     when (choose) {
         ChoosePathType.RX -> {
@@ -55,43 +56,26 @@ fun ProductsListRoute(
                 viewModel.getProductsByRxPath()
             }
             val uiState = viewModel.ldProductsList.observeAsState(ProductsUiState.Loading)
-            ProductsListView(
+            ProductsListContent(
                 uiState = uiState.value,
                 themeFAB = themeFAB,
                 navigateToProduct = navigateToProduct,
                 onBackClick = onBackClick,
+                modifier = modifier,
             )
         }
 
         ChoosePathType.COROUTINE -> {
             val uiState by viewModel.productsListByCoroutine.collectAsStateWithLifecycle()
-            ProductsListView(
+            ProductsListContent(
                 uiState = uiState,
                 themeFAB = themeFAB,
                 navigateToProduct = navigateToProduct,
                 onBackClick = onBackClick,
+                modifier = modifier,
             )
         }
     }
-}
-
-
-@ExperimentalCoilApi
-@ExperimentalComposeUiApi
-@ExperimentalAnimationGraphicsApi
-@Composable
-fun ProductsListView(
-    uiState: ProductsUiState,
-    themeFAB: @Composable () -> Unit,
-    navigateToProduct: (String) -> Unit,
-    onBackClick: () -> Unit,
-) {
-    ProductsListContent(
-        uiState = uiState,
-        themeFAB = themeFAB,
-        navigateToProduct = navigateToProduct,
-        onBackClick = onBackClick,
-    )
 }
 
 

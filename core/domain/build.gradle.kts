@@ -13,6 +13,8 @@ dependencies {
     implementation(libs.androidx.paging.rx)
     implementation(libs.androidx.lifecycle.livedata)
     implementation(libs.java.inject)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.runtime)
 
     implementation(libs.rx.kotlin)
     implementation(libs.rx.java)

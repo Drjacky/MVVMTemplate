@@ -40,14 +40,20 @@ fun ProductRoute(
     productId: String,
     themeFAB: @Composable () -> Unit,
     onBackClick: () -> Unit,
-    viewModel: ProductViewModel = hiltViewModel()
+    modifier: Modifier = Modifier,
+    viewModel: ProductViewModel = hiltViewModel(),
 ) {
     LaunchedEffect(productId) {
         viewModel.setProductId(productId)
     }
     val uiState by viewModel.productByCoroutine.collectAsStateWithLifecycle()
 
-    ProductDetailView(uiState, themeFAB, onBackClick)
+    ProductDetailView(
+        uiState = uiState,
+        themeFAB = themeFAB,
+        onBackClick = onBackClick,
+        modifier = modifier,
+    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)

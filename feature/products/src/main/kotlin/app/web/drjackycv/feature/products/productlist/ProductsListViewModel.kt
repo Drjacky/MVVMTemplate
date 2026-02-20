@@ -110,5 +110,5 @@ class ProductsListViewModel @Inject constructor(
 sealed interface ProductsUiState {
     data class Success(val items: PagingData<BeerUI> = PagingData.empty()) : ProductsUiState
     data class Error(val error: Throwable) : ProductsUiState
-    object Loading : ProductsUiState
+    data object Loading : ProductsUiState
 }
