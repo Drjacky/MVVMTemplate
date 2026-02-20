@@ -38,7 +38,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            val darkMode by dataStoreManager.isDarkMode.collectAsStateWithLifecycle(initialValue = isSystemInDarkTheme())
+            val darkMode by dataStoreManager.isDarkMode
+                .collectAsStateWithLifecycle(initialValue = isSystemInDarkTheme())
 
             MyApp(
                 darkMode = darkMode,
@@ -50,7 +51,9 @@ class MainActivity : AppCompatActivity() {
                         content = {
                             Icon(
                                 painter = painterResource(id = whichThemeIcon(darkMode.not())),
-                                contentDescription = stringResource(app.web.drjackycv.core.ui.R.string.content_description_theme),
+                                contentDescription = stringResource(
+                                    R.string.content_description_theme,
+                                ),
                             )
                         },
                     )
@@ -80,8 +83,9 @@ class MainActivity : AppCompatActivity() {
                         true -> AppCompatDelegate.MODE_NIGHT_YES
                         false -> AppCompatDelegate.MODE_NIGHT_NO
                     }
-                    if (AppCompatDelegate.getDefaultNightMode() != mode)
+                    if (AppCompatDelegate.getDefaultNightMode() != mode) {
                         AppCompatDelegate.setDefaultNightMode(mode)
+                    }
                 }
             }
         }

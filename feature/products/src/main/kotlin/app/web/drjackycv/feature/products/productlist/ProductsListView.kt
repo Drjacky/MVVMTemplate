@@ -45,6 +45,7 @@ import app.web.drjackycv.core.ui.R as CoreUiR
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
 @ExperimentalAnimationGraphicsApi
+@Suppress("LongParameterList")
 @Composable
 fun ProductsListRoute(
     choose: ChoosePathType,
@@ -82,11 +83,11 @@ fun ProductsListRoute(
     }
 }
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
 @ExperimentalAnimationGraphicsApi
+@Suppress("LongMethod", "CyclomaticComplexMethod")
 @Composable
 fun ProductsListContent(
     uiState: ProductsUiState,
@@ -203,7 +204,6 @@ fun ProductsListContent(
         }
     }
 }
-
 
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi

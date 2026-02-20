@@ -17,7 +17,6 @@ import java.util.concurrent.TimeoutException
 import javax.inject.Inject
 import javax.inject.Singleton
 
-
 private const val STARTING_PAGE_INDEX = 1
 
 @Singleton
@@ -84,5 +83,4 @@ class ProductsPagingSource @Inject constructor(
             itemsAfter = LoadResult.Page.COUNT_UNDEFINED
         )
     }
-
 }

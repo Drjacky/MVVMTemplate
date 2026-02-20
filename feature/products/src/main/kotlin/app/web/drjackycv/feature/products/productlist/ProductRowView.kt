@@ -46,10 +46,10 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.request.SuccessResult
 
-
 @ExperimentalAnimationGraphicsApi
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
+@Suppress("LongMethod")
 @Composable
 fun ProductRowView(
     product: BeerUI,
@@ -153,7 +153,6 @@ fun ProductRowView(
         }
     }
 }
-
 
 @ExperimentalAnimationGraphicsApi
 @ExperimentalCoilApi

@@ -38,5 +38,4 @@ class BaseHttpClient @Inject constructor(
         .readTimeout(TIMEOUT, TimeUnit.SECONDS)
         .writeTimeout(TIMEOUT, TimeUnit.SECONDS)
         .build()
-
 }

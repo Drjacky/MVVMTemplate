@@ -51,5 +51,4 @@ class AppModule {
                 retentionPeriod = RetentionManager.Period.ONE_HOUR
             )
         }
-
 }

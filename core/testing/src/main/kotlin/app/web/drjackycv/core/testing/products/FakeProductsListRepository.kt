@@ -40,6 +40,7 @@ class FakeProductsListRepository : ProductsListRepository {
         return Flowable.just(data)
     }
 
+    @Suppress("ReturnCount")
     override fun getBeer(id: String): Flowable<Beer> {
         if (shouldFail) return Flowable.error(errorToThrow)
         val beer =

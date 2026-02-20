@@ -34,6 +34,7 @@ object TestData {
         url = "https://rickandmortyapi.com/api/character/3",
     )
 
+    @Suppress("LongParameterList")
     fun createBeer(
         id: Int = 1,
         name: String = "Test Character",

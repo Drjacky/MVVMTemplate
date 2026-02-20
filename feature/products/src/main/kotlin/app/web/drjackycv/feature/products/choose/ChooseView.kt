@@ -20,7 +20,6 @@ import app.web.drjackycv.feature.products.R
 import coil.annotation.ExperimentalCoilApi
 import java.io.Serializable
 
-
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
 @ExperimentalAnimationGraphicsApi

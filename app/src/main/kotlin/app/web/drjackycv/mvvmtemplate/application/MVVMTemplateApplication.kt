@@ -30,5 +30,4 @@ class MVVMTemplateApplication : Application() {
         super.onCreate()
         Timber.plant(Timber.DebugTree())
     }
-
 }

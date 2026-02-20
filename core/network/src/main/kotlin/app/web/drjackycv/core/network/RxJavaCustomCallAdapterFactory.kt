@@ -26,7 +26,7 @@ class RxJavaCustomCallAdapterFactory private constructor() : CallAdapter.Factory
         fun create() = RxJavaCustomCallAdapterFactory()
     }
 
-    @Suppress("ComplexCondition")
+    @Suppress("ComplexCondition", "ReturnCount")
     override fun get(
         returnType: Type,
         annotations: Array<Annotation>,
@@ -81,7 +81,7 @@ class RxJavaCustomCallAdapterFactory private constructor() : CallAdapter.Factory
             errorBodyConverter,
             isFlowable,
             isSingle,
-            isMaybe
+            isMaybe,
         )
     }
 
@@ -91,5 +91,4 @@ class RxJavaCustomCallAdapterFactory private constructor() : CallAdapter.Factory
             override fun getActualTypeArguments(): Array<out Type> = typeArguments
             override fun getOwnerType(): Type? = null
         }
-
 }

@@ -1,3 +1,5 @@
+@file:Suppress("MatchingDeclarationName")
+
 package app.web.drjackycv.core.ui.view
 
 import androidx.compose.animation.core.LinearEasing
@@ -21,13 +23,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.CornerRadius
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.rotate
 import androidx.compose.ui.graphics.drawscope.translate
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -40,8 +42,7 @@ enum class CirclePosition {
     Start, Finish
 }
 
-
-@Suppress("MagicNumber")
+@Suppress("MagicNumber", "LongMethod")
 @Composable
 fun ChooseArrowAnimation(
     modifier: Modifier = Modifier,
@@ -87,7 +88,6 @@ fun ChooseArrowAnimation(
             .requiredHeight(100.dp)
             .semantics { contentDescription = chooseDesc },
     ) {
-
         Canvas(
             modifier = Modifier
                 .requiredWidth(200.dp)
@@ -95,7 +95,6 @@ fun ChooseArrowAnimation(
                 .size(200.dp, 100.dp)
                 .padding(16.dp)
         ) {
-            val canvasWidth = size.width
             val canvasHeight = size.height
             val circleRadius = 30.dp.toPx()
             val arrowLength = 20.dp.toPx()
@@ -142,7 +141,6 @@ fun ChooseArrowAnimation(
             }
         }
     }
-
 }
 
 @Preview

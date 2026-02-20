@@ -16,5 +16,4 @@ class ApiModule {
     @Singleton
     fun products(retrofit: Retrofit): ProductsApi =
         retrofit.create(ProductsApi::class.java)
-
 }

@@ -1,6 +1,5 @@
 package app.web.drjackycv.feature.products.productlist
 
-import androidx.lifecycle.SavedStateHandle
 import androidx.paging.PagingData
 import app.web.drjackycv.core.domain.products.usecase.GetBeersListByCoroutineUseCase
 import app.web.drjackycv.core.domain.products.usecase.GetBeersListUseCase
@@ -41,7 +40,6 @@ class ProductsListViewModelTest {
         viewModel = ProductsListViewModel(
             getBeersUseCase = getBeersListUseCase,
             getBeersListByCoroutineUseCase = getBeersListByCoroutineUseCase,
-            savedStateHandle = SavedStateHandle(),
         )
     }
 

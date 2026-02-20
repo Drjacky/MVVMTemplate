@@ -16,13 +16,13 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
-import app.web.drjackycv.core.common.R as CommonR
 import app.web.drjackycv.core.ui.R
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
+import app.web.drjackycv.core.common.R as CommonR
 
 @Composable
 fun ErrorListView(
@@ -43,7 +43,8 @@ fun ErrorListView(
                     end.linkTo(parent.end)
                     top.linkTo(parent.top)
                     bottom.linkTo(guide)
-                })
+                },
+        )
         Text(
             text = message ?: stringResource(id = CommonR.string.error_unknown),
             maxLines = 2,
@@ -55,7 +56,7 @@ fun ErrorListView(
                     end.linkTo(button.start, margin = 5.dp)
                     top.linkTo(button.top)
                     bottom.linkTo(button.bottom)
-                }
+                },
         )
         OutlinedButton(
             onClick = onClickRetry,
@@ -64,7 +65,7 @@ fun ErrorListView(
                     start.linkTo(text.end, margin = 5.dp)
                     end.linkTo(parent.end, margin = 10.dp)
                     top.linkTo(guide)
-                }
+                },
         ) {
             Text(text = stringResource(id = R.string.try_again))
         }
@@ -89,7 +90,8 @@ fun ErrorItemView(
                     end.linkTo(parent.end)
                     top.linkTo(parent.top)
                     bottom.linkTo(guide)
-                })
+                },
+        )
         Text(
             text = message ?: stringResource(id = CommonR.string.error_unknown),
             maxLines = 2,
@@ -100,7 +102,7 @@ fun ErrorItemView(
                     start.linkTo(parent.start, margin = 10.dp)
                     end.linkTo(parent.end, margin = 5.dp)
                     top.linkTo(guide)
-                }
+                },
         )
     }
 }

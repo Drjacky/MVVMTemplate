@@ -26,5 +26,4 @@ sealed class NetworkResponse<out T : Any, out U : Any> {
      */
     data class NetworkError(val error: IOException) :
         NetworkResponse<Nothing, Nothing>()
-
 }

@@ -38,5 +38,4 @@ class DataStoreManager @Inject constructor(@ApplicationContext appContext: Conte
         .map { preferences ->
             preferences[Settings.NIGHT_MODE] ?: false
         }
-
 }

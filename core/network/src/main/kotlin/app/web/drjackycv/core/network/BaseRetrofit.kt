@@ -23,5 +23,4 @@ class BaseRetrofit @Inject constructor(
         .addCallAdapterFactory(RxJava3CallAdapterFactory.createWithScheduler(Schedulers.io()))
         .client(okHttpClient)
         .build()
-
 }

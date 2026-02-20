@@ -15,7 +15,6 @@ import javax.inject.Inject
 import javax.inject.Singleton
 import kotlin.coroutines.cancellation.CancellationException
 
-
 private const val STARTING_PAGE_INDEX = 1
 
 @Singleton
@@ -33,7 +32,7 @@ class ProductsPagingSourceByCoroutine @Inject constructor(
             toLoadResult(response, position)
         } catch (e: CancellationException) {
             throw e
-        } catch (e: Exception) {
+        } catch (@Suppress("TooGenericExceptionCaught") e: Exception) {
             when (e) {
                 is UnknownHostException, is SocketTimeoutException -> {
                     LoadResult.Error(
@@ -72,5 +71,4 @@ class ProductsPagingSourceByCoroutine @Inject constructor(
             itemsAfter = LoadResult.Page.COUNT_UNDEFINED
         )
     }
-
 }

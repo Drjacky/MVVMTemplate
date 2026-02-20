@@ -35,10 +35,10 @@ import app.web.drjackycv.feature.products.choose.ChoosePathType
 import app.web.drjackycv.feature.products.entity.BeerUI
 import coil.annotation.ExperimentalCoilApi
 
-
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
 @ExperimentalAnimationGraphicsApi
+@Suppress("LongParameterList")
 @Composable
 fun ProductRoute(
     productId: String,
@@ -81,6 +81,7 @@ fun ProductRoute(
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
 @ExperimentalAnimationGraphicsApi
+@Suppress("LongMethod")
 @Composable
 fun ProductDetailView(
     uiState: ProductUiState,

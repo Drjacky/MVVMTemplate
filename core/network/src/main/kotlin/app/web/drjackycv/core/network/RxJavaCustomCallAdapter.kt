@@ -40,14 +40,14 @@ internal class RxJavaCustomCallAdapter<T : Any, U : Any>(
                                 else -> {
                                     try {
                                         errorConverter.convert(error)
-                                    } catch (e: Exception) {
+                                    } catch (@Suppress("TooGenericExceptionCaught") e: Exception) {
                                         return@Function Observable.just(
                                             NetworkResponse.NetworkError(
                                                 IOException(
                                                     "Couldn't deserialize error body: ${error.string()}",
-                                                    e
-                                                )
-                                            )
+                                                    e,
+                                                ),
+                                            ),
                                         )
                                     }
                                 }
@@ -61,9 +61,7 @@ internal class RxJavaCustomCallAdapter<T : Any, U : Any>(
 
                         is IOException -> {
                             Observable.just(
-                                NetworkResponse.NetworkError(
-                                    throwable
-                                )
+                                NetworkResponse.NetworkError(throwable),
                             )
                         }
 
@@ -71,7 +69,8 @@ internal class RxJavaCustomCallAdapter<T : Any, U : Any>(
                             throw throwable
                         }
                     }
-                }).run {
+                }
+            ).run {
                 when {
                     isFlowable -> this.toFlowable(BackpressureStrategy.LATEST)
                     isSingle -> this.singleOrError()
@@ -81,5 +80,4 @@ internal class RxJavaCustomCallAdapter<T : Any, U : Any>(
             }
 
     override fun responseType(): Type = successBodyType
-
 }

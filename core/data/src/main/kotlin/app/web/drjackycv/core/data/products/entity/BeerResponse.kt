@@ -28,8 +28,8 @@ data class BeerResponse(
     val url: String,
 )
 
-
 fun BeerResponse.mapIt(): Beer =
+
     Beer(
         id = id,
         name = name,

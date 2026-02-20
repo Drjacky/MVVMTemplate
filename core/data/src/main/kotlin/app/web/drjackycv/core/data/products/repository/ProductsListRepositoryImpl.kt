@@ -73,5 +73,4 @@ class ProductsListRepositoryImpl @Inject constructor(
             val response = productsApi.getBeerByCoroutine(id)
             emit(response.mapIt())
         }
-
 }

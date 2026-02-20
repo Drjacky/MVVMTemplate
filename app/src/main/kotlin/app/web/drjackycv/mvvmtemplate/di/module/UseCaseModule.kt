@@ -42,5 +42,4 @@ class UseCaseModule {
         productsListRepository: ProductsListRepository,
     ): GetBeerUseCase =
         GetBeerUseCase(productsListRepository::getBeer)
-
 }

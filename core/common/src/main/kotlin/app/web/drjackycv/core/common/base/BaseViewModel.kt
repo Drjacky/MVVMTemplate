@@ -14,7 +14,8 @@ import javax.inject.Inject
  * for automatic RxJava subscription disposal tied to the ViewModel lifecycle.
  */
 @HiltViewModel
-open class BaseViewModel @Inject constructor() : ViewModel(),
+open class BaseViewModel @Inject constructor() :
+    ViewModel(),
     LifecycleScopeProvider<BaseViewModel.ViewModelEvent> {
 
     private val lifecycleEventsDelegate =

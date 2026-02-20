@@ -12,5 +12,4 @@ sealed class Failure(
     class NoInternet(msg: String? = null, retryAction: () -> Unit = {}) : Failure(msg, retryAction)
 
     class Unknown(msg: String? = null, retryAction: () -> Unit = {}) : Failure(msg, retryAction)
-
 }

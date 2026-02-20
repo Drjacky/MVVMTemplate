@@ -27,5 +27,4 @@ class RepositoryModule {
             pagingSourceByCoroutine = pagingSourceByCoroutine,
             productsApi = productsApi
         )
-
 }

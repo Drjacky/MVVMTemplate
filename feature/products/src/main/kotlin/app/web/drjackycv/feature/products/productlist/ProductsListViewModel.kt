@@ -1,6 +1,5 @@
 package app.web.drjackycv.feature.products.productlist
 
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
@@ -34,7 +33,6 @@ import javax.inject.Inject
 class ProductsListViewModel @Inject constructor(
     private val getBeersUseCase: GetBeersListUseCase,
     private val getBeersListByCoroutineUseCase: GetBeersListByCoroutineUseCase,
-    private val savedStateHandle: SavedStateHandle,
 ) : BaseViewModel() {
 
     private val _productsListByRx = MutableStateFlow<ProductsUiState>(ProductsUiState.Loading)
@@ -105,9 +103,7 @@ class ProductsListViewModel @Inject constructor(
                     }
                 }
             }
-
 }
-
 sealed interface ProductsUiState {
     data class Success(val items: PagingData<BeerUI> = PagingData.empty()) : ProductsUiState
     data class Error(val error: Throwable) : ProductsUiState

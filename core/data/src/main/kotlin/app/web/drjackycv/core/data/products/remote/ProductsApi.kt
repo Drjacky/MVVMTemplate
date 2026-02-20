@@ -32,5 +32,4 @@ interface ProductsApi : BaseApiService {
     suspend fun getBeerByCoroutine(
         @Path("beer_id") id: String?,
     ): BeerResponse
-
 }
