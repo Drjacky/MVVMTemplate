@@ -11,8 +11,8 @@ class FakeProductsNavigator : ProductsNavigator {
         _navigationEvents.add("navigateToProductsList:${choosePathType.name}")
     }
 
-    override fun navigateToProduct(productId: String) {
-        _navigationEvents.add("navigateToProduct:$productId")
+    override fun navigateToProduct(productId: String, choosePathType: ChoosePathType) {
+        _navigationEvents.add("navigateToProduct:$productId:${choosePathType.name}")
     }
 
     override fun navigateBack() {

@@ -31,6 +31,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import app.web.drjackycv.core.ui.R
 import app.web.drjackycv.core.ui.view.ErrorItemView
 import app.web.drjackycv.core.ui.view.LoadingItemView
+import app.web.drjackycv.feature.products.choose.ChoosePathType
 import app.web.drjackycv.feature.products.entity.BeerUI
 import coil.annotation.ExperimentalCoilApi
 
@@ -41,22 +42,39 @@ import coil.annotation.ExperimentalCoilApi
 @Composable
 fun ProductRoute(
     productId: String,
+    choose: ChoosePathType,
     themeFAB: @Composable () -> Unit,
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: ProductViewModel = hiltViewModel(),
 ) {
-    LaunchedEffect(productId) {
-        viewModel.setProductId(productId)
-    }
-    val uiState by viewModel.productByCoroutine.collectAsStateWithLifecycle()
+    when (choose) {
+        ChoosePathType.RX -> {
+            LaunchedEffect(productId) {
+                viewModel.getProduct(productId)
+            }
+            val uiState by viewModel.productByRx.collectAsStateWithLifecycle()
+            ProductDetailView(
+                uiState = uiState,
+                themeFAB = themeFAB,
+                onBackClick = onBackClick,
+                modifier = modifier,
+            )
+        }
 
-    ProductDetailView(
-        uiState = uiState,
-        themeFAB = themeFAB,
-        onBackClick = onBackClick,
-        modifier = modifier,
-    )
+        ChoosePathType.COROUTINE -> {
+            LaunchedEffect(productId) {
+                viewModel.setProductId(productId)
+            }
+            val uiState by viewModel.productByCoroutine.collectAsStateWithLifecycle()
+            ProductDetailView(
+                uiState = uiState,
+                themeFAB = themeFAB,
+                onBackClick = onBackClick,
+                modifier = modifier,
+            )
+        }
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)

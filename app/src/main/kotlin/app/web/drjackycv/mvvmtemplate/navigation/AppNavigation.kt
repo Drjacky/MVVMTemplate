@@ -27,8 +27,8 @@ fun AppNavigation(
                 backStack.add(ProductsDestination.ProductsList(choosePathType.name))
             }
 
-            override fun navigateToProduct(productId: String) {
-                backStack.add(ProductsDestination.ProductDetail(productId))
+            override fun navigateToProduct(productId: String, choosePathType: ChoosePathType) {
+                backStack.add(ProductsDestination.ProductDetail(productId, choosePathType.name))
             }
 
             override fun navigateBack() {

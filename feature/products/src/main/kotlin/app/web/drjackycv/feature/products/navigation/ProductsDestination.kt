@@ -13,5 +13,5 @@ sealed interface ProductsDestination : NavKey {
     data class ProductsList(val choose: String) : ProductsDestination
 
     @Serializable
-    data class ProductDetail(val productId: String) : ProductsDestination
+    data class ProductDetail(val productId: String, val choose: String) : ProductsDestination
 }

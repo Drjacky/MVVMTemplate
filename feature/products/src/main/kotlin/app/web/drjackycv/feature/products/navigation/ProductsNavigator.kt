@@ -4,6 +4,6 @@ import app.web.drjackycv.feature.products.choose.ChoosePathType
 
 interface ProductsNavigator {
     fun navigateToProductsList(choosePathType: ChoosePathType)
-    fun navigateToProduct(productId: String)
+    fun navigateToProduct(productId: String, choosePathType: ChoosePathType)
     fun navigateBack()
 }

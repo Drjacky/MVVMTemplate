@@ -15,8 +15,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
-import app.web.drjackycv.feature.products.R
 import app.web.drjackycv.core.ui.view.ChooseArrowAnimation
+import app.web.drjackycv.feature.products.R
 import coil.annotation.ExperimentalCoilApi
 import java.io.Serializable
 
@@ -63,7 +63,7 @@ fun ChooseView(
                 )
                 Button(
                     modifier = Modifier
-                        .requiredWidth(100.dp)
+                        .requiredWidth(115.dp)
                         .constrainAs(rxButton) {
                             start.linkTo(parent.start, margin = 20.dp)
                             end.linkTo(coroutineButton.start, margin = 10.dp)
@@ -80,7 +80,7 @@ fun ChooseView(
                 }
                 Button(
                     modifier = Modifier
-                        .requiredWidth(100.dp)
+                        .requiredWidth(115.dp)
                         .constrainAs(coroutineButton) {
                             start.linkTo(rxButton.end, margin = 10.dp)
                             end.linkTo(parent.end, margin = 20.dp)

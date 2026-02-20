@@ -23,11 +23,11 @@ class FakeProductsNavigatorTest {
     }
 
     @Test
-    fun `navigateToProduct tracks event with product id`() {
-        navigator.navigateToProduct("42")
+    fun `navigateToProduct tracks event with product id and path type`() {
+        navigator.navigateToProduct("42", ChoosePathType.COROUTINE)
 
         assertThat(navigator.navigationEvents).hasSize(1)
-        assertThat(navigator.navigationEvents[0]).isEqualTo("navigateToProduct:42")
+        assertThat(navigator.navigationEvents[0]).isEqualTo("navigateToProduct:42:COROUTINE")
     }
 
     @Test
@@ -41,21 +41,21 @@ class FakeProductsNavigatorTest {
     @Test
     fun `multiple navigation events are tracked in order`() {
         navigator.navigateToProductsList(ChoosePathType.RX)
-        navigator.navigateToProduct("1")
-        navigator.navigateToProduct("2")
+        navigator.navigateToProduct("1", ChoosePathType.RX)
+        navigator.navigateToProduct("2", ChoosePathType.RX)
         navigator.navigateBack()
 
         assertThat(navigator.navigationEvents).hasSize(4)
         assertThat(navigator.navigationEvents[0]).isEqualTo("navigateToProductsList:RX")
-        assertThat(navigator.navigationEvents[1]).isEqualTo("navigateToProduct:1")
-        assertThat(navigator.navigationEvents[2]).isEqualTo("navigateToProduct:2")
+        assertThat(navigator.navigationEvents[1]).isEqualTo("navigateToProduct:1:RX")
+        assertThat(navigator.navigationEvents[2]).isEqualTo("navigateToProduct:2:RX")
         assertThat(navigator.navigationEvents[3]).isEqualTo("navigateBack")
     }
 
     @Test
     fun `clearEvents removes all tracked events`() {
         navigator.navigateToProductsList(ChoosePathType.COROUTINE)
-        navigator.navigateToProduct("1")
+        navigator.navigateToProduct("1", ChoosePathType.COROUTINE)
 
         assertThat(navigator.navigationEvents).isNotEmpty()
 
@@ -67,9 +67,9 @@ class FakeProductsNavigatorTest {
     @Test
     fun `getLastEvent returns most recent navigation`() {
         navigator.navigateToProductsList(ChoosePathType.COROUTINE)
-        navigator.navigateToProduct("42")
+        navigator.navigateToProduct("42", ChoosePathType.COROUTINE)
 
-        assertThat(navigator.getLastEvent()).isEqualTo("navigateToProduct:42")
+        assertThat(navigator.getLastEvent()).isEqualTo("navigateToProduct:42:COROUTINE")
     }
 
     @Test

@@ -30,14 +30,16 @@ fun EntryProviderScope<NavKey>.productsGraph(
         val choose = ChoosePathType.valueOf(key.choose)
         ProductsListRoute(
             choose = choose,
-            navigateToProduct = { navigator.navigateToProduct(it) },
+            navigateToProduct = { navigator.navigateToProduct(it, choose) },
             themeFAB = themeFAB,
             onBackClick = { navigator.navigateBack() },
         )
     }
     entry<ProductsDestination.ProductDetail> { key ->
+        val choose = ChoosePathType.valueOf(key.choose)
         ProductRoute(
             productId = key.productId,
+            choose = choose,
             themeFAB = themeFAB,
             onBackClick = { navigator.navigateBack() },
         )
