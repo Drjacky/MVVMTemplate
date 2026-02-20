@@ -9,14 +9,17 @@ class HiltConventionPlugin : Plugin<Project> {
             apply(plugin = "com.google.devtools.ksp")
             apply(plugin = "com.google.dagger.hilt.android")
 
+            val hiltCompiler = libs.findLibrary("hilt.compiler").get()
+            val hiltAndroidTesting = libs.findLibrary("hilt.android.testing").get()
+
             dependencies {
                 add("implementation", libs.findLibrary("hilt.android").get())
-                add("ksp", libs.findLibrary("hilt.compiler").get())
+                add("ksp", hiltCompiler)
 
-                add("kspTest", libs.findLibrary("hilt.compiler").get())
-                add("testImplementation", libs.findLibrary("hilt.android.testing").get())
-                add("kspAndroidTest", libs.findLibrary("hilt.compiler").get())
-                add("androidTestImplementation", libs.findLibrary("hilt.android.testing").get())
+                add("kspTest", hiltCompiler)
+                add("testImplementation", hiltAndroidTesting)
+                add("kspAndroidTest", hiltCompiler)
+                add("androidTestImplementation", hiltAndroidTesting)
             }
         }
     }
