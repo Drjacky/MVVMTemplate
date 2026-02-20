@@ -63,7 +63,7 @@ fun ErrorListView(
                     top.linkTo(guide)
                 }
         ) {
-            Text(text = "Try again")
+            Text(text = stringResource(id = R.string.try_again))
         }
     }
 }

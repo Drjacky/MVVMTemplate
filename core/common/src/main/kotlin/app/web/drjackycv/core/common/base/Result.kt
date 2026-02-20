@@ -13,7 +13,7 @@ import java.util.concurrent.TimeoutException
 sealed interface Result<out T : Any> {
     data class Success<T : Any>(val data: T) : Result<T>
     data class Error(val failure: Throwable) : Result<Nothing>
-    object Loading : Result<Nothing>
+    data object Loading : Result<Nothing>
 }
 
 fun <T : Any> Flow<T>.asResult(): Flow<Result<T>> {
@@ -44,7 +44,6 @@ fun <T : Any> Flowable<T>.asResult(): Flowable<Result<T>> =
         .map<Result<T>> {
             Result.Success(it)
         }
-        //.doOnSubscribe { Flowable.just(Result.Loading) }
         .startWith(Flowable.just(Result.Loading))
         .onErrorReturn { e ->
             when (e) {

@@ -54,27 +54,41 @@ open class BaseViewModel @Inject constructor() : ViewModel(),
     fun handleFailure(throwable: Throwable, retryAction: () -> Unit) {
         val failure = when (throwable) {
             is Failure.NoInternet -> {
-                Failure.NoInternet(resources.getString(R.string.error_no_internet))
+                Failure.NoInternet(
+                    msg = resources.getString(R.string.error_no_internet),
+                    retryAction = retryAction,
+                )
             }
 
             is Failure.Api -> {
-                Failure.Api(throwable.msg)
+                Failure.Api(
+                    msg = throwable.msg,
+                    retryAction = retryAction,
+                )
             }
 
             is Failure.Timeout -> {
-                Failure.Timeout(resources.getString(R.string.error_timeout))
+                Failure.Timeout(
+                    msg = resources.getString(R.string.error_timeout),
+                    retryAction = retryAction,
+                )
             }
 
             is Failure.Unknown -> {
-                Failure.Unknown(resources.getString(R.string.error_unknown))
+                Failure.Unknown(
+                    msg = resources.getString(R.string.error_unknown),
+                    retryAction = retryAction,
+                )
             }
 
             else -> {
-                Failure.Unknown(resources.getString(R.string.error_unknown))
+                Failure.Unknown(
+                    msg = resources.getString(R.string.error_unknown),
+                    retryAction = retryAction,
+                )
             }
         }
 
-        failure.retryAction = retryAction
         viewModelScope.launch {
             _failure.send(failure)
         }

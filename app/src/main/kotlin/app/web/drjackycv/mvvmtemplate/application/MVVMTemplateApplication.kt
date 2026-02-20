@@ -32,7 +32,6 @@ class MVVMTemplateApplication : Application() {
                     .detectLeakedSqlLiteObjects()
                     .detectLeakedClosableObjects()
                     .penaltyLog()
-                    //.penaltyDeath() //TODO
                     .build()
             )
         }

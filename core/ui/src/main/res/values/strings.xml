@@ -2,9 +2,14 @@
 <resources>
     <string name="error_no_internet">No Internet Connection</string>
     <string name="error_timeout">Oops! Slow Connection</string>
-    <string name="error_unknown">Unknown Error! That’s all we know</string>
+    <string name="error_unknown">Unknown Error! That\'s all we know</string>
     <string name="description">Description:\n\n %1$s</string>
     <string name="abv">ABV: %1$s</string>
     <string name="rxjava">RxJava</string>
     <string name="coroutine">Coroutine</string>
+    <string name="coroutines">Coroutines</string>
+    <string name="content_description_back">Back</string>
+    <string name="content_description_theme">Theme</string>
+    <string name="try_again">Try again</string>
+    <string name="products_title">Products</string>
 </resources>

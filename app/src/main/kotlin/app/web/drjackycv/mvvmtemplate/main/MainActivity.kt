@@ -9,6 +9,7 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -47,7 +48,7 @@ class MainActivity : AppCompatActivity() {
                         content = {
                             Icon(
                                 painter = painterResource(id = whichThemeIcon(darkMode.not())),
-                                contentDescription = "Theme",
+                                contentDescription = stringResource(app.web.drjackycv.core.ui.R.string.content_description_theme),
                             )
                         },
                     )

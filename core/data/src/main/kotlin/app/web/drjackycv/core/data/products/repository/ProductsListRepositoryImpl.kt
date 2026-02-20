@@ -40,14 +40,11 @@ class ProductsListRepositoryImpl @Inject constructor(
             ).flowable
         }
 
-    override fun getBeer(id: String): Flowable<Beer> { //TODO: Use Rx
-        return flow {
+    override fun getBeer(id: String): Flowable<Beer> = //TODO: Use Rx
+        flow {
             val response = productsApi.getBeerByCoroutine(id)
-            val result = response.mapIt()
-
-            emit(result)
+            emit(response.mapIt())
         }.asFlowable()
-    }
 
     override fun getBeersListByCoroutine(): Flow<PagingData<Beer>> =
         allowReads {
@@ -64,12 +61,10 @@ class ProductsListRepositoryImpl @Inject constructor(
             ).flow
         }
 
-    override fun getBeerByCoroutine(id: String): Flow<Beer> = //TODO: Handle exception
+    override fun getBeerByCoroutine(id: String): Flow<Beer> =
         flow {
             val response = productsApi.getBeerByCoroutine(id)
-            val result = response.mapIt()
-
-            emit(result)
+            emit(response.mapIt())
         }
 
 }

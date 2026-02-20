@@ -14,7 +14,7 @@ data class BeerUI(
     val species: String,
     val gender: String,
     val image: String,
-    val url: String
+    val url: String,
 ) : Parcelable
 
 fun Beer.mapIt(): BeerUI =

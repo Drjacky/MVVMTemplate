@@ -19,6 +19,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -26,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import app.web.drjackycv.core.ui.R
 import app.web.drjackycv.core.ui.view.ErrorItemView
 import app.web.drjackycv.core.ui.view.LoadingItemView
 import app.web.drjackycv.feature.products.entity.BeerUI
@@ -79,7 +81,7 @@ fun ProductDetailView(
                             IconButton(onClick = onBackClick) {
                                 Icon(
                                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                                    contentDescription = "Back",
+                                    contentDescription = stringResource(R.string.content_description_back),
                                 )
                             }
                         },
@@ -108,14 +110,12 @@ fun ProductDetailView(
             Scaffold(
                 topBar = {
                     TopAppBar(
-                        title = {
-                            Text(text = "")
-                        },
+                        title = {},
                         navigationIcon = {
                             IconButton(onClick = onBackClick) {
                                 Icon(
                                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                                    contentDescription = "Back",
+                                    contentDescription = stringResource(R.string.content_description_back),
                                 )
                             }
                         },

@@ -20,6 +20,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
@@ -29,6 +30,7 @@ import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemContentType
 import androidx.paging.compose.itemKey
+import app.web.drjackycv.core.ui.R
 import app.web.drjackycv.core.ui.view.ErrorListView
 import app.web.drjackycv.core.ui.view.LoadingItemView
 import app.web.drjackycv.feature.products.choose.ChoosePathType
@@ -95,13 +97,13 @@ fun ProductsListContent(
         topBar = {
             TopAppBar(
                 title = {
-                    Text("Products")
+                    Text(stringResource(R.string.products_title))
                 },
                 navigationIcon = {
                     IconButton(onClick = { onBackClick() }) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Back",
+                            contentDescription = stringResource(R.string.content_description_back),
                         )
                     }
                 },
@@ -191,9 +193,8 @@ fun ProductsListContent(
                 }
             }
 
-            else -> {
-                //no-op
-            }
+            is ProductsUiState.Loading -> {}
+            is ProductsUiState.Error -> {}
         }
     }
 }
