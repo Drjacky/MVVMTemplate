@@ -8,13 +8,15 @@ import app.web.drjackycv.core.data.products.datasource.ProductsPagingSource
 import app.web.drjackycv.core.data.products.datasource.ProductsPagingSourceByCoroutine
 import app.web.drjackycv.core.data.products.entity.mapIt
 import app.web.drjackycv.core.data.products.remote.ProductsApi
+import app.web.drjackycv.core.domain.base.Failure
 import app.web.drjackycv.core.domain.extension.allowReads
 import app.web.drjackycv.core.domain.products.entity.Beer
 import app.web.drjackycv.core.domain.products.repository.ProductsListRepository
+import app.web.drjackycv.core.network.NetworkResponse
 import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.core.Single
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.rx3.asFlowable
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -40,11 +42,16 @@ class ProductsListRepositoryImpl @Inject constructor(
             ).flowable
         }
 
-    override fun getBeer(id: String): Flowable<Beer> = //TODO: Use Rx
-        flow {
-            val response = productsApi.getBeerByCoroutine(id)
-            emit(response.mapIt())
-        }.asFlowable()
+    override fun getBeer(id: String): Flowable<Beer> =
+        productsApi.getBeer(id)
+            .flatMap { response ->
+                when (response) {
+                    is NetworkResponse.Success -> Single.just(response.body.mapIt())
+                    is NetworkResponse.ApiError -> Single.error(Failure.Api(response.body?.message))
+                    is NetworkResponse.NetworkError -> Single.error(Failure.NoInternet(response.error.message))
+                }
+            }
+            .toFlowable()
 
     override fun getBeersListByCoroutine(): Flow<PagingData<Beer>> =
         allowReads {
