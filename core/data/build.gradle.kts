@@ -25,8 +25,5 @@ dependencies {
 
     implementation(libs.timber)
 
-    testImplementation(libs.mockito.core)
-    testImplementation(libs.mockito.inline)
-    testImplementation(libs.mockito.kotlin)
-    testImplementation(project(path = ":core:domain", configuration = "unitTestImplementation"))
+    testImplementation(project(":core:testing"))
 }

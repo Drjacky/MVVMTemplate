@@ -51,6 +51,9 @@ dependencies {
     implementation(libs.androidx.palette)
     implementation(libs.timber)
 
+    testImplementation(project(":core:testing"))
+    testImplementation(libs.arch.core.testing)
+
     androidTestImplementation(libs.test.runner)
     androidTestImplementation(libs.test.rules)
     androidTestImplementation(libs.test.core)

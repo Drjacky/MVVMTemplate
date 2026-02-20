@@ -57,9 +57,8 @@ leakCanary = "2.14"
 
 # Testing
 junit = "4.13.2"
-mockitoCore = "5.15.2"
-mockitoInline = "5.2.0"
-mockitoKotlin = "2.2.0"
+truth = "1.4.4"
+turbine = "1.2.0"
 mockk = "1.13.16"
 coroutinesTest = "1.10.2"
 archCoreTesting = "2.2.0"
@@ -169,9 +168,8 @@ leakcanary = { group = "com.squareup.leakcanary", name = "leakcanary-android", v
 
 # Testing
 junit = { group = "junit", name = "junit", version.ref = "junit" }
-mockito-core = { group = "org.mockito", name = "mockito-core", version.ref = "mockitoCore" }
-mockito-inline = { group = "org.mockito", name = "mockito-inline", version.ref = "mockitoInline" }
-mockito-kotlin = { group = "com.nhaarman.mockitokotlin2", name = "mockito-kotlin", version.ref = "mockitoKotlin" }
+truth = { group = "com.google.truth", name = "truth", version.ref = "truth" }
+turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutinesTest" }
 arch-core-testing = { group = "androidx.arch.core", name = "core-testing", version.ref = "archCoreTesting" }

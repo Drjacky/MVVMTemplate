@@ -8,10 +8,6 @@ android {
     namespace = "app.web.drjackycv.core.domain"
 }
 
-val unitTestImplementation: Configuration by configurations.creating
-configurations["compileOnly"].extendsFrom(unitTestImplementation)
-configurations["testImplementation"].extendsFrom(unitTestImplementation)
-
 dependencies {
     implementation(libs.androidx.paging.runtime.ktx)
     implementation(libs.androidx.paging.rx)
@@ -21,7 +17,5 @@ dependencies {
     implementation(libs.rx.kotlin)
     implementation(libs.rx.java)
 
-    testImplementation(libs.mockito.core)
-    testImplementation(libs.mockito.inline)
-    testImplementation(libs.mockito.kotlin)
+    testImplementation(project(":core:testing"))
 }

@@ -92,7 +92,7 @@ dependencies {
     debugImplementation(libs.chucker)
     releaseImplementation(libs.chucker.no.op)
 
-    testImplementation(libs.junit)
+    testImplementation(project(":core:testing"))
     androidTestImplementation(libs.test.runner)
     androidTestImplementation(libs.espresso.core)
 }
