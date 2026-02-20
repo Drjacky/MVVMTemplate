@@ -11,6 +11,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -104,10 +106,12 @@ fun ErrorItemView(
 
 @Composable
 fun LoadingItemView(modifier: Modifier = Modifier) {
+    val loadingDesc = stringResource(R.string.content_description_loading)
     CircularProgressIndicator(
         modifier = modifier
             .fillMaxWidth()
-            .wrapContentWidth(Alignment.CenterHorizontally),
+            .wrapContentWidth(Alignment.CenterHorizontally)
+            .semantics { contentDescription = loadingDesc },
     )
 }
 
@@ -118,8 +122,9 @@ fun ErrorRowView(modifier: Modifier = Modifier) {
         composition = composition,
         iterations = LottieConstants.IterateForever,
     )
+    val errorDesc = stringResource(R.string.content_description_error_animation)
     LottieAnimation(
-        modifier = modifier,
+        modifier = modifier.semantics { contentDescription = errorDesc },
         composition = composition,
         progress = { progress },
     )

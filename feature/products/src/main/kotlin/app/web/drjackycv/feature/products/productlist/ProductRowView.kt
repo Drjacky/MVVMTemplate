@@ -25,11 +25,15 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.palette.graphics.Palette
+import app.web.drjackycv.core.ui.R
 import app.web.drjackycv.core.ui.extension.clickableOnce
 import app.web.drjackycv.core.ui.extension.shimmer
 import app.web.drjackycv.core.ui.theme.ThemeState
@@ -62,6 +66,7 @@ fun ProductRowView(
     Card(
         modifier = modifier
             .fillMaxWidth()
+            .semantics(mergeDescendants = true) {}
             .clickableOnce(onClick = { navigateToProduct(product.id.toString()) })
             .padding(4.dp),
         shape = RoundedCornerShape(4.dp),
@@ -109,7 +114,12 @@ fun ProductRowView(
                     }
 
                     is AsyncImagePainter.State.Loading -> {
-                        CircularProgressIndicator(modifier = Modifier.padding(8.dp))
+                        val loadingDesc = stringResource(R.string.content_description_loading_image)
+                        CircularProgressIndicator(
+                            modifier = Modifier
+                                .padding(8.dp)
+                                .semantics { contentDescription = loadingDesc },
+                        )
                     }
 
                     is AsyncImagePainter.State.Error -> {

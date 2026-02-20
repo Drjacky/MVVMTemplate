@@ -21,6 +21,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.CornerRadius
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.rotate
@@ -28,6 +31,7 @@ import androidx.compose.ui.graphics.drawscope.translate
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import app.web.drjackycv.core.ui.R
 import app.web.drjackycv.core.ui.theme.arrowCircle
 import app.web.drjackycv.core.ui.theme.arrowIcon
 import app.web.drjackycv.core.ui.theme.purple600
@@ -76,10 +80,12 @@ fun ChooseArrowAnimation(
         )
     )
 
+    val chooseDesc = stringResource(R.string.content_description_choose_animation)
     Box(
         modifier = modifier
             .requiredWidth(200.dp)
             .requiredHeight(100.dp)
+            .semantics { contentDescription = chooseDesc },
     ) {
 
         Canvas(
