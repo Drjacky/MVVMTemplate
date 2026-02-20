@@ -21,7 +21,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.CornerRadius
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.rotate
@@ -29,6 +28,8 @@ import androidx.compose.ui.graphics.drawscope.translate
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import app.web.drjackycv.core.ui.theme.arrowCircle
+import app.web.drjackycv.core.ui.theme.arrowIcon
 import app.web.drjackycv.core.ui.theme.purple600
 
 enum class CirclePosition {
@@ -114,7 +115,7 @@ fun ChooseArrowAnimation(
                     pivot = androidx.compose.ui.geometry.Offset(circleRadius, circleRadius)
                 ) {
                     drawCircle(
-                        color = Color(0xFFE27170),
+                        color = arrowCircle,
                         radius = circleRadius,
                         center = androidx.compose.ui.geometry.Offset(circleRadius, circleRadius)
                     )
@@ -128,7 +129,7 @@ fun ChooseArrowAnimation(
 
                     drawPath(
                         path = arrowPath,
-                        color = Color(0xFF3F0071),
+                        color = arrowIcon,
                         style = Stroke(width = arrowThickness)
                     )
                 }

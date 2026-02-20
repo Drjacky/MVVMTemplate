@@ -5,16 +5,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredWidth
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import app.web.drjackycv.core.ui.R
 import app.web.drjackycv.core.ui.view.ChooseArrowAnimation
@@ -76,7 +75,7 @@ fun ChooseView(
                     Text(
                         text = stringResource(R.string.rxjava),
                         modifier = Modifier.padding(4.dp),
-                        style = TextStyle(fontSize = 11.sp),
+                        style = MaterialTheme.typography.labelSmall,
                     )
                 }
                 Button(
@@ -93,7 +92,7 @@ fun ChooseView(
                     Text(
                         text = stringResource(R.string.coroutines),
                         modifier = Modifier.padding(4.dp),
-                        style = TextStyle(fontSize = 11.sp),
+                        style = MaterialTheme.typography.labelSmall,
                     )
                 }
             }

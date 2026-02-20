@@ -65,6 +65,8 @@ val md_theme_dark_outlineVariant = Color(0xFF49454F)
 val md_theme_dark_scrim = Color(0xFF000000)
 
 val purple600 = Color(0xFF41275F)
+val arrowCircle = Color(0xFFE27170)
+val arrowIcon = Color(0xFF3F0071)
 
 val LightColorScheme = lightColorScheme(
     primary = md_theme_light_primary,
