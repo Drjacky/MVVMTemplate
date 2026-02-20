@@ -1,7 +1,5 @@
 package app.web.drjackycv.feature.products.productlist
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
@@ -21,8 +19,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import java.net.SocketTimeoutException
@@ -37,8 +37,8 @@ class ProductsListViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
 ) : BaseViewModel() {
 
-    private val _ldProductsList: MutableLiveData<ProductsUiState> = MutableLiveData()
-    val ldProductsList: LiveData<ProductsUiState> = _ldProductsList
+    private val _productsListByRx = MutableStateFlow<ProductsUiState>(ProductsUiState.Loading)
+    val productsListByRx: StateFlow<ProductsUiState> = _productsListByRx.asStateFlow()
 
     val productsListByCoroutine: StateFlow<ProductsUiState> =
         getProductsByCoroutinePath()
@@ -53,7 +53,7 @@ class ProductsListViewModel @Inject constructor(
         getBeersUseCase()
             .cachedIn(viewModelScope)
             .doOnSubscribe {
-                _ldProductsList.value = ProductsUiState.Loading
+                _productsListByRx.value = ProductsUiState.Loading
             }
             .observeOn(AndroidSchedulers.mainThread())
             .autoDispose(this)
@@ -61,20 +61,21 @@ class ProductsListViewModel @Inject constructor(
                 result.map {
                     it.mapIt()
                 }.let {
-                    _ldProductsList.value = ProductsUiState.Success(it)
+                    _productsListByRx.value = ProductsUiState.Success(it)
                 }
-            }, { e -> //no-op: already handled by paging loadState
+            }, { e ->
                 when (e) {
                     is UnknownHostException, is SocketTimeoutException -> {
-                        _ldProductsList.value = ProductsUiState.Error(Failure.NoInternet(e.message))
+                        _productsListByRx.value =
+                            ProductsUiState.Error(Failure.NoInternet(e.message))
                     }
 
                     is TimeoutException -> {
-                        _ldProductsList.value = ProductsUiState.Error(Failure.Timeout(e.message))
+                        _productsListByRx.value = ProductsUiState.Error(Failure.Timeout(e.message))
                     }
 
                     else -> {
-                        _ldProductsList.value = ProductsUiState.Error(Failure.Unknown(e.message))
+                        _productsListByRx.value = ProductsUiState.Error(Failure.Unknown(e.message))
                     }
                 }
             })

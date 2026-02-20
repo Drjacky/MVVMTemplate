@@ -1,7 +1,5 @@
 package app.web.drjackycv.feature.products.productdetail
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import app.web.drjackycv.core.common.base.BaseViewModel
 import app.web.drjackycv.core.common.base.Result
@@ -17,6 +15,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
@@ -30,8 +29,8 @@ class ProductViewModel @Inject constructor(
     private val getBeerByCoroutineUseCase: GetBeerByCoroutineUseCase,
 ) : BaseViewModel() {
 
-    private val _ldProduct: MutableLiveData<BeerUI> = MutableLiveData()
-    val ldProduct: LiveData<BeerUI> = _ldProduct
+    private val _productByRx = MutableStateFlow<ProductUiState>(ProductUiState.Loading)
+    val productByRx: StateFlow<ProductUiState> = _productByRx.asStateFlow()
 
     private val _productId = MutableStateFlow("")
 
@@ -50,12 +49,15 @@ class ProductViewModel @Inject constructor(
     }
 
     fun getProduct(id: String) {
+        _productByRx.value = ProductUiState.Loading
         getBeerUseCase(id)
             .observeOn(AndroidSchedulers.mainThread())
             .autoDispose(this)
-            .subscribe {
-                _ldProduct.value = it.mapIt()
-            }
+            .subscribe({ beer ->
+                _productByRx.value = ProductUiState.Success(beer.mapIt())
+            }, { e ->
+                _productByRx.value = ProductUiState.Error(e)
+            })
     }
 
     private fun getProductByCoroutine(ids: String) =

@@ -13,6 +13,7 @@ import java.net.UnknownHostException
 import java.util.concurrent.TimeoutException
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlin.coroutines.cancellation.CancellationException
 
 
 private const val STARTING_PAGE_INDEX = 1
@@ -30,6 +31,8 @@ class ProductsPagingSourceByCoroutine @Inject constructor(
                 .map(BeerResponse::mapIt)
 
             toLoadResult(response, position)
+        } catch (e: CancellationException) {
+            throw e
         } catch (e: Exception) {
             when (e) {
                 is UnknownHostException, is SocketTimeoutException -> {

@@ -16,7 +16,6 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -32,15 +31,15 @@ import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemContentType
 import androidx.paging.compose.itemKey
-import app.web.drjackycv.core.ui.R as CoreUiR
 import app.web.drjackycv.core.ui.view.ErrorListView
-import app.web.drjackycv.feature.products.R
 import app.web.drjackycv.core.ui.view.LoadingItemView
+import app.web.drjackycv.feature.products.R
 import app.web.drjackycv.feature.products.choose.ChoosePathType
 import app.web.drjackycv.feature.products.entity.BeerUI
 import coil.annotation.ExperimentalCoilApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
+import app.web.drjackycv.core.ui.R as CoreUiR
 
 @ExperimentalCoroutinesApi
 @ExperimentalCoilApi
@@ -60,9 +59,9 @@ fun ProductsListRoute(
             LaunchedEffect(Unit) {
                 viewModel.getProductsByRxPath()
             }
-            val uiState = viewModel.ldProductsList.observeAsState(ProductsUiState.Loading)
+            val uiState by viewModel.productsListByRx.collectAsStateWithLifecycle()
             ProductsListContent(
-                uiState = uiState.value,
+                uiState = uiState,
                 themeFAB = themeFAB,
                 navigateToProduct = navigateToProduct,
                 onBackClick = onBackClick,
