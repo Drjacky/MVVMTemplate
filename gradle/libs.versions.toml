@@ -19,10 +19,7 @@ coreKtx = "1.17.0"
 appcompat = "1.7.1"
 material = "1.12.0"
 lifecycle = "2.10.0"
-navigation = "2.8.5"
 paging = "3.3.6"
-fragmentKtx = "1.8.0"
-recyclerview = "1.3.2"
 constraintLayout = "2.1.4"
 dataStorePreferences = "1.1.4"
 palette = "1.0.0"
@@ -75,11 +72,10 @@ testExtJunit = "1.2.1"
 detekt = "1.23.6"
 detektComposeRulesTwitter = "0.0.26"
 detektComposeRulesKode = "1.3.0"
-sonarqube = "3.5.0.2730"
-checkDependencyVersions = "0.44.0"
-gradleDoctor = "0.8.1"
-dependencyAnalysis = "1.17.0"
-sonatypeScanGradle = "2.5.3"
+checkDependencyVersions = "0.53.0"
+gradleDoctor = "0.12.0"
+dependencyAnalysis = "1.32.0"
+sonatypeScanGradle = "2.8.3"
 
 [libraries]
 # Build plugins (for build-logic convention module)
@@ -120,9 +116,6 @@ androidx-activity-compose = { group = "androidx.activity", name = "activity-comp
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 google-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
-androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragmentKtx" }
-androidx-recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
-androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintLayout" }
 androidx-dataStore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "dataStorePreferences" }
 androidx-palette = { group = "androidx.palette", name = "palette", version.ref = "palette" }
 
@@ -133,10 +126,6 @@ androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecyc
 androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycle" }
 androidx-lifecycle-common-java8 = { group = "androidx.lifecycle", name = "lifecycle-common-java8", version.ref = "lifecycle" }
 androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
-
-# Navigation
-androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation" }
-androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation" }
 
 # Paging
 androidx-paging-runtime-ktx = { group = "androidx.paging", name = "paging-runtime-ktx", version.ref = "paging" }
@@ -194,7 +183,6 @@ test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "t
 
 # Code Quality
 detekt-formatting = { group = "io.gitlab.arturbosch.detekt", name = "detekt-formatting", version.ref = "detekt" }
-detekt-gradle-plugin = { group = "io.gitlab.arturbosch.detekt", name = "detekt-gradle-plugin", version.ref = "detekt" }
 detekt-twitter-compose-rules = { group = "com.twitter.compose.rules", name = "detekt", version.ref = "detektComposeRulesTwitter" }
 detekt-kode-compose-rules = { group = "ru.kode", name = "detekt-rules-compose", version.ref = "detektComposeRulesKode" }
 
@@ -208,7 +196,6 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
-navigation-safeargs = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigation" }
 gradleVersionsPlugin = { id = "com.github.ben-manes.versions", version.ref = "checkDependencyVersions" }
 gradleDoctorPlugin = { id = "com.osacky.doctor", version.ref = "gradleDoctor" }
 dependencyAnalysis = { id = "com.autonomousapps.dependency-analysis", version.ref = "dependencyAnalysis" }

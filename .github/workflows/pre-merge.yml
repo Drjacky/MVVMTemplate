@@ -9,38 +9,32 @@ on:
     branches:
       - '*'
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  gradle:
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-    runs-on: ${{ matrix.os }}
+  build-and-test:
+    runs-on: ubuntu-latest
     if: ${{ !contains(github.event.head_commit.message, 'ci skip') }}
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v3
-      - name: set up JDK 17
-        uses: actions/setup-java@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
         with:
           distribution: 'corretto'
           java-version: 17
-      - name: Unit tests
-        run: bash ./gradlew test --stacktrace
-      - name: Cache Gradle Caches
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-gradle-cache
-        with:
-          path: ~/.gradle/caches/
-          key: cache-gradle-cache
-      - name: Cache Gradle Wrapper
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-gradle-wrapper
-        with:
-          path: ~/.gradle/wrapper/
-          key: cache-gradle-wrapper
-      - name: Run Gradle tasks
-        run: ./gradlew build --continue
-      - name: Stop Gradle
-        run: ./gradlew --stop
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Run Detekt
+        run: ./gradlew detektAll --continue
+
+      - name: Run unit tests
+        run: ./gradlew testDebugUnitTest --stacktrace
+
+      - name: Build
+        run: ./gradlew assembleDebug
