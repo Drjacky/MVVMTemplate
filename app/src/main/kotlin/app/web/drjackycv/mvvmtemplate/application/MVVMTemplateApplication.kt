@@ -15,9 +15,7 @@ class MVVMTemplateApplication : Application() {
         if (BuildConfig.DEBUG) {
             StrictMode.setThreadPolicy(
                 ThreadPolicy.Builder()
-                    .detectDiskReads()
-                    .detectDiskWrites()
-                    .detectNetwork() // or .detectAll() for all detectable problems
+                    .detectAll()
                     .penaltyLog()
                     .build()
             )
