@@ -4,18 +4,12 @@ import android.app.Application
 import android.os.StrictMode
 import android.os.StrictMode.ThreadPolicy
 import android.os.StrictMode.VmPolicy
-import app.web.drjackycv.core.common.datastore.DataStoreManager
 import app.web.drjackycv.mvvmtemplate.BuildConfig
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
-import javax.inject.Inject
-
 
 @HiltAndroidApp
 class MVVMTemplateApplication : Application() {
-
-    @Inject
-    lateinit var dataStoreManager: DataStoreManager
 
     override fun onCreate() {
         if (BuildConfig.DEBUG) {
