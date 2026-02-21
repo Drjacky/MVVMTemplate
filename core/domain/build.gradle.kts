@@ -1,6 +1,6 @@
 plugins {
-    id("app.android.library")
-    id("app.hilt")
+    alias(libs.plugins.app.android.library)
+    alias(libs.plugins.app.hilt)
     id("kotlin-parcelize")
 }
 

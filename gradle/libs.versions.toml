@@ -185,6 +185,15 @@ detekt-twitter-compose-rules = { group = "com.twitter.compose.rules", name = "de
 detekt-kode-compose-rules = { group = "ru.kode", name = "detekt-rules-compose", version.ref = "detektComposeRulesKode" }
 
 [plugins]
+# Convention plugins (provided by build-logic, no version needed)
+app-android-application = { id = "app.android.application" }
+app-android-application-compose = { id = "app.android.application.compose" }
+app-android-library = { id = "app.android.library" }
+app-android-library-compose = { id = "app.android.library.compose" }
+app-android-lint = { id = "app.android.lint" }
+app-hilt = { id = "app.hilt" }
+app-kotlin-serialization = { id = "app.kotlin.serialization" }
+
 # External plugins
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
