@@ -72,7 +72,7 @@ detekt = "2.0.0-alpha.1"
 composeRules = "0.5.0"
 checkDependencyVersions = "0.53.0"
 gradleDoctor = "0.12.0"
-dependencyAnalysis = "1.32.0"
+dependencyAnalysis = "3.5.1"
 sonatypeScanGradle = "2.8.3"
 
 [libraries]
