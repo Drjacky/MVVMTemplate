@@ -4,12 +4,13 @@ import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 internal fun Project.configureKotlinAndroid(
-    commonExtension: CommonExtension<*, *, *, *, *, *>,
+    commonExtension: CommonExtension,
 ) {
     commonExtension.apply {
         compileSdk = libs.findVersion("compileSdk").get().toString().toInt()
@@ -25,7 +26,7 @@ internal fun Project.configureKotlinAndroid(
         }
     }
 
-    extensions.configure<KotlinAndroidProjectExtension> {
+    tasks.withType<KotlinCompile>().configureEach {
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_17)
 

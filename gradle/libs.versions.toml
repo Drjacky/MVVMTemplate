@@ -1,6 +1,6 @@
 [versions]
 # Build
-agp = "8.10.0"
+agp = "9.0.1"
 kotlin = "2.2.21"
 ksp = "2.3.6"
 compileSdk = "36"
@@ -25,7 +25,7 @@ dataStorePreferences = "1.1.4"
 palette = "1.0.0"
 
 # Dependency Injection
-hilt = "2.56.2"
+hilt = "2.59.2"
 hiltNavigationCompose = "1.3.0"
 javaxInject = "1"
 
@@ -68,9 +68,8 @@ testCore = "1.6.1"
 testExtJunit = "1.2.1"
 
 # Code Quality
-detekt = "1.23.6"
-detektComposeRulesTwitter = "0.0.26"
-detektComposeRulesKode = "1.3.0"
+detekt = "2.0.0-alpha.1"
+composeRules = "0.5.0"
 checkDependencyVersions = "0.53.0"
 gradleDoctor = "0.12.0"
 dependencyAnalysis = "1.32.0"
@@ -180,9 +179,8 @@ test-core = { group = "androidx.test", name = "core", version.ref = "testCore" }
 test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "testExtJunit" }
 
 # Code Quality
-detekt-formatting = { group = "io.gitlab.arturbosch.detekt", name = "detekt-formatting", version.ref = "detekt" }
-detekt-twitter-compose-rules = { group = "com.twitter.compose.rules", name = "detekt", version.ref = "detektComposeRulesTwitter" }
-detekt-kode-compose-rules = { group = "ru.kode", name = "detekt-rules-compose", version.ref = "detektComposeRulesKode" }
+detekt-formatting = { group = "dev.detekt", name = "detekt-rules-ktlint-wrapper", version.ref = "detekt" }
+compose-rules-detekt = { module = "io.nlopez.compose.rules:detekt", version.ref = "composeRules" }
 
 [plugins]
 # Convention plugins (provided by build-logic, no version needed)
@@ -202,7 +200,7 @@ kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "ko
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
-detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+detekt = { id = "dev.detekt", version.ref = "detekt" }
 gradleVersionsPlugin = { id = "com.github.ben-manes.versions", version.ref = "checkDependencyVersions" }
 gradleDoctorPlugin = { id = "com.osacky.doctor", version.ref = "gradleDoctor" }
 dependencyAnalysis = { id = "com.autonomousapps.dependency-analysis", version.ref = "dependencyAnalysis" }

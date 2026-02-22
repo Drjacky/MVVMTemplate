@@ -1,10 +1,9 @@
 import com.android.build.api.dsl.CommonExtension
-import com.android.build.api.dsl.ManagedVirtualDevice
 import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.invoke
 
 internal fun configureGradleManagedDevices(
-    commonExtension: CommonExtension<*, *, *, *, *, *>,
+    commonExtension: CommonExtension,
 ) {
     val pixel6Api31 = DeviceConfig("Pixel 6", 31, "aosp")
     val pixel8Api34 = DeviceConfig("Pixel 8", 34, "google")
@@ -13,11 +12,10 @@ internal fun configureGradleManagedDevices(
     val ciDevices = listOf(pixel6Api31)
 
     commonExtension.testOptions.apply {
-        @Suppress("UnstableApiUsage")
         managedDevices {
-            devices {
+            localDevices {
                 allDevices.forEach { deviceConfig ->
-                    maybeCreate(deviceConfig.taskName, ManagedVirtualDevice::class.java).apply {
+                    maybeCreate(deviceConfig.taskName).apply {
                         device = deviceConfig.device
                         apiLevel = deviceConfig.apiLevel
                         systemImageSource = deviceConfig.systemImageSource
@@ -27,7 +25,7 @@ internal fun configureGradleManagedDevices(
             groups {
                 maybeCreate("ci").apply {
                     ciDevices.forEach { deviceConfig ->
-                        targetDevices.add(devices[deviceConfig.taskName])
+                        targetDevices.add(localDevices[deviceConfig.taskName])
                     }
                 }
             }
