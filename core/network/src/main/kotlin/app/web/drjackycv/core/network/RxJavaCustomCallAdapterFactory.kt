@@ -44,7 +44,7 @@ class RxJavaCustomCallAdapterFactory private constructor() : CallAdapter.Factory
         if (returnType !is ParameterizedType) {
             throw IllegalStateException(
                 "${rawType.simpleName} return type must be parameterized as " +
-                        "${rawType.simpleName}<Foo> or ${rawType.simpleName}<? extends Foo>"
+                    "${rawType.simpleName}<Foo> or ${rawType.simpleName}<? extends Foo>"
             )
         }
 
