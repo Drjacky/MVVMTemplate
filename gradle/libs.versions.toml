@@ -35,7 +35,7 @@ kotlinxSerialization = "1.9.0"
 # Network
 retrofit = "3.0.0"
 okhttpLogging = "5.3.2"
-chucker = "4.1.0"
+chucker = "4.3.0"
 
 # Reactive
 rxKotlin = "3.0.1"
