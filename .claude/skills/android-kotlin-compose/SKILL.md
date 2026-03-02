@@ -5,7 +5,7 @@ metadata:
   source: "https://github.com/Drjacky/claude-android-ninja"
 ---
 
-# Your Skill Name
+# android-kotlin-compose
 
 This is a reference to the official skill hosted at [claude-android-ninja](https://github.com/Drjacky/claude-android-ninja).
 
