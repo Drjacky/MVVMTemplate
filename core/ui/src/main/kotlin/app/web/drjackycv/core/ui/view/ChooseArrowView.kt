@@ -23,6 +23,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.CornerRadius
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.rotate
@@ -122,14 +123,14 @@ fun ChooseArrowAnimation(
             // Draw first dot (square)
             drawRect(
                 color = arrowCircle,
-                topLeft = androidx.compose.ui.geometry.Offset(dot1X - dotSizeW / 2, dot1Y - dotSizeH / 2),
+                topLeft = Offset(dot1X - dotSizeW / 2, dot1Y - dotSizeH / 2),
                 size = androidx.compose.ui.geometry.Size(dotSizeW, dotSizeH)
             )
 
             // Draw second dot (square)
             drawRect(
                 color = arrowCircle,
-                topLeft = androidx.compose.ui.geometry.Offset(dot2X - dotSizeW / 2, dot2Y - dotSizeH / 2),
+                topLeft = Offset(dot2X - dotSizeW / 2, dot2Y - dotSizeH / 2),
                 size = androidx.compose.ui.geometry.Size(dotSizeW, dotSizeH)
             )
 
@@ -141,12 +142,12 @@ fun ChooseArrowAnimation(
             translate(left = circleX - circleRadius, top = circleY - circleRadius) {
                 rotate(
                     angle,
-                    pivot = androidx.compose.ui.geometry.Offset(circleRadius, circleRadius)
+                    pivot = Offset(circleRadius, circleRadius)
                 ) {
                     drawCircle(
                         color = arrowCircle,
                         radius = circleRadius,
-                        center = androidx.compose.ui.geometry.Offset(circleRadius, circleRadius)
+                        center = Offset(circleRadius, circleRadius)
                     )
 
                     // Draw the ">" arrow inside the circle
