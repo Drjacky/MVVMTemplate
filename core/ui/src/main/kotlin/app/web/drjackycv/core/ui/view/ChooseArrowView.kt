@@ -109,6 +109,30 @@ fun ChooseArrowAnimation(
                 style = Stroke(width = 4.dp.toPx())
             )
 
+            // Draw animated red dots on the stroke
+            val dotSizeW = 12.dp.toPx()
+            val dotSizeH = 4.dp.toPx()
+
+            // Calculate dot positions based on the circle's animation
+            val dot1X = padding + circleRadius + offsetAnimation.toPx()
+            val dot2X = padding + circleRadius + offsetAnimation.toPx()
+            val dot1Y = (canvasHeight / 2) - padding - circleRadius
+            val dot2Y = canvasHeight
+
+            // Draw first dot (square)
+            drawRect(
+                color = arrowCircle,
+                topLeft = androidx.compose.ui.geometry.Offset(dot1X - dotSizeW / 2, dot1Y - dotSizeH / 2),
+                size = androidx.compose.ui.geometry.Size(dotSizeW, dotSizeH)
+            )
+
+            // Draw second dot (square)
+            drawRect(
+                color = arrowCircle,
+                topLeft = androidx.compose.ui.geometry.Offset(dot2X - dotSizeW / 2, dot2Y - dotSizeH / 2),
+                size = androidx.compose.ui.geometry.Size(dotSizeW, dotSizeH)
+            )
+
             // Calculate the circle's position with padding
             val circleX = padding + circleRadius + offsetAnimation.toPx()
             val circleY = canvasHeight / 2
