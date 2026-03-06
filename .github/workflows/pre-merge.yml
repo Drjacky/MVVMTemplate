@@ -31,7 +31,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
 
       - name: Run Detekt
-        run: ./gradlew detektAll --continue
+        run: ./gradlew detekt --continue
 
       - name: Run unit tests
         run: ./gradlew testDebugUnitTest --stacktrace

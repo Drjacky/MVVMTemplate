@@ -142,7 +142,7 @@ Available workflows:
 ## Tasks 🔧
 
 - `dependencyUpdates` - Displays the dependency updates for the project
-- `detektAll` - Runs static Kotlin code analysis for the whole project
+- `detekt` - Runs static Kotlin code analysis for the whole project
 - `buildHealth` - Provides advice for managing dependencies and applied plugins
 - `ossIndexAudit` - Scans dependencies using Sonatype OSS Index for known vulnerabilities
 
