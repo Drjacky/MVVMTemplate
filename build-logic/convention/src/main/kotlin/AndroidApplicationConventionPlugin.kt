@@ -9,6 +9,8 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
         with(target) {
             apply(plugin = "com.android.application")
             apply(plugin = "app.android.lint")
+            apply(plugin = "app.android.detekt")
+            apply(plugin = "app.android.application.jacoco")
 
             extensions.configure<ApplicationExtension> {
                 configureKotlinAndroid(this)

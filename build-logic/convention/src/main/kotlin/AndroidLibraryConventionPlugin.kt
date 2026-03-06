@@ -11,6 +11,8 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
         with(target) {
             apply(plugin = "com.android.library")
             apply(plugin = "app.android.lint")
+            apply(plugin = "app.android.detekt")
+            apply(plugin = "app.android.library.jacoco")
 
             extensions.configure<LibraryExtension> {
                 configureKotlinAndroid(this)

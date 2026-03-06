@@ -20,6 +20,7 @@ dependencies {
     compileOnly(libs.kotlin.gradlePlugin)
     compileOnly(libs.kotlin.composeGradlePlugin)
     compileOnly(libs.ksp.gradlePlugin)
+    implementation(libs.detekt.gradlePlugin)
 }
 
 gradlePlugin {
@@ -51,6 +52,18 @@ gradlePlugin {
         register("kotlinSerialization") {
             id = "app.kotlin.serialization"
             implementationClass = "KotlinSerializationConventionPlugin"
+        }
+        register("androidDetekt") {
+            id = "app.android.detekt"
+            implementationClass = "AndroidDetektConventionPlugin"
+        }
+        register("androidApplicationJacoco") {
+            id = "app.android.application.jacoco"
+            implementationClass = "AndroidApplicationJacocoConventionPlugin"
+        }
+        register("androidLibraryJacoco") {
+            id = "app.android.library.jacoco"
+            implementationClass = "AndroidLibraryJacocoConventionPlugin"
         }
     }
 }

@@ -7,6 +7,7 @@ compileSdk = "36"
 minSdk = "24"
 targetSdk = "36"
 desugarJdk = "2.1.5"
+jacoco = "0.8.12"
 
 # Compose
 composeBom = "2026.01.01"
@@ -81,6 +82,7 @@ android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", ver
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlin-composeGradlePlugin = { group = "org.jetbrains.kotlin", name = "compose-compiler-gradle-plugin", version.ref = "kotlin" }
 ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
+detekt-gradlePlugin = { group = "dev.detekt", name = "detekt-gradle-plugin", version.ref = "detekt" }
 
 # Convention plugin dependencies
 androidx-core-desugaring = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "desugarJdk" }
@@ -189,6 +191,7 @@ app-android-application-compose = { id = "app.android.application.compose" }
 app-android-library = { id = "app.android.library" }
 app-android-library-compose = { id = "app.android.library.compose" }
 app-android-lint = { id = "app.android.lint" }
+app-android-detekt = { id = "app.android.detekt" }
 app-hilt = { id = "app.hilt" }
 app-kotlin-serialization = { id = "app.kotlin.serialization" }
 
