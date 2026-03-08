@@ -1,12 +1,26 @@
 package app.web.drjackycv.feature.products.productdetail
 
+import android.graphics.drawable.BitmapDrawable
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.graphics.ExperimentalAnimationGraphicsApi
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -17,24 +31,39 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.palette.graphics.Palette
 import app.web.drjackycv.core.ui.R
+import app.web.drjackycv.core.ui.theme.ThemeState
 import app.web.drjackycv.core.ui.view.ErrorItemView
 import app.web.drjackycv.core.ui.view.LoadingItemView
 import app.web.drjackycv.feature.products.choose.ChoosePathType
 import app.web.drjackycv.feature.products.entity.BeerUI
 import app.web.drjackycv.feature.products.entity.LocationUI
+import coil.ImageLoader
 import coil.annotation.ExperimentalCoilApi
+import coil.compose.AsyncImagePainter
+import coil.compose.rememberAsyncImagePainter
+import coil.request.ImageRequest
+import coil.request.SuccessResult
 
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
@@ -82,7 +111,7 @@ fun ProductRoute(
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
 @ExperimentalAnimationGraphicsApi
-@Suppress("LongMethod")
+@Suppress("LongMethod", "CyclomaticComplexMethod")
 @Composable
 fun ProductDetailView(
     uiState: ProductUiState,
@@ -92,39 +121,189 @@ fun ProductDetailView(
 ) {
     when (uiState) {
         is ProductUiState.Success -> {
+            val item = uiState.item ?: return
+            val defaultColor = MaterialTheme.colorScheme.surface
+            val cardColor = remember { mutableStateOf(defaultColor) }
+            val animatedCardColor = animateColorAsState(cardColor.value, label = "animatedCardColor")
+            val isDark = ThemeState.darkModeState.value
+            val context = LocalContext.current
+
             Scaffold(
-                topBar = {
-                    TopAppBar(
-                        title = {
-                            Text(
-                                text = "${uiState.item?.name}",
-                                modifier = Modifier.semantics { heading() },
-                            )
-                        },
-                        navigationIcon = {
+                floatingActionButton = themeFAB,
+                modifier = modifier,
+            ) { padding ->
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(padding)
+                        .verticalScroll(rememberScrollState())
+                ) {
+                    val shape = RoundedCornerShape(
+                        topStart = 0.dp,
+                        topEnd = 0.dp,
+                        bottomStart = 64.dp,
+                        bottomEnd = 64.dp,
+                    )
+
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(290.dp)
+                            .shadow(elevation = 9.dp, shape = shape)
+                            .background(color = animatedCardColor.value, shape = shape)
+                    ) {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(12.dp)
+                                .statusBarsPadding(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
                             IconButton(onClick = onBackClick) {
                                 Icon(
                                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                                     contentDescription = stringResource(R.string.content_description_back),
+                                    tint = MaterialTheme.colorScheme.onSurface
                                 )
                             }
-                        },
-                    )
-                },
-                floatingActionButton = themeFAB,
-                modifier = modifier,
-            ) {
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(it)
-                ) {
+                            Text(
+                                text = "#${item.id}",
+                                color = MaterialTheme.colorScheme.onSurface,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 18.sp,
+                            )
+                        }
+
+                        val imagePainter = rememberAsyncImagePainter(
+                            ImageRequest.Builder(context)
+                                .data(data = item.image)
+                                .crossfade(true)
+                                .allowHardware(false)
+                                .build()
+                        )
+
+                        Image(
+                            modifier = Modifier
+                                .align(Alignment.BottomCenter)
+                                .padding(bottom = 20.dp)
+                                .size(190.dp),
+                            painter = imagePainter,
+                            contentDescription = item.name,
+                            contentScale = ContentScale.Inside
+                        )
+
+                        when (imagePainter.state) {
+                            is AsyncImagePainter.State.Success -> {
+                                LaunchedEffect(imagePainter.state) {
+                                    val imageLoader = ImageLoader(context)
+                                    val result = imageLoader.execute(imagePainter.request)
+                                    if (result is SuccessResult) {
+                                        val bitmap = (result.drawable as BitmapDrawable).bitmap
+                                        val swatch = if (isDark) {
+                                            Palette.from(bitmap).generate().darkVibrantSwatch
+                                        } else {
+                                            Palette.from(bitmap).generate().lightVibrantSwatch
+                                        }
+                                        swatch?.let { cardColor.value = Color(it.rgb) }
+                                    }
+                                }
+                            }
+                            is AsyncImagePainter.State.Loading -> {
+                                val loadingDesc = stringResource(R.string.content_description_loading_image)
+                                CircularProgressIndicator(
+                                    modifier = Modifier
+                                        .align(Alignment.Center)
+                                        .semantics { contentDescription = loadingDesc },
+                                    color = MaterialTheme.colorScheme.onSurface
+                                )
+                            }
+                            else -> Unit
+                        }
+                    }
+
                     Text(
-                        modifier = Modifier.padding(16.dp),
-                        text = "${uiState.item?.species}",
-                        style = MaterialTheme.typography.bodyLarge,
-                        overflow = TextOverflow.Ellipsis,
-                        maxLines = 1,
+                        modifier = Modifier
+                            .padding(top = 24.dp)
+                            .fillMaxWidth(),
+                        text = item.name,
+                        color = MaterialTheme.colorScheme.onBackground,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center,
+                        fontSize = 36.sp,
+                    )
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 14.dp),
+                        horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
+                    ) {
+                        val statusColor = when(item.status.lowercase()) {
+                            "alive" -> Color(0xFF4CAF50)
+                            "dead" -> Color(0xFFF44336)
+                            else -> Color(0xFF9E9E9E)
+                        }
+                        Text(
+                            modifier = Modifier
+                                .background(
+                                    color = statusColor,
+                                    shape = RoundedCornerShape(64.dp),
+                                )
+                                .padding(horizontal = 24.dp, vertical = 4.dp),
+                            text = item.status,
+                            fontWeight = FontWeight.Bold,
+                            textAlign = TextAlign.Center,
+                            color = Color.White,
+                            maxLines = 1,
+                            fontSize = 16.sp,
+                        )
+
+                        Text(
+                            modifier = Modifier
+                                .background(
+                                    color = MaterialTheme.colorScheme.secondary,
+                                    shape = RoundedCornerShape(64.dp),
+                                )
+                                .padding(horizontal = 24.dp, vertical = 4.dp),
+                            text = item.species,
+                            fontWeight = FontWeight.Bold,
+                            textAlign = TextAlign.Center,
+                            color = MaterialTheme.colorScheme.onSecondary,
+                            maxLines = 1,
+                            fontSize = 16.sp,
+                        )
+                    }
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 24.dp),
+                        horizontalArrangement = Arrangement.SpaceEvenly,
+                    ) {
+                        InfoItem(title = item.gender, content = "Gender")
+                        InfoItem(title = item.type.ifEmpty { "Unknown" }, content = "Type")
+                    }
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 16.dp),
+                        horizontalArrangement = Arrangement.SpaceEvenly,
+                    ) {
+                        InfoItem(title = item.origin.name, content = "Origin")
+                        InfoItem(title = item.location.name, content = "Location")
+                    }
+
+                    Text(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 24.dp, bottom = 16.dp),
+                        text = "${item.episode.size} Episodes",
+                        textAlign = TextAlign.Center,
+                        color = MaterialTheme.colorScheme.onBackground,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 21.sp,
                     )
                 }
             }
@@ -165,6 +344,33 @@ fun ProductDetailView(
                 LoadingItemView(modifier = Modifier.align(Alignment.Center))
             }
         }
+    }
+}
+
+@Composable
+private fun InfoItem(
+    title: String,
+    content: String,
+) {
+    Column(
+        modifier = Modifier.padding(horizontal = 8.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            modifier = Modifier.padding(bottom = 4.dp),
+            text = title,
+            color = MaterialTheme.colorScheme.onBackground,
+            fontWeight = FontWeight.Bold,
+            fontSize = 18.sp,
+            textAlign = TextAlign.Center,
+        )
+
+        Text(
+            text = content,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            fontWeight = FontWeight.Bold,
+            fontSize = 12.sp,
+        )
     }
 }
 
