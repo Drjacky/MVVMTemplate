@@ -150,9 +150,14 @@ fun ProductsListContent(
                                 name = "",
                                 status = "",
                                 species = "",
+                                type = "",
                                 gender = "",
+                                origin = app.web.drjackycv.feature.products.entity.LocationUI(name = "", url = ""),
+                                location = app.web.drjackycv.feature.products.entity.LocationUI(name = "", url = ""),
                                 image = "",
+                                episode = emptyList(),
                                 url = "",
+                                created = "",
                             )
                             items(10) {
                                 ProductRowView(
@@ -217,18 +222,28 @@ private fun ProductsListContentPreview() {
             name = "Toxic Rick",
             status = "Dead",
             species = "Humanoid",
+            type = "Rick's Toxic Side",
             gender = "Male",
+            origin = app.web.drjackycv.feature.products.entity.LocationUI(name = "Alien Spa", url = ""),
+            location = app.web.drjackycv.feature.products.entity.LocationUI(name = "Earth", url = ""),
             image = "https://rickandmortyapi.com/api/character/avatar/361.jpeg",
+            episode = emptyList(),
             url = "https://rickandmortyapi.com/api/character/361",
+            created = "2018-01-10T18:20:41.703Z",
         ),
         BeerUI(
             id = 362,
             name = "Traflorkian",
             status = "Alive",
             species = "Alien",
+            type = "",
             gender = "unknown",
+            origin = app.web.drjackycv.feature.products.entity.LocationUI(name = "unknown", url = ""),
+            location = app.web.drjackycv.feature.products.entity.LocationUI(name = "Worldender's lair", url = ""),
             image = "https://rickandmortyapi.com/api/character/avatar/362.jpeg",
+            episode = emptyList(),
             url = "https://rickandmortyapi.com/api/character/362",
+            created = "2018-01-10T18:52:49.604Z",
         )
     )
     val uiState = ProductsUiState.Success(items = PagingData.from(items))

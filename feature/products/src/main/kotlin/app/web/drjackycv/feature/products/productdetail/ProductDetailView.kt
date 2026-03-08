@@ -33,6 +33,7 @@ import app.web.drjackycv.core.ui.view.ErrorItemView
 import app.web.drjackycv.core.ui.view.LoadingItemView
 import app.web.drjackycv.feature.products.choose.ChoosePathType
 import app.web.drjackycv.feature.products.entity.BeerUI
+import app.web.drjackycv.feature.products.entity.LocationUI
 import coil.annotation.ExperimentalCoilApi
 
 @ExperimentalCoilApi
@@ -179,9 +180,14 @@ private fun ProductDetailViewPreview() {
             name = "Toxic Rick",
             status = "Dead",
             species = "Humanoid",
+            type = "Rick's Toxic Side",
             gender = "Male",
+            origin = LocationUI(name = "Alien Spa", url = "https://rickandmortyapi.com/api/location/64"),
+            location = LocationUI(name = "Earth", url = "https://rickandmortyapi.com/api/location/20"),
             image = "https://rickandmortyapi.com/api/character/avatar/361.jpeg",
+            episode = listOf("https://rickandmortyapi.com/api/episode/27"),
             url = "https://rickandmortyapi.com/api/character/361",
+            created = "2018-01-10T18:20:41.703Z",
         )
     )
     ProductDetailView(
