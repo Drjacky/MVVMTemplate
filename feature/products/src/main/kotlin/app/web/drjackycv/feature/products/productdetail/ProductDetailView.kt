@@ -233,6 +233,7 @@ fun ProductDetailView(
                         text = item.name,
                         color = MaterialTheme.colorScheme.onBackground,
                         fontWeight = FontWeight.Bold,
+                        lineHeight = 36.sp,
                         textAlign = TextAlign.Center,
                         fontSize = 36.sp,
                     )
