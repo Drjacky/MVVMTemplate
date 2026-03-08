@@ -101,7 +101,7 @@ fun ProductsListContent(
             TopAppBar(
                 title = {
                     Text(
-                        text = stringResource(R.string.products_title),
+                        text = "",
                         modifier = Modifier.semantics { heading() },
                     )
                 },
