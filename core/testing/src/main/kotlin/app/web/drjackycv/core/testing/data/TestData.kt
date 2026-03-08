@@ -12,8 +12,14 @@ object TestData {
         species = "Human",
         type = "",
         gender = "Male",
-        origin = Location(name = "Earth (C-137)", url = "https://rickandmortyapi.com/api/location/1"),
-        location = Location(name = "Citadel of Ricks", url = "https://rickandmortyapi.com/api/location/3"),
+        origin = Location(
+            name = "Earth (C-137)",
+            url = "https://rickandmortyapi.com/api/location/1"
+        ),
+        location = Location(
+            name = "Citadel of Ricks",
+            url = "https://rickandmortyapi.com/api/location/3"
+        ),
         image = "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
         episode = listOf("https://rickandmortyapi.com/api/episode/1"),
         url = "https://rickandmortyapi.com/api/character/1",
@@ -27,8 +33,14 @@ object TestData {
         species = "Human",
         type = "",
         gender = "Male",
-        origin = Location(name = "Earth (C-137)", url = "https://rickandmortyapi.com/api/location/1"),
-        location = Location(name = "Citadel of Ricks", url = "https://rickandmortyapi.com/api/location/3"),
+        origin = Location(
+            name = "Earth (C-137)",
+            url = "https://rickandmortyapi.com/api/location/1"
+        ),
+        location = Location(
+            name = "Citadel of Ricks",
+            url = "https://rickandmortyapi.com/api/location/3"
+        ),
         image = "https://rickandmortyapi.com/api/character/avatar/2.jpeg",
         episode = listOf("https://rickandmortyapi.com/api/episode/1"),
         url = "https://rickandmortyapi.com/api/character/2",
@@ -42,8 +54,14 @@ object TestData {
         species = "Human",
         type = "",
         gender = "Female",
-        origin = Location(name = "Earth (Replacement Dimension)", url = "https://rickandmortyapi.com/api/location/20"),
-        location = Location(name = "Earth (Replacement Dimension)", url = "https://rickandmortyapi.com/api/location/20"),
+        origin = Location(
+            name = "Earth (Replacement Dimension)",
+            url = "https://rickandmortyapi.com/api/location/20"
+        ),
+        location = Location(
+            name = "Earth (Replacement Dimension)",
+            url = "https://rickandmortyapi.com/api/location/20"
+        ),
         image = "https://rickandmortyapi.com/api/character/avatar/3.jpeg",
         episode = listOf("https://rickandmortyapi.com/api/episode/1"),
         url = "https://rickandmortyapi.com/api/character/3",

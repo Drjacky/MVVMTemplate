@@ -124,7 +124,8 @@ fun ProductDetailView(
             val item = uiState.item ?: return
             val defaultColor = MaterialTheme.colorScheme.surface
             val cardColor = remember { mutableStateOf(defaultColor) }
-            val animatedCardColor = animateColorAsState(cardColor.value, label = "animatedCardColor")
+            val animatedCardColor =
+                animateColorAsState(cardColor.value, label = "animatedCardColor")
             val isDark = ThemeState.darkModeState.value
             val context = LocalContext.current
 
@@ -209,8 +210,10 @@ fun ProductDetailView(
                                     }
                                 }
                             }
+
                             is AsyncImagePainter.State.Loading -> {
-                                val loadingDesc = stringResource(R.string.content_description_loading_image)
+                                val loadingDesc =
+                                    stringResource(R.string.content_description_loading_image)
                                 CircularProgressIndicator(
                                     modifier = Modifier
                                         .align(Alignment.Center)
@@ -218,6 +221,7 @@ fun ProductDetailView(
                                     color = MaterialTheme.colorScheme.onSurface
                                 )
                             }
+
                             else -> Unit
                         }
                     }
@@ -237,9 +241,12 @@ fun ProductDetailView(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(top = 14.dp),
-                        horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
+                        horizontalArrangement = Arrangement.spacedBy(
+                            16.dp,
+                            Alignment.CenterHorizontally
+                        ),
                     ) {
-                        val statusColor = when(item.status.lowercase()) {
+                        val statusColor = when (item.status.lowercase()) {
                             "alive" -> Color(0xFF4CAF50)
                             "dead" -> Color(0xFFF44336)
                             else -> Color(0xFF9E9E9E)
@@ -388,8 +395,14 @@ private fun ProductDetailViewPreview() {
             species = "Humanoid",
             type = "Rick's Toxic Side",
             gender = "Male",
-            origin = LocationUI(name = "Alien Spa", url = "https://rickandmortyapi.com/api/location/64"),
-            location = LocationUI(name = "Earth", url = "https://rickandmortyapi.com/api/location/20"),
+            origin = LocationUI(
+                name = "Alien Spa",
+                url = "https://rickandmortyapi.com/api/location/64"
+            ),
+            location = LocationUI(
+                name = "Earth",
+                url = "https://rickandmortyapi.com/api/location/20"
+            ),
             image = "https://rickandmortyapi.com/api/character/avatar/361.jpeg",
             episode = listOf("https://rickandmortyapi.com/api/episode/27"),
             url = "https://rickandmortyapi.com/api/character/361",
