@@ -13,12 +13,14 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
@@ -31,6 +33,7 @@ import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemContentType
 import androidx.paging.compose.itemKey
+import app.web.drjackycv.core.ui.extension.frostedGlass
 import app.web.drjackycv.core.ui.view.ErrorListView
 import app.web.drjackycv.core.ui.view.LoadingItemView
 import app.web.drjackycv.feature.products.choose.ChoosePathType
@@ -112,6 +115,10 @@ fun ProductsListContent(
                         )
                     }
                 },
+                modifier = Modifier.frostedGlass(),
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = Color.Transparent,
+                ),
             )
         },
         floatingActionButton = themeFAB,
