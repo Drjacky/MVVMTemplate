@@ -49,10 +49,7 @@ fun ImageView.load(
         dontAnimate()
     }
 
-    val glideRequest = Glide
-        .with(context)
-        .setDefaultRequestOptions(requestOptions)
-        .load(url)
+    val glideRequest = Glide.with(context).setDefaultRequestOptions(requestOptions).load(url)
 
     if (activity != null || cardView != null) {
         glideRequest.into(object : CustomTarget<Drawable>() {
@@ -98,8 +95,8 @@ private fun handleStatusBarPalette(bitmap: Bitmap, activity: Activity) {
 
 private fun handleCardPalette(bitmap: Bitmap, cardView: CardView) {
     try {
-        val isDarkMode = (cardView.resources.configuration.uiMode
-            and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
+        val nightMask = cardView.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+        val isDarkMode = nightMask == Configuration.UI_MODE_NIGHT_YES
 
         Palette.from(bitmap).generate { p ->
             p?.let { palette ->
