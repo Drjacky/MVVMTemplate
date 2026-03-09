@@ -1,11 +1,11 @@
 package app.web.drjackycv.feature.products.productlist
 
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
 import androidx.paging.rxjava3.cachedIn
-import app.web.drjackycv.core.common.base.BaseViewModel
 import app.web.drjackycv.core.common.base.Result
 import app.web.drjackycv.core.common.base.asResult
 import app.web.drjackycv.core.domain.base.Failure
@@ -13,9 +13,9 @@ import app.web.drjackycv.core.domain.products.usecase.GetBeersListByCoroutineUse
 import app.web.drjackycv.core.domain.products.usecase.GetBeersListUseCase
 import app.web.drjackycv.feature.products.entity.BeerUI
 import app.web.drjackycv.feature.products.entity.mapIt
-import autodispose2.autoDispose
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.disposables.CompositeDisposable
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -33,7 +33,9 @@ import javax.inject.Inject
 class ProductsListViewModel @Inject constructor(
     private val getBeersUseCase: GetBeersListUseCase,
     private val getBeersListByCoroutineUseCase: GetBeersListByCoroutineUseCase,
-) : BaseViewModel() {
+) : ViewModel() {
+
+    private val disposables = CompositeDisposable()
 
     private val _productsListByRx = MutableStateFlow<ProductsUiState>(ProductsUiState.Loading)
     val productsListByRx: StateFlow<ProductsUiState> = _productsListByRx.asStateFlow()
@@ -54,7 +56,6 @@ class ProductsListViewModel @Inject constructor(
                 _productsListByRx.value = ProductsUiState.Loading
             }
             .observeOn(AndroidSchedulers.mainThread())
-            .autoDispose(this)
             .subscribe({ result ->
                 result.map {
                     it.mapIt()
@@ -76,7 +77,12 @@ class ProductsListViewModel @Inject constructor(
                         _productsListByRx.value = ProductsUiState.Error(Failure.Unknown(e.message))
                     }
                 }
-            })
+            }).also { disposables.add(it) }
+    }
+
+    override fun onCleared() {
+        disposables.clear()
+        super.onCleared()
     }
 
     private fun getProductsByCoroutinePath(): Flow<ProductsUiState> =

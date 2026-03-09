@@ -44,7 +44,6 @@ rxAndroid = "3.0.2"
 rxJava = "3.1.5"
 rxBinding = "4.0.0"
 rxCoroutine = "1.6.4"
-autoDispose = "2.2.1"
 coroutines = "1.10.2"
 
 # UI
@@ -152,9 +151,6 @@ rx-java = { group = "io.reactivex.rxjava3", name = "rxjava", version.ref = "rxJa
 rx-android = { group = "io.reactivex.rxjava3", name = "rxandroid", version.ref = "rxAndroid" }
 rx-binding = { group = "com.jakewharton.rxbinding4", name = "rxbinding", version.ref = "rxBinding" }
 rx-coroutine = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-rx3", version.ref = "rxCoroutine" }
-autodispose = { group = "com.uber.autodispose2", name = "autodispose", version.ref = "autoDispose" }
-autodispose-android = { group = "com.uber.autodispose2", name = "autodispose-android", version.ref = "autoDispose" }
-autodispose-android-arch = { group = "com.uber.autodispose2", name = "autodispose-androidx-lifecycle", version.ref = "autoDispose" }
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 
 # UI

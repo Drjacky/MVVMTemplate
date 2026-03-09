@@ -41,9 +41,6 @@ dependencies {
 
     implementation(libs.rx.android)
     implementation(libs.rx.kotlin)
-    implementation(libs.autodispose)
-    implementation(libs.autodispose.android)
-    implementation(libs.autodispose.android.arch)
 
     implementation(libs.coil.compose)
     implementation(libs.androidx.palette)

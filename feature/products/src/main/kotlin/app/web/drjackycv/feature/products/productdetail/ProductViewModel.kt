@@ -1,16 +1,16 @@
 package app.web.drjackycv.feature.products.productdetail
 
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import app.web.drjackycv.core.common.base.BaseViewModel
 import app.web.drjackycv.core.common.base.Result
 import app.web.drjackycv.core.common.base.asResult
 import app.web.drjackycv.core.domain.products.usecase.GetBeerByCoroutineUseCase
 import app.web.drjackycv.core.domain.products.usecase.GetBeerUseCase
 import app.web.drjackycv.feature.products.entity.BeerUI
 import app.web.drjackycv.feature.products.entity.mapIt
-import autodispose2.autoDispose
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.disposables.CompositeDisposable
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -27,7 +27,9 @@ import javax.inject.Inject
 class ProductViewModel @Inject constructor(
     private val getBeerUseCase: GetBeerUseCase,
     private val getBeerByCoroutineUseCase: GetBeerByCoroutineUseCase,
-) : BaseViewModel() {
+) : ViewModel() {
+
+    private val disposables = CompositeDisposable()
 
     private val _productByRx = MutableStateFlow<ProductUiState>(ProductUiState.Loading)
     val productByRx: StateFlow<ProductUiState> = _productByRx.asStateFlow()
@@ -52,12 +54,16 @@ class ProductViewModel @Inject constructor(
         _productByRx.value = ProductUiState.Loading
         getBeerUseCase(id)
             .observeOn(AndroidSchedulers.mainThread())
-            .autoDispose(this)
             .subscribe({ beer ->
                 _productByRx.value = ProductUiState.Success(beer.mapIt())
             }, { e ->
                 _productByRx.value = ProductUiState.Error(e)
-            })
+            }).also { disposables.add(it) }
+    }
+
+    override fun onCleared() {
+        disposables.clear()
+        super.onCleared()
     }
 
     private fun getProductByCoroutine(ids: String) =
