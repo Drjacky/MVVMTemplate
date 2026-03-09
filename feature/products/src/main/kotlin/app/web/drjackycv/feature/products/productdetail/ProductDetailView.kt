@@ -126,6 +126,7 @@ fun ProductDetailView(
             val cardColor = remember { mutableStateOf(defaultColor) }
             val animatedCardColor =
                 animateColorAsState(cardColor.value, label = "animatedCardColor")
+            val animatedBackgroundColor = animatedCardColor.value.copy(alpha = 0.15f)
             val isDark = ThemeState.darkModeState.value
             val context = LocalContext.current
 
@@ -136,6 +137,7 @@ fun ProductDetailView(
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
+                        .background(color = animatedBackgroundColor)
                         .padding(padding)
                         .verticalScroll(rememberScrollState())
                 ) {
