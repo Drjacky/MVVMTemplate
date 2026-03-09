@@ -31,6 +31,9 @@ dependencyResolutionManagement {
 rootProject.name = "MVVMTemplate"
 
 include(":app")
-include(":domain")
-include(":data")
-include(":presentation")
+include(":core:domain")
+include(":core:common")
+include(":core:network")
+include(":core:data")
+include(":core:testing")
+include(":feature:products")

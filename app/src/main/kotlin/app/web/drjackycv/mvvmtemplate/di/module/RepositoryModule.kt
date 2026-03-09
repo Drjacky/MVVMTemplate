@@ -1,9 +1,10 @@
 package app.web.drjackycv.mvvmtemplate.di.module
 
-import app.web.drjackycv.data.products.datasource.ProductsPagingSource
-import app.web.drjackycv.data.products.datasource.ProductsPagingSourceByCoroutine
-import app.web.drjackycv.data.products.repository.ProductsListRepositoryImpl
-import app.web.drjackycv.domain.products.repository.ProductsListRepository
+import app.web.drjackycv.core.data.products.datasource.ProductsPagingSource
+import app.web.drjackycv.core.data.products.datasource.ProductsPagingSourceByCoroutine
+import app.web.drjackycv.core.data.products.remote.ProductsApi
+import app.web.drjackycv.core.data.products.repository.ProductsListRepositoryImpl
+import app.web.drjackycv.core.domain.products.repository.ProductsListRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,8 +19,12 @@ class RepositoryModule {
     @ViewModelScoped
     fun productsList(
         pagingSource: ProductsPagingSource,
-        pagingSourceByCoroutine: ProductsPagingSourceByCoroutine
+        pagingSourceByCoroutine: ProductsPagingSourceByCoroutine,
+        productsApi: ProductsApi,
     ): ProductsListRepository =
-        ProductsListRepositoryImpl(pagingSource, pagingSourceByCoroutine)
-
+        ProductsListRepositoryImpl(
+            pagingSource = pagingSource,
+            pagingSourceByCoroutine = pagingSourceByCoroutine,
+            productsApi = productsApi,
+        )
 }

@@ -137,6 +137,7 @@ autodispose = { group = "com.uber.autodispose2", name = "autodispose", version.r
 autodispose-android = { group = "com.uber.autodispose2", name = "autodispose-android", version.ref = "autoDispose" }
 autodispose-android-arch = { group = "com.uber.autodispose2", name = "autodispose-androidx-lifecycle", version.ref = "autoDispose" }
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
+rx-coroutine = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-rx3", version.ref = "coroutines" }
 
 # UI
 glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }

@@ -14,7 +14,7 @@
         tools:targetApi="n">
 
         <activity
-            android:name="app.web.drjackycv.presentation.main.MainActivity"
+            android:name="app.web.drjackycv.mvvmtemplate.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

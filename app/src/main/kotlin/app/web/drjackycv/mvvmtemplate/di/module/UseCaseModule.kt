@@ -1,8 +1,10 @@
 package app.web.drjackycv.mvvmtemplate.di.module
 
-import app.web.drjackycv.domain.products.repository.ProductsListRepository
-import app.web.drjackycv.domain.products.usecase.GetBeersListByCoroutineUseCase
-import app.web.drjackycv.domain.products.usecase.GetBeersListUseCase
+import app.web.drjackycv.core.domain.products.repository.ProductsListRepository
+import app.web.drjackycv.core.domain.products.usecase.GetBeerByCoroutineUseCase
+import app.web.drjackycv.core.domain.products.usecase.GetBeerUseCase
+import app.web.drjackycv.core.domain.products.usecase.GetBeersListByCoroutineUseCase
+import app.web.drjackycv.core.domain.products.usecase.GetBeersListUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,9 +24,22 @@ class UseCaseModule {
 
     @Provides
     @ViewModelScoped
+    fun getBeerByCoroutineUseCase(
+        productsListRepository: ProductsListRepository,
+    ): GetBeerByCoroutineUseCase =
+        GetBeerByCoroutineUseCase(productsListRepository::getBeerByCoroutine)
+
+    @Provides
+    @ViewModelScoped
     fun getBeersListUseCase(
         productsListRepository: ProductsListRepository,
     ): GetBeersListUseCase =
         GetBeersListUseCase(productsListRepository::getBeersList)
 
+    @Provides
+    @ViewModelScoped
+    fun getBeerUseCase(
+        productsListRepository: ProductsListRepository,
+    ): GetBeerUseCase =
+        GetBeerUseCase(productsListRepository::getBeer)
 }

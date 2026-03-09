@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rxjava">RxJava</string>
+    <string name="coroutine">Coroutine</string>
+    <string name="character_info">Species: %1$s\nStatus: %2$s\nGender: %3$s</string>
+    <string name="character_location">Location: %1$s</string>
+</resources>
