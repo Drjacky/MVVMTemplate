@@ -7,6 +7,7 @@ import androidx.datastore.preferences.preferencesDataStore
 import app.web.drjackycv.core.common.preference.Settings
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -24,7 +25,16 @@ class DataStoreManager @Inject constructor(@ApplicationContext appContext: Conte
         }
     }
 
-    val themeMode: Flow<Int> = settingsDataStore.data.map { preferences ->
-        preferences[Settings.NIGHT_MODE] ?: AppCompatDelegate.MODE_NIGHT_UNSPECIFIED
-    }
+    val themeMode: Flow<Int> = settingsDataStore.data
+        .map { preferences ->
+            preferences[Settings.NIGHT_MODE] ?: AppCompatDelegate.MODE_NIGHT_UNSPECIFIED
+        }
+        .catch { e ->
+            if (e is ClassCastException) {
+                settingsDataStore.edit { it.remove(Settings.NIGHT_MODE) }
+                emit(AppCompatDelegate.MODE_NIGHT_UNSPECIFIED)
+            } else {
+                throw e
+            }
+        }
 }
