@@ -36,8 +36,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -125,8 +127,10 @@ fun ProductDetailView(
             val defaultColor = MaterialTheme.colorScheme.surface
             val cardColor = remember { mutableStateOf(defaultColor) }
             val animatedCardColor =
-                animateColorAsState(cardColor.value, label = "animatedCardColor")
-            val animatedBackgroundColor = animatedCardColor.value.copy(alpha = 0.15f)
+                animateColorAsState(
+                    cardColor.value.copy(alpha = 0.15f),
+                    label = "animatedCardColor"
+                )
             val isDark = ThemeState.darkModeState.value
             val context = LocalContext.current
 
@@ -137,7 +141,7 @@ fun ProductDetailView(
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
-                        .background(color = animatedBackgroundColor)
+                        .background(color = animatedCardColor.value)
                         .padding(padding)
                         .verticalScroll(rememberScrollState())
                 ) {
@@ -153,8 +157,28 @@ fun ProductDetailView(
                             .fillMaxWidth()
                             .height(290.dp)
                             .shadow(elevation = 9.dp, shape = shape)
-                            .background(color = animatedCardColor.value, shape = shape)
                     ) {
+                        Image(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .graphicsLayer { scaleX = 1.5f; scaleY = 1.5f }
+                                .blur(24.dp),
+                            painter = rememberAsyncImagePainter(
+                                ImageRequest.Builder(context)
+                                    .data(data = item.image)
+                                    .crossfade(true)
+                                    .build()
+                            ),
+                            contentDescription = null,
+                            contentScale = ContentScale.Crop,
+                        )
+
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(animatedCardColor.value.copy(alpha = 0.2f))
+                        )
+
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
