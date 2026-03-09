@@ -33,7 +33,6 @@ import androidx.paging.compose.itemContentType
 import androidx.paging.compose.itemKey
 import app.web.drjackycv.core.ui.view.ErrorListView
 import app.web.drjackycv.core.ui.view.LoadingItemView
-import app.web.drjackycv.feature.products.R
 import app.web.drjackycv.feature.products.choose.ChoosePathType
 import app.web.drjackycv.feature.products.entity.BeerUI
 import coil.annotation.ExperimentalCoilApi
