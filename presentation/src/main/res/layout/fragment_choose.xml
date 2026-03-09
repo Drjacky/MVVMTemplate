@@ -15,7 +15,8 @@
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/choose"
-        app:lottie_scale="2" />
+        android:scaleX="2"
+        android:scaleY="2" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/fragmentChooseCoroutineBtn"

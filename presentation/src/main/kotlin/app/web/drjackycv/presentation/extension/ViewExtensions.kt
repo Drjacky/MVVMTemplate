@@ -15,8 +15,8 @@ import androidx.core.app.ActivityCompat.startPostponedEnterTransition
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import app.web.drjackycv.presentation.R
-import app.web.drjackycv.presentation.base.util.GlideApp
 import app.web.drjackycv.presentation.exception.ReactiveClickException
+import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
@@ -50,12 +50,12 @@ fun ImageView.load(
     val requestOptions = RequestOptions().apply {
         placeholder(safePlaceholderDrawable)
         error(safePlaceholderDrawable)
+        dontAnimate()
     }
-    val glideRequest = GlideApp
+    val glideRequest = Glide
         .with(context)
         .setDefaultRequestOptions(requestOptions)
         .load(url)
-        .dontAnimate()
 
     activity?.let {
         glideRequest
