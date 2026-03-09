@@ -25,9 +25,9 @@
         android:layout_height="match_parent"
         app:defaultNavHost="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:navGraph="@navigation/main_navigation"
+        app:navGraph="@navigation/feature_products_main_navigation"
         tools:context="app.web.drjackycv.mvvmtemplate.main.MainActivity"
-        tools:layout="@layout/fragment_choose" />
+        tools:layout="@layout/feature_products_fragment_choose" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/activityMainSwitchThemeFab"
