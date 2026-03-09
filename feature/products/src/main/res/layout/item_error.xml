@@ -17,9 +17,7 @@
         android:layout_weight="4"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/loading_beer"
-        android:scaleX="2"
-        android:scaleY="2" />
+        app:lottie_rawRes="@raw/loading_beer" />
 
     <TextView
         android:id="@+id/itemErrorMessage"

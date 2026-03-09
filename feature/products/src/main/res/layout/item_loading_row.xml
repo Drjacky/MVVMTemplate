@@ -13,8 +13,6 @@
         android:layout_height="match_parent"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/loading_beer"
-        android:scaleX="0.2"
-        android:scaleY="0.2" />
+        app:lottie_rawRes="@raw/loading_beer" />
 
 </LinearLayout>
