@@ -10,6 +10,7 @@ android {
 dependencies {
     implementation(project(":core:domain"))
 
+    implementation(libs.androidx.appcompat)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.dataStore.preferences)

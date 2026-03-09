@@ -1,15 +1,14 @@
 package app.web.drjackycv.core.common.datastore
 
 import android.content.Context
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.preferencesDataStore
 import app.web.drjackycv.core.common.preference.Settings
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
-import java.io.IOException
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -20,22 +19,22 @@ class DataStoreManager @Inject constructor(@ApplicationContext appContext: Conte
 
     private val settingsDataStore = appContext.dataStore
 
-    suspend fun setDarkMode(mode: Boolean) {
+    suspend fun setThemeMode(mode: Int) {
         settingsDataStore.edit { settings ->
             settings[Settings.NIGHT_MODE] = mode
         }
     }
 
-    val isDarkMode: Flow<Boolean> = settingsDataStore.data
-        .catch {
-            if (it is IOException) {
-                it.printStackTrace()
-                emit(emptyPreferences())
-            } else {
-                throw it
-            }
-        }
+    val themeMode: Flow<Int> = settingsDataStore.data
         .map { preferences ->
-            preferences[Settings.NIGHT_MODE] ?: false
+            preferences[Settings.NIGHT_MODE] ?: AppCompatDelegate.MODE_NIGHT_UNSPECIFIED
+        }
+        .catch { e ->
+            if (e is ClassCastException) {
+                settingsDataStore.edit { it.remove(Settings.NIGHT_MODE) }
+                emit(AppCompatDelegate.MODE_NIGHT_UNSPECIFIED)
+            } else {
+                throw e
+            }
         }
 }
