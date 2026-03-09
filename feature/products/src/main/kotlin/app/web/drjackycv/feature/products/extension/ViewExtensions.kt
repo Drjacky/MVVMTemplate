@@ -3,6 +3,7 @@ package app.web.drjackycv.feature.products.extension
 import android.app.Activity
 import android.content.Context
 import android.content.ContextWrapper
+import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
@@ -10,7 +11,9 @@ import android.view.View
 import android.widget.ImageView
 import androidx.annotation.ColorRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
+import androidx.palette.graphics.Palette
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.CustomTarget
@@ -32,6 +35,7 @@ fun ImageView.load(
     url: String?,
     placeholder: Int? = null,
     activity: Activity? = null,
+    cardView: CardView? = null,
 ) {
     val safePlaceholderDrawable = if (placeholder != null) {
         ContextCompat.getDrawable(context, placeholder)
@@ -50,7 +54,7 @@ fun ImageView.load(
         .setDefaultRequestOptions(requestOptions)
         .load(url)
 
-    if (activity != null) {
+    if (activity != null || cardView != null) {
         glideRequest.into(object : CustomTarget<Drawable>() {
             override fun onResourceReady(
                 resource: Drawable,
@@ -59,7 +63,12 @@ fun ImageView.load(
                 setImageDrawable(resource)
                 val bitmap = (resource as? BitmapDrawable)?.bitmap
                 if (bitmap != null && !bitmap.isRecycled) {
-                    handlePalette(bitmap, activity)
+                    if (activity != null) {
+                        handleStatusBarPalette(bitmap, activity)
+                    }
+                    if (cardView != null) {
+                        handleCardPalette(bitmap, cardView)
+                    }
                 }
             }
 
@@ -72,17 +81,34 @@ fun ImageView.load(
     }
 }
 
-private fun ImageView.handlePalette(bitmap: Bitmap, activity: Activity) {
+private fun handleStatusBarPalette(bitmap: Bitmap, activity: Activity) {
     try {
-        @Suppress("RestrictedApi")
-        androidx.palette.graphics.Palette.from(bitmap).generate { p ->
+        Palette.from(bitmap).generate { p ->
             p?.let { palette ->
                 val dominantColor = palette.getDominantColor(
-                    ContextCompat.getColor(context, android.R.color.white)
+                    ContextCompat.getColor(activity, android.R.color.white)
                 )
-                (activity as? AppCompatActivity)?.let {
-                    it.window?.statusBarColor = dominantColor
+                (activity as? AppCompatActivity)?.window?.statusBarColor = dominantColor
+            }
+        }
+    } catch (_: IllegalArgumentException) {
+        // bitmap may have been recycled
+    }
+}
+
+private fun handleCardPalette(bitmap: Bitmap, cardView: CardView) {
+    try {
+        val isDarkMode = (cardView.resources.configuration.uiMode
+            and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
+
+        Palette.from(bitmap).generate { p ->
+            p?.let { palette ->
+                val swatch = if (isDarkMode) {
+                    palette.darkVibrantSwatch
+                } else {
+                    palette.lightVibrantSwatch
                 }
+                swatch?.let { cardView.setCardBackgroundColor(it.rgb) }
             }
         }
     } catch (_: IllegalArgumentException) {
