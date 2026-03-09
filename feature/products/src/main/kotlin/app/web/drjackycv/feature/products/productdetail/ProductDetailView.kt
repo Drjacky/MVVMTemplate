@@ -56,7 +56,7 @@ import app.web.drjackycv.core.ui.theme.ThemeState
 import app.web.drjackycv.core.ui.view.ErrorItemView
 import app.web.drjackycv.core.ui.view.LoadingItemView
 import app.web.drjackycv.feature.products.choose.ChoosePathType
-import app.web.drjackycv.feature.products.entity.BeerUI
+import app.web.drjackycv.feature.products.entity.ProductUI
 import app.web.drjackycv.feature.products.entity.LocationUI
 import coil.ImageLoader
 import coil.annotation.ExperimentalCoilApi
@@ -389,7 +389,7 @@ private fun InfoItem(
 @Composable
 private fun ProductDetailViewPreview() {
     val uiState = ProductUiState.Success(
-        item = BeerUI(
+        item = ProductUI(
             id = 361,
             name = "Toxic Rick",
             status = "Dead",

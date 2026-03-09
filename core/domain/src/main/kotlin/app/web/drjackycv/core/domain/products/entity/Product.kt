@@ -9,7 +9,7 @@ data class Location(
 )
 
 @Immutable
-data class Beer(
+data class Product(
     val id: Int,
     val name: String,
     val status: String,

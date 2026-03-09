@@ -4,9 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.web.drjackycv.core.common.base.Result
 import app.web.drjackycv.core.common.base.asResult
-import app.web.drjackycv.core.domain.products.usecase.GetBeerByCoroutineUseCase
-import app.web.drjackycv.core.domain.products.usecase.GetBeerUseCase
-import app.web.drjackycv.feature.products.entity.BeerUI
+import app.web.drjackycv.core.domain.products.usecase.GetProductByCoroutineUseCase
+import app.web.drjackycv.core.domain.products.usecase.GetProductUseCase
+import app.web.drjackycv.feature.products.entity.ProductUI
 import app.web.drjackycv.feature.products.entity.mapIt
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -25,8 +25,8 @@ import javax.inject.Inject
 @OptIn(ExperimentalCoroutinesApi::class)
 @HiltViewModel
 class ProductViewModel @Inject constructor(
-    private val getBeerUseCase: GetBeerUseCase,
-    private val getBeerByCoroutineUseCase: GetBeerByCoroutineUseCase,
+    private val getProductUseCase: GetProductUseCase,
+    private val getProductByCoroutineUseCase: GetProductByCoroutineUseCase,
 ) : ViewModel() {
 
     private val disposables = CompositeDisposable()
@@ -52,10 +52,10 @@ class ProductViewModel @Inject constructor(
 
     fun getProduct(id: String) {
         _productByRx.value = ProductUiState.Loading
-        getBeerUseCase(id)
+        getProductUseCase(id)
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ beer ->
-                _productByRx.value = ProductUiState.Success(beer.mapIt())
+            .subscribe({ product ->
+                _productByRx.value = ProductUiState.Success(product.mapIt())
             }, { e ->
                 _productByRx.value = ProductUiState.Error(e)
             }).also { disposables.add(it) }
@@ -67,7 +67,7 @@ class ProductViewModel @Inject constructor(
     }
 
     private fun getProductByCoroutine(ids: String) =
-        getBeerByCoroutineUseCase(ids)
+        getProductByCoroutineUseCase(ids)
             .asResult()
             .map { result ->
                 when (result) {
@@ -88,7 +88,7 @@ class ProductViewModel @Inject constructor(
 }
 
 sealed interface ProductUiState {
-    data class Success(val item: BeerUI?) : ProductUiState
+    data class Success(val item: ProductUI?) : ProductUiState
     data class Error(val error: Throwable) : ProductUiState
     data object Loading : ProductUiState
 }

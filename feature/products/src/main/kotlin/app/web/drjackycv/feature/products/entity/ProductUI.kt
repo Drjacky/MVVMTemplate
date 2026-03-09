@@ -1,53 +1,43 @@
-package app.web.drjackycv.core.data.products.entity
+package app.web.drjackycv.feature.products.entity
 
-import app.web.drjackycv.core.domain.products.entity.Beer
+import android.os.Parcelable
+import androidx.compose.runtime.Immutable
 import app.web.drjackycv.core.domain.products.entity.Location
-import kotlinx.serialization.Serializable
+import app.web.drjackycv.core.domain.products.entity.Product
+import kotlinx.parcelize.Parcelize
 
-@Serializable
-data class CharactersResponse(
-    val info: Info,
-    val results: List<BeerResponse>,
-) {
-    @Serializable
-    data class Info(
-        val count: Int,
-        val pages: Int,
-        val next: String?,
-        val prev: String?,
-    )
-}
-
-@Serializable
-data class LocationResponse(
+@Immutable
+@Parcelize
+data class LocationUI(
     val name: String,
     val url: String,
-)
+) : Parcelable
 
-fun LocationResponse.mapIt(): Location =
-    Location(
+fun Location.mapIt(): LocationUI =
+    LocationUI(
         name = name,
         url = url,
     )
 
-@Serializable
-data class BeerResponse(
+@Immutable
+@Parcelize
+data class ProductUI(
     val id: Int,
     val name: String,
     val status: String,
     val species: String,
     val type: String,
     val gender: String,
-    val origin: LocationResponse,
-    val location: LocationResponse,
+    val origin: LocationUI,
+    val location: LocationUI,
     val image: String,
     val episode: List<String>,
     val url: String,
     val created: String,
-)
+) : Parcelable
 
-fun BeerResponse.mapIt(): Beer =
-    Beer(
+fun Product.mapIt(): ProductUI =
+    ProductUI(
         id = id,
         name = name,
         status = status,

@@ -2,11 +2,11 @@ package app.web.drjackycv.core.data.products.datasource
 
 import androidx.paging.PagingState
 import androidx.paging.rxjava3.RxPagingSource
-import app.web.drjackycv.core.data.products.entity.BeerResponse
+import app.web.drjackycv.core.data.products.entity.ProductResponse
 import app.web.drjackycv.core.data.products.entity.mapIt
 import app.web.drjackycv.core.data.products.remote.ProductsApi
 import app.web.drjackycv.core.domain.base.Failure
-import app.web.drjackycv.core.domain.products.entity.Beer
+import app.web.drjackycv.core.domain.products.entity.Product
 import app.web.drjackycv.core.network.NetworkResponse
 import io.reactivex.rxjava3.annotations.NonNull
 import io.reactivex.rxjava3.core.Single
@@ -22,17 +22,17 @@ private const val STARTING_PAGE_INDEX = 1
 @Singleton
 class ProductsPagingSource @Inject constructor(
     private val productsApi: ProductsApi,
-) : RxPagingSource<Int, Beer>() {
+) : RxPagingSource<Int, Product>() {
 
-    override fun loadSingle(params: LoadParams<Int>): Single<LoadResult<Int, Beer>> {
+    override fun loadSingle(params: LoadParams<Int>): Single<LoadResult<Int, Product>> {
         val position = params.key ?: STARTING_PAGE_INDEX
 
-        return productsApi.getBeersList(position, params.loadSize)
+        return productsApi.getProductsList(position, params.loadSize)
             .subscribeOn(Schedulers.io())
             .map { response ->
                 when (response) {
                     is NetworkResponse.Success -> {
-                        val list = response.body.results.map(BeerResponse::mapIt)
+                        val list = response.body.results.map(ProductResponse::mapIt)
 
                         toLoadResult(list, position)
                     }
@@ -69,12 +69,12 @@ class ProductsPagingSource @Inject constructor(
 
     override val jumpingSupported = true
 
-    override fun getRefreshKey(state: PagingState<Int, Beer>): Int? = state.anchorPosition
+    override fun getRefreshKey(state: PagingState<Int, Product>): Int? = state.anchorPosition
 
     private fun toLoadResult(
-        @NonNull response: List<Beer>,
+        @NonNull response: List<Product>,
         position: Int,
-    ): LoadResult<Int, Beer> {
+    ): LoadResult<Int, Product> {
         return LoadResult.Page(
             data = response,
             prevKey = if (position == STARTING_PAGE_INDEX) null else position - 1,

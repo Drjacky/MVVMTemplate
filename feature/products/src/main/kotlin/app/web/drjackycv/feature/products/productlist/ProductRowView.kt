@@ -38,7 +38,7 @@ import app.web.drjackycv.core.ui.extension.clickableOnce
 import app.web.drjackycv.core.ui.extension.shimmer
 import app.web.drjackycv.core.ui.theme.ThemeState
 import app.web.drjackycv.core.ui.view.ErrorRowView
-import app.web.drjackycv.feature.products.entity.BeerUI
+import app.web.drjackycv.feature.products.entity.ProductUI
 import coil.ImageLoader
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.AsyncImagePainter
@@ -52,7 +52,7 @@ import coil.request.SuccessResult
 @Suppress("LongMethod")
 @Composable
 fun ProductRowView(
-    product: BeerUI,
+    product: ProductUI,
     isShimmerVisible: Boolean,
     navigateToProduct: (product: String) -> Unit,
     modifier: Modifier = Modifier,
@@ -161,7 +161,7 @@ fun ProductRowView(
 @Composable
 private fun ProductRowViewPreview() {
     ProductRowView(
-        product = BeerUI(
+        product = ProductUI(
             id = 361,
             name = "Toxic Rick",
             status = "Dead",

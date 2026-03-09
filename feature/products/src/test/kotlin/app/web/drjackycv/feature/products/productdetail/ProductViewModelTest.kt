@@ -1,7 +1,7 @@
 package app.web.drjackycv.feature.products.productdetail
 
-import app.web.drjackycv.core.domain.products.usecase.GetBeerByCoroutineUseCase
-import app.web.drjackycv.core.domain.products.usecase.GetBeerUseCase
+import app.web.drjackycv.core.domain.products.usecase.GetProductByCoroutineUseCase
+import app.web.drjackycv.core.domain.products.usecase.GetProductUseCase
 import app.web.drjackycv.core.testing.data.TestData
 import app.web.drjackycv.core.testing.products.FakeProductsListRepository
 import app.web.drjackycv.core.testing.rule.TestDispatcherRule
@@ -29,19 +29,19 @@ class ProductViewModelTest {
     @Before
     fun setup() {
         fakeRepository = FakeProductsListRepository()
-        fakeRepository.addBeer(TestData.testBeer)
-        fakeRepository.addBeer(TestData.testBeer2)
+        fakeRepository.addProduct(TestData.testProduct)
+        fakeRepository.addProduct(TestData.testProduct2)
 
-        val getBeerByCoroutineUseCase = GetBeerByCoroutineUseCase { id ->
-            fakeRepository.getBeerByCoroutine(id)
+        val getProductByCoroutineUseCase = GetProductByCoroutineUseCase { id ->
+            fakeRepository.getProductByCoroutine(id)
         }
-        val getBeerUseCase = GetBeerUseCase { id ->
-            fakeRepository.getBeer(id)
+        val getProductUseCase = GetProductUseCase { id ->
+            fakeRepository.getProduct(id)
         }
 
         viewModel = ProductViewModel(
-            getBeerUseCase = getBeerUseCase,
-            getBeerByCoroutineUseCase = getBeerByCoroutineUseCase,
+            getProductUseCase = getProductUseCase,
+            getProductByCoroutineUseCase = getProductByCoroutineUseCase,
         )
     }
 
@@ -57,7 +57,7 @@ class ProductViewModelTest {
             viewModel.productByCoroutine.collect()
         }
 
-        viewModel.setProductId(TestData.testBeer.id.toString())
+        viewModel.setProductId(TestData.testProduct.id.toString())
         advanceUntilIdle()
 
         val state = viewModel.productByCoroutine.value
@@ -65,8 +65,8 @@ class ProductViewModelTest {
 
         val successState = state as ProductUiState.Success
         assertThat(successState.item).isNotNull()
-        assertThat(successState.item?.name).isEqualTo(TestData.testBeer.name)
-        assertThat(successState.item?.id).isEqualTo(TestData.testBeer.id)
+        assertThat(successState.item?.name).isEqualTo(TestData.testProduct.name)
+        assertThat(successState.item?.id).isEqualTo(TestData.testProduct.id)
 
         collectJob.cancel()
     }
@@ -94,7 +94,7 @@ class ProductViewModelTest {
             viewModel.productByCoroutine.collect()
         }
 
-        viewModel.setProductId(TestData.testBeer.id.toString())
+        viewModel.setProductId(TestData.testProduct.id.toString())
         advanceUntilIdle()
 
         val state = viewModel.productByCoroutine.value
@@ -109,32 +109,32 @@ class ProductViewModelTest {
             viewModel.productByCoroutine.collect()
         }
 
-        viewModel.setProductId(TestData.testBeer.id.toString())
+        viewModel.setProductId(TestData.testProduct.id.toString())
         advanceUntilIdle()
 
         var state = viewModel.productByCoroutine.value as ProductUiState.Success
-        assertThat(state.item?.name).isEqualTo(TestData.testBeer.name)
+        assertThat(state.item?.name).isEqualTo(TestData.testProduct.name)
 
-        viewModel.setProductId(TestData.testBeer2.id.toString())
+        viewModel.setProductId(TestData.testProduct2.id.toString())
         advanceUntilIdle()
 
         state = viewModel.productByCoroutine.value as ProductUiState.Success
-        assertThat(state.item?.name).isEqualTo(TestData.testBeer2.name)
+        assertThat(state.item?.name).isEqualTo(TestData.testProduct2.name)
 
         collectJob.cancel()
     }
 
     @Test
-    fun `Success state maps Beer to BeerUI correctly`() = runTest {
+    fun `Success state maps Product to ProductUI correctly`() = runTest {
         val collectJob = launch(UnconfinedTestDispatcher(testScheduler)) {
             viewModel.productByCoroutine.collect()
         }
 
-        viewModel.setProductId(TestData.testBeer.id.toString())
+        viewModel.setProductId(TestData.testProduct.id.toString())
         advanceUntilIdle()
 
         val state = viewModel.productByCoroutine.value as ProductUiState.Success
-        val expectedUI = TestData.testBeer.mapIt()
+        val expectedUI = TestData.testProduct.mapIt()
         assertThat(state.item?.id).isEqualTo(expectedUI.id)
         assertThat(state.item?.name).isEqualTo(expectedUI.name)
         assertThat(state.item?.status).isEqualTo(expectedUI.status)

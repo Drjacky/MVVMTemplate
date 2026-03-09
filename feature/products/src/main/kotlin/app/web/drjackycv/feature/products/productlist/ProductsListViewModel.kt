@@ -9,9 +9,9 @@ import androidx.paging.rxjava3.cachedIn
 import app.web.drjackycv.core.common.base.Result
 import app.web.drjackycv.core.common.base.asResult
 import app.web.drjackycv.core.domain.base.Failure
-import app.web.drjackycv.core.domain.products.usecase.GetBeersListByCoroutineUseCase
-import app.web.drjackycv.core.domain.products.usecase.GetBeersListUseCase
-import app.web.drjackycv.feature.products.entity.BeerUI
+import app.web.drjackycv.core.domain.products.usecase.GetProductsListByCoroutineUseCase
+import app.web.drjackycv.core.domain.products.usecase.GetProductsListUseCase
+import app.web.drjackycv.feature.products.entity.ProductUI
 import app.web.drjackycv.feature.products.entity.mapIt
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -31,8 +31,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ProductsListViewModel @Inject constructor(
-    private val getBeersUseCase: GetBeersListUseCase,
-    private val getBeersListByCoroutineUseCase: GetBeersListByCoroutineUseCase,
+    private val getProductsUseCase: GetProductsListUseCase,
+    private val getProductsListByCoroutineUseCase: GetProductsListByCoroutineUseCase,
 ) : ViewModel() {
 
     private val disposables = CompositeDisposable()
@@ -50,7 +50,7 @@ class ProductsListViewModel @Inject constructor(
 
     @ExperimentalCoroutinesApi
     fun getProductsByRxPath() {
-        getBeersUseCase()
+        getProductsUseCase()
             .cachedIn(viewModelScope)
             .doOnSubscribe {
                 _productsListByRx.value = ProductsUiState.Loading
@@ -86,7 +86,7 @@ class ProductsListViewModel @Inject constructor(
     }
 
     private fun getProductsByCoroutinePath(): Flow<ProductsUiState> =
-        getBeersListByCoroutineUseCase()
+        getProductsListByCoroutineUseCase()
             .cachedIn(viewModelScope)
             .asResult()
             .map { result ->
@@ -111,7 +111,7 @@ class ProductsListViewModel @Inject constructor(
             }
 }
 sealed interface ProductsUiState {
-    data class Success(val items: PagingData<BeerUI> = PagingData.empty()) : ProductsUiState
+    data class Success(val items: PagingData<ProductUI> = PagingData.empty()) : ProductsUiState
     data class Error(val error: Throwable) : ProductsUiState
     data object Loading : ProductsUiState
 }

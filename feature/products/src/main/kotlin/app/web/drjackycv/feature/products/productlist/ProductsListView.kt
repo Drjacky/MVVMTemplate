@@ -34,7 +34,7 @@ import androidx.paging.compose.itemKey
 import app.web.drjackycv.core.ui.view.ErrorListView
 import app.web.drjackycv.core.ui.view.LoadingItemView
 import app.web.drjackycv.feature.products.choose.ChoosePathType
-import app.web.drjackycv.feature.products.entity.BeerUI
+import app.web.drjackycv.feature.products.entity.ProductUI
 import coil.annotation.ExperimentalCoilApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
@@ -134,9 +134,9 @@ fun ProductsListContent(
                         contentType = lazyProductList.itemContentType { "MyPagingItems" },
                     ) { index ->
                         val product = lazyProductList[index]
-                        product?.let { beer ->
+                        product?.let { item ->
                             ProductRowView(
-                                product = beer,
+                                product = item,
                                 isShimmerVisible = false,
                                 navigateToProduct = navigateToProduct,
                             )
@@ -144,7 +144,7 @@ fun ProductsListContent(
                     }
                     lazyProductList.apply {
                         if (loadState.refresh == LoadState.Loading) {
-                            val beerUI = BeerUI(
+                            val productUI = ProductUI(
                                 id = -1,
                                 name = "",
                                 status = "",
@@ -160,7 +160,7 @@ fun ProductsListContent(
                             )
                             items(10) {
                                 ProductRowView(
-                                    product = beerUI,
+                                    product = productUI,
                                     isShimmerVisible = true,
                                     navigateToProduct = {},
                                 )
@@ -216,7 +216,7 @@ fun ProductsListContent(
 @Composable
 private fun ProductsListContentPreview() {
     val items = listOf(
-        BeerUI(
+        ProductUI(
             id = 361,
             name = "Toxic Rick",
             status = "Dead",
@@ -230,7 +230,7 @@ private fun ProductsListContentPreview() {
             url = "https://rickandmortyapi.com/api/character/361",
             created = "2018-01-10T18:20:41.703Z",
         ),
-        BeerUI(
+        ProductUI(
             id = 362,
             name = "Traflorkian",
             status = "Alive",

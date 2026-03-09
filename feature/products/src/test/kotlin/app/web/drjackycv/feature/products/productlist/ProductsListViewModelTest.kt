@@ -1,8 +1,8 @@
 package app.web.drjackycv.feature.products.productlist
 
 import androidx.paging.PagingData
-import app.web.drjackycv.core.domain.products.usecase.GetBeersListByCoroutineUseCase
-import app.web.drjackycv.core.domain.products.usecase.GetBeersListUseCase
+import app.web.drjackycv.core.domain.products.usecase.GetProductsListByCoroutineUseCase
+import app.web.drjackycv.core.domain.products.usecase.GetProductsListUseCase
 import app.web.drjackycv.core.testing.data.TestData
 import app.web.drjackycv.core.testing.products.FakeProductsListRepository
 import app.web.drjackycv.core.testing.rule.TestDispatcherRule
@@ -30,16 +30,16 @@ class ProductsListViewModelTest {
     fun setup() {
         fakeRepository = FakeProductsListRepository()
 
-        val getBeersListByCoroutineUseCase = GetBeersListByCoroutineUseCase {
-            fakeRepository.getBeersListByCoroutine()
+        val getProductsListByCoroutineUseCase = GetProductsListByCoroutineUseCase {
+            fakeRepository.getProductsListByCoroutine()
         }
-        val getBeersListUseCase = GetBeersListUseCase {
-            fakeRepository.getBeersList()
+        val getProductsListUseCase = GetProductsListUseCase {
+            fakeRepository.getProductsList()
         }
 
         viewModel = ProductsListViewModel(
-            getBeersUseCase = getBeersListUseCase,
-            getBeersListByCoroutineUseCase = getBeersListByCoroutineUseCase,
+            getProductsUseCase = getProductsListUseCase,
+            getProductsListByCoroutineUseCase = getProductsListByCoroutineUseCase,
         )
     }
 
@@ -50,13 +50,13 @@ class ProductsListViewModelTest {
     }
 
     @Test
-    fun `when beers list is emitted, state becomes Success`() = runTest {
+    fun `when products list is emitted, state becomes Success`() = runTest {
         val collectJob = launch(UnconfinedTestDispatcher(testScheduler)) {
             viewModel.productsListByCoroutine.collect()
         }
 
-        val beers = listOf(TestData.testBeer, TestData.testBeer2, TestData.testBeer3)
-        fakeRepository.emitBeersList(PagingData.from(beers))
+        val products = listOf(TestData.testProduct, TestData.testProduct2, TestData.testProduct3)
+        fakeRepository.emitProductsList(PagingData.from(products))
         advanceUntilIdle()
 
         val state = viewModel.productsListByCoroutine.value
@@ -71,7 +71,7 @@ class ProductsListViewModelTest {
             viewModel.productsListByCoroutine.collect()
         }
 
-        fakeRepository.emitBeersList(PagingData.from(emptyList()))
+        fakeRepository.emitProductsList(PagingData.from(emptyList()))
         advanceUntilIdle()
 
         val state = viewModel.productsListByCoroutine.value
@@ -86,15 +86,15 @@ class ProductsListViewModelTest {
             viewModel.productsListByCoroutine.collect()
         }
 
-        val firstBatch = listOf(TestData.testBeer)
-        fakeRepository.emitBeersList(PagingData.from(firstBatch))
+        val firstBatch = listOf(TestData.testProduct)
+        fakeRepository.emitProductsList(PagingData.from(firstBatch))
         advanceUntilIdle()
 
         assertThat(viewModel.productsListByCoroutine.value)
             .isInstanceOf(ProductsUiState.Success::class.java)
 
-        val secondBatch = listOf(TestData.testBeer, TestData.testBeer2, TestData.testBeer3)
-        fakeRepository.emitBeersList(PagingData.from(secondBatch))
+        val secondBatch = listOf(TestData.testProduct, TestData.testProduct2, TestData.testProduct3)
+        fakeRepository.emitProductsList(PagingData.from(secondBatch))
         advanceUntilIdle()
 
         assertThat(viewModel.productsListByCoroutine.value)
