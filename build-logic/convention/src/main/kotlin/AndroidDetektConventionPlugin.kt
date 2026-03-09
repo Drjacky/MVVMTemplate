@@ -15,7 +15,6 @@ class AndroidDetektConventionPlugin : Plugin<Project> {
         pluginManager.apply(detektPluginId)
 
         dependencies {
-            add("detektPlugins", libs.findLibrary("compose.rules.detekt").get())
             add("detektPlugins", libs.findLibrary("detekt.formatting").get())
         }
 

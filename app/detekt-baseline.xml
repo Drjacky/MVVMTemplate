@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>FinalNewline:MVVMTemplateApplication.kt:app.web.drjackycv.mvvmtemplate.application.MVVMTemplateApplication.kt</ID>
+    <ID>Wrapping:MainActivity.kt:MainActivity$(</ID>
+    <ID>Wrapping:MainActivity.kt:MainActivity$(this, object : OnBackPressedCallback(true) { override fun handleOnBackPressed() { finish() } })</ID>
+  </CurrentIssues>
+</SmellBaseline>
