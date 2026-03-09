@@ -193,7 +193,7 @@ fun ProductDetailView(
                                 .size(190.dp),
                             painter = imagePainter,
                             contentDescription = item.name,
-                            contentScale = ContentScale.Inside
+                            contentScale = ContentScale.Fit
                         )
 
                         when (imagePainter.state) {
