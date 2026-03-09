@@ -17,7 +17,7 @@ import app.web.drjackycv.core.domain.base.Failure
 import app.web.drjackycv.feature.products.R
 import app.web.drjackycv.feature.products.base.adapter.RecyclerItem
 import app.web.drjackycv.feature.products.choose.ChoosePathType
-import app.web.drjackycv.feature.products.databinding.FragmentProductListBinding
+import app.web.drjackycv.feature.products.databinding.FeatureProductsFragmentProductListBinding
 import app.web.drjackycv.feature.products.entity.BeerUI
 import app.web.drjackycv.feature.products.extension.gone
 import app.web.drjackycv.feature.products.extension.invisible
@@ -30,9 +30,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
 @AndroidEntryPoint
-class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
+class ProductsListFragment : Fragment(R.layout.feature_products_fragment_product_list) {
 
-    private val binding by viewBinding(FragmentProductListBinding::bind) {
+    private val binding by viewBinding(FeatureProductsFragmentProductListBinding::bind) {
         cleanUp(it)
     }
     private val productsListViewModel: ProductsListViewModel by viewModels()
@@ -48,7 +48,7 @@ class ProductsListFragment : Fragment(R.layout.fragment_product_list) {
         setupRecycler()
     }
 
-    private fun cleanUp(binding: FragmentProductListBinding?) {
+    private fun cleanUp(binding: FeatureProductsFragmentProductListBinding?) {
         binding?.productListRecyclerView?.adapter = null
     }
 

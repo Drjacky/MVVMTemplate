@@ -8,7 +8,7 @@ import androidx.viewbinding.ViewBinding
 import app.web.drjackycv.feature.products.R
 import app.web.drjackycv.feature.products.base.adapter.Cell
 import app.web.drjackycv.feature.products.base.adapter.RecyclerItem
-import app.web.drjackycv.feature.products.databinding.ItemProductBinding
+import app.web.drjackycv.feature.products.databinding.FeatureProductsItemProductBinding
 
 object BeerCell : Cell<RecyclerItem, ViewBinding> {
 
@@ -17,11 +17,11 @@ object BeerCell : Cell<RecyclerItem, ViewBinding> {
     }
 
     override fun type(): Int {
-        return R.layout.item_product
+        return R.layout.feature_products_item_product
     }
 
-    override fun binding(parent: ViewGroup): ItemProductBinding {
-        return ItemProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    override fun binding(parent: ViewGroup): FeatureProductsItemProductBinding {
+        return FeatureProductsItemProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     }
 
     override fun holder(parent: ViewGroup): RecyclerView.ViewHolder {

@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/chooseFragment"
         android:name="app.web.drjackycv.feature.products.choose.ChooseFragment"
-        tools:layout="@layout/fragment_choose">
+        tools:layout="@layout/feature_products_fragment_choose">
 
         <action
             android:id="@+id/navigateToProductsListFragment"
@@ -19,7 +19,7 @@
     <fragment
         android:id="@+id/productsListFragment"
         android:name="app.web.drjackycv.feature.products.productlist.ProductsListFragment"
-        tools:layout="@layout/fragment_product_list">
+        tools:layout="@layout/feature_products_fragment_product_list">
 
         <action
             android:id="@+id/navigateToProductDetailFragment"
@@ -35,7 +35,7 @@
     <fragment
         android:id="@+id/productDetailFragment"
         android:name="app.web.drjackycv.feature.products.productdetail.ProductDetailFragment"
-        tools:layout="@layout/fragment_product_detail">
+        tools:layout="@layout/feature_products_fragment_product_detail">
 
         <argument
             android:name="productDetailBeerUI"

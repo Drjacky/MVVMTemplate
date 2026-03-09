@@ -11,18 +11,18 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_product" />
+        tools:listitem="@layout/feature_products_item_product" />
 
     <include
         android:id="@+id/inclItemError"
-        layout="@layout/item_error"
+        layout="@layout/feature_products_item_error"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:visibility="gone" />
 
     <include
         android:id="@+id/inclItemLoading"
-        layout="@layout/item_loading"
+        layout="@layout/feature_products_item_loading"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:visibility="gone" />

@@ -1,10 +1,10 @@
 package app.web.drjackycv.feature.products.entity
 
 import androidx.recyclerview.widget.RecyclerView
-import app.web.drjackycv.feature.products.databinding.ItemProductBinding
+import app.web.drjackycv.feature.products.databinding.FeatureProductsItemProductBinding
 import app.web.drjackycv.feature.products.extension.load
 
-class BeerViewHolder(val itemBinding: ItemProductBinding) :
+class BeerViewHolder(val itemBinding: FeatureProductsItemProductBinding) :
     RecyclerView.ViewHolder(itemBinding.root) {
 
     fun bind(beer: BeerUI) = with(itemView) {

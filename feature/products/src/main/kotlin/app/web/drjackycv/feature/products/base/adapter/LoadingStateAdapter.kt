@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
-import app.web.drjackycv.feature.products.databinding.ItemLoadingRowBinding
+import app.web.drjackycv.feature.products.databinding.FeatureProductsItemLoadingRowBinding
 
 class LoadingStateAdapter : LoadStateAdapter<LoadingStateViewHolder>() {
 
@@ -17,7 +17,7 @@ class LoadingStateAdapter : LoadStateAdapter<LoadingStateViewHolder>() {
         loadState: LoadState,
     ): LoadingStateViewHolder {
         val itemBinding =
-            ItemLoadingRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            FeatureProductsItemLoadingRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return LoadingStateViewHolder(itemBinding)
     }
 }

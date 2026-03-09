@@ -6,7 +6,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import app.web.drjackycv.feature.products.R
-import app.web.drjackycv.feature.products.databinding.FragmentProductDetailBinding
+import app.web.drjackycv.feature.products.databinding.FeatureProductsFragmentProductDetailBinding
 import app.web.drjackycv.feature.products.extension.load
 import app.web.drjackycv.feature.products.extension.viewBinding
 import com.google.android.material.transition.platform.MaterialArcMotion
@@ -14,9 +14,9 @@ import com.google.android.material.transition.platform.MaterialContainerTransfor
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ProductDetailFragment : Fragment(R.layout.fragment_product_detail) {
+class ProductDetailFragment : Fragment(R.layout.feature_products_fragment_product_detail) {
 
-    private val binding by viewBinding(FragmentProductDetailBinding::bind)
+    private val binding by viewBinding(FeatureProductsFragmentProductDetailBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

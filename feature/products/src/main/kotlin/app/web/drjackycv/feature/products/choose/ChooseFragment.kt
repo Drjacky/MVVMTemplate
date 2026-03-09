@@ -5,14 +5,14 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import app.web.drjackycv.feature.products.R
-import app.web.drjackycv.feature.products.databinding.FragmentChooseBinding
+import app.web.drjackycv.feature.products.databinding.FeatureProductsFragmentChooseBinding
 import app.web.drjackycv.feature.products.extension.setOnReactiveClickListener
 import app.web.drjackycv.feature.products.extension.viewBinding
 import java.io.Serializable
 
-class ChooseFragment : Fragment(R.layout.fragment_choose) {
+class ChooseFragment : Fragment(R.layout.feature_products_fragment_choose) {
 
-    private val binding by viewBinding(FragmentChooseBinding::bind)
+    private val binding by viewBinding(FeatureProductsFragmentChooseBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
