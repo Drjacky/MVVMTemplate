@@ -5,7 +5,7 @@ data class Location(
     val url: String,
 )
 
-data class Beer(
+data class Product(
     val id: Int,
     val name: String,
     val status: String,

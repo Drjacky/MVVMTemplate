@@ -9,9 +9,9 @@ import androidx.paging.cachedIn
 import androidx.paging.map
 import androidx.paging.rxjava3.cachedIn
 import app.web.drjackycv.core.common.base.BaseViewModel
-import app.web.drjackycv.core.domain.products.entity.Beer
-import app.web.drjackycv.core.domain.products.usecase.GetBeersListByCoroutineUseCase
-import app.web.drjackycv.core.domain.products.usecase.GetBeersListUseCase
+import app.web.drjackycv.core.domain.products.entity.Product
+import app.web.drjackycv.core.domain.products.usecase.GetProductsListByCoroutineUseCase
+import app.web.drjackycv.core.domain.products.usecase.GetProductsListUseCase
 import app.web.drjackycv.feature.products.base.adapter.RecyclerItem
 import app.web.drjackycv.feature.products.choose.ChoosePathType
 import app.web.drjackycv.feature.products.entity.mapIt
@@ -29,8 +29,8 @@ const val CHOOSE_PATH_TYPE = "choosePathType"
 
 @HiltViewModel
 class ProductsListViewModel @Inject constructor(
-    private val getBeersUseCase: GetBeersListUseCase,
-    private val getBeersListByCoroutineUseCase: GetBeersListByCoroutineUseCase,
+    private val getProductsUseCase: GetProductsListUseCase,
+    private val getProductsListByCoroutineUseCase: GetProductsListByCoroutineUseCase,
     savedStateHandle: SavedStateHandle,
 ) : BaseViewModel() {
 
@@ -49,17 +49,17 @@ class ProductsListViewModel @Inject constructor(
     }
 
     private fun getProductsByRxPath() {
-        getBeersUseCase()
+        getProductsUseCase()
             .cachedIn(viewModelScope)
             .observeOn(AndroidSchedulers.mainThread())
             .autoDispose(this)
-            .subscribe { pagingDataBeer ->
-                _ldProductsList.value = pagingDataBeer.map(Beer::mapIt)
+            .subscribe { pagingDataProduct ->
+                _ldProductsList.value = pagingDataProduct.map(Product::mapIt)
             }
     }
 
     private fun getProductsByCoroutinePath() =
-        getBeersListByCoroutineUseCase()
+        getProductsListByCoroutineUseCase()
             .cachedIn(viewModelScope)
 
     private fun getProductsBaseOnPath(path: ChoosePathType) {
@@ -71,7 +71,7 @@ class ProductsListViewModel @Inject constructor(
             ChoosePathType.COROUTINE -> {
                 viewModelScope.launch {
                     _productsListByCoroutine.value = getProductsByCoroutinePath().first()
-                        .map(Beer::mapIt)
+                        .map(Product::mapIt)
                 }
             }
         }

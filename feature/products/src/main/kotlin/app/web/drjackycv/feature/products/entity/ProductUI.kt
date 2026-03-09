@@ -1,8 +1,8 @@
 package app.web.drjackycv.feature.products.entity
 
 import android.os.Parcelable
-import app.web.drjackycv.core.domain.products.entity.Beer
 import app.web.drjackycv.core.domain.products.entity.Location
+import app.web.drjackycv.core.domain.products.entity.Product
 import app.web.drjackycv.feature.products.base.adapter.RecyclerItem
 import kotlinx.parcelize.Parcelize
 
@@ -19,7 +19,7 @@ fun Location.mapIt(): LocationUI =
     )
 
 @Parcelize
-data class BeerUI(
+data class ProductUI(
     override val id: Int,
     val name: String,
     val status: String,
@@ -34,8 +34,8 @@ data class BeerUI(
     val created: String,
 ) : RecyclerItem, Parcelable
 
-fun Beer.mapIt(): BeerUI =
-    BeerUI(
+fun Product.mapIt(): ProductUI =
+    ProductUI(
         id = id,
         name = name,
         status = status,

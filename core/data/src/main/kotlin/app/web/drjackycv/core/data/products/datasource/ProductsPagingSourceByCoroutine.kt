@@ -2,11 +2,11 @@ package app.web.drjackycv.core.data.products.datasource
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import app.web.drjackycv.core.data.products.entity.BeerResponse
+import app.web.drjackycv.core.data.products.entity.ProductResponse
 import app.web.drjackycv.core.data.products.entity.mapIt
 import app.web.drjackycv.core.data.products.remote.ProductsApi
 import app.web.drjackycv.core.domain.base.Failure
-import app.web.drjackycv.core.domain.products.entity.Beer
+import app.web.drjackycv.core.domain.products.entity.Product
 import io.reactivex.rxjava3.annotations.NonNull
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
@@ -20,14 +20,14 @@ private const val STARTING_PAGE_INDEX = 1
 @Singleton
 class ProductsPagingSourceByCoroutine @Inject constructor(
     private val productsApi: ProductsApi,
-) : PagingSource<Int, Beer>() {
+) : PagingSource<Int, Product>() {
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Beer> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Product> {
         val position = params.key ?: STARTING_PAGE_INDEX
 
         return try {
-            val response = productsApi.getBeersListByCoroutine(position).results
-                .map(BeerResponse::mapIt)
+            val response = productsApi.getProductsListByCoroutine(position).results
+                .map(ProductResponse::mapIt)
 
             toLoadResult(response, position)
         } catch (e: CancellationException) {
@@ -51,12 +51,12 @@ class ProductsPagingSourceByCoroutine @Inject constructor(
 
     override val jumpingSupported = true
 
-    override fun getRefreshKey(state: PagingState<Int, Beer>): Int? = state.anchorPosition
+    override fun getRefreshKey(state: PagingState<Int, Product>): Int? = state.anchorPosition
 
     private fun toLoadResult(
-        @NonNull response: List<Beer>,
+        @NonNull response: List<Product>,
         position: Int,
-    ): LoadResult<Int, Beer> {
+    ): LoadResult<Int, Product> {
         return LoadResult.Page(
             data = response,
             prevKey = if (position == STARTING_PAGE_INDEX) null else position - 1,

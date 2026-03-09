@@ -1,10 +1,10 @@
 package app.web.drjackycv.mvvmtemplate.di.module
 
 import app.web.drjackycv.core.domain.products.repository.ProductsListRepository
-import app.web.drjackycv.core.domain.products.usecase.GetBeerByCoroutineUseCase
-import app.web.drjackycv.core.domain.products.usecase.GetBeerUseCase
-import app.web.drjackycv.core.domain.products.usecase.GetBeersListByCoroutineUseCase
-import app.web.drjackycv.core.domain.products.usecase.GetBeersListUseCase
+import app.web.drjackycv.core.domain.products.usecase.GetProductByCoroutineUseCase
+import app.web.drjackycv.core.domain.products.usecase.GetProductUseCase
+import app.web.drjackycv.core.domain.products.usecase.GetProductsListByCoroutineUseCase
+import app.web.drjackycv.core.domain.products.usecase.GetProductsListUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,29 +17,29 @@ class UseCaseModule {
 
     @Provides
     @ViewModelScoped
-    fun getBeersListByCoroutineUseCase(
+    fun getProductsListByCoroutineUseCase(
         productsListRepository: ProductsListRepository,
-    ): GetBeersListByCoroutineUseCase =
-        GetBeersListByCoroutineUseCase(productsListRepository::getBeersListByCoroutine)
+    ): GetProductsListByCoroutineUseCase =
+        GetProductsListByCoroutineUseCase(productsListRepository::getProductsListByCoroutine)
 
     @Provides
     @ViewModelScoped
-    fun getBeerByCoroutineUseCase(
+    fun getProductByCoroutineUseCase(
         productsListRepository: ProductsListRepository,
-    ): GetBeerByCoroutineUseCase =
-        GetBeerByCoroutineUseCase(productsListRepository::getBeerByCoroutine)
+    ): GetProductByCoroutineUseCase =
+        GetProductByCoroutineUseCase(productsListRepository::getProductByCoroutine)
 
     @Provides
     @ViewModelScoped
-    fun getBeersListUseCase(
+    fun getProductsListUseCase(
         productsListRepository: ProductsListRepository,
-    ): GetBeersListUseCase =
-        GetBeersListUseCase(productsListRepository::getBeersList)
+    ): GetProductsListUseCase =
+        GetProductsListUseCase(productsListRepository::getProductsList)
 
     @Provides
     @ViewModelScoped
-    fun getBeerUseCase(
+    fun getProductUseCase(
         productsListRepository: ProductsListRepository,
-    ): GetBeerUseCase =
-        GetBeerUseCase(productsListRepository::getBeer)
+    ): GetProductUseCase =
+        GetProductUseCase(productsListRepository::getProduct)
 }

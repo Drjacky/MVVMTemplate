@@ -38,8 +38,8 @@
         tools:layout="@layout/feature_products_fragment_product_detail">
 
         <argument
-            android:name="productDetailBeerUI"
-            app:argType="app.web.drjackycv.feature.products.entity.BeerUI" />
+            android:name="productDetailProductUI"
+            app:argType="app.web.drjackycv.feature.products.entity.ProductUI" />
 
     </fragment>
 

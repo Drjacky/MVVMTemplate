@@ -18,7 +18,7 @@ import app.web.drjackycv.feature.products.R
 import app.web.drjackycv.feature.products.base.adapter.RecyclerItem
 import app.web.drjackycv.feature.products.choose.ChoosePathType
 import app.web.drjackycv.feature.products.databinding.FeatureProductsFragmentProductListBinding
-import app.web.drjackycv.feature.products.entity.BeerUI
+import app.web.drjackycv.feature.products.entity.ProductUI
 import app.web.drjackycv.feature.products.extension.gone
 import app.web.drjackycv.feature.products.extension.invisible
 import app.web.drjackycv.feature.products.extension.observe
@@ -140,7 +140,7 @@ class ProductsListFragment : Fragment(R.layout.feature_products_fragment_product
     }
 
     private fun navigateToProductDetail(item: RecyclerItem, view: View) {
-        val itemUI = item as BeerUI
+        val itemUI = item as ProductUI
         val action =
             ProductsListFragmentDirections.navigateToProductDetailFragment(itemUI)
         val extras = FragmentNavigatorExtras(

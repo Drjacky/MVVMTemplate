@@ -1,13 +1,13 @@
 package app.web.drjackycv.core.data.products.entity
 
-import app.web.drjackycv.core.domain.products.entity.Beer
 import app.web.drjackycv.core.domain.products.entity.Location
+import app.web.drjackycv.core.domain.products.entity.Product
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class CharactersResponse(
     val info: Info,
-    val results: List<BeerResponse>,
+    val results: List<ProductResponse>,
 ) {
     @Serializable
     data class Info(
@@ -31,7 +31,7 @@ fun LocationResponse.mapIt(): Location =
     )
 
 @Serializable
-data class BeerResponse(
+data class ProductResponse(
     val id: Int,
     val name: String,
     val status: String,
@@ -46,8 +46,8 @@ data class BeerResponse(
     val created: String,
 )
 
-fun BeerResponse.mapIt(): Beer =
-    Beer(
+fun ProductResponse.mapIt(): Product =
+    Product(
         id = id,
         name = name,
         status = status,

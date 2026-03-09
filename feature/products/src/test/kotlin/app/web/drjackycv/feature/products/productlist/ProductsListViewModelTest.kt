@@ -2,8 +2,8 @@ package app.web.drjackycv.feature.products.productlist
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.paging.PagingData
-import app.web.drjackycv.core.domain.products.usecase.GetBeersListByCoroutineUseCase
-import app.web.drjackycv.core.domain.products.usecase.GetBeersListUseCase
+import app.web.drjackycv.core.domain.products.usecase.GetProductsListByCoroutineUseCase
+import app.web.drjackycv.core.domain.products.usecase.GetProductsListUseCase
 import app.web.drjackycv.core.testing.data.TestData
 import app.web.drjackycv.core.testing.products.FakeProductsListRepository
 import app.web.drjackycv.core.testing.rule.TestDispatcherRule
@@ -35,28 +35,28 @@ class ProductsListViewModelTest {
     private fun createViewModel(
         path: ChoosePathType = ChoosePathType.COROUTINE,
     ): ProductsListViewModel {
-        val getBeersListByCoroutineUseCase = GetBeersListByCoroutineUseCase {
-            fakeRepository.getBeersListByCoroutine()
+        val getProductsListByCoroutineUseCase = GetProductsListByCoroutineUseCase {
+            fakeRepository.getProductsListByCoroutine()
         }
-        val getBeersListUseCase = GetBeersListUseCase {
-            fakeRepository.getBeersList()
+        val getProductsListUseCase = GetProductsListUseCase {
+            fakeRepository.getProductsList()
         }
         val savedStateHandle = SavedStateHandle(
             mapOf(CHOOSE_PATH_TYPE to path)
         )
 
         return ProductsListViewModel(
-            getBeersUseCase = getBeersListUseCase,
-            getBeersListByCoroutineUseCase = getBeersListByCoroutineUseCase,
+            getProductsUseCase = getProductsListUseCase,
+            getProductsListByCoroutineUseCase = getProductsListByCoroutineUseCase,
             savedStateHandle = savedStateHandle,
         )
     }
 
     @Test
-    fun `coroutine path - when beers list is emitted, productsListByCoroutine updates`() =
+    fun `coroutine path - when products list is emitted, productsListByCoroutine updates`() =
         runTest {
-            val beers = listOf(TestData.testBeer, TestData.testBeer2, TestData.testBeer3)
-            fakeRepository.emitBeersList(PagingData.from(beers))
+            val products = listOf(TestData.testProduct, TestData.testProduct2, TestData.testProduct3)
+            fakeRepository.emitProductsList(PagingData.from(products))
 
             val viewModel = createViewModel(ChoosePathType.COROUTINE)
 
@@ -75,7 +75,7 @@ class ProductsListViewModelTest {
     @Test
     fun `coroutine path - when empty list is emitted, productsListByCoroutine updates`() =
         runTest {
-            fakeRepository.emitBeersList(PagingData.from(emptyList()))
+            fakeRepository.emitProductsList(PagingData.from(emptyList()))
 
             val viewModel = createViewModel(ChoosePathType.COROUTINE)
 

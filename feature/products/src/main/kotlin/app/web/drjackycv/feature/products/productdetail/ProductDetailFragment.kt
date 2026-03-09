@@ -25,7 +25,7 @@ class ProductDetailFragment : Fragment(R.layout.feature_products_fragment_produc
 
     private fun setupUI() {
         val safeArgs: ProductDetailFragmentArgs by navArgs()
-        val product = safeArgs.productDetailBeerUI
+        val product = safeArgs.productDetailProductUI
 
         setSharedElementTransitionOnEnter()
 

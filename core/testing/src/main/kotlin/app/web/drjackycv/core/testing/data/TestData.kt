@@ -1,11 +1,11 @@
 package app.web.drjackycv.core.testing.data
 
-import app.web.drjackycv.core.domain.products.entity.Beer
 import app.web.drjackycv.core.domain.products.entity.Location
+import app.web.drjackycv.core.domain.products.entity.Product
 
 object TestData {
 
-    val testBeer = Beer(
+    val testProduct = Product(
         id = 1,
         name = "Rick Sanchez",
         status = "Alive",
@@ -26,7 +26,7 @@ object TestData {
         created = "2017-11-04T18:48:46.250Z",
     )
 
-    val testBeer2 = Beer(
+    val testProduct2 = Product(
         id = 2,
         name = "Morty Smith",
         status = "Alive",
@@ -47,7 +47,7 @@ object TestData {
         created = "2017-11-04T18:50:21.651Z",
     )
 
-    val testBeer3 = Beer(
+    val testProduct3 = Product(
         id = 3,
         name = "Summer Smith",
         status = "Alive",
@@ -69,7 +69,7 @@ object TestData {
     )
 
     @Suppress("LongParameterList")
-    fun createBeer(
+    fun createProduct(
         id: Int = 1,
         name: String = "Test Character",
         status: String = "Alive",
@@ -82,7 +82,7 @@ object TestData {
         episode: List<String> = emptyList(),
         url: String = "https://rickandmortyapi.com/api/character/$id",
         created: String = "2017-11-04T18:48:46.250Z",
-    ) = Beer(
+    ) = Product(
         id = id,
         name = name,
         status = status,

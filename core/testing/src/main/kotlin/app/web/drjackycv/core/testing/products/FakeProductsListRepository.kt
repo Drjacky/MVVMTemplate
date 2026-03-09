@@ -1,7 +1,7 @@
 package app.web.drjackycv.core.testing.products
 
 import androidx.paging.PagingData
-import app.web.drjackycv.core.domain.products.entity.Beer
+import app.web.drjackycv.core.domain.products.entity.Product
 import app.web.drjackycv.core.domain.products.repository.ProductsListRepository
 import io.reactivex.rxjava3.core.Flowable
 import kotlinx.coroutines.flow.Flow
@@ -10,52 +10,52 @@ import kotlinx.coroutines.flow.flow
 
 class FakeProductsListRepository : ProductsListRepository {
 
-    private val beersMap = mutableMapOf<String, Beer>()
+    private val productsMap = mutableMapOf<String, Product>()
 
     var shouldFail = false
     var errorToThrow: Throwable = RuntimeException("Test error")
 
-    private val beersListFlow = MutableSharedFlow<PagingData<Beer>>(replay = 1)
-    private var rxBeersList: PagingData<Beer>? = null
+    private val productsListFlow = MutableSharedFlow<PagingData<Product>>(replay = 1)
+    private var rxProductsList: PagingData<Product>? = null
 
-    fun addBeer(beer: Beer) {
-        beersMap[beer.id.toString()] = beer
+    fun addProduct(product: Product) {
+        productsMap[product.id.toString()] = product
     }
 
-    fun emitBeersList(pagingData: PagingData<Beer>) {
-        rxBeersList = pagingData
-        beersListFlow.tryEmit(pagingData)
+    fun emitProductsList(pagingData: PagingData<Product>) {
+        rxProductsList = pagingData
+        productsListFlow.tryEmit(pagingData)
     }
 
     fun reset() {
-        beersMap.clear()
+        productsMap.clear()
         shouldFail = false
         errorToThrow = RuntimeException("Test error")
-        rxBeersList = null
+        rxProductsList = null
     }
 
-    override fun getBeersList(): Flowable<PagingData<Beer>> {
+    override fun getProductsList(): Flowable<PagingData<Product>> {
         if (shouldFail) return Flowable.error(errorToThrow)
-        val data = rxBeersList ?: PagingData.empty()
+        val data = rxProductsList ?: PagingData.empty()
         return Flowable.just(data)
     }
 
     @Suppress("ReturnCount")
-    override fun getBeer(id: String): Flowable<Beer> {
+    override fun getProduct(id: String): Flowable<Product> {
         if (shouldFail) return Flowable.error(errorToThrow)
-        val beer =
-            beersMap[id] ?: return Flowable.error(NoSuchElementException("Beer $id not found"))
-        return Flowable.just(beer)
+        val product =
+            productsMap[id] ?: return Flowable.error(NoSuchElementException("Product $id not found"))
+        return Flowable.just(product)
     }
 
-    override fun getBeersListByCoroutine(): Flow<PagingData<Beer>> {
+    override fun getProductsListByCoroutine(): Flow<PagingData<Product>> {
         if (shouldFail) return flow { throw errorToThrow }
-        return beersListFlow
+        return productsListFlow
     }
 
-    override fun getBeerByCoroutine(id: String): Flow<Beer> = flow {
+    override fun getProductByCoroutine(id: String): Flow<Product> = flow {
         if (shouldFail) throw errorToThrow
-        val beer = beersMap[id] ?: throw NoSuchElementException("Beer $id not found")
-        emit(beer)
+        val product = productsMap[id] ?: throw NoSuchElementException("Product $id not found")
+        emit(product)
     }
 }

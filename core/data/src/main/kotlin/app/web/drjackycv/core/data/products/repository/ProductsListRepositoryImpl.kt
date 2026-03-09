@@ -10,7 +10,7 @@ import app.web.drjackycv.core.data.products.entity.mapIt
 import app.web.drjackycv.core.data.products.remote.ProductsApi
 import app.web.drjackycv.core.domain.base.Failure
 import app.web.drjackycv.core.domain.extension.allowReads
-import app.web.drjackycv.core.domain.products.entity.Beer
+import app.web.drjackycv.core.domain.products.entity.Product
 import app.web.drjackycv.core.domain.products.repository.ProductsListRepository
 import app.web.drjackycv.core.network.NetworkResponse
 import io.reactivex.rxjava3.core.Flowable
@@ -27,7 +27,7 @@ class ProductsListRepositoryImpl @Inject constructor(
     private val productsApi: ProductsApi,
 ) : ProductsListRepository {
 
-    override fun getBeersList(): Flowable<PagingData<Beer>> =
+    override fun getProductsList(): Flowable<PagingData<Product>> =
         allowReads {
             Pager(
                 config = PagingConfig(
@@ -42,8 +42,8 @@ class ProductsListRepositoryImpl @Inject constructor(
             ).flowable
         }
 
-    override fun getBeer(id: String): Flowable<Beer> =
-        productsApi.getBeer(id)
+    override fun getProduct(id: String): Flowable<Product> =
+        productsApi.getProduct(id)
             .flatMap { response ->
                 when (response) {
                     is NetworkResponse.Success -> Single.just(response.body.mapIt())
@@ -53,7 +53,7 @@ class ProductsListRepositoryImpl @Inject constructor(
             }
             .toFlowable()
 
-    override fun getBeersListByCoroutine(): Flow<PagingData<Beer>> =
+    override fun getProductsListByCoroutine(): Flow<PagingData<Product>> =
         allowReads {
             Pager(
                 config = PagingConfig(
@@ -68,9 +68,9 @@ class ProductsListRepositoryImpl @Inject constructor(
             ).flow
         }
 
-    override fun getBeerByCoroutine(id: String): Flow<Beer> =
+    override fun getProductByCoroutine(id: String): Flow<Product> =
         flow {
-            val response = productsApi.getBeerByCoroutine(id)
+            val response = productsApi.getProductByCoroutine(id)
             emit(response.mapIt())
         }
 }

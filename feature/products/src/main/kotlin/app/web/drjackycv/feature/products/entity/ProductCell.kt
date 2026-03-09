@@ -10,10 +10,10 @@ import app.web.drjackycv.feature.products.base.adapter.Cell
 import app.web.drjackycv.feature.products.base.adapter.RecyclerItem
 import app.web.drjackycv.feature.products.databinding.FeatureProductsItemProductBinding
 
-object BeerCell : Cell<RecyclerItem, ViewBinding> {
+object ProductCell : Cell<RecyclerItem, ViewBinding> {
 
     override fun belongsTo(item: RecyclerItem?): Boolean {
-        return item is BeerUI
+        return item is ProductUI
     }
 
     override fun type(): Int {
@@ -25,7 +25,7 @@ object BeerCell : Cell<RecyclerItem, ViewBinding> {
     }
 
     override fun holder(parent: ViewGroup): RecyclerView.ViewHolder {
-        return BeerViewHolder(binding(parent))
+        return ProductViewHolder(binding(parent))
     }
 
     override fun bind(
@@ -33,7 +33,7 @@ object BeerCell : Cell<RecyclerItem, ViewBinding> {
         item: RecyclerItem?,
         onItemClick: ((RecyclerItem, View) -> Unit)?,
     ) {
-        if (holder is BeerViewHolder && item is BeerUI) {
+        if (holder is ProductViewHolder && item is ProductUI) {
             holder.bind(item)
             holder.itemView.setOnClickListener {
                 onItemClick?.run {
