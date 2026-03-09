@@ -56,8 +56,8 @@ import app.web.drjackycv.core.ui.theme.ThemeState
 import app.web.drjackycv.core.ui.view.ErrorItemView
 import app.web.drjackycv.core.ui.view.LoadingItemView
 import app.web.drjackycv.feature.products.choose.ChoosePathType
-import app.web.drjackycv.feature.products.entity.ProductUI
 import app.web.drjackycv.feature.products.entity.LocationUI
+import app.web.drjackycv.feature.products.entity.ProductUI
 import coil.ImageLoader
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.AsyncImagePainter
