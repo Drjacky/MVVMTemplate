@@ -7,6 +7,8 @@
 /.idea/assetWizardSettings.xml
 /.idea/sonarlint
 /.idea/deploymentTargetDropDown.xml
+.aider*
+.vscode*
 /build
 /captures
 .cxx
