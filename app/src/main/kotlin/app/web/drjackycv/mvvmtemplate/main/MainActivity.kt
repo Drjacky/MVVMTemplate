@@ -1,13 +1,14 @@
 package app.web.drjackycv.mvvmtemplate.main
 
 import android.os.Bundle
-import androidx.activity.OnBackPressedCallback
 import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
 import app.web.drjackycv.core.common.datastore.DataStoreManager
 import app.web.drjackycv.core.common.extension.collectIn
 import app.web.drjackycv.core.common.preference.Settings
@@ -27,7 +28,9 @@ class MainActivity : AppCompatActivity() {
 
     private val binding by viewInflateBinding(ActivityMainBinding::inflate)
     private val navController: NavController by lazy {
-        findNavController(R.id.activityMainChooseHostFragment)
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.activityMainChooseHostFragment) as NavHostFragment
+        navHostFragment.navController
     }
     private var uiStateJob: Job? = null
 
@@ -37,16 +40,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        setupUI()
 
-        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                finish()
-            }
-        })
+        setSupportActionBar(binding.activityMainToolbar)
+        val appBarConfiguration = AppBarConfiguration(setOf(R.id.chooseFragment))
+        setupActionBarWithNavController(navController, appBarConfiguration)
+
+        setupUI()
     }
 
-    override fun onSupportNavigateUp() = navController.navigateUp()
+    override fun onSupportNavigateUp() = navController.navigateUp() || super.onSupportNavigateUp()
 
     override fun onStop() {
         uiStateJob?.cancel()
