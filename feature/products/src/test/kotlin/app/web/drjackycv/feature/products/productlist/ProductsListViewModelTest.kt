@@ -90,5 +90,4 @@ class ProductsListViewModelTest {
 
             collectJob.cancel()
         }
-
 }
