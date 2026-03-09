@@ -161,7 +161,10 @@ fun ProductDetailView(
                         Image(
                             modifier = Modifier
                                 .fillMaxSize()
-                                .graphicsLayer { scaleX = 1.5f; scaleY = 1.5f }
+                                .graphicsLayer {
+                                    scaleX = 1.5f
+                                    scaleY = 1.5f
+                                }
                                 .blur(24.dp),
                             painter = rememberAsyncImagePainter(
                                 ImageRequest.Builder(context)
