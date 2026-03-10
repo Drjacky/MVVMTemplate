@@ -37,6 +37,7 @@ import app.web.drjackycv.core.ui.extension.frostedGlass
 import app.web.drjackycv.core.ui.view.ErrorListView
 import app.web.drjackycv.core.ui.view.LoadingItemView
 import app.web.drjackycv.feature.products.choose.ChoosePathType
+import app.web.drjackycv.feature.products.entity.LocationUI
 import app.web.drjackycv.feature.products.entity.ProductUI
 import coil.annotation.ExperimentalCoilApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -158,8 +159,8 @@ fun ProductsListContent(
                                 species = "",
                                 type = "",
                                 gender = "",
-                                origin = app.web.drjackycv.feature.products.entity.LocationUI(name = "", url = ""),
-                                location = app.web.drjackycv.feature.products.entity.LocationUI(name = "", url = ""),
+                                origin = LocationUI(name = "", url = ""),
+                                location = LocationUI(name = "", url = ""),
                                 image = "",
                                 episode = emptyList(),
                                 url = "",
@@ -230,8 +231,8 @@ private fun ProductsListContentPreview() {
             species = "Humanoid",
             type = "Rick's Toxic Side",
             gender = "Male",
-            origin = app.web.drjackycv.feature.products.entity.LocationUI(name = "Alien Spa", url = ""),
-            location = app.web.drjackycv.feature.products.entity.LocationUI(name = "Earth", url = ""),
+            origin = LocationUI(name = "Alien Spa", url = ""),
+            location = LocationUI(name = "Earth", url = ""),
             image = "https://rickandmortyapi.com/api/character/avatar/361.jpeg",
             episode = emptyList(),
             url = "https://rickandmortyapi.com/api/character/361",
@@ -244,8 +245,8 @@ private fun ProductsListContentPreview() {
             species = "Alien",
             type = "",
             gender = "unknown",
-            origin = app.web.drjackycv.feature.products.entity.LocationUI(name = "unknown", url = ""),
-            location = app.web.drjackycv.feature.products.entity.LocationUI(name = "Worldender's lair", url = ""),
+            origin = LocationUI(name = "unknown", url = ""),
+            location = LocationUI(name = "Worldender's lair", url = ""),
             image = "https://rickandmortyapi.com/api/character/avatar/362.jpeg",
             episode = emptyList(),
             url = "https://rickandmortyapi.com/api/character/362",
