@@ -22,7 +22,7 @@ import com.google.accompanist.placeholder.material3.shimmer
 fun Modifier.frostedGlass(
     shape: Shape = RoundedCornerShape(16.dp),
     borderWidth: Dp = 0.5.dp,
-): Modifier = composed {
+): Modifier {
     val isDark = ThemeState.darkModeState.value
     val bgColor = if (isDark) {
         Color.White.copy(alpha = 0.10f)
@@ -31,7 +31,7 @@ fun Modifier.frostedGlass(
     }
     val borderColor = Color.White.copy(alpha = if (isDark) 0.15f else 0.4f)
 
-    this
+    return this
         .clip(shape)
         .background(bgColor)
         .border(borderWidth, borderColor, shape)
