@@ -21,7 +21,6 @@ import app.web.drjackycv.feature.products.databinding.FeatureProductsFragmentPro
 import app.web.drjackycv.feature.products.entity.ProductUI
 import app.web.drjackycv.feature.products.extension.gone
 import app.web.drjackycv.feature.products.extension.invisible
-import app.web.drjackycv.feature.products.extension.observe
 import app.web.drjackycv.feature.products.extension.viewBinding
 import app.web.drjackycv.feature.products.extension.visible
 import com.google.android.material.transition.platform.Hold
@@ -86,10 +85,8 @@ class ProductsListFragment : Fragment(R.layout.feature_products_fragment_product
 
     private fun setupView() {
         productsListViewModel.run {
-            viewLifecycleOwner.observe(ldProductsList, ::addProductsList)
-
-            failure.collectIn(viewLifecycleOwner) {
-                handleFailure(it)
+            productsListByRx.collectIn(viewLifecycleOwner) {
+                addProductsList(it)
             }
         }
     }
@@ -98,10 +95,6 @@ class ProductsListFragment : Fragment(R.layout.feature_products_fragment_product
         productsListViewModel.run {
             productsListByCoroutine.collectIn(viewLifecycleOwner) {
                 addProductsList(it)
-            }
-
-            failure.collectIn(viewLifecycleOwner) {
-                handleFailure(it)
             }
         }
     }
@@ -173,7 +166,9 @@ class ProductsListFragment : Fragment(R.layout.feature_products_fragment_product
             error?.run {
                 binding.inclItemError.itemErrorContainer.visible()
                 loadingUI(false)
-                productsListViewModel.handleFailure(this.error) { retryFetchData() }
+                val failure =
+                    productsListViewModel.mapToFailure(this.error) { retryFetchData() }
+                handleFailure(failure)
             }
         }
     }
