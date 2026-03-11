@@ -26,7 +26,6 @@ dependencies {
     implementation(libs.androidx.navigation.ui)
     implementation(libs.androidx.paging.runtime.ktx)
     implementation(libs.androidx.paging.rx)
-    implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.common.java8)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
@@ -40,16 +39,13 @@ dependencies {
     implementation(libs.rx.android)
     implementation(libs.rx.binding)
     implementation(libs.rx.kotlin)
-    implementation(libs.autodispose)
-    implementation(libs.autodispose.android)
-    implementation(libs.autodispose.android.arch)
-
     implementation(libs.glide)
     implementation(libs.lottie)
     implementation(libs.androidx.palette)
 
     testImplementation(project(":core:testing"))
     testImplementation(libs.arch.core.testing)
+    testImplementation(libs.mockk)
 
     androidTestImplementation(libs.test.runner)
     androidTestImplementation(libs.test.rules)

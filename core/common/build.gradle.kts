@@ -18,8 +18,4 @@ dependencies {
     implementation(libs.java.inject)
 
     implementation(libs.rx.java)
-    implementation(libs.rx.kotlin)
-    implementation(libs.autodispose)
-    implementation(libs.autodispose.android)
-    implementation(libs.autodispose.android.arch)
 }

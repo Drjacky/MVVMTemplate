@@ -42,7 +42,6 @@ rxKotlin = "3.0.1"
 rxAndroid = "3.0.2"
 rxJava = "3.1.5"
 rxBinding = "4.0.0"
-autoDispose = "2.2.1"
 coroutines = "1.10.2"
 
 # UI
@@ -102,8 +101,6 @@ androidx-navigation-fragment = { group = "androidx.navigation", name = "navigati
 androidx-navigation-ui = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation" }
 
 # Lifecycle
-androidx-lifecycle-livedata = { group = "androidx.lifecycle", name = "lifecycle-livedata", version.ref = "lifecycle" }
-androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycle" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
 androidx-lifecycle-common-java8 = { group = "androidx.lifecycle", name = "lifecycle-common-java8", version.ref = "lifecycle" }
 androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
@@ -133,9 +130,6 @@ rx-kotlin = { group = "io.reactivex.rxjava3", name = "rxkotlin", version.ref = "
 rx-java = { group = "io.reactivex.rxjava3", name = "rxjava", version.ref = "rxJava" }
 rx-android = { group = "io.reactivex.rxjava3", name = "rxandroid", version.ref = "rxAndroid" }
 rx-binding = { group = "com.jakewharton.rxbinding4", name = "rxbinding", version.ref = "rxBinding" }
-autodispose = { group = "com.uber.autodispose2", name = "autodispose", version.ref = "autoDispose" }
-autodispose-android = { group = "com.uber.autodispose2", name = "autodispose-android", version.ref = "autoDispose" }
-autodispose-android-arch = { group = "com.uber.autodispose2", name = "autodispose-androidx-lifecycle", version.ref = "autoDispose" }
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 rx-coroutine = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-rx3", version.ref = "coroutines" }
 
