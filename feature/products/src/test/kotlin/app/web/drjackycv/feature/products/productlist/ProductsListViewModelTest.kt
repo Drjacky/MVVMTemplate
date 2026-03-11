@@ -9,6 +9,7 @@ import app.web.drjackycv.core.testing.products.FakeProductsListRepository
 import app.web.drjackycv.core.testing.rule.TestDispatcherRule
 import app.web.drjackycv.feature.products.choose.ChoosePathType
 import com.google.common.truth.Truth.assertThat
+import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -48,6 +49,7 @@ class ProductsListViewModelTest {
         return ProductsListViewModel(
             getProductsUseCase = getProductsListUseCase,
             getProductsListByCoroutineUseCase = getProductsListByCoroutineUseCase,
+            resources = mockk(relaxed = true),
             savedStateHandle = savedStateHandle,
         )
     }
@@ -55,7 +57,8 @@ class ProductsListViewModelTest {
     @Test
     fun `coroutine path - when products list is emitted, productsListByCoroutine updates`() =
         runTest {
-            val products = listOf(TestData.testProduct, TestData.testProduct2, TestData.testProduct3)
+            val products =
+                listOf(TestData.testProduct, TestData.testProduct2, TestData.testProduct3)
             fakeRepository.emitProductsList(PagingData.from(products))
 
             val viewModel = createViewModel(ChoosePathType.COROUTINE)
