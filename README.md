@@ -66,7 +66,7 @@ approach to explore at runtime via a choose screen.
 - [Coroutines](https://developer.android.com/kotlin/coroutines)
   & [Flow](https://developer.android.com/kotlin/flow) with `StateFlow` for UI state
 - [RxJava 3](https://github.com/ReactiveX/RxJava)
-  with [AutoDispose](https://uber.github.io/AutoDispose/) for automatic lifecycle-bound disposal
+  with `CompositeDisposable` for lifecycle-bound disposal
 
 ### Dependency Injection
 
