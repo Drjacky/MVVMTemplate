@@ -1,8 +1,8 @@
 package app.web.drjackycv.feature.products.entity
 
 import androidx.recyclerview.widget.RecyclerView
+import app.web.drjackycv.core.common.extension.load
 import app.web.drjackycv.feature.products.databinding.FeatureProductsItemProductBinding
-import app.web.drjackycv.feature.products.extension.load
 
 class ProductViewHolder(val itemBinding: FeatureProductsItemProductBinding) :
     RecyclerView.ViewHolder(itemBinding.root) {

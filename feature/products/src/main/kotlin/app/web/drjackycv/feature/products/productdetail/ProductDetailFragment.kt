@@ -5,10 +5,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
+import app.web.drjackycv.core.common.extension.load
+import app.web.drjackycv.core.common.extension.viewBinding
 import app.web.drjackycv.feature.products.R
 import app.web.drjackycv.feature.products.databinding.FeatureProductsFragmentProductDetailBinding
-import app.web.drjackycv.feature.products.extension.load
-import app.web.drjackycv.feature.products.extension.viewBinding
 import com.google.android.material.transition.platform.MaterialArcMotion
 import com.google.android.material.transition.platform.MaterialContainerTransform
 import dagger.hilt.android.AndroidEntryPoint

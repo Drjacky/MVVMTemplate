@@ -11,11 +11,11 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import app.web.drjackycv.core.common.datastore.DataStoreManager
 import app.web.drjackycv.core.common.extension.collectIn
+import app.web.drjackycv.core.common.extension.setOnReactiveClickListener
+import app.web.drjackycv.core.common.extension.setStatusBarColor
+import app.web.drjackycv.core.common.extension.viewInflateBinding
 import app.web.drjackycv.core.common.preference.Settings
 import app.web.drjackycv.core.domain.extension.allowReads
-import app.web.drjackycv.feature.products.extension.setOnReactiveClickListener
-import app.web.drjackycv.feature.products.extension.setStatusBarColor
-import app.web.drjackycv.feature.products.extension.viewInflateBinding
 import app.web.drjackycv.mvvmtemplate.R
 import app.web.drjackycv.mvvmtemplate.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint

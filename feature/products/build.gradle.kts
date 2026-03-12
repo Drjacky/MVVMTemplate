@@ -37,11 +37,8 @@ dependencies {
     implementation(libs.java.inject)
 
     implementation(libs.rx.android)
-    implementation(libs.rx.binding)
     implementation(libs.rx.kotlin)
-    implementation(libs.glide)
     implementation(libs.lottie)
-    implementation(libs.androidx.palette)
 
     testImplementation(project(":core:testing"))
     testImplementation(libs.arch.core.testing)

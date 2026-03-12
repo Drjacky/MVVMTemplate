@@ -1,4 +1,4 @@
-package app.web.drjackycv.feature.products.extension
+package app.web.drjackycv.core.common.extension
 
 import android.app.Activity
 import android.content.Context

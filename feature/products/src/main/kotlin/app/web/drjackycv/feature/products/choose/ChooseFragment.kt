@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import app.web.drjackycv.core.common.extension.setOnReactiveClickListener
+import app.web.drjackycv.core.common.extension.viewBinding
 import app.web.drjackycv.feature.products.R
 import app.web.drjackycv.feature.products.databinding.FeatureProductsFragmentChooseBinding
-import app.web.drjackycv.feature.products.extension.setOnReactiveClickListener
-import app.web.drjackycv.feature.products.extension.viewBinding
 import java.io.Serializable
 
 class ChooseFragment : Fragment(R.layout.feature_products_fragment_choose) {
