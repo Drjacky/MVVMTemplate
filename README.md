@@ -17,7 +17,8 @@ A simple Android template that lets you create an **Android** project quickly.
 
 Just click
 on [![Use this template](https://img.shields.io/badge/-Use%20this%20template-brightgreen)](https://github.com/Drjacky/MVVMTemplate/generate)
-button to create a new repo starting from this template.
+button to create a new repo starting from this template.  
+Or, for a basic/starter version of the same architecture, use [BasicComposeActivityPlugin](https://github.com/Drjacky/BasicComposeActivityPlugin) plugin.
 
 ## Architecture 🏗
 
