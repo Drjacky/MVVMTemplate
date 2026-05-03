@@ -1,125 +1,116 @@
 package app.web.drjackycv.mvvmtemplate.main
-
 import android.os.Bundle
+import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material3.FloatingActionButton
-import androidx.compose.material3.Icon
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
-import app.web.drjackycv.core.common.datastore.DataStoreManager
-import app.web.drjackycv.core.common.preference.Settings
-import app.web.drjackycv.core.domain.extension.allowReads
-import app.web.drjackycv.core.ui.R
-import app.web.drjackycv.core.ui.theme.ThemeState
-import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
-import javax.inject.Inject
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 
-@AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
-
-    private var uiStateJob: Job? = null
-
-    @Inject
-    lateinit var dataStoreManager: DataStoreManager
-
+class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
-
         setContent {
-            val themeMode by dataStoreManager.themeMode
-                .collectAsStateWithLifecycle(
-                    initialValue = AppCompatDelegate.MODE_NIGHT_UNSPECIFIED
-                )
-
-            val darkMode = isDarkForMode(themeMode)
-            ThemeState.darkModeState.value = darkMode
-
-            MyApp(
-                darkMode = darkMode,
-                themeFAB = { ThemeFAB(themeMode) },
-            )
-        }
-        setupUI()
-    }
-
-    override fun onStop() {
-        uiStateJob?.cancel()
-        super.onStop()
-    }
-
-    override fun onDestroy() {
-        if (isTaskRoot && isFinishing) {
-            finishAfterTransition()
-        }
-        super.onDestroy()
-    }
-
-    @Composable
-    private fun isDarkForMode(mode: Int): Boolean = when (mode) {
-        AppCompatDelegate.MODE_NIGHT_YES -> true
-        AppCompatDelegate.MODE_NIGHT_NO -> false
-        else -> isSystemInDarkTheme()
-    }
-
-    @Composable
-    private fun ThemeFAB(currentMode: Int) {
-        val (nextMode, icon) = when (currentMode) {
-            AppCompatDelegate.MODE_NIGHT_NO -> Pair(
-                AppCompatDelegate.MODE_NIGHT_YES,
-                R.drawable.ic_mode_night_default_black
-            )
-
-            AppCompatDelegate.MODE_NIGHT_YES -> Pair(
-                Settings.MODE_NIGHT_DEFAULT,
-                R.drawable.ic_mode_night_no_black
-            )
-
-            else -> Pair(
-                AppCompatDelegate.MODE_NIGHT_NO,
-                R.drawable.ic_mode_night_yes_black
-            )
-        }
-
-        FloatingActionButton(
-            onClick = { setNightMode(nextMode) },
-            content = {
-                Icon(
-                    painter = painterResource(id = icon),
-                    contentDescription = stringResource(R.string.content_description_theme),
-                )
-            },
-        )
-    }
-
-    private fun setupUI() {
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                dataStoreManager.themeMode.collect { mode ->
-                    if (AppCompatDelegate.getDefaultNightMode() != mode) {
-                        AppCompatDelegate.setDefaultNightMode(mode)
-                    }
+            MaterialTheme {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    PersonalTrackerApp()
                 }
             }
         }
     }
+}
 
-    private fun setNightMode(mode: Int) {
-        allowReads {
-            uiStateJob = lifecycleScope.launch {
-                dataStoreManager.setThemeMode(mode)
+@Composable
+fun PersonalTrackerApp() {
+    var journalEntry by remember { mutableStateOf("") }
+    var healthChecked by remember { mutableStateOf(false) }
+    var studyChecked by remember { mutableStateOf(false) }
+    var relationshipChecked by remember { mutableStateOf(false) }
+    var entertainmentChecked by remember { mutableStateOf(false) }
+
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
+        item {
+            Text(
+                text = "ഡെയിലി ട്രാക്കർ (LEVEND Framework)",
+                style = MaterialTheme.typography.headlineMedium,
+                modifier = Modifier.padding(bottom = 16.dp)
+            )
+        }
+
+        // ലൈഫ് ഏരിയാ 1: ആരോഗ്യം
+        item {
+            Card(modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp)) {
+                Column(modifier = Modifier.padding(16.dp)) {
+                    Text("ശാരീരികവും മാനസികവുമായ ആരോഗ്യം", style = MaterialTheme.typography.titleMedium)
+                    Row(verticalAlignment = androidx.compose.ui.Alignment.CenterVertically) {
+                        Checkbox(checked = healthChecked, onCheckedChange = { healthChecked = it })
+                        Text("ഭക്ഷണം, ഉപവാസം, വ്യായാമം, വിശ്രമം ഉറപ്പാക്കി")
+                    }
+                    OutlinedTextField(
+                        value = journalEntry,
+                        onValueChange = { journalEntry = it },
+                        label = { Text("ഡെയിലി ജേർണൽ (സന്തോഷം/സങ്കടം)") },
+                        modifier = Modifier.fillMaxWidth().padding(top = 8.dp)
+                    )
+                }
+            }
+        }
+
+        // ലൈഫ് ഏരിയാ 2: കരിയർ
+        item {
+            Card(modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp)) {
+                Column(modifier = Modifier.padding(16.dp)) {
+                    Text("കരിയർ, പഠനം, തൊഴിൽ", style = MaterialTheme.typography.titleMedium)
+                    Row(verticalAlignment = androidx.compose.ui.Alignment.CenterVertically) {
+                        Checkbox(checked = studyChecked, onCheckedChange = { studyChecked = it })
+                        Text("പ്രധാന ലക്ഷ്യം (ഉദാ: PSC / KTET പഠനം) ചെയ്തു")
+                    }
+                }
+            }
+        }
+
+        // ലൈഫ് ഏരിയാ 3: ബന്ധങ്ങൾ
+        item {
+            Card(modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp)) {
+                Column(modifier = Modifier.padding(16.dp)) {
+                    Text("ബന്ധങ്ങൾ (Relationships)", style = MaterialTheme.typography.titleMedium)
+                    Row(verticalAlignment = androidx.compose.ui.Alignment.CenterVertically) {
+                        Checkbox(checked = relationshipChecked, onCheckedChange = { relationshipChecked = it })
+                        Text("കുടുംബം/സുഹൃത്തുക്കളുമായി നല്ല രീതിയിൽ ഇടപഴകി")
+                    }
+                }
+            }
+        }
+
+        // ലൈഫ് ഏരിയാ 4: വിനോദം
+        item {
+            Card(modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)) {
+                Column(modifier = Modifier.padding(16.dp)) {
+                    Text("എൻ്റർടൈൻമെൻ്റ് (വിനോദം)", style = MaterialTheme.typography.titleMedium)
+                    Row(verticalAlignment = androidx.compose.ui.Alignment.CenterVertically) {
+                        Checkbox(checked = entertainmentChecked, onCheckedChange = { entertainmentChecked = it })
+                        Text("മറ്റ് ലക്ഷ്യങ്ങളെ ബാധിക്കാത്ത രീതിയിൽ വിനോദത്തിൽ ഏർപ്പെട്ടു")
+                    }
+                }
+            }
+        }
+
+        // സബ്മിറ്റ് ബട്ടൺ
+        item {
+            Button(
+                onClick = { /* ഡാറ്റാബേസിലേക്ക് സേവ് ചെയ്യാനുള്ള കോഡ് ഇവിടെ നൽകണം */ },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text("ഇന്നത്തെ വിവരങ്ങൾ സേവ് ചെയ്യുക")
             }
         }
     }
