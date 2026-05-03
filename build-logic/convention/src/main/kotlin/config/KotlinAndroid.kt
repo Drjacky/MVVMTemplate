@@ -13,7 +13,8 @@ internal fun Project.configureKotlinAndroid(
     commonExtension: CommonExtension,
 ) {
     commonExtension.apply {
-        compileSdk = libs.findVersion("compileSdk").get().toString().toInt()
+        val compileSdkLevel = libs.findVersion("compileSdk").get().toString().toInt()
+        compileSdk = compileSdkLevel
 
         defaultConfig.apply {
             minSdk = libs.findVersion("minSdk").get().toString().toInt()
