@@ -43,7 +43,7 @@ rxKotlin = "3.0.1"
 rxAndroid = "3.0.2"
 rxJava = "3.1.5"
 rxBinding = "4.0.0"
-rxCoroutine = "1.6.4"
+rxCoroutine = "1.10.2"
 coroutines = "1.10.2"
 
 # UI
