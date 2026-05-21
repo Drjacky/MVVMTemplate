@@ -31,7 +31,7 @@ hiltNavigationCompose = "1.3.0"
 javaxInject = "1"
 
 # Serialization
-kotlinxSerialization = "1.9.0"
+kotlinxSerialization = "1.10.0"
 
 # Network
 retrofit = "3.0.0"
